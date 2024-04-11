@@ -7,7 +7,9 @@ background-repeat: no-repeat;
 
 
 #contenedor-login{
-    border-radius: 50px
+    border-radius: 50px;
+    width: 600px;
+    margin-left: -100px;
 }
 
 #infologin{
@@ -77,14 +79,31 @@ background-repeat: no-repeat;
   }
   
 /* Estilos adicionales para dispositivos móviles */
-@media (max-width: 767.98px) {
-    #linkolvcontra {
-padding-left: 120px;    }
-
+@media (max-width: 765.98px) {
+  #contenedor-login{
+    width: auto;
+    margin-left: 1px;
+  }
 
 #registrarselink{
     padding-left: 15px;
 }
   }
-  
-  
+
+  @media (max-width: 1400px){
+
+    #contenedor-login{
+      width: auto;
+      margin-right: -100px;
+
+      margin-top: 100px;
+    }
+
+  }
+
+  @media (max-width: 767px) {
+    #contenedor-login {
+        width: 100%; /* O cualquier otro porcentaje que desees */
+        margin: 20px auto; /* Margen en todos los lados para separar del borde de la página */
+    }
+}
