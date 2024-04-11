@@ -6,48 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
+  <link rel="stylesheet" href="../../recursos/css/admin_itr/login.css" />
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+  
 </head>
 
 <body>
+
+    
+  
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
+    
     <div
       class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
       <div class="d-flex align-items-center justify-content-center w-100">
         <div class="row justify-content-center w-100">
           <div class="col-md-8 col-lg-6 col-xxl-3">
-            <div class="card mb-0">
+            <div class="card mb-0" id="contenedor-login">
               <div class="card-body">
-                <a href="../admin/index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../../recursos/img/logos/dark-logo.svg" width="180" alt="">
+                <a class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../../recursos/img/logos/logomyloand.png" width="180" alt="">
                 </a>
-                <p class="text-center">Your Social Campaigns</p>
+                <p id="infologin" class="text-center">Inicia sesión y accede a todas las funcionalidades de MyLoan </p>
                 <form>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"  placeholder="Ingresa tu usuario">
                   </div>
                   <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="inputPassword"  placeholder="Ingresa tu contraseña">
                   </div>
                   <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
-                      </label>
+
+                      <a class="text-primary fw-bold ms-2 custom-link" id="registrarselink" href="../admin/authentication-register.html">¿No tienes cuenta? Registrate</a>
+
                     </div>
-                    <a class="text-primary fw-bold" href="../admin/index.html">Forgot Password ?</a>
+                    <a class="text-primary fw-bold custom-link" id="linkolvcontra" href="../admin/index.html">¿Olvidaste tu contraseña?</a>
                   </div>
-                  <a href="../admin/index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</a>
-                  <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
-                    <a class="text-primary fw-bold ms-2" href="../admin/authentication-register.html">Create an account</a>
+                  <div class="d-flex align-items-center justify-content-center mb-4">
+                    <a href="../admin/index.html" class="btn-custom">Iniciar Sesión</a>
                   </div>
-                </form>
+                 </form>
               </div>
             </div>
           </div>
