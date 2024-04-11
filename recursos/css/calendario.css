@@ -1,0 +1,9 @@
+#calendar { font-family:Arial; width:710px; height: 400px;}
+#calendar caption {text-align:center;padding:5px 10px; background-color:rgba(241, 244, 249, 1);
+color:black;font-weight:bold;font-size:medium;}
+#calendar caption div:nth-child(1) {float:left;}
+#calendar caption div:nth-child(2) {float:right;}
+#calendar caption div:nth-child(2) a {cursor:pointer;}
+#calendar th {background-color:black;color: black ;width:40px;}
+#calendar td {text-align:center;padding:2px 5px;background-color:rgba(241, 244, 249, 1);}
+#calendar .hoy {background-color:rgba(4, 102, 248, 1);border-radius: 10%}

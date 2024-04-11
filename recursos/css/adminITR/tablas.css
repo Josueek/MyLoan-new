@@ -1,0 +1,76 @@
+.contenedorr{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 10%;
+}
+.tables{
+    width: 100%;
+    border: 1px solid rgba(241, 244, 249, 1);
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+.tables caption{
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.tables tr{
+    background-color: white;
+    border: 1px solid rgba(241, 244, 249, 1);
+}
+
+table th, .tables td{
+    font-size: 16px;
+    padding: 8px;
+    text-align: center;
+
+}
+
+.tables thead th{
+    text-transform: uppercase;
+    background-color: rgba(241, 244, 249, 1);
+}
+
+@media screen and (max-width: 600px) {
+    .tables{
+        border: 0px;
+    }
+    .tables caption{
+        font-size: 22px;
+    }
+    .tables thead{
+        display: none;
+    }
+    .tables tr{
+        margin-bottom: 8px;
+        border-bottom: 4px solid rgba(241, 244, 249, 1);
+        display: block;
+    }
+    .tables th, .tables td{
+        font-size: 12px;
+    }
+    .tables td{
+        display: block;
+        border-bottom: 1px solid rgba(241, 244, 249, 1);
+    }
+    .tables td:last-child{
+        border-bottom: 0px;
+    }
+    .tables td::before{
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        float: left;
+    }
+}
+
+
+/*img tablas*/
+
+.img_tab{
+    width: 100px;
+    height: 100px;
+}
