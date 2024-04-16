@@ -1,0 +1,123 @@
+body{
+    background-image : url(../../img/adminITR/iniciodesesión.png) ;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+    
+    
+    #contenedor-login{
+        border-radius: 50px;
+        width: 600px;
+        margin-left: -100px;
+    }
+    
+    #infologin{
+        color: black;
+        margin-top: 12px;
+        margin-bottom: 30px;
+        font-size: 23px;
+        font-family:sans-serif; /* Reemplaza "Nombre de la fuente" con el nombre de la fuente moderna que desees usar */
+        font-weight: bold; /* Aplica negrita al texto */
+    }
+    
+    .form-label{
+        color: #B4B4B4 !important;
+        font-size: 17px;
+        font-family:sans-serif;
+    }
+    
+    .boton-continuar {
+        margin-top: 60px;
+        text-align: center; /* Centra el contenido del contenedor */
+    }
+    
+    .btn-custom {
+        background-color: #F8C404;
+        color: white;
+        border-radius: 20px;
+        padding: 15px 40px;
+        text-decoration: none;
+        font-size: 15px;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+    
+      
+      .btn-custom:hover {
+        color: white;
+        background-color: #ffcc00; /* Cambio de color al pasar el ratón */
+      }
+    
+      
+    /* Estilos adicionales para dispositivos móviles */
+    @media (max-width: 765.98px) {
+      #contenedor-login{
+        width: auto;
+        margin-left: 1px;
+      }
+    
+    #registrarselink{
+        padding-left: 15px;
+    }
+      }
+    
+      @media (max-width: 1400px){
+    
+        #contenedor-login{
+          width: auto;
+          margin-right: -100px;
+    
+          margin-top: 100px;
+        }
+    
+      }
+    
+      @media (max-width: 767px) {
+        #contenedor-login {
+            width: 100%; /* O cualquier otro porcentaje que desees */
+            margin: 20px auto; /* Margen en todos los lados para separar del borde de la página */
+        }
+    }
+    
+    @media (max-width: 280px) {
+        .btn-custom {
+            font-size: 16px; /* Reducir el tamaño del texto del botón */
+            padding: 14px 20px; /* Reducir el padding del botón */
+        }
+    }
+    
+    
+    
+    #inputNewPassword, #inputConfirmPassword {
+        border: 2px solid #ccc; /* Borde de los campos */
+        border-radius: 10px 0 0 10px; /* Bordes redondeados solo en el lado izquierdo */
+        padding: 10px; /* Espaciado interno */
+        font-size: 16px; /* Tamaño de fuente */
+        transition: border-color 0.3s ease; /* Transición suave del color del borde */
+        border-right: none; /* Quita la línea del lado derecho */
+    }
+    
+    #toggleNewPassword, #toggleConfirmPassword {
+        border: 2px solid #ccc; /* Borde de los botones */
+        border-radius: 0 10px 10px 0; /* Bordes redondeados solo en el lado derecho */
+        padding: 10px; /* Espaciado interno */
+        font-size: 16px; /* Tamaño de fuente */
+        transition: border-color 0.3s ease; /* Transición suave del color del borde */
+        border-left: none; /* Quita la línea del lado izquierdo */
+    }
+    
+    #inputNewPassword:focus, #inputConfirmPassword:focus, #toggleNewPassword:focus, #toggleConfirmPassword:focus {
+        border-color: #007bff; /* Cambia el color del borde al azul cuando está enfocado */
+        outline: none; /* Quita el contorno predeterminado del navegador */
+    }
+    
+    #toggleNewPassword:hover, #toggleConfirmPassword:hover {
+        background-color: #f0f0f0; /* Cambio de color de fondo al pasar el ratón */
+    }
+    
+    #toggleNewPassword i, #toggleConfirmPassword i {
+        color: #999; /* Cambia el color del icono del ojo a gris */
+    }
+    
+    
