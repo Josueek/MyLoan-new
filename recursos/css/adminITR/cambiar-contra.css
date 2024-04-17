@@ -89,35 +89,42 @@ body{
     
     
     
-    #inputNewPassword, #inputConfirmPassword {
-        border: 2px solid #ccc; /* Borde de los campos */
-        border-radius: 10px 0 0 10px; /* Bordes redondeados solo en el lado izquierdo */
-        padding: 10px; /* Espaciado interno */
-        font-size: 16px; /* Tamaño de fuente */
-        transition: border-color 0.3s ease; /* Transición suave del color del borde */
-        border-right: none; /* Quita la línea del lado derecho */
-    }
-    
-    #toggleNewPassword, #toggleConfirmPassword {
-        border: 2px solid #ccc; /* Borde de los botones */
-        border-radius: 0 10px 10px 0; /* Bordes redondeados solo en el lado derecho */
-        padding: 10px; /* Espaciado interno */
-        font-size: 16px; /* Tamaño de fuente */
-        transition: border-color 0.3s ease; /* Transición suave del color del borde */
-        border-left: none; /* Quita la línea del lado izquierdo */
-    }
-    
-    #inputNewPassword:focus, #inputConfirmPassword:focus, #toggleNewPassword:focus, #toggleConfirmPassword:focus {
-        border-color: #007bff; /* Cambia el color del borde al azul cuando está enfocado */
-        outline: none; /* Quita el contorno predeterminado del navegador */
-    }
-    
-    #toggleNewPassword:hover, #toggleConfirmPassword:hover {
-        background-color: #f0f0f0; /* Cambio de color de fondo al pasar el ratón */
-    }
-    
-    #toggleNewPassword i, #toggleConfirmPassword i {
-        color: #999; /* Cambia el color del icono del ojo a gris */
-    }
-    
-    
+    #inputNewPassword,
+#inputConfirmPassword {
+    border: 2px solid #ccc; /* Borde de los campos */
+    border-radius: 10px 0 0 10px; /* Bordes redondeados solo en el lado izquierdo */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+    border-right: none; /* Quita la línea del lado derecho */
+}
+
+#toggleNewPassword,
+#toggleConfirmPassword {
+    border: 2px solid #ccc; /* Borde de los botones */
+    border-radius: 0 10px 10px 0; /* Bordes redondeados solo en el lado derecho */
+    padding: 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+    border-left: none; /* Quita la línea del lado izquierdo */
+}
+
+#inputNewPassword:focus,
+#inputConfirmPassword:focus,
+#inputNewPassword:focus + #toggleNewPassword,
+#inputConfirmPassword:focus + #toggleConfirmPassword {
+    border-color: #007bff; /* Cambia el color del borde al azul cuando está enfocado */
+    outline: none; /* Quita el contorno predeterminado del navegador */
+}
+
+
+
+#toggleNewPassword i,
+#toggleConfirmPassword i {
+    color: #999; /* Cambia el color del icono del ojo a gris */
+}
+
+.btn-custom:focus {
+    outline: none; /* Quita el contorno predeterminado del navegador */
+}
+
