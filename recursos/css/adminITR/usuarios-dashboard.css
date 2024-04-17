@@ -1,0 +1,62 @@
+#imagenlogo {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-left: 10px;
+}	
+
+.navbar {
+    box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.3);
+}
+
+.app-header {
+    padding: 0 !important;
+}
+
+.navbar-nav .nav-link span {
+    margin-left: 10px;
+    font-size: 36px !important; /* Tamaño de fuente más grande */
+    font-weight: 1000; /* Aumentar la negrita (varía según la fuente, algunas usan 700 o más) */
+    font-family: "Roboto", sans-serif; /* Familia de fuentes */
+    text-decoration: none; /* Eliminar el subrayado del texto */
+    color: #000; /* Color de texto negro */
+}
+
+.navbar-nav .nav-link span:hover {
+    color: #000; /* Color de texto negro al pasar el mouse */
+}
+
+.navbar-collapse .nav-item {
+    margin-right: 10px; /* Ajusta el valor según sea necesario */
+}
+
+
+.navbar-collapse .nav-item .user-details {
+    margin-right: 50px; /* Ajusta el valor según sea necesario */
+}
+
+
+.submenu {
+    background-color: #ffffff; /* Cambia el color de fondo si lo deseas */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra */
+    padding: 10px 0; /* Espaciado interno */
+    margin-top: 10px; /* Espaciado externo */
+  }
+  
+  .submenu-item {
+    list-style: none;
+  }
+  
+  .submenu-link {
+    display: block;
+    color: #000000; /* Color de texto negro */
+    text-decoration: none;
+    padding: 8px 20px; /* Espaciado interno */
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+  }
+  
+  .submenu-link:hover {
+    background-color: #f0f0f0; /* Cambia el color de fondo al pasar el mouse */
+  }
+  
+
