@@ -60,3 +60,141 @@
   }
   
 
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-container {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .form-body {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-group .input-icon {
+    margin-right: 10px;
+  }
+  
+  .input-group input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .filter-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .filter-section select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-footer {
+    text-align: center;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-table th, .user-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .user-table td {
+    text-align: center;
+  }
+  
+
+  /* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+  
+
+  
+  @media screen and (max-width: 767px) {
+    /* Estilos para pantallas pequeñas (hasta 767px de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas pequeñas */
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    /* Estilos para pantallas medianas (de 768px a 991px de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas medianas */
+  }
+  
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    /* Estilos para pantallas grandes (de 992px a 1199px de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas grandes */
+  }
+  
+  @media screen and (min-width: 1200px) {
+    /* Estilos para pantallas extra grandes (1200px o más de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas extra grandes */
+  }
+  
