@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="../../recursos/css/calendario.css">
   <link rel="stylesheet" href="../../recursos/css/clima.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/observaciones.css">
 </head>
 
 <body>
@@ -228,115 +229,75 @@
       <!--  Header End -->
       <div class="container-fluid">
         <!--  Row 1 -->
-
-        <div class="contenedorr">
-          <div class="d-flex justify-content-end mb-3">
-          </div>
-          <div class="container mt-5">
+        <div class="container">
+            <form id="observacionForm">
+                <div class="form-group">
+                    <label for="fecha">Fecha de Observación:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacion">Observación:</label>
+                    <textarea id="observacion" name="observacion" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tipoObservacion">Tipo de Observación:</label>
+                    <select id="tipoObservacion" name="tipoObservacion" required>
+                        <option value="">Seleccionar</option>
+                        <!-- Aquí puedes agregar opciones -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipoPrestamo">Tipo de Préstamo a Observar:</label>
+                    <input type="text" id="tipoPrestamo" name="tipoPrestamo" required>
+                </div>
+                <div class="form-group">
+                    <label for="espacio">Espacio a Observar:</label>
+                    <input type="text" id="espacio" name="espacio" required>
+                    <button id="buscarEspacio">Buscar Espacio</button>
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen:</label><br>
+                    <div class="image-container">
+                        <img id="preview" src="#" alt="Vista previa de la imagen">
+                        <label for="imagen" class="edit-icon"><i class="fas fa-pencil-alt"></i></label>
+                    </div>
+                    <input type="file" id="imagen" name="imagen" accept="image/*"><br><br>
+                </div>
+                <button type="submit">Agregar Observación</button>
+            </form>
+        </div>
+        
+        <div class="container mt-5">
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Nombre Empleado</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Foto Empleado</th>
-                    <th>Estado Empleado</th>
+                    <th>Fecha de Observación</th>
+                    <th>Observación</th>
+                    <th>Foto de la observación</th>
+                    <th>Tipo de observación</th>
+                    <th>Tipo de préstamo a Observar</th>
+                    <th>Espacio a Observar</th>
+                    <th>Prestamo a Observar</th>
                     <th>Institución</th>
-                    <th>Cargo</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Empleado 1</td>
-                    <td>Juan</td>
-                    <td>Pérez</td>
-                    <td>juan@example.com</td>
-                    <td>123456789</td>
-                    <td><img src="ruta/a/la/foto.jpg" alt="Foto de Juan Pérez" width="50"></td>
-                    <td>Activo</td>
+                    <td>lunes</td>
+                    <td>hola</td>
+                    <td><img src="../../recursos/img/adminCFP/dylanperfil.jpg" alt="Foto de Juan Pérez" width="50"></td>
+                    <td>listo</td>
+                    <td>prestamo</td>
+                    <td>salon 1</td>
+                    <td>a</td>
                     <td>Institución XYZ</td>
-                    <td>Gerente</td>
                   </tr>
                   <!-- Agrega más filas según sea necesario -->
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
-
-
-        <div class="row mt-5">
-          <div class="col-lg-8 d-flex align-items-stretch">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Calendario</h5>
-                <div class="table-responsive">
-                  <table id="calendar">
-                    <thead>
-                      <caption> </caption>
-                      <tr>
-                        <th>
-                          Lun
-                        </th>
-                        <th>
-                          Mar
-                        </th>
-                        <th>
-                          Mie
-                        </th>
-                        <th>
-                          Jue
-                        </th>
-                        <th>
-                          Vie
-                        </th>
-                        <th>
-                          Sab
-                        </th>
-                        <th>
-                          Dom
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody> </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold">Clima</h5>
-                </div>
-                <main>
-                  <div class="search-form">
-                    <form id="search-form">
-                      <div class="searchbox">
-                        <input type="text" autocomplete="off" placeholder="Buscar ciudad..." class="search"
-                          id="searchbox" />
-                      </div>
-                    </form>
-                  </div>
-                  <div class="weather-card" id="card">
-                    <div class="city" id="city">El salvador, sv</div>
-                    <div class="date" id="date">11/04/2024</div>
-                    <div class="temperature">
-                      <img src="../../recursos/img/temp-mid.png" class="temp-img" id="temp-img" />
-                      <div class="temp" id="temp">30c</div>
-                    </div>
-                    <div class="weather" id="weather">muy nuboso</div>
-                    <div class="range" id="range">27c / 31c</div>
-                  </div>
-                </main>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -350,6 +311,7 @@
   <script src="../../recursos/adminCFP/calendario.js"></script>
   <script src="../../recursos/adminCFP/clima.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
+  <script src="../../recursos/adminCFP/obser.js"></script>
 
 
 
