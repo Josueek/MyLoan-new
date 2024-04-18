@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuarios - ITR</title>
+  <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
+  <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
+  <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
+          <a href="../admin/index.html" class="text-nowrap logo-img">
+            <img src="../../recursos/img/logos/logomyloand.png" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="../admin/index.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Inicio</span>
+              </a>
+            </li>
+           <li class="sidebar-item">
+  <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
+    <span>
+      <i class="ti ti-article"></i>
+    </span>
+    <span class="hide-menu">Administrar</span>
+  </a>
+  <ul id="submenu" class="submenu" style="display: none;">
+    <li class="submenu-item">
+      <a href="usuariosITR.html" class="submenu-link">
+        <span>
+          <i class="ti ti-user"></i>
+        </span>
+        <span class="hide-menu">Usuarios</span>
+      </a>
+    </li>
+    <li class="submenu-item">
+      <a href="../admin/gestionarEspaciosITR.html" class="submenu-link">
+        <span>
+          <i class="ti ti-settings"></i>
+        </span>
+        <span class="hide-menu">Gestionar espacios</span>
+      </a>
+    </li>
+    <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+    <li class="submenu-item">
+      <a href="../admin/gestionar-herramientas.html" class="submenu-link">
+        <span>
+          <i class="ti ti-tool"></i>
+        </span>
+        <span class="hide-menu">Gestionar Inventario de Herramienta</span>
+      </a>
+    </li>
+    <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+    <li class="submenu-item">
+      <a href="../admin/gestionar-equipos.html" class="submenu-link">
+        <span>
+          <i class="fas fa-desktop"></i>
+        </span>
+        <span class="hide-menu">Gestionar Inventario de Equipos</span>
+      </a>
+    </li>
+    <!-- Nuevo elemento 3: Inventario de materiales -->
+    <li class="submenu-item">
+      <a href="../admin/inventario-materiales.html" class="submenu-link">
+        <span>
+          <i class="ti ti-package"></i>
+        </span>
+        <span class="hide-menu">Inventario de Materiales</span>
+      </a>
+    </ul>
+    </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="../admin/ui-alerts.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu">Mis prestamos</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="../admin/ui-card.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Gestionar solicitudes</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="../admin/ui-forms.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Reportes</span>
+              </a>
+            </li>
+          </ul>
+
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+          <li class="nav-item d-block d-xl-none ms-3">
+            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+              <i class="ti ti-menu-2 fs-8"></i>
+            </a>
+          </li>
+          <ul class="navbar-nav">
+            <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
+            <li class="nav-item">
+              <a class="nav-link">
+                <span class="fs-5 fw-bold">Usuarios</span>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item">
+                <!-- Moviendo la campana a la derecha usando ml-auto -->
+                <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
+                  class="nav-link nav-icon-hover ml-auto">
+                  <i class="ti ti-bell-ringing"></i>
+                  <div class="notification bg-primary rounded-circle"></div>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="../../recursos/img/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">Mi perfil</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">Mi cuenta</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">Mis tareas</p>
+                    </a>
+                    <a href="../admin/authentication-login.html"
+                      class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="user-details ms-2 d-none d-sm-block">
+                  <div class="user-name fs-3 fw-bold">Brandon</div>
+                  <div class="user-role fs-3 fw-bold">Administrador</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+      </header>
+      <!--  Header End -->
+     <!-- Inicio del cuadro con efecto 3D -->
+<div class="container-fluid" id="miCuadro">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- Contenido del cuadro -->
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+            <!-- Contenido a la izquierda -->
+            <div class="d-flex align-items-center mb-3 mb-lg-0 mx-lg-3">
+              <!-- Icono de lupa -->
+              <i class="fas fa-search me-2"></i>
+              <!-- Barra de búsqueda -->
+              <input type="text" class="form-control" placeholder="Buscar">
+            </div>
+            <!-- Contenido en el centro -->
+            <div class="d-flex flex-column align-items-lg-start mb-3 mb-lg-0 mx-lg-3">
+              <!-- Texto "Filtrar por" -->
+              <span class="mb-2">Filtrar por</span>
+              <!-- Combobox -->
+              <select class="form-select">
+                <option value="instructores">Instructores</option>
+                <option value="usuarios">Usuarios</option>
+                <!-- Agrega más opciones según sea necesario -->
+              </select>
+            </div>
+            <!-- Contenido a la derecha -->
+            <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Agregar especialidad</button>
+            <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Agregar empleado</button>
+          </div>
+
+          <!-- Tabla de empleados -->
+          <div class="container mt-5">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nombre Empleado</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Foto Empleado</th>
+                    <th>Estado Empleado</th>
+                    <th>Institución</th>
+                    <th>Cargo</th>
+                    <th>Acciones</th> <!-- Nueva columna de acciones -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Empleado 1</td>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                    <td>juan@example.com</td>
+                    <td>123456789</td>
+                    <td><img src="../../recursos/img/adminCFP/dylanperfil.jpg" alt="Foto de Juan Pérez" width="50"></td>
+                    <td>Activo</td>
+                    <td>Institución XYZ</td>
+                    <td>Gerente</td>
+                    <td>
+                      <!-- Botones de acciones -->
+                      <button type="button" class="btn btn-sm btn-success">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <!-- Agrega más filas según sea necesario -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Fin de la tabla de empleados -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin del cuadro con efecto 3D -->
+
+
+    </div>
+  </div>
+
+
+  <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
+  <script src="../../recursos/adminCFP/app.min.js"></script>
+  <script src="../../recursos/adminCFP/dashboard.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../../recursos/adminCFP/usuarios.js"></script>
+
+  
+
+</body>
+
+</html>

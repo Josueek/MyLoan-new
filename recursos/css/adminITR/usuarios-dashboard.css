@@ -198,3 +198,24 @@
     /* Aquí puedes agregar estilos específicos para pantallas extra grandes */
   }
   
+
+  #botonusuario{
+  
+      background-color: #F8C404;
+      color: white;
+      border-radius: 20px;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: sans-serif;
+      font-weight: bold;
+  
+  
+    
+    
+  }
+
+  #botonusuario:hover {
+    color: white;
+    background-color: #ffcc00; /* Cambio de color al pasar el ratón */
+  }

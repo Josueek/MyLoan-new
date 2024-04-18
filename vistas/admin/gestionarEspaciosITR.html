@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Usuarios</title>
+  <title>Usuarios - ITR</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
@@ -38,32 +38,58 @@
                 <span class="hide-menu">Inicio</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Administrar</span>
-              </a>
-              <ul id="submenu" class="submenu" style="display: none;">
-                <li class="submenu-item">
-                  <a href="../admin/ui-usuarios.html" class="submenu-link">
-                    <span>
-                      <i class="ti ti-user"></i>
-                    </span>
-                    <span class="hide-menu">Usuarios</span>
-                  </a>
-                </li>
-                <li class="submenu-item">
-                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
-                    <span>
-                      <i class="ti ti-settings"></i>
-                    </span>
-                    <span class="hide-menu">Gestionar Laboratorios</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
+           <li class="sidebar-item">
+  <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
+    <span>
+      <i class="ti ti-article"></i>
+    </span>
+    <span class="hide-menu">Administrar</span>
+  </a>
+  <ul id="submenu" class="submenu" style="display: none;">
+    <li class="submenu-item">
+      <a href="usuariosITR.html" class="submenu-link">
+        <span>
+          <i class="ti ti-user"></i>
+        </span>
+        <span class="hide-menu">Usuarios</span>
+      </a>
+    </li>
+    <li class="submenu-item">
+      <a href="../admin/gestionarEspaciosITR.html" class="submenu-link">
+        <span>
+          <i class="ti ti-settings"></i>
+        </span>
+        <span class="hide-menu">Gestionar espacios</span>
+      </a>
+    </li>
+    <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+    <li class="submenu-item">
+      <a href="../admin/gestionar-herramientas.html" class="submenu-link">
+        <span>
+          <i class="ti ti-tool"></i>
+        </span>
+        <span class="hide-menu">Gestionar Inventario de Herramienta</span>
+      </a>
+    </li>
+    <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+    <li class="submenu-item">
+      <a href="../admin/gestionar-equipos.html" class="submenu-link">
+        <span>
+          <i class="fas fa-desktop"></i>
+        </span>
+        <span class="hide-menu">Gestionar Inventario de Equipos</span>
+      </a>
+    </li>
+    <!-- Nuevo elemento 3: Inventario de materiales -->
+    <li class="submenu-item">
+      <a href="../admin/inventario-materiales.html" class="submenu-link">
+        <span>
+          <i class="ti ti-package"></i>
+        </span>
+        <span class="hide-menu">Inventario de Materiales</span>
+      </a>
+    </ul>
+    </li>
 
             <li class="sidebar-item">
               <a class="sidebar-link" href="../admin/ui-alerts.html" aria-expanded="false">
@@ -189,7 +215,8 @@
               </select>
             </div>
             <!-- Contenido a la derecha -->
-            <button type="button" class="btn btn-primary mx-lg-3">Agregar Usuarios</button>
+            <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Agregar especialidad</button>
+            <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Agregar empleado</button>
           </div>
 
           <!-- Tabla de empleados -->
@@ -207,6 +234,7 @@
                     <th>Estado Empleado</th>
                     <th>Institución</th>
                     <th>Cargo</th>
+                    <th>Acciones</th> <!-- Nueva columna de acciones -->
                   </tr>
                 </thead>
                 <tbody>
@@ -216,10 +244,19 @@
                     <td>Pérez</td>
                     <td>juan@example.com</td>
                     <td>123456789</td>
-                    <td><img src="ruta/a/la/foto.jpg" alt="Foto de Juan Pérez" width="50"></td>
+                    <td><img src="../../recursos/img/adminCFP/dylanperfil.jpg" alt="Foto de Juan Pérez" width="50"></td>
                     <td>Activo</td>
                     <td>Institución XYZ</td>
                     <td>Gerente</td>
+                    <td>
+                      <!-- Botones de acciones -->
+                      <button type="button" class="btn btn-sm btn-success">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
                   </tr>
                   <!-- Agrega más filas según sea necesario -->
                 </tbody>
@@ -248,13 +285,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
 
-  <script>
-    $(document).ready(function () {
-      $('#btnAdministrar').click(function () {
-        $('#submenu').slideToggle();
-      });
-    });
-  </script>
+  
 
 </body>
 
