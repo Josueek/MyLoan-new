@@ -173,10 +173,36 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+
+  
+
+  
+  @media screen and (max-width: 767px) {
+    /* Estilos para pantallas pequeñas (hasta 767px de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas pequeñas */
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    /* Estilos para pantallas medianas (de 768px a 991px de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas medianas */
+  }
+  
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    /* Estilos para pantallas grandes (de 992px a 1199px de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas grandes */
+  }
+  
+  @media screen and (min-width: 1200px) {
+    /* Estilos para pantallas extra grandes (1200px o más de ancho) */
+    /* Aquí puedes agregar estilos específicos para pantallas extra grandes */
+  }
   
 
   #botonusuario{
-  
+    margin-left: 10px;
+
+    width: 400px;
       background-color: #F8C404;
       color: white;
       border-radius: 20px;
@@ -194,4 +220,39 @@
   #botonusuario:hover {
     color: white;
     background-color: #ffcc00; /* Cambio de color al pasar el ratón */
+  }
+
+  @media (max-width: 992px) {
+    .navbar-nav .nav-link span{
+   font-size: 20px !important; /* O el tamaño de fuente deseado */
+   width: 200px;
+
+    }
+    
+  }
+
+  @media (max-width: 400px) {
+    
+    .navbar-nav .nav-link span{
+  font-size: 14px !important; /* O el tamaño de fuente deseado */
+   width: 145px;
+    }
+    
+    #bucadoryboton{
+width: 250px !important;
+
+    }
+  }
+  
+
+  
+  @media (max-width: 536px) {
+   
+    #botonusuario{
+        margin-left: 10px;
+     font-size: 10px;
+    width: 270px;
+    padding: 10px 20px;
+
+    }
   }

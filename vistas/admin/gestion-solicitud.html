@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Usuarios - ITR</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
-  <link rel="stylesheet" href="../../recursos/css/adminITR/gestionarEspacios.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/inventario-herramienta.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -100,7 +100,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-card.html" aria-expanded="false">
+              <a class="sidebar-link" href="gestion-solicitud.html" aria-expanded="false">
                 <span>
                   <i class="ti ti-cards"></i>
                 </span>
@@ -138,7 +138,7 @@
             <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
             <li class="nav-item">
               <a class="nav-link">
-                <span class="fs-5 fw-bold text-center py-2 px-1 gestionar-espacio">Gestionar espacio</span>
+                <span class="fs-5 fw-bold text-center py-2 px-1 gestionar-espacio">Gestionar solicitudes</span>
             </a>
             </li>
           </ul>
@@ -197,12 +197,12 @@
           <!-- Contenido del cuadro -->
           <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
             <!-- Contenido a la izquierda -->
-            <div class="d-flex align-items-center mb-3 mb-lg-0 mx-lg-3">
+            <div class="d-flex align-items-center mb-3 mb-lg-0 mx-lg-3" id="bucadoryboton">
               <!-- Icono de lupa -->
               <i class="fas fa-search me-2"></i>
               <!-- Barra de búsqueda -->
               <input type="text" class="form-control" placeholder="Buscar">
-              <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Agregar espacio</button>
+              <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Imprimir documento</button>
 
             </div>
          
@@ -215,13 +215,13 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Numero laboratorio </th>
-                    <th>Nombre</th>
-                    <th>Encargado</th>
-                    <th>Capacidad de personas</th>
-                    <th>Tipo espacio </th>
-                    <th>Especialidad </th>
-                    <th>Inventario - acciones</th>
+                    <th>Numero de prestamo </th>
+                    <th>Usuario</th>
+                    <th>Programa de formacion</th>
+                    <th>Curso</th>
+                    <th>Observacion </th>
+                    <th>Fecha solicitud </th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -232,18 +232,12 @@
                     <td>30</td>
                     <td>laboratorio</td>
                     <td>Desarollo de software</td>
-                    <td>
-                      <!-- Botones de acciones -->
-                      <button type="button" class="btn btn-sm btn-primary">
-                        <i class="fas fa-download"></i>
+                    <td class="text-center">
+                       
+                      <button type="button" class="btn btn-sm btn-success">
+                        <i class="fas fa-eye"></i>
                       </button>
                       
-                      <button type="button" class="btn btn-sm btn-success">
-                        <i class="fas fa-pencil-alt"></i>
-                      </button>
-                      <button type="button" class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
                     </td>
                   </tr>
                   <!-- Agrega más filas según sea necesario -->
