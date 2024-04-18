@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
+  <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
-  <link rel="stylesheet" href="../../recursos/css/adminITR/tablas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="../../recursos/css/calendario.css">
   <link rel="stylesheet" href="../../recursos/css/clima.css">
 </head>
@@ -20,9 +21,9 @@
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
+        <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
           <a href="../admin/index.html" class="text-nowrap logo-img">
-            <img src="../../recursos/img/logo 2.png" width="180" alt="" />
+            <img src="../../recursos/img/logos/logomyloand.png" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -31,10 +32,6 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Inicio</span>
-            </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="../admin/index.html" aria-expanded="false">
                 <span>
@@ -43,18 +40,33 @@
                 <span class="hide-menu">Inicio</span>
               </a>
             </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Administrar</span>
-            </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-buttons.html" aria-expanded="false">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
                 <span class="hide-menu">Administrar</span>
               </a>
+              <ul id="submenu" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="../admin/ui-buttons.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Usuarios</span>
+                  </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-settings"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Laboratorios</span>
+                  </a>
+                </li>
+              </ul>
             </li>
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="../admin/ui-alerts.html" aria-expanded="false">
                 <span>
@@ -80,34 +92,15 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-typography.html" aria-expanded="false">
+              <a class="sidebar-link" href="../admin/ui-forms.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-typography"></i>
+                  <i class="fas fa-cog"></i>
                 </span>
                 <span class="hide-menu">Configuración</span>
               </a>
             </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Acciones</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/authentication-login.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-login"></i>
-                </span>
-                <span class="hide-menu">Login</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/authentication-register.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-user-plus"></i>
-                </span>
-                <span class="hide-menu">Registrar</span>
-              </a>
-            </li>
-            
+          </ul>
+
         </nav>
         <!-- End Sidebar navigation -->
       </div>
@@ -119,22 +112,30 @@
       <!--  Header Start -->
       <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
+
+          <li class="nav-item d-block d-xl-none ms-3">
+            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+              <i class="ti ti-menu-2 fs-8"></i>
+            </a>
+          </li>
           <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
+            <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
             <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class="ti ti-bell-ringing"></i>
-                <div class="notification bg-primary rounded-circle"></div>
+              <a class="nav-link">
+                <span class="fs-5 fw-bold">Inicio</span>
               </a>
             </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              
+              <li class="nav-item">
+                <!-- Moviendo la campana a la derecha usando ml-auto -->
+                <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
+                  class="nav-link nav-icon-hover ml-auto">
+                  <i class="ti ti-bell-ringing"></i>
+                  <div class="notification bg-primary rounded-circle"></div>
+                </a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -150,13 +151,25 @@
                       <i class="ti ti-mail fs-6"></i>
                       <p class="mb-0 fs-3">Mi cuenta</p>
                     </a>
-                    <a href="../admin/authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">Mis tareas</p>
+                    </a>
+                    <a href="../admin/authentication-login.html"
+                      class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
                   </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="user-details ms-2 d-none d-sm-block">
+                  <div class="user-name fs-3 fw-bold">Brandon</div>
+                  <div class="user-role fs-3 fw-bold">Administrador</div>
                 </div>
               </li>
             </ul>
           </div>
         </nav>
+
       </header>
       <!--  Header End -->
       <div class="container-fluid">
@@ -165,71 +178,39 @@
         <div class="contenedorr">
           <div class="d-flex justify-content-end mb-3">
           </div>
-          <table class="tables table-bordered order-table">
-            <thead>
-              <tr>
-      
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Fecha de registro</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Nombre">1</td>
-                <td data-label="Apellido">Mónico</td>
-                <td data-label="Fecha de registro">12345678</td>
-                <td data-label="Teléfono">12345678</td>
-                <td class="but">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                    class="btnclas"><img class="img_buton" src="" alt="">Delivered</button>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Nombre">2</td>
-                <td data-label="Apellido">Vides</td>
-                <td data-label="Fecha de registro">12345678</td>
-                <td data-label="Teléfono">12345678</td>
-                <td class="but">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                    class="btnclas"><img class="img_buton" src="" alt="">Pending</button>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Nombre">3</td>
-                <td data-label="Apellido">Echegoyen</td>
-                <td data-label="Fecha de registro">12345678</td>
-                <td data-label="Teléfono">12345678</td>
-                <td class="but">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                    class="btnclas"><img class="img_buton" src="" alt="">Rejected</button>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Nombre">4</td>
-                <td data-label="Apellido">Ramirez</td>
-                <td data-label="Fecha de registro">12345678</td>
-                <td data-label="Teléfono">12345678</td>
-                <td class="but">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                    class="btnclas"><img class="img_buton" src="" alt="">Pending</button>
-                </td>
-              </tr>
-              <tr>
-                <td data-label="Nombre">5</td>
-                <td data-label="Apellido">Quintanilla</td>
-                <td data-label="Fecha de registro">12345678</td>
-                <td data-label="Teléfono">12345678</td>
-                <td class="but">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                    class="btnclas"><img class="img_buton" src="" alt="">Delivered</button>
-                </td>
-              </tr>
-      
-            </tbody>
-          </table>
+          <div class="container mt-5">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nombre Empleado</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Foto Empleado</th>
+                    <th>Estado Empleado</th>
+                    <th>Institución</th>
+                    <th>Cargo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Empleado 1</td>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                    <td>juan@example.com</td>
+                    <td>123456789</td>
+                    <td><img src="ruta/a/la/foto.jpg" alt="Foto de Juan Pérez" width="50"></td>
+                    <td>Activo</td>
+                    <td>Institución XYZ</td>
+                    <td>Gerente</td>
+                  </tr>
+                  <!-- Agrega más filas según sea necesario -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
 
@@ -309,13 +290,24 @@
   </div>
   <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
   <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../recursos/js/sidebarmenu.js"></script>
-  <script src="../../recursos/js/app.min.js"></script>
+  <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
+  <script src="../../recursos/adminCFP/app.min.js"></script>
   <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-  <script src="../../recursos/js/dashboard.js"></script>
-  <script src="../../recursos/js/calendario.js"></script>
-  <script src="../../recursos/js/clima.js"></script>
+  <script src="../../recursos/adminCFP/dashboard.js"></script>
+  <script src="../../recursos/adminCFP/calendario.js"></script>
+  <script src="../../recursos/adminCFP/clima.js"></script>
+  <script src="../../recursos/adminCFP/usuarios.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#btnAdministrar').click(function () {
+        $('#submenu').slideToggle();
+      });
+    });
+  </script>
+
 </body>
+
 
 </html>
