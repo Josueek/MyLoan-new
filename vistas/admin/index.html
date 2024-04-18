@@ -83,14 +83,34 @@
                 <span class="hide-menu">Gestionar solicitudes</span>
               </a>
             </li>
+
             <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-forms.html" aria-expanded="false">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
                 <span>
-                  <i class="ti ti-file-description"></i>
+                  <i class="ti ti-article"></i>
                 </span>
                 <span class="hide-menu">Reportes</span>
               </a>
+              <ul id="submenu2" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="../admin/ui-buttons.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Usuarios</span>
+                  </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-settings"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Laboratorios</span>
+                  </a>
+                </li>
+              </ul>
             </li>
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="../admin/ui-typography.html" aria-expanded="false">
                 <span>
@@ -298,11 +318,17 @@
   <script src="../../recursos/adminCFP/calendario.js"></script>
   <script src="../../recursos/adminCFP/clima.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
+  <script src="../../recursos/adminCFP/xx.js"></script>
 
   <script>
     $(document).ready(function () {
       $('#btnAdministrar').click(function () {
         $('#submenu').slideToggle();
+      });
+    });
+    $(document).ready(function () {
+      $('#btnReporte').click(function () {
+        $('#submenu2').slideToggle();
       });
     });
   </script>
