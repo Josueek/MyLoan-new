@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="../../recursos/css/calendario.css">
   <link rel="stylesheet" href="../../recursos/css/clima.css">
   <link rel="stylesheet" href="../../recursos/css/adminITR/observaciones.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/modal.css">
+  
 </head>
 
 <body>
@@ -119,7 +121,7 @@
               </a>
               <ul id="submenu3" class="submenu" style="display: none;">
                 <li class="submenu-item">
-                  <a href="../admin/ui-forms.html" class="submenu-link">
+                  <a href="../admin/obser-generales.html" class="submenu-link">
                     <span>
                       <i class="far fa-eye-slash"></i>
                     </span>
@@ -127,7 +129,7 @@
                   </a>
                 </li>
                 <li class="submenu-item">
-                  <a href="../admin/ui-forms.html" class="submenu-link">
+                  <a href="../admin/mis-observaciones.html" class="submenu-link">
                     <span>
                       <i class="far fa-eye"></i>
                     </span>
@@ -177,7 +179,7 @@
             <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
             <li class="nav-item">
               <a class="nav-link">
-                <span class="fs-5 fw-bold">Inicio</span>
+                <span class="fs-5 fw-bold">Mis observaciones</span>
               </a>
             </li>
           </ul>
@@ -268,6 +270,13 @@
         </div>
         
         <div class="container mt-5">
+          <div class="d-flex align-items-center mb-3 mb-lg-0 mx-lg-3">
+            <!-- Icono de lupa -->
+            <i class="fas fa-search me-2"></i>
+            <!-- Barra de búsqueda -->
+            <input type="text" class="form-control" placeholder="Buscar">
+          </div>
+          <br>
             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
@@ -301,6 +310,54 @@
       </div>
     </div>
   </div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <h2>Espacios registrados correspondientes a la institución</h2>
+      <div class="modal-header">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div class="search-bar">
+            <input type="text" placeholder="Buscar..."><i class="fas fa-search"></i>
+        </div>
+          <button class="btn btn-select">Seleccionar espacio</button>
+      </div>
+      <div class="modal-body">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Número de laboratorio</th>
+                      <th>Nombre</th>
+                      <th>Encargado</th>
+                      <th>Capacidad de personas</th>
+                      <th>Tipo de espacio</th>
+                      <th>Especialidad</th>
+                      <th>Inventario</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Aquí van los datos de la tabla -->
+                  <tr>
+                      <td>1</td>
+                      <td>Espacio 1</td>
+                      <td>Juan Pérez</td>
+                      <td>30</td>
+                      <td>Laboratorio</td>
+                      <td>Química</td>
+                      <td><button class="btn btn-download"><i class="fa fa-download"></i></button></td>
+                  </tr>
+                  <!-- Puedes añadir más filas con datos -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+<!-- fin modal -->
+
+
   <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
   <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
@@ -312,6 +369,7 @@
   <script src="../../recursos/adminCFP/clima.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
   <script src="../../recursos/adminCFP/obser.js"></script>
+  <script src="../../recursos/adminCFP/modal.js"></script>
 
 
 
