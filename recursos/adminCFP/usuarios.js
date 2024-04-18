@@ -3,3 +3,9 @@ $(document).ready(function () {
       $('#submenu').slideToggle();
     });
   });
+
+  $(document).ready(function () {
+    $('#btnReporte').click(function () {
+      $('#submenu2').slideToggle();
+    });
+  });

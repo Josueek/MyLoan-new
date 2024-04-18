@@ -49,7 +49,7 @@
               </a>
               <ul id="submenu" class="submenu" style="display: none;">
                 <li class="submenu-item">
-                  <a href="../admin/ui-buttons.html" class="submenu-link">
+                  <a href="usuariosITR.html" class="submenu-link">
                     <span>
                       <i class="ti ti-user"></i>
                     </span>
@@ -57,13 +57,39 @@
                   </a>
                 </li>
                 <li class="submenu-item">
-                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
+                  <a href="../admin/gestionarEspaciosITR.html" class="submenu-link">
                     <span>
                       <i class="ti ti-settings"></i>
                     </span>
-                    <span class="hide-menu">Gestionar Laboratorios</span>
+                    <span class="hide-menu">Gestionar espacios</span>
                   </a>
                 </li>
+                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-herramientas.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-tool"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Inventario de Herramienta</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-equipos.html" class="submenu-link">
+                    <span>
+                      <i class="fas fa-desktop"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Inventario de Equipos</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 3: Inventario de materiales -->
+                <li class="submenu-item">
+                  <a href="../admin/inventario-materiales.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-package"></i>
+                    </span>
+                    <span class="hide-menu">Inventario de Materiales</span>
+                  </a>
               </ul>
             </li>
 
@@ -83,41 +109,23 @@
                 <span class="hide-menu">Gestionar solicitudes</span>
               </a>
             </li>
-
             <li class="sidebar-item">
               <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
                 <span>
-                  <i class="ti ti-article"></i>
+                  <i class="far fa-folder"></i>
                 </span>
                 <span class="hide-menu">Reportes</span>
               </a>
               <ul id="submenu2" class="submenu" style="display: none;">
                 <li class="submenu-item">
-                  <a href="../admin/ui-buttons.html" class="submenu-link">
+                  <a href="../admin/ui-forms.html" class="submenu-link">
                     <span>
-                      <i class="ti ti-user"></i>
+                      <i class="fas fa-archive"></i>
                     </span>
-                    <span class="hide-menu">Usuarios</span>
-                  </a>
-                </li>
-                <li class="submenu-item">
-                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
-                    <span>
-                      <i class="ti ti-settings"></i>
-                    </span>
-                    <span class="hide-menu">Gestionar Laboratorios</span>
+                    <span class="hide-menu">Mis solicitudes</span>
                   </a>
                 </li>
               </ul>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-typography.html" aria-expanded="false">
-                <span>
-                  <i class="fas fa-cog"></i>
-                </span>
-                <span class="hide-menu">Configuración</span>
-              </a>
             </li>
           </ul>
 
@@ -163,7 +171,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="../admin/ui-typography.html" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">Mi perfil</p>
                     </a>
@@ -242,32 +250,32 @@
                 <div class="table-responsive">
                   <table id="calendar">
                     <thead>
-                    <caption> </caption>
-                    <tr>
-                       <th>
-                                 Lun
-                       </th>
-                       <th>
-                                 Mar
-                       </th>
-                       <th>
-                                 Mie
-                       </th>
-                       <th>
-                                 Jue
-                       </th>
-                       <th>
-                                 Vie
-                       </th>
-                       <th>
-                                 Sab
-                       </th>
-                       <th>
-                                 Dom
-                       </th>
-                   </tr>
-                  </thead>
-              <tbody> </tbody>
+                      <caption> </caption>
+                      <tr>
+                        <th>
+                          Lun
+                        </th>
+                        <th>
+                          Mar
+                        </th>
+                        <th>
+                          Mie
+                        </th>
+                        <th>
+                          Jue
+                        </th>
+                        <th>
+                          Vie
+                        </th>
+                        <th>
+                          Sab
+                        </th>
+                        <th>
+                          Dom
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody> </tbody>
                   </table>
                 </div>
               </div>
@@ -283,7 +291,8 @@
                   <div class="search-form">
                     <form id="search-form">
                       <div class="searchbox">
-                        <input type="text" autocomplete="off" placeholder="Buscar ciudad..." class="search" id="searchbox" />
+                        <input type="text" autocomplete="off" placeholder="Buscar ciudad..." class="search"
+                          id="searchbox" />
                       </div>
                     </form>
                   </div>
@@ -302,9 +311,6 @@
             </div>
           </div>
         </div>
-        <div class="py-6 px-6 text-center">
-          <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank" class="pe-1 text-primary text-decoration-underline">AdminMart.com</a></p>
-        </div>
       </div>
     </div>
   </div>
@@ -318,20 +324,8 @@
   <script src="../../recursos/adminCFP/calendario.js"></script>
   <script src="../../recursos/adminCFP/clima.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
-  <script src="../../recursos/adminCFP/xx.js"></script>
 
-  <script>
-    $(document).ready(function () {
-      $('#btnAdministrar').click(function () {
-        $('#submenu').slideToggle();
-      });
-    });
-    $(document).ready(function () {
-      $('#btnReporte').click(function () {
-        $('#submenu2').slideToggle();
-      });
-    });
-  </script>
+
 
 </body>
 
