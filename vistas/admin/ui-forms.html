@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../../recursos/css/calendario.css">
+  <link rel="stylesheet" href="../../recursos/css/clima.css">
 </head>
 
 <body>
@@ -47,7 +49,7 @@
               </a>
               <ul id="submenu" class="submenu" style="display: none;">
                 <li class="submenu-item">
-                  <a href="../admin/ui-usuarios.html" class="submenu-link">
+                  <a href="usuariosITR.html" class="submenu-link">
                     <span>
                       <i class="ti ti-user"></i>
                     </span>
@@ -55,13 +57,39 @@
                   </a>
                 </li>
                 <li class="submenu-item">
-                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
+                  <a href="../admin/gestionarEspaciosITR.html" class="submenu-link">
                     <span>
                       <i class="ti ti-settings"></i>
                     </span>
-                    <span class="hide-menu">Gestionar Laboratorios</span>
+                    <span class="hide-menu">Gestionar espacios</span>
                   </a>
                 </li>
+                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-herramientas.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-tool"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Inventario de Herramienta</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-equipos.html" class="submenu-link">
+                    <span>
+                      <i class="fas fa-desktop"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Inventario de Equipos</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 3: Inventario de materiales -->
+                <li class="submenu-item">
+                  <a href="../admin/inventario-materiales.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-package"></i>
+                    </span>
+                    <span class="hide-menu">Inventario de Materiales</span>
+                  </a>
               </ul>
             </li>
 
@@ -82,12 +110,22 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-forms.html" aria-expanded="false">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
                 <span>
-                  <i class="ti ti-file-description"></i>
+                  <i class="far fa-folder"></i>
                 </span>
                 <span class="hide-menu">Reportes</span>
               </a>
+              <ul id="submenu2" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="../admin/ui-forms.html" class="submenu-link">
+                    <span>
+                      <i class="fas fa-archive"></i>
+                    </span>
+                    <span class="hide-menu">Mis solicitudes</span>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
 
@@ -112,7 +150,7 @@
             <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
             <li class="nav-item">
               <a class="nav-link">
-                <span class="fs-5 fw-bold">Inicio</span>
+                <span class="fs-5 fw-bold">Mis reportes</span>
               </a>
             </li>
           </ul>
@@ -133,7 +171,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="../admin/ui-typography.html" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">Mi perfil</p>
                     </a>
@@ -162,109 +200,68 @@
 
       </header>
       <!--  Header End -->
-      <div class="col-lg-4 d-flex align-items-stretch">
-        <div class="card w-100">
-          <div class="card-body p-4">
-            <div class="mb-4">
-              <h5 class="card-title fw-semibold">Buscador</h5>
-            </div>
-            <div class="searchbox">
-              <input type="text" autocomplete="off" placeholder="Buscar solicitud..." class="search" id="searchbox" />
+      <div class="container-fluid">
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="col-lg-4 d-flex align-items-stretch">
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <div class="mb-4">
+                <h5 class="card-title fw-semibold">Buscador</h5>
+              </div>
+              <div class="searchbox">
+                <input type="text" autocomplete="off" placeholder="Buscar solicitud..." class="search" id="searchbox" />
+              </div>
             </div>
           </div>
-        </div>
-        </div>      
-      <div class="contenedorr">
-        <div class="d-flex justify-content-end mb-3">
-        </div>
-        <table class="tables table-bordered order-table">
-          <thead>
-            <tr>
-              <th>Numero de prestamo</th>
-              <th>Usuario</th>
-              <th>Programa de fomración</th>
-              <th>Curso</th>
-              <th>Observación</th>
-              <th>Fecha solicitud</th>
-              <th>Estado prestamo</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Nombre">1</td>
-              <td data-label="Apellido">Mónico</td>
-              <td data-label="Fecha de registro">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td class="but">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                  class="btnclas"><img class="img_buton" src="" alt="">Delivered</button>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Nombre">2</td>
-              <td data-label="Apellido">Vides</td>
-              <td data-label="Fecha de registro">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td class="but">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                  class="btnclas"><img class="img_buton" src="" alt="">Pending</button>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Nombre">3</td>
-              <td data-label="Apellido">Echegoyen</td>
-              <td data-label="Fecha de registro">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td class="but">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                  class="btnclas"><img class="img_buton" src="" alt="">Rejected</button>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Nombre">4</td>
-              <td data-label="Apellido">Ramirez</td>
-              <td data-label="Fecha de registro">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td class="but">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                  class="btnclas"><img class="img_buton" src="" alt="">Pending</button>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Nombre">5</td>
-              <td data-label="Apellido">Quintanilla</td>
-              <td data-label="Fecha de registro">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td data-label="Teléfono">12345678</td>
-              <td class="but">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle3" data-bs-whatever="@mdo"
-                  class="btnclas"><img class="img_buton" src="" alt="">Delivered</button>
-              </td>
-            </tr>
-    
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-  <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../recursos/js/sidebarmenu.js"></script>
-  <script src="../../recursos/js/app.min.js"></script>
-  <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-  <script src="../../recursos/adminCFP/usuarios.js"></script>
-
+          </div>      
+          <div class="contenedorr">
+            <div class="d-flex justify-content-end mb-3">
+            </div>
+            <div class="container mt-5">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Nombre Empleado</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                      <th>Teléfono</th>
+                      <th>Foto Empleado</th>
+                      <th>Estado Empleado</th>
+                      <th>Institución</th>
+                      <th>Cargo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Empleado 1</td>
+                      <td>Juan</td>
+                      <td>Pérez</td>
+                      <td>juan@example.com</td>
+                      <td>123456789</td>
+                      <td><img src="ruta/a/la/foto.jpg" alt="Foto de Juan Pérez" width="50"></td>
+                      <td>Activo</td>
+                      <td>Institución XYZ</td>
+                      <td>Gerente</td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+          <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
+          <script src="../../recursos/adminCFP/app.min.js"></script>
+          <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+          <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+          <script src="../../recursos/adminCFP/dashboard.js"></script>
+          <script src="../../recursos/adminCFP/calendario.js"></script>
+          <script src="../../recursos/adminCFP/clima.js"></script>
+          <script src="../../recursos/adminCFP/usuarios.js"></script>
 </body>
-
 </html>
