@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuarios - ITR</title>
+  <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
+  <link rel="stylesheet" href="../../recursos/css/adminITR/inventario-herramienta.css">
+  <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
+          <a href="../admin/index.html" class="text-nowrap logo-img">
+            <img src="../../recursos/img/logos/logomyloand.png" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="../admin/index.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Inicio</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Administrar</span>
+              </a>
+              <ul id="submenu" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="usuariosITR.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Usuarios</span>
+                  </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="../admin/gestionarEspaciosITR.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-settings"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar espacios</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-herramientas.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-tool"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Inventario de Herramienta</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-equipos.html" class="submenu-link">
+                    <span>
+                      <i class="fas fa-desktop"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar Inventario de Equipos</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 3: Inventario de materiales -->
+                <li class="submenu-item">
+                  <a href="../admin/inventario-materiales.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-package"></i>
+                    </span>
+                    <span class="hide-menu">Inventario de Materiales</span>
+                  </a>
+              </ul>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="../admin/ui-alerts.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu">Mis prestamos</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="gestion-solicitud.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Gestionar solicitudes</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
+                <span>
+                  <i class="far fa-eye"></i>
+                </span>
+                <span class="hide-menu">Observaciones</span>
+              </a>
+              <ul id="submenu7" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="../admin/obser-generales.html" class="submenu-link">
+                    <span>
+                      <i class="far fa-eye-slash"></i>
+                    </span>
+                    <span class="hide-menu">Observaciones generales</span>
+                  </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="../admin/mis-observaciones.html" class="submenu-link">
+                    <span>
+                      <i class="far fa-eye"></i>
+                    </span>
+                    <span class="hide-menu">Mis observaciones</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
+                <span>
+                  <i class="far fa-folder"></i>
+                </span>
+                <span class="hide-menu">Reportes</span>
+              </a>
+              <ul id="submenu8" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="../admin/ui-forms.html" class="submenu-link">
+                    <span>
+                      <i class="fas fa-archive"></i>
+                    </span>
+                    <span class="hide-menu">Mis solicitudes</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+          <li class="nav-item d-block d-xl-none ms-3">
+            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+              <i class="ti ti-menu-2 fs-8"></i>
+            </a>
+          </li>
+          <ul class="navbar-nav">
+            <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
+            <li class="nav-item">
+              <a class="nav-link">
+                <span class="fs-5 fw-bold text-center py-2 px-1 gestionar-espacio">Gestionar solicitudes</span>
+            </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item">
+                <!-- Moviendo la campana a la derecha usando ml-auto -->
+                <a href="" target="_blank"
+                  class="nav-link nav-icon-hover ml-auto">
+                  <i class="ti ti-bell-ringing"></i>
+                  <div class="notification bg-primary rounded-circle"></div>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="../../recursos/img/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">Mi perfil</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">Mi cuenta</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">Mis tareas</p>
+                    </a>
+                    <a href="../admin/authentication-login.html"
+                      class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="user-details ms-2 d-none d-sm-block">
+                  <div class="user-name fs-3 fw-bold">Brandon</div>
+                  <div class="user-role fs-3 fw-bold">Administrador</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+      </header>
+      <!--  Header End -->
+     <!-- Inicio del cuadro con efecto 3D -->
+<div class="container-fluid" id="miCuadro">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- Contenido del cuadro -->
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+            <!-- Contenido a la izquierda -->
+            <div class="d-flex align-items-center mb-3 mb-lg-0 mx-lg-3" id="bucadoryboton">
+              <!-- Icono de lupa -->
+              <i class="fas fa-search me-2"></i>
+              <!-- Barra de búsqueda -->
+              <input type="text" class="form-control" placeholder="Buscar">
+              <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Entregar préstamo</button>
+
+            </div>
+         
+            <!-- Contenido a la derecha -->
+          </div>
+
+          <!-- Tabla de empleados -->
+          <div class="container mt-5">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Número de préstamo </th>
+                    <th>Usuario</th>
+                    <th>Nombre material</th>
+                    <th>Tipo</th>
+                    <th>Cantidad </th>
+                    <th>Fecha solicitud </th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Brandon</td>
+                    <td>Martillo</td>
+                    <td>Herramienta</td>
+                    <td>1</td>
+                    <td>19/4/2024</td>
+                    <td>En curso</td>
+                    <td class="text-center">
+                       
+                      <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      
+                      
+                    </td>
+                  </tr>
+                  <!-- Agrega más filas según sea necesario -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Fin de la tabla de empleados -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin del cuadro con efecto 3D -->
+
+
+    </div>
+  </div>
+
+
+  
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalle del préstamo</h5>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Descripción</th>
+                <th class="long-text">número de préstamo</th>
+                <th>Equipo</th>
+                <th>Material</th>
+                <th>Herramienta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Aquí puedes llenar la fila de valores -->
+              <tr>
+                <td>1</td>
+                <td>Martillo</td>
+                <td>Martillo grande de acero</td>
+                <td>1</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>Si</td>
+              </tr>
+              <!-- Puedes agregar más filas según sea necesario -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success" id="aceptarBtn" data-toggle="modal" data-target="#periodoModal"><i class="fas fa-check"></i> Aceptar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<!-- New Modal -->
+<div class="modal fade" id="periodoModal" tabindex="-1" role="dialog" aria-labelledby="periodoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- Texto centrado, en negrita y más grande -->
+        <h5 class="modal-title text-center font-weight-bold" id="periodoModalLabel" style="font-size: 24px;">Periodo terminado del préstamo</h5>
+        <!-- Eliminación del botón "x" para cerrar el modal -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+        <!--   <span aria-hidden="true">&times;</span> -->
+        <!-- </button> -->
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="fechaEntrega" class="form-label">Fecha de inicio del préstamo:</label>
+              <!-- Eliminación del icono de calendario -->
+              <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nombreEncargado" class="form-label">Nombre del encargado de entregar el préstamo:</label>
+              <!-- Eliminación de la flecha de combobox -->
+              <select class="form-control">
+                <option value="josue">Josue</option>
+                <option value="dylan">Dylan</option>
+                <option value="john_doe">John Doe</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" id="btnCancelar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning" id="btnEnviar">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Bootstrap JavaScript (requiere jQuery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Datepicker JavaScript (requiere jQuery y Bootstrap JavaScript) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+  <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
+  <script src="../../recursos/adminCFP/app.min.js"></script>
+  <script src="../../recursos/adminCFP/dashboard.js"></script>
+  <script src="../../recursos/adminCFP/usuarios.js"></script>
+  <script src="../../recursos/adminCFP/misprestamosvisualizar.js"></script>
+  <script src="../../recursos/adminCFP/gestion-solicitud.js"></script>
+  
+
+</body>
+
+</html>
