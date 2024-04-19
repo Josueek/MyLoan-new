@@ -102,7 +102,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="../admin/ui-card.html" aria-expanded="false">
+            <a class="sidebar-link" href="gestion-solicitud.html" aria-expanded="false">
               <span>
                 <i class="ti ti-cards"></i>
               </span>
@@ -116,7 +116,7 @@
               </span>
               <span class="hide-menu">Observaciones</span>
             </a>
-            <ul id="submenu3" class="submenu" style="display: none;">
+            <ul id="submenu7" class="submenu" style="display: none;">
               <li class="submenu-item">
                 <a href="../admin/obser-generales.html" class="submenu-link">
                   <span>
@@ -142,7 +142,7 @@
               </span>
               <span class="hide-menu">Reportes</span>
             </a>
-            <ul id="submenu2" class="submenu" style="display: none;">
+            <ul id="submenu8" class="submenu" style="display: none;">
               <li class="submenu-item">
                 <a href="../admin/ui-forms.html" class="submenu-link">
                   <span>
@@ -184,7 +184,7 @@
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <li class="nav-item">
                 <!-- Moviendo la campana a la derecha usando ml-auto -->
-                <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
+                <a href="" target="_blank"
                   class="nav-link nav-icon-hover ml-auto">
                   <i class="ti ti-bell-ringing"></i>
                   <div class="notification bg-primary rounded-circle"></div>
@@ -231,7 +231,7 @@
       <br>
       <!--  Header End -->
       <div class="container">
-        <form action="procesar_formulario.php" method="post" enctype="multipart/form-data">
+        <form id="formulario" action="procesar_formulario.php" method="post" enctype="multipart/form-data">
             <label for="nombre">Nombre:</label><br>
             <input type="text" id="nombre" name="nombre" required><br><br>
             
@@ -272,6 +272,7 @@
   <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
   <script src="../../recursos/adminCFP/config.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
+  <script src="../../recursos/adminCFP/validaciones.js"></script>
 </body>
 
 </html>

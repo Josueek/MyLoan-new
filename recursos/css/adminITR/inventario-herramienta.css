@@ -256,3 +256,38 @@ width: 250px !important;
 
     }
   }
+
+
+
+  /* Estilos para el calendario */
+.datepicker table {
+  width: 100%;
+}
+
+.datepicker table thead th,
+.datepicker table tbody td {
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.datepicker table thead th {
+  font-weight: bold;
+}
+
+.datepicker table tbody td {
+  cursor: pointer;
+}
+
+.datepicker table tbody td.today {
+  font-weight: bold;
+}
+
+.datepicker table tbody td:hover,
+.datepicker table tbody td.active,
+.datepicker table tbody td.active:hover {
+  background-color: #f0f0f0;
+}
+
+.datepicker-dropdown {
+  z-index: 2000;
+}

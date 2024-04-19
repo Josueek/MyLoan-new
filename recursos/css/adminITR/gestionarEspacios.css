@@ -238,3 +238,30 @@
     
   }
   
+
+  /* Estilos para la tabla dentro del modal */
+#editarModal .modal-body table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/*para cambiar el tamaño del modal */
+
+#editarModal .modal-dialog {
+  max-width: 95%; /* o ajusta según sea necesario */
+}
+
+
+
+#agregarEspacioBtn{
+width: 20%;
+  background-color: #F8C404;
+  border-radius: 20px;
+
+}
+
+#botoncerrar{
+width: 20%;
+border-radius: 20px;
+
+}
