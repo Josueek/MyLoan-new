@@ -33,3 +33,15 @@ $(document).ready(function () {
       $('#submenu6').slideToggle();
     });
   });
+
+  $(document).ready(function () {
+    $('#btnobser').click(function () {
+      $('#submenu7').slideToggle();
+    });
+  });
+
+  $(document).ready(function () {
+    $('#btnReporte').click(function () {
+      $('#submenu8').slideToggle();
+    });
+  });
