@@ -78,6 +78,7 @@ $(document).ready(function () {
             </table>
         </div>
     </div>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -159,7 +160,7 @@ $(document).ready(function () {
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-          <button type="button" class="btn btn-warning">Agregar</button>
+          <button type="button" class="btn btn-success" id="aceptarBtn" data-toggle="modal" data-target="#periodoModal"><i class="fas fa-check"></i> Agregar</button>
         </div>
       </div>
     </div>
@@ -338,10 +339,31 @@ $(document).ready(function () {
       </div>
     </div>
   </div>
-  
     <br>
     <button type="button" class="btn btn-warning" id="button-siguiente">Siguiente</button>
 </div>
+<div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="fechaEntrega" class="form-label">Fecha de inicio del préstamo:</label>
+              <!-- Eliminación del icono de calendario -->
+              <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nombreEncargado" class="form-label">Nombre del encargado de entregar el préstamo:</label>
+              <!-- Eliminación de la flecha de combobox -->
+              <select class="form-control">
+                <option value="josue">Josue</option>
+                <option value="dylan">Dylan</option>
+                <option value="john_doe">John Doe</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
 
     
 
