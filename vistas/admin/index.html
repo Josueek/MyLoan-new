@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
+  <title>Inicio</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
@@ -17,7 +17,7 @@
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
+    <!-- Sidebar inicio -->
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
@@ -49,7 +49,7 @@
               </a>
               <ul id="submenu" class="submenu" style="display: none;">
                 <li class="submenu-item">
-                  <a href="../admin/ui-buttons.html" class="submenu-link">
+                  <a href="usuariosITR.html" class="submenu-link">
                     <span>
                       <i class="ti ti-user"></i>
                     </span>
@@ -57,22 +57,48 @@
                   </a>
                 </li>
                 <li class="submenu-item">
-                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
+                  <a href="../admin/gestionarEspaciosITR.html" class="submenu-link">
                     <span>
                       <i class="ti ti-settings"></i>
                     </span>
-                    <span class="hide-menu">Gestionar Laboratorios</span>
+                    <span class="hide-menu">Gestionar espacios</span>
                   </a>
                 </li>
+                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-herramientas.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-tool"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar inventario de herramienta</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+                <li class="submenu-item">
+                  <a href="../admin/gestionar-equipos.html" class="submenu-link">
+                    <span>
+                      <i class="fas fa-desktop"></i>
+                    </span>
+                    <span class="hide-menu">Gestionar inventario de equipos</span>
+                  </a>
+                </li>
+                <!-- Nuevo elemento 3: Inventario de materiales -->
+                <li class="submenu-item">
+                  <a href="../admin/inventario-materiales.html" class="submenu-link">
+                    <span>
+                      <i class="ti ti-package"></i>
+                    </span>
+                    <span class="hide-menu">Inventario de materiales</span>
+                  </a>
               </ul>
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-alerts.html" aria-expanded="false">
+              <a class="sidebar-link" href="../admin/misprestamos.html" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
-                <span class="hide-menu">Mis prestamos</span>
+                <span class="hide-menu">Mis préstamos</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -83,7 +109,6 @@
                 <span class="hide-menu">Gestionar solicitudes</span>
               </a>
             </li>
-
             <li class="sidebar-item">
               <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
                 <span>
@@ -113,37 +138,20 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
                 <span>
-                  <i class="ti ti-article"></i>
+                  <i class="far fa-folder"></i>
                 </span>
                 <span class="hide-menu">Reportes</span>
               </a>
               <ul id="submenu8" class="submenu" style="display: none;">
                 <li class="submenu-item">
-                  <a href="../admin/ui-buttons.html" class="submenu-link">
+                  <a href="../admin/ui-forms.html" class="submenu-link">
                     <span>
-                      <i class="ti ti-user"></i>
+                      <i class="fas fa-archive"></i>
                     </span>
-                    <span class="hide-menu">Usuarios</span>
-                  </a>
-                </li>
-                <li class="submenu-item">
-                  <a href="../admin/ui-laboratorios.html" class="submenu-link">
-                    <span>
-                      <i class="ti ti-settings"></i>
-                    </span>
-                    <span class="hide-menu">Gestionar Laboratorios</span>
+                    <span class="hide-menu">Mis solicitudes</span>
                   </a>
                 </li>
               </ul>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="../admin/ui-typography.html" aria-expanded="false">
-                <span>
-                  <i class="fas fa-cog"></i>
-                </span>
-                <span class="hide-menu">Configuración</span>
-              </a>
             </li>
           </ul>
 
