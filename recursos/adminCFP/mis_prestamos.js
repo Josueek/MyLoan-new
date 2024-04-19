@@ -13,7 +13,7 @@ $(document).ready(function () {
     <br>
     <div class="d-flex flex-column" id="datos_generales">
         <div class="btn-group" role="group" aria-label="Tipo de préstamo">
-            <button type="button" class="btn btn-danger me-2">Equipo</button>
+        <button type="button" class="btn btn-danger me-2" data-toggle="modal" data-target="#exampleModal">Equipo</button>
             <button type="button" class="btn btn-warning me-2">Material</button>
             <button type="button" class="btn btn-success">Herramienta</button>
         </div>
@@ -78,6 +78,50 @@ $(document).ready(function () {
             </table>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalle del préstamo</h5>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-md-4">
+          <div class="form-group">
+              <label for="programaFormacion" class="form-label">Material a solicitar</label>
+              <select class="form-select mb-3" id="programaFormacion">
+                  <option selected>Elige un material</option>
+                  <option value="opcion1">Opción 1</option>
+                  <option value="opcion2">Opción 2</option>
+                  <option value="opcion3">Opción 3</option>
+              </select>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group">
+              <label for="personaSolicitante" class="form-label">Cantidad a solicitar</label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Cantidad a solicitar">
+          </div>
+      </div>
+      <div class="col-md-5" id="descripcion">
+          <div class="form-group">
+          <label for="programaFormacion" class="form-label">Unidad</label>
+          <select class="form-select mb-3" id="programaFormacion">
+              <option selected>Unidades</option>
+              <option value="opcion1">Opción 1</option>
+              <option value="opcion2">Opción 2</option>
+              <option value="opcion3">Opción 3</option>
+          </select>
+          </div>
+      </div>
+  </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
     <br>
     <button type="button" class="btn btn-warning" id="button-siguiente">Siguiente</button>
 </div>
