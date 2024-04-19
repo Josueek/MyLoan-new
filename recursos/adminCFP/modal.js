@@ -40,3 +40,5 @@ function openModal2() {
       modal.style.display = "none";
     }
   }
+
+  

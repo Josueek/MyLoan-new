@@ -9,8 +9,6 @@
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="../../recursos/css/calendario.css">
-  <link rel="stylesheet" href="../../recursos/css/clima.css">
   <link rel="stylesheet" href="../../recursos/css/adminITR/modal2.css">
 </head>
 
@@ -251,7 +249,7 @@
                         <br>
                         <table class="table table-bordered">
                           <thead>
-                            <tr>
+                            <tr class="th-d">
                               <th>Fecha de Observación</th>
                               <th>Observación</th>
                               <th>Foto de la observación</th>
@@ -295,21 +293,18 @@
   <div id="modalObservacion" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal2()">&times;</span>
-      <div class="modal-header">
-        <h2>Detalles de la observación</h2>
-      </div>
       <div class="modal-body">
         <div class="form-container">
           <form>
-            <div class="form-group">
+            <div class="form-group form-group-left">
               <label for="fecha">Fecha de observación:</label>
               <input type="date" id="fechaObservacion" name="fechaObservacion" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-left">
               <label for="observacion">Observación:</label>
               <textarea id="textoObservacion" name="textoObservacion" required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-left">
               <label for="tipo_observacion">Tipo de observación:</label>
               <select id="tipoObservacion" name="tipoObservacion" required>
                 <option value="tipo1">Tipo 1</option>
@@ -317,28 +312,29 @@
                 <!-- Agrega más opciones según sea necesario -->
               </select>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-left">
               <label for="tipo_prestamo">Tipo de préstamo a observar:</label>
               <input type="text" id="tipoPrestamo" name="tipoPrestamo" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-left">
               <label for="persona_solicitante">Persona solicitante:</label>
               <input type="text" id="personaSolicitante" name="personaSolicitante" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-right">
               <label for="imagen">Seleccionar imagen:</label>
               <input type="file" id="imagenObservacion" name="imagenObservacion" accept="image/*">
+              <div class="image-preview">
+                <img id="previewImagen" src="#" alt="Vista previa de la imagen" style="border-radius: 50%; width: 100px; height: 100px;">
+              </div>
             </div>
-            <div class="image-preview">
-              <img id="previewImagen" src="#" alt="Vista previa de la imagen" style="display:none; border-radius: 50%; width: 100px; height: 100px;">
-            </div>
-            <button type="submit" class="btn btn-submit">Enviar</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+
   <!--fin modal-->
+
 
 
 
@@ -350,8 +346,6 @@
   <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
   <script src="../../recursos/adminCFP/dashboard.js"></script>
-  <script src="../../recursos/adminCFP/calendario.js"></script>
-  <script src="../../recursos/adminCFP/clima.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
   <script src="../../recursos/adminCFP/modal.js"></script>
 
