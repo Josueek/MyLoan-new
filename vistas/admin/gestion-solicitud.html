@@ -270,9 +270,10 @@
                     <td>Desarollo de software</td>
                     <td class="text-center">
                        
-                      <button type="button" class="btn btn-sm btn-success">
+                      <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-eye"></i>
                       </button>
+                      
                       
                     </td>
                   </tr>
@@ -295,14 +296,115 @@
   </div>
 
 
-  <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+  
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalle del préstamo</h5>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Descripción</th>
+                <th class="long-text">número de préstamo</th>
+                <th>Espacio</th>
+                <th>Equipo</th>
+                <th>Material</th>
+                <th>Herramienta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Aquí puedes llenar la fila de valores -->
+              <tr>
+                <td>1</td>
+                <td>Taladro</td>
+                <td>Taladro recargable con duración de 2 horas</td>
+                <td>1</td>
+                <td>Laboratorio de EMCA</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>Si</td>
+              </tr>
+              <!-- Puedes agregar más filas según sea necesario -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success" id="aceptarBtn" data-toggle="modal" data-target="#periodoModal"><i class="fas fa-check"></i> Aceptar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<!-- New Modal -->
+<div class="modal fade" id="periodoModal" tabindex="-1" role="dialog" aria-labelledby="periodoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- Texto centrado, en negrita y más grande -->
+        <h5 class="modal-title text-center font-weight-bold" id="periodoModalLabel" style="font-size: 24px;">Periodo terminado del préstamo</h5>
+        <!-- Eliminación del botón "x" para cerrar el modal -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+        <!--   <span aria-hidden="true">&times;</span> -->
+        <!-- </button> -->
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="fechaEntrega" class="form-label">Fecha de inicio del préstamo:</label>
+              <!-- Eliminación del icono de calendario -->
+              <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha" readonly>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nombreEncargado" class="form-label">Nombre del encargado de entregar el préstamo:</label>
+              <!-- Eliminación de la flecha de combobox -->
+              <select class="form-control">
+                <option value="josue">Josue</option>
+                <option value="dylan">Dylan</option>
+                <option value="john_doe">John Doe</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" id="btnCancelar" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning" id="btnEnviar">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Bootstrap JavaScript (requiere jQuery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Datepicker JavaScript (requiere jQuery y Bootstrap JavaScript) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
   <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
   <script src="../../recursos/adminCFP/app.min.js"></script>
   <script src="../../recursos/adminCFP/dashboard.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
-
+  <script src="../../recursos/adminCFP/misprestamosvisualizar.js"></script>
+  <script src="../../recursos/adminCFP/gestion-solicitud.js"></script>
   
 
 </body>
