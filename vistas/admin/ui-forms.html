@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="../../recursos/css/calendario.css">
   <link rel="stylesheet" href="../../recursos/css/clima.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/uiform.css">
 </head>
 
 <body>
@@ -110,6 +111,32 @@
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
+                <span>
+                  <i class="far fa-eye"></i>
+                </span>
+                <span class="hide-menu">Observaciones</span>
+              </a>
+              <ul id="submenu3" class="submenu" style="display: none;">
+                <li class="submenu-item">
+                  <a href="../admin/obser-generales.html" class="submenu-link">
+                    <span>
+                      <i class="far fa-eye-slash"></i>
+                    </span>
+                    <span class="hide-menu">Observaciones generales</span>
+                  </a>
+                </li>
+                <li class="submenu-item">
+                  <a href="../admin/mis-observaciones.html" class="submenu-link">
+                    <span>
+                      <i class="far fa-eye"></i>
+                    </span>
+                    <span class="hide-menu">Mis observaciones</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
                 <span>
                   <i class="far fa-folder"></i>
@@ -201,58 +228,77 @@
       </header>
       <!--  Header End -->
       <div class="container-fluid">
-      <!--  Header End -->
-      <div class="container-fluid">
-        <!--  Row 1 -->
-        <div class="col-lg-4 d-flex align-items-stretch">
-          <div class="card w-100">
-            <div class="card-body p-4">
-              <div class="mb-4">
-                <h5 class="card-title fw-semibold">Buscador</h5>
-              </div>
-              <div class="searchbox">
-                <input type="text" autocomplete="off" placeholder="Buscar solicitud..." class="search" id="searchbox" />
-              </div>
-            </div>
+        <!--  Header End -->
+        <div class="container-fluid">
+          <!--  Row 1 -->
+          <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button id="searchButton"><i class="fas fa-search"></i></button>
           </div>
-          </div>      
-          <div class="contenedorr">
-            <div class="d-flex justify-content-end mb-3">
-            </div>
-            <div class="container mt-5">
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Nombre Empleado</th>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Email</th>
-                      <th>Teléfono</th>
-                      <th>Foto Empleado</th>
-                      <th>Estado Empleado</th>
-                      <th>Institución</th>
-                      <th>Cargo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Empleado 1</td>
-                      <td>Juan</td>
-                      <td>Pérez</td>
-                      <td>juan@example.com</td>
-                      <td>123456789</td>
-                      <td><img src="ruta/a/la/foto.jpg" alt="Foto de Juan Pérez" width="50"></td>
-                      <td>Activo</td>
-                      <td>Institución XYZ</td>
-                      <td>Gerente</td>
-                    </tr>
-                    <!-- Agrega más filas según sea necesario -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Número de Préstamo</th>
+                <th>Usuario</th>
+                <th>Programa de Formación</th>
+                <th>Curso</th>
+                <th>Observación</th>
+                <th>Fecha de Solicitud</th>
+                <th>Estado de Préstamo</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Usuario 1</td>
+                <td>Programa A</td>
+                <td>Curso X</td>
+                <td>Observación 1</td>
+                <td>2024-04-19</td>
+                <td>Pendiente</td>
+                <td><button><i class="fas fa-file"></i></button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Usuario 1</td>
+                <td>Programa A</td>
+                <td>Curso X</td>
+                <td>Observación 1</td>
+                <td>2024-04-19</td>
+                <td>Pendiente</td>
+                <td><button><i class="fas fa-file"></i></button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Usuario 1</td>
+                <td>Programa A</td>
+                <td>Curso X</td>
+                <td>Observación 1</td>
+                <td>2024-04-19</td>
+                <td>Pendiente</td>
+                <td><button><i class="fas fa-file"></i></button></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Usuario 1</td>
+                <td>Programa A</td>
+                <td>Curso X</td>
+                <td>Observación 1</td>
+                <td>2024-04-19</td>
+                <td>Pendiente</td>
+                <td><button><i class="fas fa-file"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+
           <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
           <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
           <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
@@ -264,4 +310,5 @@
           <script src="../../recursos/adminCFP/clima.js"></script>
           <script src="../../recursos/adminCFP/usuarios.js"></script>
 </body>
+
 </html>
