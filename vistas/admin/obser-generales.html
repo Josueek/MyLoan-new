@@ -9,8 +9,7 @@
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="../../recursos/css/calendario.css">
-  <link rel="stylesheet" href="../../recursos/css/clima.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/modal2.css">
 </head>
 
 <body>
@@ -184,7 +183,7 @@
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <li class="nav-item">
                 <!-- Moviendo la campana a la derecha usando ml-auto -->
-                <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank"
+                <a href="" target="_blank"
                   class="nav-link nav-icon-hover ml-auto">
                   <i class="ti ti-bell-ringing"></i>
                   <div class="notification bg-primary rounded-circle"></div>
@@ -242,7 +241,7 @@
                         <!-- Barra de búsqueda -->
                         <input type="text" class="form-control" placeholder="Buscar">
                       </div>
-                      <button id="botonusuario" type="button" class="btn btn-primary mx-lg-3">Ver detalles</button>
+                      <button id="botonVerDetalles" type="button" class="btn btn-primary mx-lg-3" onclick="openModal2()">Ver detalles</button>
                     </div>
                     <br>
                     <!-- Tabla de empleados -->
@@ -250,7 +249,7 @@
                         <br>
                         <table class="table table-bordered">
                           <thead>
-                            <tr>
+                            <tr class="th-d">
                               <th>Fecha de Observación</th>
                               <th>Observación</th>
                               <th>Foto de la observación</th>
@@ -286,6 +285,60 @@
       </div>
     </div>
   </div>
+
+
+  <!--inicio modal-->
+
+
+  <div id="modalObservacion" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal2()">&times;</span>
+      <div class="modal-body">
+        <div class="form-container">
+          <form>
+            <div class="form-group form-group-left">
+              <label for="fecha">Fecha de observación:</label>
+              <input type="date" id="fechaObservacion" name="fechaObservacion" required>
+            </div>
+            <div class="form-group form-group-left">
+              <label for="observacion">Observación:</label>
+              <textarea id="textoObservacion" name="textoObservacion" required></textarea>
+            </div>
+            <div class="form-group form-group-left">
+              <label for="tipo_observacion">Tipo de observación:</label>
+              <select id="tipoObservacion" name="tipoObservacion" required>
+                <option value="tipo1">Tipo 1</option>
+                <option value="tipo2">Tipo 2</option>
+                <!-- Agrega más opciones según sea necesario -->
+              </select>
+            </div>
+            <div class="form-group form-group-left">
+              <label for="tipo_prestamo">Tipo de préstamo a observar:</label>
+              <input type="text" id="tipoPrestamo" name="tipoPrestamo" required>
+            </div>
+            <div class="form-group form-group-left">
+              <label for="persona_solicitante">Persona solicitante:</label>
+              <input type="text" id="personaSolicitante" name="personaSolicitante" required>
+            </div>
+            <div class="form-group form-group-right">
+              <label for="imagen">Seleccionar imagen:</label>
+              <input type="file" id="imagenObservacion" name="imagenObservacion" accept="image/*">
+              <div class="image-preview">
+                <img id="previewImagen" src="#" alt="Vista previa de la imagen" style="border-radius: 50%; width: 100px; height: 100px;">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--fin modal-->
+
+
+
+
+
   <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
   <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
@@ -293,9 +346,8 @@
   <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
   <script src="../../recursos/adminCFP/dashboard.js"></script>
-  <script src="../../recursos/adminCFP/calendario.js"></script>
-  <script src="../../recursos/adminCFP/clima.js"></script>
   <script src="../../recursos/adminCFP/usuarios.js"></script>
+  <script src="../../recursos/adminCFP/modal.js"></script>
 
 
 
