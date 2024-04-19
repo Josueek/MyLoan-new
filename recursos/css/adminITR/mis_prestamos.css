@@ -1,0 +1,21 @@
+#contenedor_padre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#datos_generales{
+    background-color: #F1F4F9;
+    width: 600px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+#titulo_datos{
+text-align: center;
+}
+
+#contenedor_hijo {
+    flex-wrap: wrap;
+}
