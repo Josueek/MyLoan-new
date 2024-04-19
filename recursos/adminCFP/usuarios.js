@@ -9,3 +9,9 @@ $(document).ready(function () {
       $('#submenu2').slideToggle();
     });
   });
+
+  $(document).ready(function () {
+    $('#btnobser').click(function () {
+      $('#submenu3').slideToggle();
+    });
+  });

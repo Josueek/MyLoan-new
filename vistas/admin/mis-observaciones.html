@@ -6,12 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
-  <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
+  <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../../recursos/css/calendario.css">
+  <link rel="stylesheet" href="../../recursos/css/clima.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/observaciones.css">
+  <link rel="stylesheet" href="../../recursos/css/adminITR/modal.css">
+  
 </head>
 
 <body>
+  <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
@@ -173,7 +179,7 @@
             <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
             <li class="nav-item">
               <a class="nav-link">
-                <span class="fs-5 fw-bold">Mis prestamos</span>
+                <span class="fs-5 fw-bold">Mis observaciones</span>
               </a>
             </li>
           </ul>
@@ -224,51 +230,151 @@
       </header>
       <!--  Header End -->
       <div class="container-fluid">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title fw-semibold mb-4">Alerts</h5>
-              <div class="card mb-0">
-                <div class="card-body p-4">
-                  <div class="alert alert-primary" role="alert">
-                    A simple primary alert—check it out!
-                  </div>
-                  <div class="alert alert-secondary" role="alert">
-                    A simple secondary alert—check it out!
-                  </div>
-                  <div class="alert alert-success" role="alert">
-                    A simple success alert—check it out!
-                  </div>
-                  <div class="alert alert-danger" role="alert">
-                    A simple danger alert—check it out!
-                  </div>
-                  <div class="alert alert-warning" role="alert">
-                    A simple warning alert—check it out!
-                  </div>
-                  <div class="alert alert-info" role="alert">
-                    A simple info alert—check it out!
-                  </div>
-                  <div class="alert alert-light" role="alert">
-                    A simple light alert—check it out!
-                  </div>
-                  <div class="alert alert-dark" role="alert">
-                    A simple dark alert—check it out!
-                  </div>
+        <!--  Row 1 -->
+        <div class="container">
+            <form id="observacionForm">
+                <div class="form-group">
+                    <label for="fecha">Fecha de Observación:</label>
+                    <input type="date" id="fecha" name="fecha" required>
                 </div>
-              </div>
+                <div class="form-group">
+                    <label for="observacion">Observación:</label>
+                    <textarea id="observacion" name="observacion" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tipoObservacion">Tipo de Observación:</label>
+                    <select id="tipoObservacion" name="tipoObservacion" required>
+                        <option value="">Seleccionar</option>
+                        <!-- Aquí puedes agregar opciones -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipoPrestamo">Tipo de Préstamo a Observar:</label>
+                    <input type="text" id="tipoPrestamo" name="tipoPrestamo" required>
+                </div>
+                <div class="form-group">
+                    <label for="espacio">Espacio a Observar:</label>
+                    <input type="text" id="espacio" name="espacio" required>
+                    <button id="buscarEspacio">Buscar Espacio</button>
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen:</label><br>
+                    <div class="image-container">
+                        <img id="preview" src="#" alt="Vista previa de la imagen">
+                        <label for="imagen" class="edit-icon"><i class="fas fa-pencil-alt"></i></label>
+                    </div>
+                    <input type="file" id="imagen" name="imagen" accept="image/*"><br><br>
+                </div>
+                <button type="submit">Agregar Observación</button>
+            </form>
+        </div>
+        
+        <div class="container mt-5">
+          <div class="d-flex align-items-center mb-3 mb-lg-0 mx-lg-3">
+            <!-- Icono de lupa -->
+            <i class="fas fa-search me-2"></i>
+            <!-- Barra de búsqueda -->
+            <input type="text" class="form-control" placeholder="Buscar">
+          </div>
+          <br>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Fecha de Observación</th>
+                    <th>Observación</th>
+                    <th>Foto de la observación</th>
+                    <th>Tipo de observación</th>
+                    <th>Tipo de préstamo a Observar</th>
+                    <th>Espacio a Observar</th>
+                    <th>Prestamo a Observar</th>
+                    <th>Institución</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>lunes</td>
+                    <td>hola</td>
+                    <td><img src="../../recursos/img/adminCFP/dylanperfil.jpg" alt="Foto de Juan Pérez" width="50"></td>
+                    <td>listo</td>
+                    <td>prestamo</td>
+                    <td>salon 1</td>
+                    <td>a</td>
+                    <td>Institución XYZ</td>
+                  </tr>
+                  <!-- Agrega más filas según sea necesario -->
+                </tbody>
+              </table>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
-<script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../recursos/js/sidebarmenu.js"></script>
-<script src="../../recursos/js/app.min.js"></script>
-<script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-<script src="../../recursos/adminCFP/usuarios.js"></script>
+
+
+<!-- Modal -->
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <h2>Espacios registrados correspondientes a la institución</h2>
+      <div class="modal-header">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div class="search-bar">
+            <input type="text" placeholder="Buscar..."><i class="fas fa-search"></i>
+        </div>
+          <button class="btn btn-select">Seleccionar espacio</button>
+      </div>
+      <div class="modal-body">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Número de laboratorio</th>
+                      <th>Nombre</th>
+                      <th>Encargado</th>
+                      <th>Capacidad de personas</th>
+                      <th>Tipo de espacio</th>
+                      <th>Especialidad</th>
+                      <th>Inventario</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Aquí van los datos de la tabla -->
+                  <tr>
+                      <td>1</td>
+                      <td>Espacio 1</td>
+                      <td>Juan Pérez</td>
+                      <td>30</td>
+                      <td>Laboratorio</td>
+                      <td>Química</td>
+                      <td><button class="btn btn-download"><i class="fa fa-download"></i></button></td>
+                  </tr>
+                  <!-- Puedes añadir más filas con datos -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+<!-- fin modal -->
+
+
+  <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
+  <script src="../../recursos/adminCFP/app.min.js"></script>
+  <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../../recursos/adminCFP/dashboard.js"></script>
+  <script src="../../recursos/adminCFP/calendario.js"></script>
+  <script src="../../recursos/adminCFP/clima.js"></script>
+  <script src="../../recursos/adminCFP/usuarios.js"></script>
+  <script src="../../recursos/adminCFP/obser.js"></script>
+  <script src="../../recursos/adminCFP/modal.js"></script>
+
+
 
 </body>
+
 
 </html>

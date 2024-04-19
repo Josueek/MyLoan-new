@@ -1,0 +1,107 @@
+/* Estilos generales */
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    flex-basis: 48%;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="date"],
+input[type="text"],
+textarea,
+select,
+button {
+    width: calc(100% - 16px);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:rgba(252, 190, 45, 1);
+}
+
+/* Estilos específicos */
+#canvas {
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: black;
+}
+
+/* Estilo para el campo de búsqueda */
+#searchInput {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para la imagen circular */
+#imagenContainer {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc; /* Color de fondo para el contenedor */
+}
+
+#preview {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
