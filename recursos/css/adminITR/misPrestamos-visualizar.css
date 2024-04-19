@@ -336,3 +336,19 @@
 .btn-custom {
   width: 100px; /* Puedes ajustar este valor según sea necesario */
 }
+
+
+#btnCancelar{
+  border-radius: 20px;
+
+  width: 20%;
+  background-color: #2D60FF;
+}
+
+#btnEnviar{
+  border-radius: 20px;
+
+  width: 20%;
+  background-color: #F8C404;
+
+}
