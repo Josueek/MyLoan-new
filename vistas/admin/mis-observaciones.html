@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
+  <title>Mis observaciones</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
   <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
@@ -20,7 +20,7 @@
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
+    <!-- Sidebar Inicio -->
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
@@ -73,7 +73,7 @@
                     <span>
                       <i class="ti ti-tool"></i>
                     </span>
-                    <span class="hide-menu">Gestionar Inventario de Herramienta</span>
+                    <span class="hide-menu">Gestionar inventario de herramienta</span>
                   </a>
                 </li>
                 <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
@@ -82,7 +82,7 @@
                     <span>
                       <i class="fas fa-desktop"></i>
                     </span>
-                    <span class="hide-menu">Gestionar Inventario de Equipos</span>
+                    <span class="hide-menu">Gestionar inventario de equipos</span>
                   </a>
                 </li>
                 <!-- Nuevo elemento 3: Inventario de materiales -->
@@ -91,7 +91,7 @@
                     <span>
                       <i class="ti ti-package"></i>
                     </span>
-                    <span class="hide-menu">Inventario de Materiales</span>
+                    <span class="hide-menu">Inventario de materiales</span>
                   </a>
               </ul>
             </li>
@@ -101,7 +101,7 @@
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
-                <span class="hide-menu">Mis prestamos</span>
+                <span class="hide-menu">Mis préstamos</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -159,14 +159,14 @@
           </ul>
 
         </nav>
-        <!-- End Sidebar navigation -->
+        <!-- Final del Sidebar navigation -->
       </div>
-      <!-- End Sidebar scroll-->
+      <!-- Final Sidebar scroll-->
     </aside>
-    <!--  Sidebar End -->
+    <!--  Sidebar fin -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
-      <!--  Header Start -->
+      <!--  Header Inicio -->
       <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -212,7 +212,7 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">Mis tareas</p>
                     </a>
-                    <a href="../admin/authentication-login.html"
+                    <a href="../admin/loginCFP.html"
                       class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
                   </div>
                 </div>
@@ -228,13 +228,13 @@
         </nav>
 
       </header>
-      <!--  Header End -->
+      <!--  Header fin -->
       <div class="container-fluid">
         <!--  Row 1 -->
         <div class="container">
             <form id="observacionForm">
                 <div class="form-group">
-                    <label for="fecha">Fecha de Observación:</label>
+                    <label for="fecha">Fecha de observación:</label>
                     <input type="date" id="fecha" name="fecha" required>
                 </div>
                 <div class="form-group">
@@ -242,20 +242,20 @@
                     <textarea id="observacion" name="observacion" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="tipoObservacion">Tipo de Observación:</label>
+                    <label for="tipoObservacion">Tipo de observación:</label>
                     <select id="tipoObservacion" name="tipoObservacion" required>
                         <option value="">Seleccionar</option>
                         <!-- Aquí puedes agregar opciones -->
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="tipoPrestamo">Tipo de Préstamo a Observar:</label>
+                    <label for="tipoPrestamo">Tipo de préstamo a observar:</label>
                     <input type="text" id="tipoPrestamo" name="tipoPrestamo" required>
                 </div>
                 <div class="form-group">
-                    <label for="espacio">Espacio a Observar:</label>
+                    <label for="espacio">Espacio a observar:</label>
                     <input type="text" id="espacio" name="espacio" required>
-                    <button id="buscarEspacio">Buscar Espacio</button>
+                    <button id="buscarEspacio">Buscar espacio</button>
                 </div>
                 <div class="form-group">
                     <label for="imagen">Imagen:</label><br>
@@ -265,7 +265,7 @@
                     </div>
                     <input type="file" id="imagen" name="imagen" accept="image/*"><br><br>
                 </div>
-                <button type="submit">Agregar Observación</button>
+                <button type="submit">Agregar observación</button>
             </form>
         </div>
         
@@ -281,25 +281,25 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Fecha de Observación</th>
+                    <th>Fecha de observación</th>
                     <th>Observación</th>
                     <th>Foto de la observación</th>
                     <th>Tipo de observación</th>
-                    <th>Tipo de préstamo a Observar</th>
-                    <th>Espacio a Observar</th>
-                    <th>Prestamo a Observar</th>
+                    <th>Tipo de préstamo a observar</th>
+                    <th>Espacio a observar</th>
+                    <th>Prestamo a observar</th>
                     <th>Institución</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>lunes</td>
-                    <td>hola</td>
+                    <td>Lunes</td>
+                    <td>Hola</td>
                     <td><img src="../../recursos/img/adminCFP/dylanperfil.jpg" alt="Foto de Juan Pérez" width="50"></td>
-                    <td>listo</td>
-                    <td>prestamo</td>
-                    <td>salon 1</td>
-                    <td>a</td>
+                    <td>Listo</td>
+                    <td>Préstamo</td>
+                    <td>Salón 1</td>
+                    <td>A</td>
                     <td>Institución XYZ</td>
                   </tr>
                   <!-- Agrega más filas según sea necesario -->
