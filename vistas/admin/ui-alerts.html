@@ -6,16 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
-  <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+  <link rel="stylesheet" href="../../recursos/css/adminITR/usuarios-dashboard.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="../../recursos/css/calendario.css">
-  <link rel="stylesheet" href="../../recursos/css/clima.css">
-  <link rel="stylesheet" href="../../recursos/css/adminITR/uiform.css">
 </head>
 
 <body>
-  <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
@@ -177,7 +173,7 @@
             <!-- Texto "USUARIOS" sin la clase nav-icon-hover -->
             <li class="nav-item">
               <a class="nav-link">
-                <span class="fs-5 fw-bold">Mis reportes</span>
+                <span class="fs-5 fw-bold">Mis prestamos</span>
               </a>
             </li>
           </ul>
@@ -228,87 +224,51 @@
       </header>
       <!--  Header End -->
       <div class="container-fluid">
-        <!--  Header End -->
         <div class="container-fluid">
-          <!--  Row 1 -->
-          <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button id="searchButton"><i class="fas fa-search"></i></button>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Alerts</h5>
+              <div class="card mb-0">
+                <div class="card-body p-4">
+                  <div class="alert alert-primary" role="alert">
+                    A simple primary alert—check it out!
+                  </div>
+                  <div class="alert alert-secondary" role="alert">
+                    A simple secondary alert—check it out!
+                  </div>
+                  <div class="alert alert-success" role="alert">
+                    A simple success alert—check it out!
+                  </div>
+                  <div class="alert alert-danger" role="alert">
+                    A simple danger alert—check it out!
+                  </div>
+                  <div class="alert alert-warning" role="alert">
+                    A simple warning alert—check it out!
+                  </div>
+                  <div class="alert alert-info" role="alert">
+                    A simple info alert—check it out!
+                  </div>
+                  <div class="alert alert-light" role="alert">
+                    A simple light alert—check it out!
+                  </div>
+                  <div class="alert alert-dark" role="alert">
+                    A simple dark alert—check it out!
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+<script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../recursos/js/sidebarmenu.js"></script>
+<script src="../../recursos/js/app.min.js"></script>
+<script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+<script src="../../recursos/adminCFP/usuarios.js"></script>
 
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Número de Préstamo</th>
-                <th>Usuario</th>
-                <th>Programa de Formación</th>
-                <th>Curso</th>
-                <th>Observación</th>
-                <th>Fecha de Solicitud</th>
-                <th>Estado de Préstamo</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Usuario 1</td>
-                <td>Programa A</td>
-                <td>Curso X</td>
-                <td>Observación 1</td>
-                <td>2024-04-19</td>
-                <td>Pendiente</td>
-                <td><button><i class="fas fa-file"></i></button></td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Usuario 1</td>
-                <td>Programa A</td>
-                <td>Curso X</td>
-                <td>Observación 1</td>
-                <td>2024-04-19</td>
-                <td>Pendiente</td>
-                <td><button><i class="fas fa-file"></i></button></td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Usuario 1</td>
-                <td>Programa A</td>
-                <td>Curso X</td>
-                <td>Observación 1</td>
-                <td>2024-04-19</td>
-                <td>Pendiente</td>
-                <td><button><i class="fas fa-file"></i></button></td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Usuario 1</td>
-                <td>Programa A</td>
-                <td>Curso X</td>
-                <td>Observación 1</td>
-                <td>2024-04-19</td>
-                <td>Pendiente</td>
-                <td><button><i class="fas fa-file"></i></button></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-          <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-          <script src="../../recursos/adminCFP/sidebarmenu.js"></script>
-          <script src="../../recursos/adminCFP/app.min.js"></script>
-          <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-          <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-          <script src="../../recursos/adminCFP/dashboard.js"></script>
-          <script src="../../recursos/adminCFP/calendario.js"></script>
-          <script src="../../recursos/adminCFP/clima.js"></script>
-          <script src="../../recursos/adminCFP/usuarios.js"></script>
 </body>
 
 </html>

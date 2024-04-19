@@ -195,3 +195,16 @@
     color: white;
     background-color: #ffcc00; /* Cambio de color al pasar el ratón */
   }
+
+
+  /* Estilo para la parte de usuarios */
+  #preview {
+    border-radius: 50%; /* Borde redondo */
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px;
+    object-fit: cover; /* Ajustar imagen al tamaño del contenedor */
+}
+
+.image-container {
+    overflow: hidden; /* Ocultar partes de la imagen que se salen del contenedor */
+}
