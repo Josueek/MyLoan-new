@@ -173,30 +173,6 @@
     text-decoration: none;
     cursor: pointer;
 }
-
-
-  
-
-  
-  @media screen and (max-width: 767px) {
-    /* Estilos para pantallas pequeñas (hasta 767px de ancho) */
-    /* Aquí puedes agregar estilos específicos para pantallas pequeñas */
-  }
-  
-  @media screen and (min-width: 768px) and (max-width: 991px) {
-    /* Estilos para pantallas medianas (de 768px a 991px de ancho) */
-    /* Aquí puedes agregar estilos específicos para pantallas medianas */
-  }
-  
-  @media screen and (min-width: 992px) and (max-width: 1199px) {
-    /* Estilos para pantallas grandes (de 992px a 1199px de ancho) */
-    /* Aquí puedes agregar estilos específicos para pantallas grandes */
-  }
-  
-  @media screen and (min-width: 1200px) {
-    /* Estilos para pantallas extra grandes (1200px o más de ancho) */
-    /* Aquí puedes agregar estilos específicos para pantallas extra grandes */
-  }
   
 
   #botonusuario{
@@ -204,7 +180,7 @@
       background-color: #F8C404;
       color: white;
       border-radius: 20px;
-      padding: 3px 40px;
+      padding: 10px 20px;
       text-decoration: none;
       font-size: 15px;
       font-family: sans-serif;
@@ -220,48 +196,20 @@
     background-color: #ffcc00; /* Cambio de color al pasar el ratón */
   }
 
-  @media (max-width: 992px) {
-    .navbar-nav .nav-link span{
-   font-size: 20px !important; /* O el tamaño de fuente deseado */
-   width: 190px;
 
-    }
-    
-  }
-
-  @media (max-width: 400px) {
-    .navbar-nav .nav-link span{
-   font-size: 15px !important; /* O el tamaño de fuente deseado */
-   width: 130px;
-
-    }
-    
-  }
-  
-
-  /* Estilos para la tabla dentro del modal */
-#editarModal .modal-body table {
-  max-width: 100%;
-  overflow-x: auto;
+  /* Estilo para la parte de usuarios */
+  #preview {
+    border-radius: 50%; /* Borde redondo */
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px;
+    object-fit: cover; /* Ajustar imagen al tamaño del contenedor */
 }
 
-/*para cambiar el tamaño del modal */
-
-#editarModal .modal-dialog {
-  max-width: 95%; /* o ajusta según sea necesario */
+.image-container {
+    overflow: hidden; /* Ocultar partes de la imagen que se salen del contenedor */
 }
 
-
-
-#agregarEspacioBtn{
-width: 20%;
-  background-color: #F8C404;
-  border-radius: 20px;
-
-}
-
-#botoncerrar{
-width: 20%;
-border-radius: 20px;
-
+.submenu {
+  display: none; /* Comienza oculto */
+  transition: display 0.3s ease; /* Agrega una transición suave */
 }
