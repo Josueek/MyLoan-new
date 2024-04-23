@@ -174,9 +174,8 @@
     cursor: pointer;
 }
   
-
-  #botonusuario{
-  
+/*Diseños para los botones*/
+  #btnAgregarespecialidad{
       background-color: #F8C404;
       color: white;
       border-radius: 20px;
@@ -185,13 +184,9 @@
       font-size: 15px;
       font-family: sans-serif;
       font-weight: bold;
-  
-  
-    
-    
   }
 
-  #botonusuario:hover {
+  #btnAgregarespecialidad:hover {
     color: white;
     background-color: #ffcc00; /* Cambio de color al pasar el ratón */
   }
@@ -212,4 +207,8 @@
 .submenu {
   display: none; /* Comienza oculto */
   transition: display 0.3s ease; /* Agrega una transición suave */
+}
+
+.btnAgregarEspecialidad{
+  background-color: #000000;
 }
