@@ -332,46 +332,31 @@
                 <!-- tabla -->
 
                 <!-- fin tabla -->
-
                 <!-- calendario -->
-                <div class="col-lg-4 d-flex align-items-stretch">
-                    <div class="card w-100">
-                        <div class="card-body p-4">
-                            <div class="mb-4">
-                                <h5 class="card-title fw-semibold">Clima</h5>
-                            </div>
-                            <div class="container-fluid">
-                                <div id="calendar-container" class="rounded bg-light p-4 w-100 h-100">
-                                    <div id="calendar-header" class="text-center mb-4"></div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Domingo</th>
-                                                        <th>Lunes</th>
-                                                        <th>Martes</th>
-                                                        <th>Miércoles</th>
-                                                        <th>Jueves</th>
-                                                        <th>Viernes</th>
-                                                        <th>Sábado</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="calendar-body">
-                                                </tbody>
-                                            </table>
-                                        </div>
+                <div class="row">
+                    <div class="col-lg-8 d-flex align-items-strech">
+                        <div class="card w-100">
+                            <div class="card-body">
+                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                                    <div class="mb-3 mb-sm-0">
+                                        <h5 class="card-title fw-semibold">Solicitudes de prestamo recibidas</h5>
+                                    </div>
+                                    <div>
+                                        <select class="form-select">
+                                            <option value="1">March 2023</option>
+                                            <option value="2">April 2023</option>
+                                            <option value="3">May 2023</option>
+                                            <option value="4">June 2023</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <div id="chart"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- fin de calendario -->
-                <div class="contenedorr">
-
-                    <!--Codigo para la funcionalidad del clima-->
+                <!-- clima -->
+                <div class="row">
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
                             <div class="card-body p-4">
@@ -402,11 +387,43 @@
                             </div>
                         </div>
                     </div>
+                    <!-- calendario -->
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="card w-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title fw-semibold mb-4">Calendario</h5>
+                                <div class="table-responsive">
+                                    <div class="container" id="calendar-container">
+                                        <div id="calendar-header"></div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Domingo</th>
+                                                            <th>Lunes</th>
+                                                            <th>Martes</th>
+                                                            <th>Miércoles</th>
+                                                            <th>Jueves</th>
+                                                            <th>Viernes</th>
+                                                            <th>Sábado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="calendar-body">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fin de calendario -->
                 </div>
             </div>
         </div>
     </div>
-
     <!--Scrip que si funionan -->
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
