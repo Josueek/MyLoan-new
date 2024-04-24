@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -329,7 +329,46 @@
             <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
             <div class="container-fluid">
                 <!--  Row 1 -->
+                <!-- tabla -->
 
+                <!-- fin tabla -->
+
+                <!-- calendario -->
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="card w-100">
+                        <div class="card-body p-4">
+                            <div class="mb-4">
+                                <h5 class="card-title fw-semibold">Clima</h5>
+                            </div>
+                            <div class="container-fluid">
+                                <div id="calendar-container" class="rounded bg-light p-4 w-100 h-100">
+                                    <div id="calendar-header" class="text-center mb-4"></div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Domingo</th>
+                                                        <th>Lunes</th>
+                                                        <th>Martes</th>
+                                                        <th>Miércoles</th>
+                                                        <th>Jueves</th>
+                                                        <th>Viernes</th>
+                                                        <th>Sábado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="calendar-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- fin de calendario -->
                 <div class="contenedorr">
 
                     <!--Codigo para la funcionalidad del clima-->
