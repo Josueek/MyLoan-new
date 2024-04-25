@@ -1,5 +1,5 @@
 body{
-    background-image : url(../../img/adminITR/iniciodesesión.png) ;
+    background-image : url(../../img/img_generales/fondologin.png) ;
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@ body{
     #contenedor-login{
         border-radius: 50px;
         width: 600px;
-        margin-left: -50px;
+        margin-left: -90px;
     }
     
     #infologin{
