@@ -11,13 +11,14 @@
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.css" />
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Codigo del clima -->
     <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
     <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/foto.css">
 
 </head>
 
@@ -264,7 +265,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Inicio</span>
+                                <span class="fs-5 fw-bold">Configuración</span>
                             </a>
                         </li>
                     </ul>
@@ -330,25 +331,97 @@
             <div class="container-fluid">
                 <!--  Row 1 -->
                 <div class="row">
-                    
+                    <div class="container px-4 text-center">
+                        <div class="row gx-5">
+                            <div class="col">
+                                <div class="p-3">
+                                    <div class="container px-4 text-center">
+                                        <div class="row gx-5">
+                                            <div class="col">
+                                                <div class="p-8">
+                                                    <div class="col-lg-12 mb-3">
+                                                        <!-- Contenido de la columna 1 -->
+                                                        <label for="fechaObservacion" class="form-label">Nombre:</label>
+                                                        <input type="text" placeholder="Nombre" id="fechaObservacion"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="observacion" class="form-label">Apellido:</label>
+                                                        <input type="text" id="observacion" class="form-control"
+                                                            placeholder="Observaciones" minlength="8" required>
+                                                    </div>
+                                                    <!-- Columna 2 -->
+                                                    <div class="col-lg-12 mb-3">
+                                                        <!-- Contenido de la columna 2 -->
+                                                        <label for="tipoObservacion" class="form-label">Email</label>
+                                                        <input type="email" id="observacion" class="form-control"
+                                                            placeholder="Observaciones" minlength="8" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="p-8">
+                                                    <div class="col-lg-12 mb-3">
+                                                        <!-- Contenido de la columna 1 -->
+                                                        <label for="fechaObservacion"
+                                                            class="form-label">Teléfono:</label>
+                                                        <input type="tel" placeholder="tel:" id="fechaObservacion"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="observacion" class="form-label">Cargo:</label>
+                                                        <select id="tipoObservacion" class="form-select" required>
+                                                            <option value="">Selecciona un tipo</option>
+                                                            <option value="previa">Previa</option>
+                                                            <option value="otro">Otro</option>
+                                                        </select>
+                                                    </div>
+                                                    <!-- Columna 2 -->
+                                                    <div class="col-lg-12 mb-3">
+                                                        <!-- Contenido de la columna 2 -->
+                                                        <label for="tipoObservacion" class="form-label">Clave:</label>
+                                                        <input type="password" placeholder="cotraseña"
+                                                            id="fechaObservacion" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="p-8">
+                                    <div class="circle text-center" id="circleContainer">
+                                        <label for="inputFile" class="form-label">
+                                            <i class="fa-solid fa-pen" alt="Subir imagen"></i>
+                                        </label>
+                                        <input type="file" id="inputFile" accept="image/*"
+                                            onchange="previewImage(event)">
+                                        <div id="imagePreview" class="circle-preview"></div>
+                                        <span class="upload-text" id="uploadText">Subir imagen</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--Scrip que si funionan -->
-    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
-    <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-    <script src="../../recursos/js/acciones.js"></script>
-    <!-- el de calendario se puede mejorar-->
-    <script src="../../recursos/js/calendario.js"></script>
-    <script src="../../recursos/js/clima.js"></script>
-    <!-- Scrip que dudosamente sirven-->
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../recursos/js/dashboard.js"></script>
+        <!--Scrip que si funionan -->
+        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../recursos/js/sidebarmenu.js"></script>
+        <script src="../../recursos/js/app.min.js"></script>
+        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+        <script src="../../recursos/js/acciones.js"></script>
+        <!-- el de calendario se puede mejorar-->
+        <script src="../../recursos/js/calendario.js"></script>
+        <script src="../../recursos/js/clima.js"></script>
+        <script src="../../recursos/js/circulo.js"></script>
+        <!-- Scrip que dudosamente sirven-->
+        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+        <script src="../../recursos/js/dashboard.js"></script>
 </body>
 
 </html>

@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.min.css" />
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -37,6 +37,7 @@
                     </div>
                 </div>
 
+                <!-- Inicio de los menus-->
                 <!-- Inicio de los menus-->
                 <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
                     <ul id="sidebarnav">
@@ -71,7 +72,7 @@
 
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono -->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
                                         <span>
                                             <i class="ti ti-settings me-2"></i>
                                         </span>
@@ -141,6 +142,7 @@
                             </ul>
                         </li>
 
+
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
                                 <span>
@@ -169,6 +171,7 @@
                                 </li>
                             </ul>
                         </li>
+
 
                         <li class="sidebar-item">
                             <!--Configurar nombre del archivo-->
@@ -237,9 +240,7 @@
                                 <span class="hide-menu">Configuración</span>
                             </a>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- aca termina el menu lateral -->
             </div>
@@ -408,7 +409,6 @@
 
                                 </div>
 
-
                                 <!-- Tabla de empleados -->
                                 <div class="container mt-5">
                                     <div class="row mb-5">
@@ -419,7 +419,6 @@
                                             <!-- Barra de búsqueda -->
                                             <input type="search" class="form-control" placeholder="Buscar">
                                         </div>
-
 
                                         <div class="col-lg-3 mb-3 d-flex align-items-center">
 
@@ -443,10 +442,90 @@
                                                 empleado</button>
                                         </div>
                                     </div>
-
-
                                 </div>
+                                <!-- Inicio de la tabla de usuarios-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Apellido</th>
+                                            <th scope="col">Teléfono</th>
+                                            <th scope="col">Estado del empleado</th>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Correo electrónico</th>
+                                            <th scope="col">Contraseña</th>
+                                            <th scope="col">Cargo</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">josué</th>
+                                            <td>Abdel</td>
+                                            <td>7067 9635</td>
+                                            <td>Activo</td>
 
+                                            <td>
+                                                <img src="" alt="">
+                                            </td>
+                                            <td>20220329@ricaldone.edu.sv</td>
+                                            <td>*********</td>
+                                            <td>Administrador</td>
+                                            <td>No</td>
+
+                                            <td>
+                                                <div class="col-3">
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                                        id="btnAsignarEspecialidad">
+                                                        <i class="fa-solid fa-user-tie"></i>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger mt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
+                                                        data-bs-whatever="@mdo" id="btnborrar">
+                                                        <i class="fa-solid fa-pencil"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">josué</th>
+                                            <td>Abdel</td>
+                                            <td>7067 9635</td>
+                                            <td>Activo</td>
+
+                                            <td>
+                                                <img src="" alt="">
+                                            </td>
+                                            <td>20220329@ricaldone.edu.sv</td>
+                                            <td>*********</td>
+                                            <td>Administrador</td>
+                                            <td>No</td>
+
+                                            <td>
+                                                <div class="col-3">
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                                        id="btnAsignarEspecialidad">
+                                                        <i class="fa-solid fa-user-tie"></i>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger mt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
+                                                        data-bs-whatever="@mdo" id="btnborrar">
+                                                        <i class="fa-solid fa-pencil"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 <!-- Fin de la tabla de empleados -->
 
                             </div>
@@ -467,9 +546,7 @@
     <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
     <script src="../../recursos/js/acciones.js"></script>
-    <!-- el de calendario se puede mejorar-->
-    <script src="../../recursos/js/calendario.js"></script>
-    <script src="../../recursos/js/clima.js"></script>
+    <script src="../../recursos/"></script>
     <!-- Scrip que dudosamente sirven-->
     <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
     <script src="../../recursos/js/dashboard.js"></script>

@@ -1,26 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario de herramientas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Usuarios</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="/recursos/css/bootstrap/styles.css">
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+
 
 </head>
 
 <body>
-
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -36,6 +35,7 @@
                     </div>
                 </div>
 
+                <!-- Inicio de los menus-->
                 <!-- Inicio de los menus-->
                 <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
                     <ul id="sidebarnav">
@@ -59,7 +59,7 @@
                             <ul id="submenu" class="submenu">
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href=".." class="submenu-link  w-100">
+                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
                                         <span>
                                             <i class="fa-solid fa-user me-2"></i>
                                         </span>
@@ -70,7 +70,7 @@
 
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono -->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
                                         <span>
                                             <i class="ti ti-settings me-2"></i>
                                         </span>
@@ -238,15 +238,14 @@
                                 <span class="hide-menu">Configuración</span>
                             </a>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- aca termina el menu lateral -->
             </div>
 
         </aside>
 
+        <!--  aca empieza el header -->
         <div class="body-wrapper">
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -261,7 +260,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Gestionar inventario de herramientas</span>
+                                <span class="fs-5 fw-bold">Gestionar espacios</span>
                             </a>
                         </li>
                     </ul>
@@ -305,7 +304,8 @@
                                             <p class="mb-0 fs-3">Mis tareas</p>
                                         </a>
                                         <!-- Link para volver al login-->
-                                        <a href=".." class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
+                                        <a href="../index.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar
+                                            sesión</a>
                                     </div>
                                 </div>
                             </li>
@@ -321,181 +321,118 @@
                 </nav>
 
             </header>
-            <!--  Aca termina la parte del menu y el header -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <section class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <label for="codigo" class="mb-1">Codigo de herramienta</label>
-                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el codigo"
-                            required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 2 -->
-                        <label for="herramienta" class="mb-1">Herramienta</label>
-                        <input type="text" id="herramienta" class="form-control input-short"
-                            placeholder="Nombre de herramienta" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="stock" class="mb-1">En stock</label>
-                        <input type="number" id="stock" class="form-control input-short"
-                            placeholder="Seleccione una cantidad" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Institución correspondiente</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Institucion</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Descripción</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingrese una descripción"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Tabla de empleados -->
-                    <div class="container mt-5">
-                        <div class="row mb-5">
-                            <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                <button class="btn btn-transparent border-0 p-0">
-                                    <i class="fas fa-search me-2"></i>
-                                </button>
-                                <!-- Barra de búsqueda -->
-                                <input type="search" class="form-control" placeholder="Buscar">
-                            </div>
 
-                            <div class="col-lg-3 mb-2">
-                                Subir un archivo interno
-                                <form action="/upload" method="post" enctype="multipart/form-data">
-                                    <!-- Label personalizado para el botón de subir archivo -->
-                                    <label for="custom-upload" class="custom-button-label"> Seleccione el documento
-                                        <img src="/recursos/img/img_generales/Subir archivo.png" alt="Subir archivo"
-                                            width="20" height="20" id="subir-img">
-                                    </label>
-                                    <!-- Input oculto tipo file -->
-                                    <input type="file" id="custom-upload" name="archivo"
-                                        accept=".txt, .pdf, .doc, .docx" class="custom-upload">
-                                </form>
-                            </div>
-                            <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                                <button id="btnAgregarEmpleado" type="button" class="btn btn-primary mx-lg-3"> Subir
-                                    DOC</button>
-                            </div>
 
-                            <div class="col-lg-3 mb-3 d-flex justify-content-end">
+            <!-- Inicio del cuadro con efecto 3D -->
+            <div class="container-fluid" id="miCuadro">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <!-- Parte superior para credenciales -->
 
-                                <button id="btnAgregarespecialidad" type="button" class="btn btn-primary mx-lg-3"
-                                    data-bs-toggle="modal" data-bs-target="#Especialidad">Agregar herramienta</button>
+                            <!-- Tabla de empleados -->
+                            <div class="container mt-5">
+                                <div class="row mb-5">
+                                    <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                        <button class="btn btn-transparent border-0 p-0">
+                                            <i class="fas fa-search me-2"></i>
+                                        </button>
+                                        <!-- Barra de búsqueda -->
+                                        <input type="search" class="form-control" placeholder="Buscar">
+                                    </div>
+
+
+                                    <div class="col-lg-3 mb-3 d-flex align-items-center">
+
+                                        <!-- input para filtrar -->
+                                        <select id="filtro especialidad" class="form-select" required>
+                                            <option value="">Filtrar por:</option>
+                                            <option value="Software">Software</option>
+                                            <option value="Enca">Enca</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                        <button id="btnAgregarEspacio" type="button"
+                                            class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
+                                            data-bs-target="#AgregarEspacio">Agregar espacio</button>
+
+
+                                    </div>
+
+                                    <table class="table table-hover mt-5">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Número de laboratorio</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Encargado</th>
+                                                <th scope="col">Capacidad de personas</th>
+                                                <th scope="col">Tipo de espacio</th>
+                                                <th scope="col">Especialidad</th>
+                                                <th scope="col d-flex align-content-center">Inventario</th>
+                                                <th scope="col"></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">12E45</th>
+                                                <td>Laboratorio de Software</td>
+                                                <td>Josué</td>
+                                                <td>45</td>
+                                                <td>
+                                                    Laboratorio
+                                                </td>
+                                                <td>Desarrollo en Software</td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-3 me-2 mt-2">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-bs-toggle="modal" data-bs-target="#descargarInvet"
+                                                                data-bs-whatever="@mdo" id="btnDescargarInv">
+                                                                <i class="fa-solid fa-download"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-3 me-2">
+                                                            <button type="button" class="btn btn-success mt-2"
+                                                                data-bs-toggle="modal" data-bs-target="#editarEspa"
+                                                                data-bs-whatever="@mdo" id="btnEditarEspa">
+                                                                <i class="fa-solid fa-pencil"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-3 me-2">
+                                                            <button type="button" class="btn btn-danger mt-2"
+                                                                data-bs-toggle="modal" data-bs-target="#modalBorar"
+                                                                data-bs-whatever="@mdo" id="btnborrar">
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Codigo de herramienta</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">En stock</th>
-                                <th scope="col"> En uso</th>
-                                <th scope="col">Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Lennyn Vides</td>
-                                <td>12.03.2024</td>
-                                <td>24.04.2024</td>
-                                <td>$34.24</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Lennyn Rodriguèz</td>
-                                <td>12.06.2024</td>
-                                <td>24.07.2024</td>
-                                <td>$50.24</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Lennyn Vides</td>
-                                <td>12.03.2024</td>
-                                <td>24.04.2024</td>
-                                <td>$34.24</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+            </div>
         </div>
-        <!--Scrip que si funionan -->
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../recursos/js/sidebarmenu.js"></script>
-        <script src="../../recursos/js/app.min.js"></script>
-        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-        <script src="../../recursos/js/acciones.js"></script>
-        <!-- Scrip que dudosamente sirven-->
-        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-        <script src="../../recursos/js/dashboard.js"></script>
+    </div>
+
+    <!--Scrip que si funionan -->
+    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../recursos/js/acciones.js"></script>
+
+    <script src="../../recursos/js/modales.js"></script>
+    <!-- Scrip que dudosamente sirven-->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
 </body>
 
 </html>

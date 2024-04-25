@@ -178,7 +178,7 @@
   #btnAgregarespecialidad{
       background-color: #F8C404;
       color: white;
-      border-radius: 20px;
+     
       padding: 10px 20px;
       text-decoration: none;
       font-size: 15px;
@@ -188,8 +188,42 @@
 
   #btnAgregarespecialidad:hover {
     color: white;
-    background-color: #ffcc00; /* Cambio de color al pasar el ratón */
-  }
+    background-color: #ffcc01;
+    /* Cambio de color al pasar el ratón */
+}
+
+#btnAgregarEmpleado {
+    background-color: #DC3545;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#btnAgregarEmpleado:hover {
+    color: white;
+    background-color: #e73143;
+}
+
+#btnAgregarEspacio {
+    background-color: #F8C404;
+    color: white;
+    border-color: #F8C404;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#btnAgregarEspacio:hover {
+    color: white;
+    background-color: #ffcc01;
+    /* Cambio de color al pasar el ratón */
+
+}
+
 
 
   /* Estilo para la parte de usuarios */
