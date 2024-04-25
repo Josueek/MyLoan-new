@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recuperación de clave</title>
-    <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
-    <link rel="stylesheet" href="../../recursos/css/adminITR/recuperacioncontra.css" />
-    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <title>Código de verificación</title>
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../recursos/css/css_general/codigo_verificacion.css" />
+    <link rel="stylesheet" href="../recursos/css/bootstrap/styles.css" />
 
 </head>
 
@@ -20,26 +20,26 @@
         data-sidebar-position="fixed" data-header-position="fixed">
 
         <div
-            class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
                     <div class="col-md-8 col-lg-6 col-xxl-3">
                         <div class="card mb-0" id="contenedor-login">
                             <div class="card-body">
                                 <a class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../../recursos/img/logos/logomyloand.png" width="180" alt="">
+                                    <img src="../recursos/img/logos/myloan_logo.png" width="180" alt="">
                                 </a>
-                                <p id="infologin" class="text-center">Ingrese el correo electrónico asociado a su cuenta
+                                <p id="infologin" class="text-center">Por favor ingrese el código de verificación que se le envió a
+                                    su correo electrónico.
                                 </p>
                                 <form>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="inputEmail"
-                                            aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico">
+                                        <label for="exampleInputEmail1" class="form-label">Código de verificación</label>
+                                        <input type="text" class="form-control" id="inputCodigo" placeholder="Ingresa el código de verificación">
                                     </div>
 
                                     <div class="boton-continuar">
-                                        <a href="../admin/index.html" class="btn-custom">Enviar código</a>
+                                        <a id="btn-verificar" class="btn-custom">Verificar código</a>
                                     </div>
                                 </form>
                             </div>
@@ -50,6 +50,9 @@
         </div>
         <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../controlador/admin_itr/codigo_verificacion.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

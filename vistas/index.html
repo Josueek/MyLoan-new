@@ -2,38 +2,79 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio</title>
-    <!--Icono de la pestaña-->
-    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
-    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Codigo del clima -->
-    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
-    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio de sesión</title>
+  <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+  <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
+  <link rel="stylesheet" href="../recursos/css/admin/index.css" />
+  <link rel="stylesheet" href="../recursos/css/bootstrap/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 </head>
 
 <body>
 
+    
+  
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    
+    <div
+      class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0" id="contenedor-login">
+              <div class="card-body">
+                <a class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../recursos/img/logos/myloan_logo.png" width="180" alt="">
+                </a>
+                <p id="infologin" class="text-center">Inicia sesión y accede a todas las funcionalidades de MyLoan </p>
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"  placeholder="Ingresa tu usuario">
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="inputConfirmPassword"
+                            placeholder="Confirma tu nueva contraseña">
+                        <button type="button" class="btn btn-outline" id="toggleConfirmPassword">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="form-check">
 
+                      <a class="text-primary fw-bold ms-2 custom-link" id="registrarselink" href="registro.html">¿No tienes cuenta? Registrate</a>
 
-    <!--Scrip que si funionan -->
-    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
-    <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-    <script src="../../recursos/js/acciones.js"></script>
-    <!-- el de calendario se puede mejorar-->
-    <script src="../../recursos/js/calendario.js"></script>
-    <script src="../../recursos/js/clima.js"></script>
-    <!-- Scrip que dudosamente sirven-->
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../recursos/js/dashboard.js"></script>
+                    </div>
+                    <a class="text-primary fw-bold custom-link" id="linkolvcontra" href="recuperar_contra.html">¿Olvidaste tu contraseña?</a>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-center mb-4">
+                    <a id="btn-login" class="btn-custom">Iniciar Sesión</a>
+                  </div>
+                 </form>
+                 <div class="separador"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script></script>
+  <script src="../controlador/admin_itr/mostrar_contralogin.js"></script>
+  <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../controlador/admin_itr/index.js"></script>
+
 </body>
 
 </html>
