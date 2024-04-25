@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Codigo del clima -->
-    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
-    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/observaciones_generales.css">
 
 </head>
 
 <body>
+    <!--  Inicio del menu lateral -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -37,7 +37,6 @@
                     </div>
                 </div>
 
-                <!-- Inicio de los menus-->
                 <!-- Inicio de los menus-->
                 <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
                     <ul id="sidebarnav">
@@ -61,7 +60,7 @@
                             <ul id="submenu" class="submenu">
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
+                                    <a href=".." class="submenu-link  w-100">
                                         <span>
                                             <i class="fa-solid fa-user me-2"></i>
                                         </span>
@@ -72,7 +71,7 @@
 
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono -->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
+                                    <a href=".." class="submenu-link">
                                         <span>
                                             <i class="ti ti-settings me-2"></i>
                                         </span>
@@ -240,7 +239,9 @@
                                 <span class="hide-menu">Configuración</span>
                             </a>
                         </li>
+
                     </ul>
+
                 </nav>
                 <!-- aca termina el menu lateral -->
             </div>
@@ -262,7 +263,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Usuarios registrados </span>
+                                <span class="fs-5 fw-bold">Observaciones generales</span>
                             </a>
                         </li>
                     </ul>
@@ -325,219 +326,93 @@
             <!--  Aca termina la parte del menu y el header -->
 
             <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
-            <!-- Inicio del cuadro con efecto 3D -->
-            <div class="container-fluid" id="miCuadro">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <!-- Parte superior para credenciales -->
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h4>Credenciales del usuario</h4>
+            <div class="container-fluid">
+                <!--  Row 1 -->
+                <!-- tabla -->
+                <!-- Inicio de la tabla de usuarios-->
+                <table class="table table-hover">
+
+                     <!-- Buscador-->
+                     <div class="container mt-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text border border-secondary rounded-left"><i class="fas fa-search"></i></span>
                                     </div>
-                                    <div>
-                                        <h4>Datos del empleado</h4>
-                                    </div>
+                                    <input type="text" id="codigo" class="form-control input-short rounded-right" placeholder="Buscar" required>
                                 </div>
                             </div>
-
-                            <!-- Parte inferior para datos -->
-                            <div class="card-body">
-                                <!-- Contenido del cuadro -->
-                                <div class="row">
-                                    <!-- Columna 1 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 1 -->
-                                        <label for="correo" class="mb-1">Correo electrónico:</label>
-                                        <input type="email" id="correo" class="form-control" placeholder="Correo"
-                                            required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="contraseña" class="mb-1">Contraseña:</label>
-                                        <input type="password" id="contraseña" class="form-control"
-                                            placeholder="Escribe una contraseña" minlength="8" required>
-                                    </div>
-
-                                    <!-- Columna 2 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 2 -->
-                                        <label for="nombre" class="mb-1">Nombre:</label>
-                                        <input type="text" id="nombre" class="form-control"
-                                            placeholder="Escribe un nombre" required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="telefono" class="mb-1">Teléfono:</label>
-                                        <input type="tel" id="telefono" class="form-control"
-                                            placeholder="Escribe un número de teléfono" required pattern="[0-9]+"
-                                            title="Por favor, introduce solo números">
-                                    </div>
-
-
-                                    <!-- Columna 3 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="cargo" class="mb-1">Cargo del empleado:</label>
-                                        <select id="cargo" class="form-select" required>
-                                            <option value="">Selecciona un cargo</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Instructor">Instructor</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="estado" class="mb-1">Estado del empleado:</label>
-                                        <select id="estado" class="form-select" required>
-                                            <option value="">Selecciona un estado</option>
-                                            <option value="Activo">Activo</option>
-                                            <option value="Inactivo">Inactivo</option>
-                                        </select>
-                                    </div>
-                                    <!-- Columna 4 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 4 -->
-                                        <label for="apellido" class="mb-1">Apellido:</label>
-                                        <input type="text" id="apellido" class="form-control"
-                                            placeholder="Escribe un apellido" required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="especialidad" class="mb-1">Especialidad del empleado:</label>
-                                        <select id="especialidad" class="form-select" required>
-                                            <option value="">Selecciona una especialidad</option>
-                                            <option value="Software">Software</option>
-                                            <option value="Enca">Enca</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                                <!-- Tabla de empleados -->
-                                <div class="container mt-5">
-                                    <div class="row mb-5">
-                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                            <button class="btn btn-transparent border-0 p-0">
-                                                <i class="fas fa-search me-2"></i>
-                                            </button>
-                                            <!-- Barra de búsqueda -->
-                                            <input type="search" class="form-control" placeholder="Buscar">
-                                        </div>
-
-                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
-
-                                            <!-- input para filtrar -->
-                                            <select id="filtro especialidad" class="form-select" required>
-                                                <option value="">Filtrar por:</option>
-                                                <option value="Software">Software</option>
-                                                <option value="Enca">Enca</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
-
-                                            <button id="btnAgregarespecialidad" type="button" class="btn btn-primary mx-lg-3"
-                                                data-bs-toggle="modal" data-bs-target="#Especialidad">Agregar
-                                                especialidad</button>
-                                        </div>
-                                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                                            <button id="btnAgregarEmpleado" type="button"
-                                                class="btn btn-primary mx-lg-3">Agregar
-                                                empleado</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Inicio de la tabla de usuarios-->
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Teléfono</th>
-                                            <th scope="col">Estado del empleado</th>
-                                            <th scope="col">Foto</th>
-                                            <th scope="col">Correo electrónico</th>
-                                            <th scope="col">Contraseña</th>
-                                            <th scope="col">Cargo</th>
-                                            <th scope="col">Especialidad</th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!-- Fin de la tabla de empleados -->
-
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-warning btn-block">Imprimir documento</button>
                             </div>
                         </div>
                     </div>
+                    
+                    
+
+                    <div class="my-5">
+                        <h5 class="card-title fw-semibold"></h5>
+                    </div>
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha observación</th>
+                            <th scope="col">Observación</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Tipo de observación</th>
+                            <th scope="col">Tipo préstamo</th>
+                            <th scope="col">Espacio observado</th>
+                            <th scope="col">Persona solicitantte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>10/04/2024</td>
+                            <td>El espacio se encontraba sucio</td>
+                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
+                            <td>Despues del curso</td>
+                            <td>Laboratorio d.s</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>10/04/2024</td>
+                            <td>El espacio se encontraba sucio</td>
+                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
+                            <td>Despues del curso</td>
+                            <td>Laboratorio d.s</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>10/04/2024</td>
+                            <td>El espacio se encontraba sucio</td>
+                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
+                            <td>Despues del curso</td>
+                            <td>Laboratorio d.s</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>10/04/2024</td>
+                            <td>El espacio se encontraba sucio</td>
+                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
+                            <td>Despues del curso</td>
+                            <td>Laboratorio d.s</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Fin de la tabla de empleados -->
+                <!-- fin tabla -->
+                <div class="row">
+                   
+                
                 </div>
             </div>
         </div>
     </div>
-
-
-
     <!--Scrip que si funionan -->
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
