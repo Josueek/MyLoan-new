@@ -1,26 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario de herramientas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Usuarios</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="/recursos/css/bootstrap/styles.css">
+    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+
 
 </head>
 
 <body>
-
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -59,7 +58,7 @@
                             <ul id="submenu" class="submenu">
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href=".." class="submenu-link  w-100">
+                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
                                         <span>
                                             <i class="fa-solid fa-user me-2"></i>
                                         </span>
@@ -247,6 +246,7 @@
 
         </aside>
 
+        <!--  aca empieza el header -->
         <div class="body-wrapper">
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -261,7 +261,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Gestionar inventario de herramientas</span>
+                                <span class="fs-5 fw-bold">Usuarios registrados </span>
                             </a>
                         </li>
                     </ul>
@@ -322,81 +322,236 @@
 
             </header>
             <!--  Aca termina la parte del menu y el header -->
-            <br>
-            <br>
-            <section class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <label for="codigo" class="mb-1">Codigo de herramienta</label>
-                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el codigo"
-                            required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 2 -->
-                        <label for="herramienta" class="mb-1">Herramienta</label>
-                        <input type="text" id="herramienta" class="form-control input-short"
-                            placeholder="Nombre de herramienta" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="stock" class="mb-1">En stock</label>
-                        <input type="number" id="stock" class="form-control input-short"
-                            placeholder="Seleccione una cantidad" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Institución correspondiente</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Institucion</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Descripción</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingrese una descripción"></textarea>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <div class="input-group">
-                            <i class="input-group-prepend fas fa-search"></i>
-                            <input type="text" id="codigo" class="form-control input-short" placeholder="Buscar"
-                                required>
+
+            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+            <!-- Inicio del cuadro con efecto 3D -->
+            <div class="container-fluid" id="miCuadro">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <!-- Parte superior para credenciales -->
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h4>Credenciales del usuario</h4>
+                                    </div>
+                                    <div>
+                                        <h4>Datos del empleado</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Parte inferior para datos -->
+                            <div class="card-body">
+                                <!-- Contenido del cuadro -->
+                                <div class="row">
+                                    <!-- Columna 1 -->
+                                    <div class="col-lg-3 mb-3">
+                                        <!-- Contenido de la columna 1 -->
+                                        <label for="correo" class="mb-1">Correo electrónico:</label>
+                                        <input type="email" id="correo" class="form-control" placeholder="Correo"
+                                            required>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <label for="contraseña" class="mb-1">Contraseña:</label>
+                                        <input type="password" id="contraseña" class="form-control"
+                                            placeholder="Escribe una contraseña" minlength="8" required>
+                                    </div>
+
+                                    <!-- Columna 2 -->
+                                    <div class="col-lg-3 mb-3">
+                                        <!-- Contenido de la columna 2 -->
+                                        <label for="nombre" class="mb-1">Nombre:</label>
+                                        <input type="text" id="nombre" class="form-control"
+                                            placeholder="Escribe un nombre" required>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <label for="telefono" class="mb-1">Teléfono:</label>
+                                        <input type="tel" id="telefono" class="form-control"
+                                            placeholder="Escribe un número de teléfono" required pattern="[0-9]+"
+                                            title="Por favor, introduce solo números">
+                                    </div>
+
+
+                                    <!-- Columna 3 -->
+                                    <div class="col-lg-3 mb-3">
+                                        <label for="cargo" class="mb-1">Cargo del empleado:</label>
+                                        <select id="cargo" class="form-select" required>
+                                            <option value="">Selecciona un cargo</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Instructor">Instructor</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <label for="estado" class="mb-1">Estado del empleado:</label>
+                                        <select id="estado" class="form-select" required>
+                                            <option value="">Selecciona un estado</option>
+                                            <option value="Activo">Activo</option>
+                                            <option value="Inactivo">Inactivo</option>
+                                        </select>
+                                    </div>
+                                    <!-- Columna 4 -->
+                                    <div class="col-lg-3 mb-3">
+                                        <!-- Contenido de la columna 4 -->
+                                        <label for="apellido" class="mb-1">Apellido:</label>
+                                        <input type="text" id="apellido" class="form-control"
+                                            placeholder="Escribe un apellido" required>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <label for="especialidad" class="mb-1">Especialidad del empleado:</label>
+                                        <select id="especialidad" class="form-select" required>
+                                            <option value="">Selecciona una especialidad</option>
+                                            <option value="Software">Software</option>
+                                            <option value="Enca">Enca</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <!-- Tabla de empleados -->
+                                <div class="container mt-5">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                            <button class="btn btn-transparent border-0 p-0">
+                                                <i class="fas fa-search me-2"></i>
+                                            </button>
+                                            <!-- Barra de búsqueda -->
+                                            <input type="search" class="form-control" placeholder="Buscar">
+                                        </div>
+
+
+                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
+
+                                            <!-- input para filtrar -->
+                                            <select id="filtro especialidad" class="form-select" required>
+                                                <option value="">Filtrar por:</option>
+                                                <option value="Software">Software</option>
+                                                <option value="Enca">Enca</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                            <button id="btnAgregarespecialidad" type="button"
+                                                class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
+                                                data-bs-target="#AgregarEspecialidad">Agregar especialidad</button>
+
+                                            <button id="btnAgregarEmpleado" type="button"
+                                                class="btn btn-danger mx-1">Agregar empleado</button>
+                                        </div>
+
+                                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Inicio de la tabla de usuarios-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Apellido</th>
+                                            <th scope="col">Teléfono</th>
+                                            <th scope="col">Estado del empleado</th>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Correo electrónico</th>
+                                            <th scope="col">Contraseña</th>
+                                            <th scope="col">Cargo</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">josué</th>
+                                            <td>Abdel</td>
+                                            <td>7067 9635</td>
+                                            <td>Activo</td>
+
+                                            <td>
+                                                <img src="" alt="">
+                                            </td>
+                                            <td>20220329@ricaldone.edu.sv</td>
+                                            <td>*********</td>
+                                            <td>Administrador</td>
+                                            <td>No</td>
+
+                                            <td>
+                                                <div class="col-3">
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                                        id="btnAsignarEspecialidad">
+                                                        <i class="fa-solid fa-user-tie"></i>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger mt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
+                                                        data-bs-whatever="@mdo" id="btnborrar">
+                                                        <i class="fa-solid fa-pencil"></i>
+                                                    </button>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">josué</th>
+                                            <td>Abdel</td>
+                                            <td>7067 9635</td>
+                                            <td>Activo</td>
+
+                                            <td>
+                                                <img src="" alt="">
+                                            </td>
+                                            <td>20220329@ricaldone.edu.sv</td>
+                                            <td>*********</td>
+                                            <td>Administrador</td>
+                                            <td>No</td>
+
+                                            <td>
+                                                <div class="col-3">
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                                        id="btnAsignarEspecialidad">
+                                                        <i class="fa-solid fa-user-tie"></i>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger mt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
+                                                        data-bs-whatever="@mdo" id="btnborrar">
+                                                        <i class="fa-solid fa-pencil"></i>
+                                                    </button>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- Fin de la tabla de empleados -->
+
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 mb-2">
-                        Subir un archivo interno
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <!-- Label personalizado para el botón de subir archivo -->
-                            <label for="custom-upload" class="custom-button-label"> Seleccione el documento
-                                <img src="/recursos/img/img_generales/Subir archivo.png" alt="Subir archivo" width="20" height="20" id="subir-img">
-                            </label>
-                            <!-- Input oculto tipo file -->
-                            <input type="file" id="custom-upload" name="archivo" accept=".txt, .pdf, .doc, .docx"
-                                class="custom-upload">
-                        </form>
-                    </div>
                 </div>
-            </section>
-
+            </div>
         </div>
-        <!--Scrip que si funionan -->
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../recursos/js/sidebarmenu.js"></script>
-        <script src="../../recursos/js/app.min.js"></script>
-        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-        <script src="../../recursos/js/acciones.js"></script>
-        <!-- Scrip que dudosamente sirven-->
-        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-        <script src="../../recursos/js/dashboard.js"></script>
+    </div>
+
+
+
+    <!--Scrip que si funionan -->
+    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../recursos/js/acciones.js"></script>
+
+    <script src="../../recursos/js/modales.js"></script>
+    <!-- Scrip que dudosamente sirven-->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
 </body>
 
 </html>

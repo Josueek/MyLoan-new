@@ -1,22 +1,16 @@
- // Función para mostrar la vista previa de la imagen
- function previewImage() {
-    var preview = document.getElementById('previewImagen');
-    var fileInput = document.getElementById('imagenObservacion');
-    var file = fileInput.files[0];
-    var reader = new FileReader();
-
-    reader.onloadend = function() {
-      preview.src = reader.result;
-      preview.style.display = 'block';
+document.getElementById('inputFile').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const imageUrl = e.target.result;
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.classList.add('img-preview'); // Agregar clase para estilos CSS
+      const imageCircle = document.getElementById('imageCircle');
+      imageCircle.innerHTML = ''; // Limpiar contenido previo
+      imageCircle.appendChild(img); // Agregar imagen al círculo
     }
-
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      preview.src = '';
-      preview.style.display = 'none';
-    }
+    reader.readAsDataURL(file);
   }
-
-  // Adjunta el evento onchange al input de la imagen
-  document.getElementById('imagenObservacion').addEventListener('change', previewImage);
+});

@@ -1,26 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario de herramientas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuración</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="/recursos/css/bootstrap/styles.css">
+    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+    <!-- Codigo del clima -->
+    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
 
 </head>
 
 <body>
-
+    <!--  Inicio del menu lateral -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -247,6 +249,7 @@
 
         </aside>
 
+        <!--  aca empieza el header -->
         <div class="body-wrapper">
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -261,7 +264,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Gestionar inventario de herramientas</span>
+                                <span class="fs-5 fw-bold">Inicio</span>
                             </a>
                         </li>
                     </ul>
@@ -322,81 +325,30 @@
 
             </header>
             <!--  Aca termina la parte del menu y el header -->
-            <br>
-            <br>
-            <section class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <label for="codigo" class="mb-1">Codigo de herramienta</label>
-                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el codigo"
-                            required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 2 -->
-                        <label for="herramienta" class="mb-1">Herramienta</label>
-                        <input type="text" id="herramienta" class="form-control input-short"
-                            placeholder="Nombre de herramienta" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="stock" class="mb-1">En stock</label>
-                        <input type="number" id="stock" class="form-control input-short"
-                            placeholder="Seleccione una cantidad" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Institución correspondiente</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Institucion</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Descripción</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingrese una descripción"></textarea>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <div class="input-group">
-                            <i class="input-group-prepend fas fa-search"></i>
-                            <input type="text" id="codigo" class="form-control input-short" placeholder="Buscar"
-                                required>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        Subir un archivo interno
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <!-- Label personalizado para el botón de subir archivo -->
-                            <label for="custom-upload" class="custom-button-label"> Seleccione el documento
-                                <img src="/recursos/img/img_generales/Subir archivo.png" alt="Subir archivo" width="20" height="20" id="subir-img">
-                            </label>
-                            <!-- Input oculto tipo file -->
-                            <input type="file" id="custom-upload" name="archivo" accept=".txt, .pdf, .doc, .docx"
-                                class="custom-upload">
-                        </form>
-                    </div>
-                </div>
-            </section>
 
+            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+            <div class="container-fluid">
+                <!--  Row 1 -->
+                <div class="row">
+                    
+                </div>
+            </div>
         </div>
-        <!--Scrip que si funionan -->
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../recursos/js/sidebarmenu.js"></script>
-        <script src="../../recursos/js/app.min.js"></script>
-        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-        <script src="../../recursos/js/acciones.js"></script>
-        <!-- Scrip que dudosamente sirven-->
-        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-        <script src="../../recursos/js/dashboard.js"></script>
+    </div>
+    <!--Scrip que si funionan -->
+    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../recursos/js/acciones.js"></script>
+    <!-- el de calendario se puede mejorar-->
+    <script src="../../recursos/js/calendario.js"></script>
+    <script src="../../recursos/js/clima.js"></script>
+    <!-- Scrip que dudosamente sirven-->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
 </body>
 
 </html>

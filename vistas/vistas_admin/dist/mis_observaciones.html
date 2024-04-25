@@ -1,26 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario de herramientas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mis observaciones</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="/recursos/css/bootstrap/styles.css">
+    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+    <!-- Codigo del clima -->
+    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/foto.css">
 
 </head>
 
 <body>
-
+    <!--  Inicio del menu lateral -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -247,6 +250,7 @@
 
         </aside>
 
+        <!--  aca empieza el header -->
         <div class="body-wrapper">
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -261,7 +265,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Gestionar inventario de herramientas</span>
+                                <span class="fs-5 fw-bold">Inicio</span>
                             </a>
                         </li>
                     </ul>
@@ -323,68 +327,136 @@
             </header>
             <!--  Aca termina la parte del menu y el header -->
             <br>
-            <br>
-            <section class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <label for="codigo" class="mb-1">Codigo de herramienta</label>
-                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el codigo"
-                            required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 2 -->
-                        <label for="herramienta" class="mb-1">Herramienta</label>
-                        <input type="text" id="herramienta" class="form-control input-short"
-                            placeholder="Nombre de herramienta" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="stock" class="mb-1">En stock</label>
-                        <input type="number" id="stock" class="form-control input-short"
-                            placeholder="Seleccione una cantidad" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Institución correspondiente</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Institucion</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Descripción</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingrese una descripción"></textarea>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <div class="input-group">
-                            <i class="input-group-prepend fas fa-search"></i>
-                            <input type="text" id="codigo" class="form-control input-short" placeholder="Buscar"
-                                required>
+            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+            <div class="container-fluid">
+                <!--  Row 1 -->
+                <!-- tabla -->
+                <!-- formulario-->
+                <div class="row g-0 text-center">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <!-- Columna 1 -->
+                            <div class="col-lg-4 mb-3">
+                                <!-- Contenido de la columna 1 -->
+                                <label for="fechaObservacion" class="form-label">Fecha de observación:</label>
+                                <input type="date" id="fechaObservacion" class="form-control" required>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="observacion" class="form-label">Observación:</label>
+                                <input type="text" id="observacion" class="form-control" placeholder="Observaciones"
+                                    minlength="8" required>
+                            </div>
+                            <!-- Columna 2 -->
+                            <div class="col-lg-4 mb-3">
+                                <!-- Contenido de la columna 2 -->
+                                <label for="tipoObservacion" class="form-label">Tipo de observación:</label>
+                                <select id="tipoObservacion" class="form-select" required>
+                                    <option value="">Selecciona un tipo</option>
+                                    <option value="previa">Previa</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="tipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
+                                <select id="tipoPrestamo" class="form-select" required>
+                                    <option value="">Selecciona un tipo</option>
+                                    <option value="herramienta">Herramienta</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <!-- Columna 3 -->
+                            <div class="col-lg-4 mb-3">
+                                <label for="espacioObservar" class="form-label">Espacio a observar:</label>
+                                <select id="espacioObservar" class="form-select" required>
+                                    <option value="">Selecciona un espacio</option>
+                                    <option value="lab will">Lab will</option>
+                                    <option value="lab">Lab</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#buscarEspacio" data-bs-whatever="@mdo"
+                                    id="btnBuscarEspacio">
+                                    Buscar Espacio
+                                </button>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="col-lg-3 mb-2">
-                        Subir un archivo interno
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <!-- Label personalizado para el botón de subir archivo -->
-                            <label for="custom-upload" class="custom-button-label"> Seleccione el documento
-                                <img src="/recursos/img/img_generales/Subir archivo.png" alt="Subir archivo" width="20" height="20" id="subir-img">
-                            </label>
-                            <!-- Input oculto tipo file -->
-                            <input type="file" id="custom-upload" name="archivo" accept=".txt, .pdf, .doc, .docx"
-                                class="custom-upload">
-                        </form>
+                    <div class="col-lg-3">
+                        <div class="circle text-center">
+                            <label for="inputFile" class="form-label">Seleccionar imagen:</label>
+                            <input type="file" id="inputFile" accept="image/*" style="display: none;">
+                            <div id="imagePreview"></div>
+                        </div>
                     </div>
                 </div>
-            </section>
 
+                <!--buscador y boton-->
+                <div class="container mt-5">
+                    <div class="row mb-5">
+                        <div class="col-lg-6 mb-3 d-flex align-items-center">
+                            <button class="btn btn-transparent border-0 p-0">
+                                <i class="fas fa-search me-2"></i>
+                            </button>
+                            <!-- Barra de búsqueda -->
+                            <input type="search" class="form-control" placeholder="Buscar">
+                        </div>
+                        <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                            <button id="" type="button" class="btn btn-warning mx-1 btnestilo"
+                                data-bs-toggle="modal" data-bs-target="">
+                                Agregar observación
+                            </button>
+                        </div>
+                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                        </div>
+                    </div>
+                </div>
+                <!-- tabla -->
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha de observación</th>
+                            <th scope="col">Observación</th>
+                            <th scope="col">Foto de la observación</th>
+                            <th scope="col">Tipo de observación</th>
+                            <th scope="col">Tipo de préstamo a observar</th>
+                            <th scope="col">Espacio a observar</th>
+                            <th scope="col">Préstamo a observar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">17.04.2024</th>
+                            <td>todo estabien me guta como lo dejaron</td>
+                            <td><img src="../../recursos/img/img_generales/sol.png" class="w-20 h-20"></td>
+                            <td>Despues</td>
+                            <td>Herramientas</td>
+                            <td>No</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">17.04.2024</th>
+                            <td>todo estabien me guta como lo dejaron</td>
+                            <td><img src="../../recursos/img/img_generales/sol.png" class="w-20 h-20"></td>
+                            <td>Despues</td>
+                            <td>Herramientas</td>
+                            <td>No</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">17.04.2024</th>
+                            <td>todo estabien me guta como lo dejaron</td>
+                            <td><img src="../../recursos/img/img_generales/sol.png" class="w-20 h-20"></td>
+                            <td>Despues</td>
+                            <td>Herramientas</td>
+                            <td>No</td>
+                            <td>Wilfredo Granados</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--fin tabla -->
+            </div>
         </div>
         <!--Scrip que si funionan -->
         <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
@@ -394,6 +466,11 @@
         <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../recursos/js/acciones.js"></script>
+        <!-- el de calendario se puede mejorar-->
+        <script src="../../recursos/js/calendario.js"></script>
+        <script src="../../recursos/js/clima.js"></script>
+        <script src="../../recursos/js/circulo.js"></script>
+        <script src="../../recursos/js/modales.js"></script>
         <!-- Scrip que dudosamente sirven-->
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>

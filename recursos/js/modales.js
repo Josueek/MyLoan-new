@@ -186,3 +186,101 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.modal-backdrop').remove();
     });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+            <div class="modal fade" id="espaciosModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Espacios registrados correspondientes a la institución</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <!-- Buscador -->
+                                <div class="col-lg-4 mb-3">
+                                    <input class="form-control" type="text" placeholder="Buscar espacio">
+                                </div>
+                                <!-- Botón Seleccionar -->
+                                <div class="col-lg-4 mb-8">
+                                    <button type="button" class="btn btn-warning">Seleccionar espacio</button>
+                                </div>
+                                <!-- Botón de acción -->
+                                <div class="col-lg-4 mb-8">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                            <!-- Tabla -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Número de laboratorio</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Encargo</th>
+                                            <th scope="col">Capacidad de personas</th>
+                                            <th scope="col">Tipo de espacio</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Inventario</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Laboratorio 1</td>
+                                            <td>Encargado 1</td>
+                                            <td>30</td>
+                                            <td>Laboratorio</td>
+                                            <td>Software</td>
+                                            <td><button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-download"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Laboratorio 2</td>
+                                            <td>Encargado 2</td>
+                                            <td>25</td>
+                                            <td>Sala de conferencias</td>
+                                            <td>Hardware</td>
+                                            <td><button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-download"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Laboratorio 2</td>
+                                            <td>Encargado 2</td>
+                                            <td>25</td>
+                                            <td>Sala de conferencias</td>
+                                            <td>Hardware</td>
+                                            <td><button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-download"></i></button></td>
+                                        </tr>
+                                        <!-- Puedes agregar más filas según sea necesario -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnBuscarEspacio').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('espaciosModal'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#buscarEspacio').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
