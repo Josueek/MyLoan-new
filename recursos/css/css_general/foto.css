@@ -31,4 +31,16 @@
   background-size: cover;
   background-position: center;
   border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none; /* Ocultamos la vista previa inicialmente */
+}
+
+.upload-text {
+  position: absolute;
+  bottom: 10px;
+  font-size: 14px;
+  color: #000;
+  display: none; /* Ocultamos el texto inicialmente */
 }
