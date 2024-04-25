@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.css" />
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -308,7 +308,7 @@
                                             <p class="mb-0 fs-3">Mis tareas</p>
                                         </a>
                                         <!-- Link para volver al login-->
-                                        <a href=".." class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
+                                        <a href="../index.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
                                     </div>
                                 </div>
                             </li>
@@ -330,48 +330,115 @@
             <div class="container-fluid">
                 <!--  Row 1 -->
                 <!-- tabla -->
-
+                <!-- Inicio de la tabla de usuarios-->
+                <table class="table table-hover">
+                    <div class="mb-4">
+                        <h5 class="card-title fw-semibold">Solicitudes de prestamo recibidas</h5>
+                    </div>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">solicitudes</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Fecha Fin</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Lennyn Vides</td>
+                            <td>12.03.2024</td>
+                            <td>24.04.2024</td>
+                            <td>$34.24</td>
+                            <td>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                        id="btnAsignarEspecialidad">
+                                        Aceptado
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Lennyn Rodriguèz</td>
+                            <td>12.06.2024</td>
+                            <td>24.07.2024</td>
+                            <td>$50.24</td>
+                            <td>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                        id="btnAsignarEspecialidad">
+                                        Aceptado
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Lennyn Vides</td>
+                            <td>12.03.2024</td>
+                            <td>24.04.2024</td>
+                            <td>$34.24</td>
+                            <td>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
+                                        id="btnAsignarEspecialidad">
+                                        Aceptado
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Fin de la tabla de empleados -->
                 <!-- fin tabla -->
-
-                <!-- calendario -->
-                <div class="col-lg-4 d-flex align-items-stretch">
-                    <div class="card w-100">
-                        <div class="card-body p-4">
-                            <div class="mb-4">
-                                <h5 class="card-title fw-semibold">Clima</h5>
-                            </div>
-                            <div class="container-fluid">
-                                <div id="calendar-container" class="rounded bg-light p-4 w-100 h-100">
-                                    <div id="calendar-header" class="text-center mb-4"></div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Domingo</th>
-                                                        <th>Lunes</th>
-                                                        <th>Martes</th>
-                                                        <th>Miércoles</th>
-                                                        <th>Jueves</th>
-                                                        <th>Viernes</th>
-                                                        <th>Sábado</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="calendar-body">
-                                                </tbody>
-                                            </table>
+                <div class="row">
+                    <!-- calendario -->
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="card w-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title fw-semibold mb-4">Calendario</h5>
+                                <div class="table-responsive">
+                                    <div class="container" id="calendar-container">
+                                        <div id="calendar-header"></div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Domingo</th>
+                                                            <th>Lunes</th>
+                                                            <th>Martes</th>
+                                                            <th>Miércoles</th>
+                                                            <th>Jueves</th>
+                                                            <th>Viernes</th>
+                                                            <th>Sábado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="calendar-body">
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- fin de calendario -->
-                <div class="contenedorr">
-
-                    <!--Codigo para la funcionalidad del clima-->
+                    <!-- fin de calendario -->
+                    <!-- clima -->
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
                             <div class="card-body p-4">
@@ -406,7 +473,6 @@
             </div>
         </div>
     </div>
-
     <!--Scrip que si funionan -->
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
