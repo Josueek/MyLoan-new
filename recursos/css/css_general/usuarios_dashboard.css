@@ -223,8 +223,23 @@
     background-color: #e73143;
 }
 
+#btnAgregarEspacio {
+    background-color: #F8C404;
+    color: white;
+    border-color: #F8C404;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
 
+#btnAgregarEspacio:hover {
+    color: white;
+    background-color: #ffcc01;
+    /* Cambio de color al pasar el ratón */
 
+}
 
 
 

@@ -69,7 +69,7 @@
 
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono -->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../../vistas/vistas_admin/gestionar_espacios.html" class="submenu-link">
                                         <span>
                                             <i class="ti ti-settings me-2"></i>
                                         </span>
@@ -261,7 +261,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Usuarios registrados </span>
+                                <span class="fs-5 fw-bold">Espacios registrados </span>
                             </a>
                         </li>
                     </ul>
@@ -321,213 +321,97 @@
                 </nav>
 
             </header>
-            <!--  Aca termina la parte del menu y el header -->
 
-            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+
             <!-- Inicio del cuadro con efecto 3D -->
             <div class="container-fluid" id="miCuadro">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <!-- Parte superior para credenciales -->
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h4>Credenciales del usuario</h4>
-                                    </div>
-                                    <div>
-                                        <h4>Datos del empleado</h4>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Parte inferior para datos -->
-                            <div class="card-body">
-                                <!-- Contenido del cuadro -->
-                                <div class="row">
-                                    <!-- Columna 1 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 1 -->
-                                        <label for="correo" class="mb-1">Correo electrónico:</label>
-                                        <input type="email" id="correo" class="form-control" placeholder="Correo"
-                                            required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="contraseña" class="mb-1">Contraseña:</label>
-                                        <input type="password" id="contraseña" class="form-control"
-                                            placeholder="Escribe una contraseña" minlength="8" required>
-                                    </div>
-
-                                    <!-- Columna 2 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 2 -->
-                                        <label for="nombre" class="mb-1">Nombre:</label>
-                                        <input type="text" id="nombre" class="form-control"
-                                            placeholder="Escribe un nombre" required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="telefono" class="mb-1">Teléfono:</label>
-                                        <input type="tel" id="telefono" class="form-control"
-                                            placeholder="Escribe un número de teléfono" required pattern="[0-9]+"
-                                            title="Por favor, introduce solo números">
+                            <!-- Tabla de empleados -->
+                            <div class="container mt-5">
+                                <div class="row mb-5">
+                                    <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                        <button class="btn btn-transparent border-0 p-0">
+                                            <i class="fas fa-search me-2"></i>
+                                        </button>
+                                        <!-- Barra de búsqueda -->
+                                        <input type="search" class="form-control" placeholder="Buscar">
                                     </div>
 
 
-                                    <!-- Columna 3 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="cargo" class="mb-1">Cargo del empleado:</label>
-                                        <select id="cargo" class="form-select" required>
-                                            <option value="">Selecciona un cargo</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Instructor">Instructor</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="estado" class="mb-1">Estado del empleado:</label>
-                                        <select id="estado" class="form-select" required>
-                                            <option value="">Selecciona un estado</option>
-                                            <option value="Activo">Activo</option>
-                                            <option value="Inactivo">Inactivo</option>
-                                        </select>
-                                    </div>
-                                    <!-- Columna 4 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 4 -->
-                                        <label for="apellido" class="mb-1">Apellido:</label>
-                                        <input type="text" id="apellido" class="form-control"
-                                            placeholder="Escribe un apellido" required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="especialidad" class="mb-1">Especialidad del empleado:</label>
-                                        <select id="especialidad" class="form-select" required>
-                                            <option value="">Selecciona una especialidad</option>
+                                    <div class="col-lg-3 mb-3 d-flex align-items-center">
+
+                                        <!-- input para filtrar -->
+                                        <select id="filtro especialidad" class="form-select" required>
+                                            <option value="">Filtrar por:</option>
                                             <option value="Software">Software</option>
                                             <option value="Enca">Enca</option>
                                         </select>
                                     </div>
+                                    <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                        <button id="btnAgregarEspacio" type="button"
+                                            class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
+                                            data-bs-target="#AgregarEspacio">Agregar espacio</button>
 
-                                </div>
-                                <!-- Tabla de empleados -->
-                                <div class="container mt-5">
-                                    <div class="row mb-5">
-                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                            <button class="btn btn-transparent border-0 p-0">
-                                                <i class="fas fa-search me-2"></i>
-                                            </button>
-                                            <!-- Barra de búsqueda -->
-                                            <input type="search" class="form-control" placeholder="Buscar">
-                                        </div>
-
-
-                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
-
-                                            <!-- input para filtrar -->
-                                            <select id="filtro especialidad" class="form-select" required>
-                                                <option value="">Filtrar por:</option>
-                                                <option value="Software">Software</option>
-                                                <option value="Enca">Enca</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-lg-6 mb-3 d-flex justify-content-end">
-                                            <button id="btnAgregarespecialidad" type="button"
-                                                class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
-                                                data-bs-target="#AgregarEspecialidad">Agregar especialidad</button>
-
-                                            <button id="btnAgregarEmpleado" type="button"
-                                                class="btn btn-danger mx-1">Agregar empleado</button>
-                                        </div>
-
-                                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
-
-                                        </div>
+                                      
                                     </div>
+
+                                    <table class="table table-hover mt-5">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Número de laboratorio</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Encargado</th>
+                                                <th scope="col">Capacidad de personas</th>
+                                                <th scope="col">Tipo de espacio</th>
+                                                <th scope="col">Especialidad</th>
+                                                <th scope="col d-flex align-content-center">Inventario</th>
+                                                <th scope="col"></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">12E45</th>
+                                                <td>Laboratorio de Software</td>
+                                                <td>Josué</td>
+                                                <td>45</td>
+                                                <td>
+                                                    Laboratorio
+                                                </td>
+                                                <td>Desarrollo en Software</td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-3 me-2 mt-2">
+                                                            <button type="button" class="btn btn-primary"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#descargarInvet"
+                                                                data-bs-whatever="@mdo" id="btnDescargarInv">
+                                                                <i class="fa-solid fa-download"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-3 me-2">
+                                                            <button type="button" class="btn btn-success mt-2"
+                                                                data-bs-toggle="modal" data-bs-target="#editarEspa"
+                                                                data-bs-whatever="@mdo" id="btnEditarEspa">
+                                                                <i class="fa-solid fa-pencil"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-3 me-2">
+                                                            <button type="button" class="btn btn-danger mt-2"
+                                                                data-bs-toggle="modal" data-bs-target="#modalBorar"
+                                                                data-bs-whatever="@mdo" id="btnborrar">
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    </table>
                                 </div>
-                                <!-- Inicio de la tabla de usuarios-->
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Teléfono</th>
-                                            <th scope="col">Estado del empleado</th>
-                                            <th scope="col">Foto</th>
-                                            <th scope="col">Correo electrónico</th>
-                                            <th scope="col">Contraseña</th>
-                                            <th scope="col">Cargo</th>
-                                            <th scope="col">Especialidad</th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!-- Fin de la tabla de empleados -->
-
                             </div>
                         </div>
                     </div>
@@ -535,8 +419,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!--Scrip que si funionan -->
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
