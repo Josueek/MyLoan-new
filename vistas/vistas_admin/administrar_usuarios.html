@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Usuarios</title>
+    <title>Inicio</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
@@ -15,7 +15,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
+    <!-- Codigo del clima -->
+    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
 
 </head>
 
@@ -139,7 +141,6 @@
                             </ul>
                         </li>
 
-
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
                                 <span>
@@ -168,7 +169,6 @@
                                 </li>
                             </ul>
                         </li>
-
 
                         <li class="sidebar-item">
                             <!--Configurar nombre del archivo-->
@@ -407,6 +407,8 @@
                                     </div>
 
                                 </div>
+
+
                                 <!-- Tabla de empleados -->
                                 <div class="container mt-5">
                                     <div class="row mb-5">
@@ -429,104 +431,22 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-lg-6 mb-3 d-flex justify-content-end">
-                                            <button id="btnAgregarespecialidad" type="button"
-                                                class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
-                                                data-bs-target="#AgregarEspecialidad">Agregar especialidad</button>
-
-                                            <button id="btnAgregarEmpleado" type="button"
-                                                class="btn btn-danger mx-1">Agregar empleado</button>
-                                        </div>
-
                                         <div class="col-lg-3 mb-3 d-flex justify-content-end">
 
+                                            <button id="btnAgregarespecialidad" type="button" class="btn btn-primary mx-lg-3"
+                                                data-bs-toggle="modal" data-bs-target="#Especialidad">Agregar
+                                                especialidad</button>
+                                        </div>
+                                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                            <button id="btnAgregarEmpleado" type="button"
+                                                class="btn btn-primary mx-lg-3">Agregar
+                                                empleado</button>
                                         </div>
                                     </div>
+
+
                                 </div>
-                                <!-- Inicio de la tabla de usuarios-->
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Apellido</th>
-                                            <th scope="col">Teléfono</th>
-                                            <th scope="col">Estado del empleado</th>
-                                            <th scope="col">Foto</th>
-                                            <th scope="col">Correo electrónico</th>
-                                            <th scope="col">Contraseña</th>
-                                            <th scope="col">Cargo</th>
-                                            <th scope="col">Especialidad</th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
 
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                                 <!-- Fin de la tabla de empleados -->
 
                             </div>
@@ -547,8 +467,9 @@
     <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
     <script src="../../recursos/js/acciones.js"></script>
-
-    <script src="../../recursos/js/modales.js"></script>
+    <!-- el de calendario se puede mejorar-->
+    <script src="../../recursos/js/calendario.js"></script>
+    <script src="../../recursos/js/clima.js"></script>
     <!-- Scrip que dudosamente sirven-->
     <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
     <script src="../../recursos/js/dashboard.js"></script>
