@@ -1,28 +1,24 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de herramientas</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.css" />
+    <link rel="stylesheet" href="../../recursos/css/bootstrap/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- Codigo del clima -->
-    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
-    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
 
 </head>
 
 <body>
-    <!--  Inicio del menu lateral -->
+
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -249,7 +245,6 @@
 
         </aside>
 
-        <!--  aca empieza el header -->
         <div class="body-wrapper">
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -264,7 +259,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Inicio</span>
+                                <span class="fs-5 fw-bold">Gestionar inventario de herramientas</span>
                             </a>
                         </li>
                     </ul>
@@ -325,168 +320,50 @@
 
             </header>
             <!--  Aca termina la parte del menu y el header -->
-
-            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
-            <div class="container-fluid">
-                <!--  Row 1 -->
-                <!-- tabla -->
-                <!-- Inicio de la tabla de usuarios-->
-                <table class="table table-hover">
-                    <div class="mb-4">
-                        <h5 class="card-title fw-semibold">Solicitudes de prestamo recibidas</h5>
-                    </div>
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">solicitudes</th>
-                            <th scope="col">Fecha Inicio</th>
-                            <th scope="col">Fecha Fin</th>
-                            <th scope="col">Monto</th>
-                            <th scope="col">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Lennyn Vides</td>
-                            <td>12.03.2024</td>
-                            <td>24.04.2024</td>
-                            <td>$34.24</td>
-                            <td>
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                        id="btnAsignarEspecialidad">
-                                        Aceptado
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Lennyn Rodriguèz</td>
-                            <td>12.06.2024</td>
-                            <td>24.07.2024</td>
-                            <td>$50.24</td>
-                            <td>
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                        id="btnAsignarEspecialidad">
-                                        Aceptado
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Lennyn Vides</td>
-                            <td>12.03.2024</td>
-                            <td>24.04.2024</td>
-                            <td>$34.24</td>
-                            <td>
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                        id="btnAsignarEspecialidad">
-                                        Aceptado
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Fin de la tabla de empleados -->
-                <!-- fin tabla -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="container-fluid">
                 <div class="row">
-                    <!-- calendario -->
-                    <div class="col-lg-8 d-flex align-items-stretch">
-                        <div class="card w-100">
-                            <div class="card-body p-4">
-                                <h5 class="card-title fw-semibold mb-4">Calendario</h5>
-                                <div class="table-responsive">
-                                    <div class="container" id="calendar-container">
-                                        <div id="calendar-header"></div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Domingo</th>
-                                                            <th>Lunes</th>
-                                                            <th>Martes</th>
-                                                            <th>Miércoles</th>
-                                                            <th>Jueves</th>
-                                                            <th>Viernes</th>
-                                                            <th>Sábado</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="calendar-body">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-lg-3 mb-2">
+                        <!-- Contenido de la columna 1 -->
+                        <label for="codigo" class="mb-1">Codigo de herramienta</label>
+                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el codigo" required>
                     </div>
-                    <!-- fin de calendario -->
-                    <!-- clima -->
-                    <div class="col-lg-4 d-flex align-items-stretch">
-                        <div class="card w-100">
-                            <div class="card-body p-4">
-                                <div class="mb-4">
-                                    <h5 class="card-title fw-semibold">Clima</h5>
-                                </div>
-                                <main>
-                                    <div class="search-form">
-                                        <form id="search-form">
-                                            <div class="searchbox">
-                                                <input type="text" autocomplete="off" placeholder="Buscar ciudad..."
-                                                    class="search" id="searchbox" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="weather-card" id="card">
-                                        <div class="city" id="city">El salvador, sv</div>
-                                        <div class="date" id="date">11/04/2024</div>
-                                        <div class="temperature">
-                                            <img src="../../recursos/img/img_generales/temp-mid.png" class="temp-img"
-                                                id="temp-img" />
-                                            <div class="temp" id="temp">30c</div>
-                                        </div>
-                                        <div class="weather" id="weather">muy nuboso</div>
-                                        <div class="range" id="range">27c / 31c</div>
-                                    </div>
-                                </main>
-                            </div>
-                        </div>
+                    <div class="col-lg-3 mb-2">
+                        <!-- Contenido de la columna 2 -->
+                        <label for="herramienta" class="mb-1">Herramienta</label>
+                        <input type="text" id="herramienta" class="form-control input-short" placeholder="Nombre de herramienta" required>
+                    </div>
+                    <div class="col-lg-3 mb-2">
+                        <label for="stock" class="mb-1">En stock</label>
+                        <input type="number" id="stock" class="form-control input-short" placeholder="Seleccione una cantidad" required>
+                    </div>
+                    <div class="col-lg-3 mb-2">
+                        <label for="institucion">Institución correspondiente</label>
+                        <select id="institucion" class="form-control">
+                            <option value="0">Institucion</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                        </select>
+                    </div>
+                    <div class="col-lg-3 mb-2">
+                        <label for="descripcion" class="mb-1">Descripción</label>
+                        <textarea id="descripcion" class="form-control input-short" rows="5" placeholder="Ingrese una descripción"></textarea>
                     </div>
                 </div>
-            </div>
+            </section>
+
         </div>
-    </div>
-    <!--Scrip que si funionan -->
-    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
-    <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-    <script src="../../recursos/js/acciones.js"></script>
-    <!-- el de calendario se puede mejorar-->
-    <script src="../../recursos/js/calendario.js"></script>
-    <script src="../../recursos/js/clima.js"></script>
-    <!-- Scrip que dudosamente sirven-->
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../recursos/js/dashboard.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
