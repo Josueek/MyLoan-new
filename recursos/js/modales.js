@@ -284,3 +284,143 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+            <div class="modal fade" id="detallePrestamoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detalle del préstamo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Tabla -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Unidad</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Número de préstamo</th>
+                                            <th scope="col">Espacio</th>
+                                            <th scope="col">Equipo</th>
+                                            <th scope="col">Material</th>
+                                            <th scope="col">Herramientas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Unidades</td>
+                                            <td>Laptop</td>
+                                            <td>123456</td>
+                                            <td>Laboratorio 1</td>
+                                            <td>Laptop HP Probook 450 G7</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Unidad</td>
+                                            <td>Proyector</td>
+                                            <td>789012</td>
+                                            <td>Sala de conferencias</td>
+                                            <td></td>
+                                            <td>Proyector Epson PowerLite 1781W</td>
+                                            <td></td>
+                                        </tr>
+                                        <!-- Puedes agregar más filas según sea necesario -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnVisualizar').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('detallePrestamoModal'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#detallePrestamoModal').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+            <div class="modal fade" id="periodoTerminadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mx-auto" id="exampleModalLabel">Periodo terminado del préstamo</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Formulario fecha de inicio -->
+                                    <div class="mb-3">
+                                        <label for="fechaInicio" class="form-label">Fecha de inicio</label>
+                                        <input type="text" class="form-control" id="fechaInicio" value="01/04/2024" readonly>
+                                    </div>
+                                    <!-- Formulario fecha de entrega -->
+                                    <div class="mb-3">
+                                        <label for="fechaEntrega" class="form-label">Fecha de entrega del préstamo</label>
+                                        <input type="date" class="form-control" id="fechaEntrega">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Formulario encargo de recibir el préstamo -->
+                                    <div class="mb-3">
+                                        <label for="encargoRecibir" class="form-label">Encargado de recibir el préstamo</label>
+                                        <input type="text" class="form-control" id="encargoRecibir" value="Juan Pérez" readonly>
+                                    </div>
+                                    <!-- Formulario nombre del encargo de entrega del préstamo -->
+                                    <div class="mb-3">
+                                        <label for="encargoEntrega" class="form-label">Nombre del encargado de entrega del préstamo</label>
+                                        <input type="text" class="form-control" id="encargoEntrega">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-warning">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnEntregar').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('periodoTerminadoModal'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#periodoTerminadoModal').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
