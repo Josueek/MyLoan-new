@@ -213,3 +213,33 @@
   background-color: #000000;
 }
 
+#btnAgregarherramienta{
+  background-color: #F8C404;
+  color: white;
+  border-color: #F8C404;
+}
+
+#btnAgregarequipo{
+  background-color: #F8C404;
+  color: white;
+  border-color: #F8C404;
+}
+
+#btnAgregarmateriales{
+  background-color: #F8C404;
+  color: white;
+  border-color: #F8C404;
+}
+
+#SubirDOC{
+  background-color: #2D60FF;
+  color: white;
+}
+
+#datos_generales{
+  background-color: #F1F4F9;
+  display: flex; 
+  justify-content: center;
+  border-radius: 20px;
+  padding: 5px;
+}
