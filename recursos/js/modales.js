@@ -284,6 +284,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
     function createModal() {
