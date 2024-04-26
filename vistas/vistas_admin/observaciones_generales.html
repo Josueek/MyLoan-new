@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio</title>
+    <title>Observaciones generales</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
 
-    <link rel="stylesheet" href="../../recursos/css/styles.min.css"/>
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -325,95 +325,148 @@
             </header>
             <!--  Aca termina la parte del menu y el header -->
 
-            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
-            <div class="container-fluid">
-                <!--  Row 1 -->
-                <!-- tabla -->
-                <!-- Inicio de la tabla de usuarios-->
-                <table class="table table-hover">
+            <div class="container-fluid" id="miCuadro">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+                            <div class="container-fluid">
+                                <!--  Row 1 -->
+                                <!-- tabla -->
+                                <!-- Inicio de la tabla de usuarios-->
+                                <table class="table table-hover">
 
-                     <!-- Buscador-->
-                     <div class="container mt-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text border border-secondary rounded-left"><i class="fas fa-search"></i></span>
+                                    <!-- Buscador-->
+                                    <div class="container mt-5">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="d-flex align-items-center">
+                                                    <button class="btn btn-transparent border-0 p-0">
+                                                        <i class="fas fa-search me-2"></i>
+                                                    </button>
+                                                    <!-- Barra de búsqueda -->
+                                                    <input type="search" class="form-control" placeholder="Buscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-warning btn-block">Imprimir
+                                                    documento</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <input type="text" id="codigo" class="form-control input-short rounded-right" placeholder="Buscar" required>
+
+
+
+                                    <div class="my-5">
+                                        <h5 class="card-title fw-semibold"></h5>
+                                    </div>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fecha observación</th>
+                                            <th scope="col">Observación</th>
+
+                                            <th scope="col">Tipo de observación</th>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Tipo préstamo</th>
+                                            <th scope="col">Espacio observado</th>
+                                            <th scope="col">Persona solicitante</th>
+                                            <th scope="col">Detalles</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>10/04/2024</td>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#verDetalle" data-bs-whatever="@mdo"
+                                                        id="btnVerDetalle">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>10/04/2024</td>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#descargarInvet" data-bs-whatever="@mdo"
+                                                        id="btnVerDetalle">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>10/04/2024</td>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#descargarInvet" data-bs-whatever="@mdo"
+                                                        id="btnDescargarInv">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>10/04/2024</td>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#descargarInvet" data-bs-whatever="@mdo"
+                                                        id="btnDescargarInv">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- Fin de la tabla de empleados -->
+                                <!-- fin tabla -->
+                                <div class="row">
+
+
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <button type="button" class="btn btn-warning btn-block">Imprimir documento</button>
                             </div>
                         </div>
                     </div>
-                    
-                    
-
-                    <div class="my-5">
-                        <h5 class="card-title fw-semibold"></h5>
-                    </div>
-                    <thead>
-                        <tr>
-                            <th scope="col">Fecha observación</th>
-                            <th scope="col">Observación</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col">Tipo de observación</th>
-                            <th scope="col">Tipo préstamo</th>
-                            <th scope="col">Espacio observado</th>
-                            <th scope="col">Persona solicitantte</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>10/04/2024</td>
-                            <td>El espacio se encontraba sucio</td>
-                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
-                            <td>Despues del curso</td>
-                            <td>Laboratorio d.s</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>10/04/2024</td>
-                            <td>El espacio se encontraba sucio</td>
-                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
-                            <td>Despues del curso</td>
-                            <td>Laboratorio d.s</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>10/04/2024</td>
-                            <td>El espacio se encontraba sucio</td>
-                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
-                            <td>Despues del curso</td>
-                            <td>Laboratorio d.s</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>10/04/2024</td>
-                            <td>El espacio se encontraba sucio</td>
-                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png" alt=""></td>
-                            <td>Despues del curso</td>
-                            <td>Laboratorio d.s</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Fin de la tabla de empleados -->
-                <!-- fin tabla -->
-                <div class="row">
-                   
-                
                 </div>
             </div>
         </div>
     </div>
     <!--Scrip que si funionan -->
+    <script src="../../recursos/js/modales.js"></script>
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../recursos/js/sidebarmenu.js"></script>
