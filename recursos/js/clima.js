@@ -14,11 +14,11 @@ const api = {
   
   function updateImages(data) {
     const temp = toCelsius(data.main.temp);
-    let src = '../../recursos/img/temp-mid.png';
+    let src = '../../recursos/img/img_generales/temp-mid.png';
     if (temp > 26) {
-      src = '../../recursos/img/temp-high.png';
+      src = '../../recursos/img/img_generales/temp-high.png';
     } else if (temp < 20) {
-      src = '../../recursos/img/temp-low.png';
+      src = '../../recursos/img/img_generales/temp-low.png';
     }
     tempImg.src = src;
   }

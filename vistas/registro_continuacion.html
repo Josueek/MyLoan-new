@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro</title>
     <link rel="shortcut icon" type="image/png" href="../../recursos/img/logos/favicon.png" />
-    <link rel="stylesheet" href="../../recursos/css/adminITR/registroContinuacion.css" />
-    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="../recursos/css/css_general/registro_continuacion.css" />
+    <link rel="stylesheet" href="../recursos/css/styles.min.css" />
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
 
-        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="position-relative overflow-hidden  min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
                     <div class="col-md-8 col-lg-6 col-xxl-3">
@@ -24,9 +24,9 @@
                                 <div class="card-body">
                                     <!-- Contenido del formulario -->
                                     <a class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                        <img id="logomylonad" src="../../recursos/img/logos/logomyloand.png" width="180"
+                                        <img id="logomylonad" src="../recursos/img/logos/myloan_logo.png" width="180"
                                             alt="">
-                                        <img id="logocfp" src="../../recursos/img/logos/CFPlogo.png" width="150" alt="">
+                                        <img id="logocfp" src="../recursos/img/logos/cfp_logo.png " width=150" alt="">
 
                                     </a>
                                     <p id="infologin" class="text-center">Regístrate con tus datos personales y las
@@ -35,7 +35,7 @@
                                     <!-- Contenedor del cuadro de la imagen -->
                                     <div class="imagenperfil">
                                         <img id="imagenSeleccionada"
-                                            src="../../recursos/img/adminCFP/fotodeperfilpredeterminada.jpg"
+                                            src="../recursos/img/img_generales/fotodeperfilpredeterminada.jpg"
                                             alt="Imagen de perfil predeterminada" width="100%" height="auto">
                                     </div>
                                     <div class="text-center mt-3">
@@ -45,27 +45,23 @@
 
                                     <form>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                                            <input type="email" class="form-control" id="inputEmail"
-                                                aria-describedby="emailHelp" placeholder="Ingresa tu nombre">
+                                            <label for="inputNombre" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="inputNombre" placeholder="Ingresa tu nombre">
                                         </div>
                                         <div class="mb-4">
-                                            <label for="exampleInputPassword1" class="form-label">Apellidos</label>
-                                            <input type="password" class="form-control" id="inputPassword"
-                                                placeholder="Ingresa tus apellidos">
+                                            <label for="inputApellidos" class="form-label">Apellidos</label>
+                                            <input type="text" class="form-control" id="inputApellidos" placeholder="Ingresa tus apellidos">
                                         </div>
-
                                         <div class="mb-5">
-                                            <label for="exampleInputEmail1" class="form-label">Teléfono</label>
-                                            <input type="email" class="form-control" id="inputEmail"
-                                                aria-describedby="emailHelp" placeholder="Ingresa tu número de teléfono">
+                                            <label for="inputTelefono" class="form-label">Teléfono</label>
+                                            <input type="number" class="form-control" id="inputTelefono" placeholder="Ingresa tu número de teléfono">
                                         </div>
-
                                         <div class="d-flex align-items-center justify-content-center mb-4">
                                             <a href="../admin/index.html" class="btn-custom-regresar">Regresar</a>
-                                            <a href="../admin/index.html" class="btn-custom">Confirmar</a>
+                                            <a href="#" class="btn-custom" id="btn-confirmar">Confirmar</a>
                                         </div>
                                     </form>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -76,7 +72,9 @@
     </div>
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/adminCFP/registroContinuacion.js"></script>
+    <script src="../controlador/admin_itr/registroContinuacion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

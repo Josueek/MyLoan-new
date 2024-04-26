@@ -1,5 +1,5 @@
 body{
-    background-image : url(../../img/adminITR/iniciodesesión.png) ;
+    background-image : url(../../img/img_generales/fondologin.png) ;
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
@@ -178,7 +178,7 @@ select.form-select option {
 }
 
   #registrarselink{
-    font-size: 22px; /* Tamaño de letra más grande */
+    font-size: 18px; /* Tamaño de letra más grande */
   }
  
   @media (max-width: 767px) {

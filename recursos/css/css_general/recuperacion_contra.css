@@ -1,5 +1,5 @@
 body{
-    background-image : url(../../img/adminITR/iniciodesesión.png) ;
+    background-image : url(../../img/img_generales/fondologin.png) ;
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
@@ -14,8 +14,8 @@ body{
     
     #infologin{
         color: black;
-        margin-top: 12px;
-        margin-bottom: 30px;
+        margin-top: 10px;
+        margin-bottom: 20px;
         font-size: 23px;
         font-family:sans-serif; /* Reemplaza "Nombre de la fuente" con el nombre de la fuente moderna que desees usar */
         font-weight: bold; /* Aplica negrita al texto */
