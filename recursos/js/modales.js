@@ -284,3 +284,81 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML =
+`<div class="modal fade" id="verObservaciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalles de la observación realizadas</h5>
+        </div>
+        <div class="modal-body">
+            <!-- Contenedor de la fila -->
+            <div class="row">
+                <!-- Columna para los campos de observaciones generales -->
+                <div class="col-lg-6 mb-3">
+                    <div class="row">
+                        <!-- Campo de entrada 1 -->
+                        <div class="col-lg-6 mb-3">
+                            <label for="fechaObservacion1" class="mb-1">Fecha observación</label>
+                            <input type="email" id="fechaObservacion1" class="form-control" placeholder="" required>
+                        </div>
+                        <!-- Campo de entrada 2 -->
+                        <div class="col-lg-6 mb-3">
+                            <label for="TipoObservacion" class="mb-1">Tipo Observación</label>
+                            <input type="email" id="fechaObservacion2" class="form-control" placeholder="" required>
+                        </div>
+                        <!-- Campo de entrada 3 -->
+                        <div class="col-lg-6 mb-3">
+                            <label for="observacion" class="mb-1">Observación</label>
+                            <input type="email" id="correo4" class="form-control" placeholder="" required style="height: 100px;">
+                        </div>
+                        <!-- Campo de entrada 4 -->
+                        <div class="col-lg-6 mb-3">
+                            <label for="tipoDePrestamo" class="mb-1">Tipo de préstamo a observar</label>
+                            <input type="email" id="correo5" class="form-control" placeholder="" required>
+                        </div>
+                        <!-- Campo de entrada 5 -->
+                        <div class="col-lg-6 mb-3">
+                            <label for="personaSolicitante" class="mb-1">Persona solicitante</label>
+                            <input type="email" id="correo6" class="form-control" placeholder="" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna para la imagen -->
+                <div class="col-lg-6 mb-3">
+                    <div class="p-8">
+                        <div class="circle text-center" id="circleContainer">
+                            <label for="inputFile" class="form-label">
+                                <img src="../../recursos/img/img_generales/fotodeperfilpredeterminada.jpg" alt="">
+                            </label>
+                            <div id="imagePreview" class="circle-preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+`;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnVerDetalle').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('VerDetalle'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#verObservaciones').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
