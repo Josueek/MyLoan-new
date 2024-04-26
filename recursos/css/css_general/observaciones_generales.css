@@ -1,29 +1,16 @@
-.input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .input-group .input-icon {
-    margin-right: 10px;
-  }
-  
-  .input-group input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .filter-section label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .filter-section select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.btn-custom {
+  margin-top: 25px;
+  background-color: #F8C404; /* Color de fondo amarillo */
+  color: white; /* Color de texto blanco */
+  border-radius: 20px; /* Bordes redondeados */
+  padding: 10px 60px; /* Espaciado interno */
+  text-decoration: none; /* Quita la subrayado de enlace */
+  font-size: 15px;
+  font-family:sans-serif; /* Reemplaza "Nombre de la fuente" con el nombre de la fuente moderna que desees usar */
+  font-weight: bold; /* Aplica negrita al texto */
+}
+
+.btn-custom:hover {
+  color: white;
+  background-color: #ffcc00; /* Cambio de color al pasar el ratón */
+}
