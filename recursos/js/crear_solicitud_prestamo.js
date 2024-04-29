@@ -9,8 +9,14 @@ $(document).ready(function() {
     });
   });
 
+  document.getElementById("btnAgregarequipo").addEventListener("click", function() {
+    // Redirecciona a la página deseada
+    window.location.href = "crear_solicitud_prestamousar.html";
+});
 
-    document.getElementById("btnAgregarequipo").addEventListener("click", function() {
-        // Redirecciona a la página deseada
-        window.location.href = "crear_solicitud_prestamousar.html";
-    });
+document.getElementById("btnCancelar").addEventListener("click", function() {
+    // Redirecciona a la página deseada
+    window.location.href = "crear_solicitud_prestamo.html";
+});
+
+

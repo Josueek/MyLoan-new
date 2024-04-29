@@ -284,3 +284,657 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// modal ver detalle
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML =
+        `<style>
+    /* Estilo para la imagen dentro del contenedor */
+    .circle img {
+        width: auto; /* Establecer el ancho al 100% */
+        height: auto; /* Altura automática para mantener la proporción */
+        max-width: 300px; /* Ancho máximo de la imagen */
+        max-height: 300px; /* Altura máxima de la imagen */
+    }
+</style>
+
+<div class="modal fade" id="verObservaciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles de la observación realizadas</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Contenedor de la fila -->
+                <div class="row">
+                    <!-- Columna para los campos de observaciones generales -->
+                    <div class="col-lg-6 mb-3">
+                        <div class="row">
+                            <!-- Campo de entrada 1 -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="fechaObservacion" class="mb-1">Fecha observación</label>
+                                <input type="text" id="fechaObservacion" class="form-control" placeholder="" required>
+                            </div>
+                            <!-- Campo de entrada 2 -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="TipoObservacion" class="mb-1">Tipo Observación</label>
+                                <input type="text" id="tipoObservacion" class="form-control" placeholder="" required>
+                            </div>
+
+                            
+                            <!-- Campo de entrada 3 -->
+
+                            <div class="col-lg-6 mb-3">
+                            <label for="personaSolicitante" class="mb-1">Persona solicitante</label>
+                            <input type="text" id="personaSolicitante" class="form-control" placeholder="" required>
+                        </div>
+
+                        <div class="col-lg-6 mb-3">
+                                <label for="tipoDePrestamo" class="mb-1">Tipo de préstamo</label>
+                                <input type="text" id="tipoPrestamo" class="form-control" placeholder="" required>
+                            </div>
+
+                            <div class="col-lg-6 mb-3">
+                                <label for="observacion" class="mb-1">Observación</label>
+                                <input type="text" id="observacion" class="form-control" placeholder="" required style="height: 100px;">
+                            </div>
+                            
+                            <!-- Campo de entrada 4 -->
+                            
+                            <!-- Campo de entrada 5 -->
+                            
+                        </div>
+                    </div>
+                    <!-- Columna para la imagen -->
+                    <div class="col-lg-2 mb-3">
+                        <div class="p-4">
+                            <div class="circle text-center" id="circleContainer">
+                                <label for="inputFile" class="form-label">
+                                    <img src="../../recursos/img/img_generales/fotodeperfilpredeterminada.jpg" alt="">
+                                </label>
+                                <div id="imagePreview" class="circle-preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+`
+;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnVerDetalle').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('VerDetalle'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#verObservaciones').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+        <!-- Modal para asignar la especialidad a un empleado -->
+        <div class="modal fade" id="modal-material" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Listado de materiales disponibles</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                     <div class="modal-body">
+                         <div class="row">
+                         <div class="col-lg-3 mb-2">
+                         <label for="institucion">Persona solicitante</label>
+                         <select id="institucion" class="form-control">
+                            <option value="0">Material a solicitar</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                           </select>
+                           </div> 
+                           <div class="col-lg-3 mb-2">
+                           <label for="stock" class="mb-1">Cantidad a solicitar</label>
+                           <input type="number" id="stock" class="form-control input-short"
+                               placeholder="Seleccione una cantidad" required>
+                             </div>
+                             <div class="col-lg-3 mb-2">
+                         <label for="institucion">Unidad a solicitar</label>
+                         <select id="institucion" class="form-control">
+                            <option value="0">Unidad</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                           </select>
+                           </div> 
+                           <div class="col-lg-3 mb-2">
+                           <label for="descripcion" class="mb-1">Descripción</label>
+                           <textarea id="descripcion" class="form-control input-short" rows="5"
+                               placeholder="Ingresa una descripción del equipo"></textarea>
+                       </div>
+                       <div class="col-lg-3 mb-3 d-flex align-items-center">
+                       <button class="btn btn-transparent border-0 p-0">
+                           <i class="fas fa-search me-2"></i>
+                       </button>
+                       <!-- Barra de búsqueda -->
+                       <input type="search" class="form-control" placeholder="Buscar">
+                       
+                   </div>
+                   <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                   <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+               </div>
+               <div class="col-lg-3 mb-3 d-flex justify-content-start">
+               <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
+           </div>
+                           </div>
+
+                          <div class="table-responsive mt-5">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Monitor DELL</td>
+                                        <td>45</td>
+                                        <td>Monitores dell de 24”, con entradas vga, hdm.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monitor DELL</td>
+                                        <td>45</td>
+                                        <td>Monitores dell de 24”, con entradas vga, hdm.</td>
+                                    </tr>
+                                    <!-- Puedes agregar más filas según sea necesario -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnagregarmaterial').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('modal-material'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#modal-material').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+        <!-- Modal para asignar la especialidad a un empleado -->
+        <div class="modal fade" id="modal-equipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Listado de equipos disponibles</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                     <div class="modal-body">
+                         <div class="row">
+                         <div class="col-lg-3 mb-2">
+                         <label for="institucion">Equipo a solicitar</label>
+                         <select id="institucion" class="form-control">
+                            <option value="0">Elige un equipo</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                           </select>
+                           </div> 
+                           <div class="col-lg-3 mb-2">
+                           <label for="stock" class="mb-1">Cantidad a solicitar</label>
+                           <input type="number" id="stock" class="form-control input-short"
+                               placeholder="Seleccione una cantidad" required>
+                             </div>
+                             <div class="col-lg-3 mb-2">
+                         <label for="institucion">Unidad a solicitar</label>
+                         <select id="institucion" class="form-control">
+                            <option value="0">Unidad</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                           </select>
+                           </div> 
+                           <div class="col-lg-3 mb-2">
+                           <label for="descripcion" class="mb-1">Descripción</label>
+                           <textarea id="descripcion" class="form-control input-short" rows="5"
+                               placeholder="Ingresa una descripción del equipo"></textarea>
+                       </div>
+                       <div class="col-lg-3 mb-3 d-flex align-items-center">
+                       <button class="btn btn-transparent border-0 p-0">
+                           <i class="fas fa-search me-2"></i>
+                       </button>
+                       <!-- Barra de búsqueda -->
+                       <input type="search" class="form-control" placeholder="Buscar">
+                       
+                   </div>
+                   <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                   <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+               </div>
+               <div class="col-lg-3 mb-3 d-flex justify-content-start">
+               <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
+           </div>
+                           </div>
+
+                          <div class="table-responsive mt-5">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Espacio asignado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Monitor DELL</td>
+                                        <td>45</td>
+                                        <td>Monitores dell de 24”, con entradas vga, hdm.</td>
+                                        <td>Laboratorio de Software - 5456</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monitor DELL</td>
+                                        <td>45</td>
+                                        <td>Laboratorio de Software - 5456</td>
+                                    </tr>
+                                    <!-- Puedes agregar más filas según sea necesario -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnagregarequipo').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('modal-equipo'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#modal-equipo').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+        <!-- Modal para asignar la especialidad a un empleado -->
+        <div class="modal fade" id="modal-herramienta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Listado de equipos disponibles</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                     <div class="modal-body">
+                         <div class="row">
+                         <div class="col-lg-3 mb-2">
+                         <label for="institucion">Herramienta a solicitar</label>
+                         <select id="institucion" class="form-control">
+                            <option value="0">Elige una herramienta</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                           </select>
+                           </div> 
+                           <div class="col-lg-3 mb-2">
+                           <label for="stock" class="mb-1">Cantidad a solicitar</label>
+                           <input type="number" id="stock" class="form-control input-short"
+                               placeholder="Seleccione una cantidad" required>
+                             </div>
+                             <div class="col-lg-3 mb-2">
+                         <label for="institucion">Unidad a solicitar</label>
+                         <select id="institucion" class="form-control">
+                            <option value="0">Unidad</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Agrega más opciones según necesites -->
+                           </select>
+                           </div> 
+                           <div class="col-lg-3 mb-2">
+                           <label for="descripcion" class="mb-1">Descripción</label>
+                           <textarea id="descripcion" class="form-control input-short" rows="5"
+                               placeholder="Ingresa una descripción del equipo"></textarea>
+                       </div>
+                       <div class="col-lg-3 mb-3 d-flex align-items-center">
+                       <button class="btn btn-transparent border-0 p-0">
+                           <i class="fas fa-search me-2"></i>
+                       </button>
+                       <!-- Barra de búsqueda -->
+                       <input type="search" class="form-control" placeholder="Buscar">
+                       
+                   </div>
+                   <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                   <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+               </div>
+               <div class="col-lg-3 mb-3 d-flex justify-content-start">
+               <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
+           </div>
+                           </div>
+
+                          <div class="table-responsive mt-5">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Codigo de herramienta</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Sotck</th>
+                                        <th scope="col">En uso</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Institución correspondiente</th>   
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AA54D66ASD</td>
+                                        <td>Martillo </td>
+                                        <td>5</td>
+                                        <td>1</td>
+                                        <td>Martillo marca Stanley, color amarillo</td>
+                                        <td>Ricaldone</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AA54D66ASD</td>
+                                        <td>Martillo </td>
+                                        <td>5</td>
+                                        <td>1</td>
+                                        <td>Martillo marca Stanley, color amarillo</td>
+                                        <td>Ricaldone</td>
+                                    </tr>
+                                    <tr>
+                                    <td>AA54D66ASD</td>
+                                    <td>Martillo </td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>Martillo marca Stanley, color amarillo</td>
+                                    <td>Ricaldone</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnagregarherramienta').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('modal-herramienta'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#modal-herramienta').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+        <!-- Modal para asignar la especialidad a un empleado -->
+        <div class="modal fade" id="modal-detalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Detalle sobre el periodo del prestamo</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                     <div class="modal-body">
+                         <div class="row">
+                         <div class="col-lg-3">
+                         <div class="form-group">
+                             <label for="fechaEntrega">Fecha de inicio del prestamo</label>
+                             <!-- Eliminación del icono de calendario -->
+                             <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha"
+                                 readonly>
+                         </div>
+                 </div>
+                 <div class="col-lg-3 mb-2">
+                 <!-- Contenido de la columna 1 -->
+                 <label for="codigo" class="mb-1">Nombre del encargado de recibir un prestamo</label>
+                 <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el nombre"
+                     required>
+             </div>
+                           </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    <div class="col-lg-3 mb-1">
+                    <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+                </div>
+                <div class="col-lg-3 mb-1">
+                <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnAgregar').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('modal-detalle'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#modal-detalle').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+
+// modal de gestonar solicitudes
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML =
+`
+<div class="modal fade" id="VerSolicitud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Detalles del préstamo</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Unidad</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Número de préstamo</th>
+                            <th scope="col">Espacio</th>
+                            <th scope="col">Equipo</th>
+                            <th scope="col">Material</th>
+                            <th scope="col">Herramienta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Taladro</td>
+                            <td>Taladro recargable con duración de 2hrs</td>
+                            <td>1</td>
+                            <td>Laboratorio emca</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>Si</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="col-lg-3 mb-1">
+                    <button id="enegarSolicitud" type="button" class="btn btn-danger mx-lg-3">Denegar</button>
+                </div>
+                <div class="col-lg-3 mb-1">
+                <button id="btnAceptarSolicitud" type="button" class="btn btn-info mx-lg-3" data-bs-toggle="modal" data-bs-target="#aceptarSolicitud">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+`;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnVerSolicitud').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('VerSolicitud'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#verSolicitud').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Función para crear el modal
+    function createModal() {
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = `
+        <!-- Modal para asignar la especialidad a un empleado -->
+        <div class="modal fade" id="aceptarSolicitud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Detalle sobre el periodo del prestamo</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                     <div class="modal-body">
+                         <div class="row">
+                         <div class="col-lg-6 mb-3">
+                         <div class="form-group">
+                             <label for="fechaEntrega">Fecha de inicio del prestamo</label>
+                             <!-- Eliminación del icono de calendario -->
+                             <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha"
+                                 readonly>
+                         </div>
+                 </div>
+                 <div class="col-lg-6 mb-3">
+                 <!-- Contenido de la columna 1 -->
+                 <label for="codigo" class="mb-1">Nombre del encargado de recibir un prestamo</label>
+                 <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el nombre"
+                     required>
+             </div>
+                           </div>
+                    </div>
+                    <div class="modal-footer">
+                    <div class="row">
+                    <div class="col-lg-6 mb-3">
+                    <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+                </div>
+                <div class="col-lg-6 mb-3">
+                <button id="btnAceptar" type="button" class="btn btn-warning mx-lg-3">Enviar</button>
+            </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        `;
+        document.body.appendChild(modalContainer);
+    }
+
+    createModal(); // Llama a la función para crear el modal
+
+    // Abre el modal cuando se haga clic en el botón
+    document.getElementById('btnAceptarSolicitud').addEventListener('click', function () {
+        const myModal = new bootstrap.Modal(document.getElementById('aceptarSolicitud'));
+        myModal.show();
+    });
+
+    // Elimina el fondo oscuro cuando se cierra el modal
+    $('#aceptarSolicitud').on('hidden.bs.modal', function (e) {
+        $('.modal-backdrop').remove();
+    });
+});
