@@ -71,6 +71,7 @@
                                         <!-- Texto -->
                                         <span class="hide-menu">Gestionar espacios</span>
                                     </a>
+                                    <a href="../vistas_admin/agregar_espacio.html"></a>
                                 </li>
                                 <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
                                 <li class="submenu-item  d-flex align-items-center">
@@ -390,9 +391,16 @@
                                                 </select>
                                             </div>
                                             <div class="col-lg-4 mb-3">
-                                                <div class="input-group">
-                                                    <input type="email" id="correo6" class="form-control" placeholder="Correo 6" required>
-                                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                                <label for="PersonasCant" class="mb-1 enable">
+                                                    Subir documento:
+                                                </label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="inputdocumento" class="form-control"
+                                                        placeholder="Documento seleccionado" readonly required>
+                                                    <input type="file" id="documentoInput"
+                                                        accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                                    <button class="btn btn-outline-secondary" type="button"
+                                                        id="btnDocumento">
                                                         <i class="fa-solid fa-paperclip"></i>
                                                     </button>
                                                 </div>

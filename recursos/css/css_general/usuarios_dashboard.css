@@ -246,3 +246,7 @@
 .btnAgregarEspecialidad{
   background-color: #000000;
 }
+
+#documentoInput{
+  display: none;
+}
