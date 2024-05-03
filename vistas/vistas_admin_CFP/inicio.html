@@ -1,29 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear prestamos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inicio</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/admin/admin_CFP/usuarios_dashboard_CFP.css">
 
-    <link rel="stylesheet" href="/recursos/css/styles.css">
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!-- Codigo del clima -->
+    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
+    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
 
 </head>
 
 <body>
-
+    <!--  Inicio del menu lateral -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -31,7 +30,7 @@
             <!-- Imagen del sistema -->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
-                    <a href="../vistas_admin/inicio.html" class="text-nowrap logo-img">
+                    <a href="../../vistas/vistas_admin_CFP/inicio.html" class="text-nowrap logo-img">
                         <img src="../../recursos/img/logos/myloan_logo.png" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -43,7 +42,7 @@
                 <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
+                            <a class="sidebar-link" href="../../vistas/vistas_admin_CFP/inicio.html" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-house"></i>
                                 </span>
@@ -62,7 +61,7 @@
                             <ul id="submenu" class="submenu">
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href=".." class="submenu-link  w-100">
+                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
                                         <span>
                                             <i class="fa-solid fa-user me-2"></i>
                                         </span>
@@ -73,7 +72,7 @@
 
                                 <li class="submenu-item d-flex align-items-center">
                                     <!-- Icono -->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
                                         <span>
                                             <i class="ti ti-settings me-2"></i>
                                         </span>
@@ -250,7 +249,8 @@
 
         </aside>
 
-        <section class="body-wrapper">
+        <!--  aca empieza el header -->
+        <div class="body-wrapper">
             <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -264,7 +264,7 @@
                         <!-- Texto principal cambiar acorde la pantalla -->
                         <li class="nav-item">
                             <a class="nav-link">
-                                <span class="fs-5 fw-bold">Mis préstamos</span>
+                                <span class="fs-5 fw-bold">Inicio</span>
                             </a>
                         </li>
                     </ul>
@@ -308,7 +308,8 @@
                                             <p class="mb-0 fs-3">Mis tareas</p>
                                         </a>
                                         <!-- Link para volver al login-->
-                                        <a href=".." class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
+                                        <a href="../index.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar
+                                            sesión</a>
                                     </div>
                                 </div>
                             </li>
@@ -325,137 +326,28 @@
 
             </header>
             <!--  Aca termina la parte del menu y el header -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <section class="container-fluid" id="contenedor">
-                <div class="row">
-                    <div id="datos_generales" class="mb-4">
-                        <h3><label class="form-label"> Datos generales</label></h3>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="fechaEntrega">Fecha de solicitud</label>
-                            <!-- Eliminación del icono de calendario -->
-                            <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha"
-                                readonly>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Programa de formación</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Elija el prorgrama de formación</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Persona solicitante</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Elige el nombre del instructor</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Observación</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingresa una observación para el prestamo"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Tabla de empleados -->
-                    <div class="container mt-5">
-                        <div class="row mb-5">
-                            <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                <button class="btn btn-transparent border-0 p-0">
-                                    <i class="fas fa-search me-2"></i>
-                                </button>
-                                <!-- Barra de búsqueda -->
-                                <input type="search" class="form-control" placeholder="Buscar">
-                            </div>
 
-                            <div class="col-lg-5 mb-3 d-flex justify-content-end">
-                                <h3><label class="form-label"> Lista de usuarios registrados en ITR</label></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apelido</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col"> Estado empleado</th>
-                                <th scope="col"> Foto empleado</th>
-                                <th scope="col"> Correo electronico</th>
-                                <th scope="col"> Cargo</th>
-                                <th scope="col"> Especialidad</th>
+            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+            <div class="container-fluid">
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Lennyn Emmanuel</td>
-                                <td>Videz Perez</td>
-                                <td>7766-5566</td>
-                                <td>Foto empleado</td>
-                                <td>lennyn@gmail.com</td>
-                                <td>adminnistradorr</td>
-                                <td>Desarrollo de software</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Lennyn Emmanuel</td>
-                                <td>Videz Perez</td>
-                                <td>7766-5566</td>
-                                <td>Foto empleado</td>
-                                <td>lennyn@gmail.com</td>
-                                <td>adminnistradorr</td>
-                                <td>Desarrollo de software</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Lennyn Emmanuel</td>
-                                <td>Videz Perez</td>
-                                <td>7766-5566</td>
-                                <td>Foto empleado</td>
-                                <td>lennyn@gmail.com</td>
-                                <td>adminnistradorr</td>
-                                <td>Desarrollo de software</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="col-lg-3 mb-3 d-flex justify-content-start">
-                        <button id="btnAgregarequipo" type="button" class="btn btn-primary mx-lg-3"
-                            data-bs-toggle="modal" data-bs-target="#Especialidad">Siguiente</button>
-                    </div>
-                </div>
-            </section>
-            
-        </section>  
-        <!--Scrip que si funionan -->
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../recursos/js/sidebarmenu.js"></script>
-        <script src="../../recursos/js/app.min.js"></script>
-        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <script src="/recursos/js/crear_solicitud_prestamo.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-        <script src="../../recursos/js/acciones.js"></script>
-        <!-- Scrip que dudosamente sirven-->
-        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-        <script src="../../recursos/js/dashboard.js"></script>
+            </div>
+
+        </div>
+    </div>
+    <!--Scrip que si funionan -->
+    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../recursos/js/acciones.js"></script>
+    <!-- el de calendario se puede mejorar-->
+    <script src="../../recursos/js/calendario.js"></script>
+    <script src="../../recursos/js/clima.js"></script>
+    <!-- Scrip que dudosamente sirven-->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
 </body>
 
 </html>
