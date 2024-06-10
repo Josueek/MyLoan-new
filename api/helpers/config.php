@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
 date_default_timezone_set('America/El_Salvador');
 // Constantes para establecer las credenciales de conexión con el servidor de bases de datos.
 define('SERVER', 'localhost');
-define('DATABASE', 'coffeeshop');
-define('USERNAME', 'root');
-define('PASSWORD', '');
+define('DATABASE', 'my_loan_bd');
+define('USERNAME', 'Brandonsanchez');
+define('PASSWORD', 'brandon32');
 ?>

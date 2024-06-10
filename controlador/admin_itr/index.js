@@ -1,56 +1,41 @@
- // Función para mostrar una alerta de éxito
- function mostrarExito() {
-    Swal.fire({
-      icon: 'success',
-      title: '¡Bienvenido!',
-      text: 'Has iniciado sesión correctamente.',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Redireccionar al usuario a la página de inicio
-        window.location.href = 'vistas_admin/inicio.html';
+document.getElementById('login-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  try {
+      const response = await fetch('../api/services/login_services.php?action=login', {
+          method: 'POST',
+          body: formData
+      });
+      const data = await response.json();
+      if (data.status) {
+          Swal.fire({
+              icon: 'success',
+              title: 'Éxito',
+              text: `Bienvenido de nuevo, ${data.nombre}`,
+          }).then(() => {
+              window.location.href = '../vistas/vistas_admin/inicio.html'; // Cambia a la página de destino después del login
+          });
+      } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: data.error,
+          });
       }
-    });
+  } catch (error) {
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente.'
+      });
   }
+});
 
-  // Función para validar los campos de usuario y contraseña
-  function validarCampos() {
-    var usuario = document.getElementById('inputEmail').value.trim();
-    var contraseña = document.getElementById('inputConfirmPassword').value.trim();
-
-    // Verificar si ambos campos están vacíos
-    if (usuario === '' && contraseña === '') {
-      mostrarError('Por favor, completa los campos de usuario y contraseña.');
-      return false;
-    }
-
-    // Verificar si el campo de usuario está vacío
-    if (usuario === '') {
-      mostrarError('Por favor, completa el campo de usuario.');
-      return false;
-    }
-
-    // Verificar si el campo de contraseña está vacío
-    if (contraseña === '') {
-      mostrarError('Por favor, completa el campo de contraseña.');
-      return false;
-    }
-
-    return true;
-  }
-
-  // Función para mostrar una alerta de error
-  function mostrarError(mensaje) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: mensaje,
-    });
-  }
-
-  // Evento de clic en el botón de inicio de sesión
-  document.getElementById('btn-login').addEventListener('click', function() {
-    // Validar los campos antes de intentar iniciar sesión
-    if (validarCampos()) {
-      mostrarExito();
-    }
-  });
+document.getElementById('togglePassword').addEventListener('click', () => {
+  const passwordInput = document.getElementById('inputPassword');
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+  const icon = document.querySelector('#togglePassword i');
+  icon.classList.toggle('fa-eye');
+  icon.classList.toggle('fa-eye-slash');
+});

@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,19 +9,12 @@
   <link rel="stylesheet" href="../recursos/css/admin/index.css" />
   <link rel="stylesheet" href="../recursos/css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
 </head>
-
 <body>
-
-    
-  
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    
-    <div
-      class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
       <div class="d-flex align-items-center justify-content-center w-100">
         <div class="row justify-content-center w-100">
           <div class="col-md-8 col-lg-6 col-xxl-3">
@@ -32,34 +24,31 @@
                   <img src="../recursos/img/logos/myloan_logo.png" width="180" alt="">
                 </a>
                 <p id="infologin" class="text-center">Inicia sesión y accede a todas las funcionalidades de MyLoan </p>
-                <form>
+                <form id="login-form">
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"  placeholder="Ingresa tu usuario">
+                    <label for="inputEmail" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="inputEmail" name="correo_electronico" placeholder="Ingresa Correo electrónico">
                   </div>
                   <div class="mb-3">
-                    <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                    <label for="inputPassword" class="form-label">Contraseña</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="inputConfirmPassword"
-                            placeholder="Confirma tu nueva contraseña">
-                        <button type="button" class="btn btn-outline" id="toggleConfirmPassword">
+                        <input type="password" class="form-control" id="inputPassword" name="contrasena" placeholder="Ingresa tu contraseña">
+                        <button type="button" class="btn btn-outline" id="togglePassword">
                             <i class="far fa-eye"></i>
                         </button>
                     </div>
-                </div>
+                  </div>
                   <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">
-
-                      <a class="text-primary fw-bold ms-2 custom-link" id="registrarselink" href="registro.html">¿No tienes cuenta? Registrate</a>
-
+                      <a class="text-primary fw-bold ms-2 custom-link" id="registrarselink" href="registro.html">¿No tienes cuenta? Regístrate</a>
                     </div>
                     <a class="text-primary fw-bold custom-link" id="linkolvcontra" href="recuperar_contra.html">¿Olvidaste tu contraseña?</a>
                   </div>
                   <div class="d-flex align-items-center justify-content-center mb-4">
-                    <a id="btn-login" class="btn-custom">Iniciar Sesión</a>
+                    <button type="submit" class="btn-custom">Iniciar Sesión</button>
                   </div>
-                 </form>
-                 <div class="separador"></div>
+                </form>
+                <div class="separador"></div>
               </div>
             </div>
           </div>
@@ -68,13 +57,8 @@
     </div>
   </div>
 
-  <script></script>
-  <script src="../controlador/admin_itr/mostrar_contralogin.js"></script>
-  <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
   <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="../controlador/admin_itr/index.js"></script>
-
+  <script src="../controlador/admin_itr/index.js"></script> <!-- Enlace al archivo JavaScript -->
 </body>
-
 </html>

@@ -41,26 +41,27 @@ class Database
     public static function getLastRow($query, $values)
     {
         if (self::executeRow($query, $values)) {
-            $id = self::$connection->lastInsertId();
+            return self::$connection->lastInsertId();
         } else {
-            $id = 0;
+            return 0;
         }
-        return $id;
     }
+    
 
-    /*
-     *   Método para obtener un registro de una sentencia SQL tipo SELECT.
-     *   Parámetros: $query (sentencia SQL) y $values (arreglo opcional con los valores para la sentencia SQL).
-     *   Retorno: arreglo asociativo del registro si la sentencia SQL se ejecuta satisfactoriamente o false en caso contrario.
-     */
     public static function getRow($query, $values = null)
     {
-        if (self::executeRow($query, $values)) {
+        try {
+            self::$connection = new PDO('mysql:host=' . SERVER . ';dbname=' . DATABASE, USERNAME, PASSWORD);
+            self::$statement = self::$connection->prepare($query);
+            self::$statement->execute($values);
             return self::$statement->fetch(PDO::FETCH_ASSOC);
-        } else {
+        } catch (PDOException $error) {
+            self::setException($error->getCode(), $error->getMessage());
             return false;
         }
     }
+    
+
 
     /*
      *   Método para obtener todos los registros de una sentencia SQL tipo SELECT.
@@ -84,29 +85,29 @@ class Database
     private static function setException($code, $message)
     {
         // Se asigna el mensaje del error original por si se necesita.
-        self::$error = $message . PHP_EOL;
+        self::$error = "Código: $code, Mensaje: $message" . PHP_EOL;
         // Se compara el código del error para establecer un error personalizado.
         switch ($code) {
             case '2002':
-                self::$error = 'Servidor desconocido';
+                self::$error .= ' - Servidor desconocido';
                 break;
             case '1049':
-                self::$error = 'Base de datos desconocida';
+                self::$error .= ' - Base de datos desconocida';
                 break;
             case '1045':
-                self::$error = 'Acceso denegado';
+                self::$error .= ' - Acceso denegado';
                 break;
             case '42S02':
-                self::$error = 'Tabla no encontrada';
+                self::$error .= ' - Tabla no encontrada';
                 break;
             case '42S22':
-                self::$error = 'Columna no encontrada';
+                self::$error .= ' - Columna no encontrada';
                 break;
             case '23000':
-                self::$error = 'Violación de restricción de integridad';
+                self::$error .= ' - Violación de restricción de integridad';
                 break;
             default:
-                self::$error = 'Ocurrió un problema en la base de datos';
+                self::$error .= ' - Ocurrió un problema en la base de datos';
         }
     }
 
@@ -120,3 +121,4 @@ class Database
         return self::$error;
     }
 }
+?>

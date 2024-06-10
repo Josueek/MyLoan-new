@@ -1,0 +1,70 @@
+PHP
+Indentación Consistente:
+
+Usa 4 espacios para la indentación.
+Ejemplo: Asegúrate de que todas las líneas de código dentro de una función estén alineadas con 4 espacios.
+Nombres de Variables y Funciones:
+
+Usa camelCase para variables y funciones.
+Ejemplo: $userName para variables y getUserName() para funciones.
+Comentarios y Documentación:
+
+Añade comentarios claros y útiles para explicar el propósito del código.
+Ejemplo: Antes de una función, escribe un comentario que explique qué hace la función.
+Uso de Includes y Requires:
+
+Usa include y require para incluir archivos externos y mantener el código modular.
+Ejemplo: Usa require 'config.php'; para incluir un archivo de configuración.
+Validación de Entradas:
+
+Valida todas las entradas del usuario antes de procesarlas.
+Ejemplo: Verifica si una variable está configurada y no está vacía antes de usarla.
+
+
+
+JavaScript
+Uso de let y const:
+
+Usa let para variables que pueden cambiar y const para constantes.
+Ejemplo: Declara let count = 0; y const MAX_USERS = 100;.
+Nombres de Variables y Funciones:
+
+Usa camelCase para nombres de variables y funciones.
+Ejemplo: let userName y function getUserName() {}.
+Comentarios:
+
+Añade comentarios para explicar el propósito del código.
+Ejemplo: Usa // para comentarios de una línea y /* ... */ para comentarios de varias líneas.
+Consistencia en Comillas:
+
+Usa comillas simples o dobles de manera consistente en todo el archivo.
+Ejemplo: Si usas comillas simples para cadenas, mantenlo así en todo el archivo ('texto').
+Estructura y Organización del Código:
+
+Divide el código en funciones pequeñas y reutilizables.
+Ejemplo: En lugar de una función grande, crea varias funciones más pequeñas que hagan tareas específicas.
+
+
+
+
+HTML
+Uso de DOCTYPE:
+
+Incluye <!DOCTYPE html> al inicio de cada documento HTML.
+Ejemplo: Coloca <!DOCTYPE html> en la primera línea del archivo HTML.
+Etiquetas Semánticas:
+
+Usa etiquetas semánticas como <header>, <nav>, <main>, <section>, <footer>.
+Ejemplo: Usa <header> para el encabezado del sitio y <footer> para el pie de página.
+Atributos en Minúsculas:
+
+Escribe todos los nombres de atributos en minúsculas.
+Ejemplo: Usa class="container" en lugar de CLASS="container".
+Cierre de Etiquetas:
+
+Cierra todas las etiquetas correctamente, incluso las etiquetas vacías.
+Ejemplo: Usa <img src="image.jpg" alt="Image description" /> para imágenes.
+Indentación Consistente:
+
+Usa 2 o 4 espacios para la indentación del código HTML.
+Ejemplo: Indenta el contenido de una lista anidada para que sea fácil de leer.
