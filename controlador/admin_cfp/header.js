@@ -36,7 +36,7 @@ function generarHeader(titulo) {
                             aria-labelledby="drop2">
                             <div class="message-body">
                                 <!-- Link de la pantalla de mi perfil-->
-                                <a href="javascript:void(0)"
+                                <a href="miperfil.html"
                                     class="d-flex align-items-center gap-2 dropdown-item">
                                     <i class="fa-regular fa-user"></i>
                                     <p class="mb-0 fs-3">Mi perfil</p>
@@ -51,8 +51,8 @@ function generarHeader(titulo) {
                                     <i class="fa-solid fa-list"></i>
                                     <p class="mb-0 fs-3">Mis tareas</p>
                                 </a>
-                                <!-- Link para volver al login-->
-                                <a href=".." class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
+                                <!-- Link para cerrar sesión-->
+                                <a href="../../api/services/cerrar_sesion.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
                             </div>
                         </div>
                     </li>

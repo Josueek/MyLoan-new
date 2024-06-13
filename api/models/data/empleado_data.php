@@ -150,29 +150,41 @@ class EmpleadoData extends EmpleadoHandler
 
     public function getProfile()
     {
-        $sql = 'SELECT nombre_empleado AS nombre, apellido_empleado AS apellido, correo_electronico AS email, telefono, estado_empleado AS estado, id_institucion AS institucion, id_cargo AS cargo, foto_empleado AS imagen
-                FROM tb_datos_empleados
-                WHERE id_usuario = ?';
+        $sql = 'SELECT de.nombre_empleado AS nombre, de.apellido_empleado AS apellido, u.correo_electronico AS email, de.telefono, de.estado_empleado AS estado, i.nombre_institucion AS institucion, c.nombre_cargo AS cargo, de.foto_empleado AS imagen
+                FROM tb_datos_empleados de
+                INNER JOIN tb_usuarios u ON de.id_usuario = u.id_usuario
+                INNER JOIN tb_instituciones i ON u.id_institucion = i.id_institucion
+                INNER JOIN tb_cargos c ON u.id_cargo = c.id_cargo
+                WHERE de.id_usuario = ?';
         $params = array($this->id_usuario);
         return Database::getRow($sql, $params);
     }
 
-    public function updateProfile()
+    // Actualiza el perfil sin cambiar la contraseña.
+    public function updateProfile($filename = null)
     {
-        $sql = 'UPDATE tb_datos_empleados
-                SET correo_electronico = ?, telefono = ?, estado_empleado = ?, id_institucion = ?, id_cargo = ?, foto_empleado = ?
-                WHERE id_usuario = ?';
-        $params = array($this->correo, $this->telefono, $this->estado, $this->institucion, $this->cargo, $this->imagen, $this->id_usuario);
-        return Database::executeRow($sql, $params);
+        // Verifica si se proporcionó una imagen y ajusta la consulta SQL.
+        $sql = 'UPDATE tb_datos_empleados SET telefono = ?' . ($filename ? ', foto_empleado = ?' : '') . ' WHERE id_usuario = ?';
+        $params = $filename ? array($this->telefono, $filename, $this->id_usuario) : array($this->telefono, $this->id_usuario);
+        $usuarioData = new UsuarioData();
+        $usuarioData->setId($this->id_usuario);
+        $usuarioData->setCorreo($this->correo);
+        $usuarioUpdated = $usuarioData->updateProfile();
+        return Database::executeRow($sql, $params) && $usuarioUpdated;
     }
 
-    public function updateProfileWithPassword()
+    // Actualiza el perfil cambiando la contraseña.
+    public function updateProfileWithPassword($filename = null)
     {
-        $sql = 'UPDATE tb_datos_empleados
-                SET correo_electronico = ?, telefono = ?, estado_empleado = ?, id_institucion = ?, id_cargo = ?, foto_empleado = ?, contraseña = ?
-                WHERE id_usuario = ?';
-        $params = array($this->correo, $this->telefono, $this->estado, $this->institucion, $this->cargo, $this->imagen, $this->contrasena, $this->id_usuario);
-        return Database::executeRow($sql, $params);
+        // Verifica si se proporcionó una imagen y ajusta la consulta SQL.
+        $sql = 'UPDATE tb_datos_empleados SET telefono = ?' . ($filename ? ', foto_empleado = ?' : '') . ' WHERE id_usuario = ?';
+        $params = $filename ? array($this->telefono, $filename, $this->id_usuario) : array($this->telefono, $this->id_usuario);
+        $usuarioData = new UsuarioData();
+        $usuarioData->setId($this->id_usuario);
+        $usuarioData->setCorreo($this->correo);
+        $usuarioData->setContrasena($this->contrasena);
+        $usuarioUpdated = $usuarioData->updatePassword();
+        return Database::executeRow($sql, $params) && $usuarioUpdated;
     }
 }
 ?>

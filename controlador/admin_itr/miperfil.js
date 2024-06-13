@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Verificar si el usuario ha iniciado sesión
-    const sessionCheck = await fetch('../api/services/session_check.php');
+    // Verifica el estado de la sesión.
+    const sessionCheck = await fetch('../../api/services/sesion_status.php');
     const sessionData = await sessionCheck.json();
 
-    if (!sessionData.loggedIn) {
-        window.location.href = '../index.html'; // Redirigir al inicio de sesión si no hay sesión
+    // Si no hay una sesión activa, redirige al usuario a la página de inicio de sesión.
+    if (!sessionData.status) {
+        window.location.href = '../../vistas/index.html';
+        return;
     }
 
-    // Cargar los datos del perfil
-    const response = await fetch('../api/services/miperfil_services.php?action=getProfile');
+    // Obtiene los datos del perfil del usuario.
+    const response = await fetch(`../../api/services/miperfil_services.php?action=getProfile`);
     const data = await response.json();
 
+    // Si se obtienen los datos correctamente, los muestra en el formulario.
     if (data.status) {
         document.getElementById('inputNombre').value = data.dataset.nombre;
         document.getElementById('inputApellido').value = data.dataset.apellido;
@@ -22,13 +25,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (data.dataset.imagen) {
             document.querySelector('img[alt="Profile Picture"]').src = `../../api/images/perfil/${data.dataset.imagen}`;
         }
-
         Swal.fire({
             icon: 'success',
             title: 'Datos cargados con éxito',
             text: 'El perfil ha sido cargado correctamente.',
         });
     } else {
+        // Si ocurre un error al obtener los datos, muestra un mensaje de error.
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -38,14 +41,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.getElementById('profile-form').addEventListener('submit', async (event) => {
+    // Evita que el formulario se envíe de forma tradicional.
     event.preventDefault();
 
+    // Obtiene las contraseñas ingresadas.
     const inputClave = document.getElementById('inputClave').value;
     const inputConfirmarClave = document.getElementById('inputConfirmarClave').value;
+    // Crea un objeto FormData con los datos del formulario.
     const formData = new FormData(event.target);
 
-    // Validar los campos
-    if (!inputClave || inputClave.length < 8 || inputClave !== inputConfirmarClave) {
+    // Valida las contraseñas.
+    if (inputClave && (inputClave.length < 8 || inputClave !== inputConfirmarClave)) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -54,7 +60,7 @@ document.getElementById('profile-form').addEventListener('submit', async (event)
         return;
     }
 
-    // Confirmar la actualización
+    // Muestra una confirmación antes de enviar los datos.
     const result = await Swal.fire({
         title: '¿Estás seguro?',
         text: "¿Deseas actualizar los datos del perfil?",
@@ -66,18 +72,21 @@ document.getElementById('profile-form').addEventListener('submit', async (event)
         cancelButtonText: 'Cancelar',
     });
 
+    // Si el usuario cancela la confirmación, no hace nada.
     if (!result.isConfirmed) {
         return;
     }
 
-    // Enviar los datos al servidor
-    const response = await fetch('../api/services/profile_services.php?action=updateProfile', {
+    // Envía los datos del formulario al servidor.
+    const response = await fetch(`../../api/services/miperfil_services.php?action=updateProfile`, {
         method: 'POST',
         body: formData,
     });
 
+    // Procesa la respuesta del servidor.
     const data = await response.json();
 
+    // Si la actualización fue exitosa, muestra un mensaje de éxito y recarga la página.
     if (data.status) {
         Swal.fire({
             icon: 'success',
@@ -87,6 +96,7 @@ document.getElementById('profile-form').addEventListener('submit', async (event)
             window.location.reload();
         });
     } else {
+        // Si ocurre un error, muestra un mensaje de error.
         Swal.fire({
             icon: 'error',
             title: 'Error',
