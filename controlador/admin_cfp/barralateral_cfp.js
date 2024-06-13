@@ -69,7 +69,7 @@ function generarSidebar() {
                     </a>
                     <ul id="submenu9" class="submenu" style="display: none;">
                         <li class="submenu-item ">
-                            <a href=".." class="submenu-link">
+                            <a href="" class="submenu-link">
                                 <span>
                                     <i class="far fa-eye me-2"></i>
                                 </span>
@@ -77,7 +77,7 @@ function generarSidebar() {
                             </a>
                         </li>
                         <li class="submenu-item">
-                            <a href=".." class="submenu-link">
+                            <a href="/" class="submenu-link">
                                 <span>
                                     <i class="fa-solid fa-plus me-2"></i>
                                 </span>
