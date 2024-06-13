@@ -28,6 +28,27 @@ class UsuarioData extends UsuarioHandler
         }
     }
 
+    public function checkCredentials()
+    {
+        $sql = 'SELECT id_usuario, correo_electronico, contraseña
+                FROM tb_usuarios
+                WHERE correo_electronico = ?';
+        $params = array($this->correo);
+        $data = Database::getRow($sql, $params);
+        return $data;
+    }
+
+    public function getNombreEmpleado($id_usuario)
+    {
+        $sql = 'SELECT nombre_empleado
+                FROM tb_datos_empleados
+                WHERE id_usuario = ?';
+        $params = array($id_usuario);
+        $data = Database::getRow($sql, $params);
+        return $data ? $data['nombre_empleado'] : null;
+    }
+
+
     public function setCargo($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -71,18 +92,21 @@ class UsuarioData extends UsuarioHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function checkCredentials()
+   
+    public function updateProfile()
     {
-        $sql = 'SELECT id_usuario, correo_electronico, contraseña
-                FROM tb_usuarios
-                WHERE correo_electronico = ?';
-        $params = array($this->correo);
-        $data = Database::getRow($sql, $params);
-        if ($data && password_verify($this->contrasena, $data['contraseña'])) {
-            return $data;
-        } else {
-            return false;
-        }
+        // Actualiza solo el correo electrónico
+        $sql = 'UPDATE tb_usuarios SET correo_electronico = ? WHERE id_usuario = ?';
+        $params = array($this->correo, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updatePassword()
+    {
+        // Actualiza solo la contraseña
+        $sql = 'UPDATE tb_usuarios SET contraseña = ? WHERE id_usuario = ?';
+        $params = array($this->contrasena, $this->id);
+        return Database::executeRow($sql, $params);
     }
 }
 ?>
