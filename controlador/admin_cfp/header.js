@@ -29,7 +29,7 @@ function generarHeader(titulo, userData) {
                         <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <!-- Aca va la foto del usuario-->
-                            <img src="../../recursos/img/profile/user-1.jpg" alt="" width="35" height="35"
+                            <img src="${userData ? '../../api/images/perfil/' + userData.imagen : '../../recursos/img/profile/user-1.jpg'}" alt="" width="35" height="35"
                                 class="rounded-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
@@ -59,8 +59,8 @@ function generarHeader(titulo, userData) {
                     <li class="nav-item">
                         <!--Esto cambia acorde al usuario en la base-->
                         <div class="user-details ms-2 d-none d-sm-block">
-                            <div class="user-name fs-3 fw-bold">${userData ? userData.correo_electronico : 'Usuario'}</div>
-                            <div class="user-role fs-3 fw-bold">${userData ? userData.id_cargo : 'Rol'}</div>
+                            <div class="user-name fs-3 fw-bold">${userData ? userData.nombre : 'Usuario'}</div>
+                            <div class="user-role fs-3 fw-bold">${userData ? userData.cargo : 'Rol'}</div>
                         </div>
                     </li>
                 </ul>
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var titulo = document.getElementById("headerContainer").getAttribute("data-title");
 
     // Realizar una solicitud AJAX para obtener los datos del usuario
-    fetch('datos_usuario.php')
+    fetch('../../api//services/header_services.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 1) {
