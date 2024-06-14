@@ -1,4 +1,4 @@
-function generarHeader(titulo) {
+function generarHeader(titulo, userData) {
     return `
     <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -59,8 +59,8 @@ function generarHeader(titulo) {
                     <li class="nav-item">
                         <!--Esto cambia acorde al usuario en la base-->
                         <div class="user-details ms-2 d-none d-sm-block">
-                            <div class="user-name fs-3 fw-bold">Brandon</div>
-                            <div class="user-role fs-3 fw-bold">Administrador</div>
+                            <div class="user-name fs-3 fw-bold">${userData ? userData.correo_electronico : 'Usuario'}</div>
+                            <div class="user-role fs-3 fw-bold">${userData ? userData.id_cargo : 'Rol'}</div>
                         </div>
                     </li>
                 </ul>
@@ -76,9 +76,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Por ejemplo, podrías tener un data attribute en el contenedor del header
     var titulo = document.getElementById("headerContainer").getAttribute("data-title");
 
-    // Llama a esta función para obtener el HTML del header
-    var headerHTML = generarHeader(titulo);
-
-    // Inserta este HTML en tu página HTML
-    document.getElementById("headerContainer").innerHTML = headerHTML;
+    // Realizar una solicitud AJAX para obtener los datos del usuario
+    fetch('datos_usuario.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 1) {
+                // Generar el header con los datos del usuario
+                var headerHTML = generarHeader(titulo, data.user);
+                document.getElementById("headerContainer").innerHTML = headerHTML;
+            } else {
+                // Generar el header sin datos de usuario
+                var headerHTML = generarHeader(titulo, null);
+                document.getElementById("headerContainer").innerHTML = headerHTML;
+            }
+        })
+        .catch(error => console.error('Error al obtener los datos del usuario:', error));
 });
