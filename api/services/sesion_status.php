@@ -30,5 +30,3 @@ header('Content-type: application/json; charset=utf-8');
 // Convierte el arreglo $result a formato JSON y lo imprime para que sea devuelto como respuesta.
 print(json_encode($result));
 ?>
-
-?>

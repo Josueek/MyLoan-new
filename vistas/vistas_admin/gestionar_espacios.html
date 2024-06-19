@@ -251,7 +251,7 @@
                             <!-- Parte superior para credenciales -->
 
                             <!-- Tabla de empleados -->
-                            <div class="container mt-5">
+                            <div class="container mt-3">
                                 <div class="row mb-5">
                                     <div class="col-lg-3 mb-3 d-flex align-items-center">
                                         <button class="btn btn-transparent border-0 p-0">
@@ -261,9 +261,7 @@
                                         <input type="search" class="form-control" placeholder="Buscar">
                                     </div>
 
-
                                     <div class="col-lg-3 mb-3 d-flex align-items-center">
-
                                         <!-- input para filtrar -->
                                         <select id="filtro especialidad" class="form-select" required>
                                             <option value="">Filtrar por:</option>
@@ -277,70 +275,112 @@
                                             data-bs-target="#AgregarEspacio">Agregar espacio</button>
                                     </div>
 
-                                    <table class="table table-hover mt-5">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Número de laboratorio</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Encargado</th>
-                                                <th scope="col">Capacidad de personas</th>
-                                                <th scope="col">Tipo de espacio</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col d-flex align-content-center">Inventario</th>
-                                                <th scope="col"></th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- aca empiezan las filas de las tablas-->
-                                            <tr>
-                                                <th scope="row">12E45</th>
-                                                <td>Laboratorio de Software</td>
-                                                <td>Josué</td>
-                                                <td>45</td>
-                                                <td>
-                                                    Laboratorio
-                                                </td>
-                                                <td>Desarrollo en Software</td>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-3 me-2 mt-2">
-                                                            <button type="button" class="btn btn-primary"
-                                                                data-bs-toggle="modal" data-bs-target="#descargarInvet"
-                                                                data-bs-whatever="@mdo" id="btnDescargarInv">
-                                                                <i class="fa-solid fa-download"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-3 me-2">
-                                                            <button type="button" class="btn btn-success mt-2"
-                                                                data-bs-toggle="modal" data-bs-target="#editarEspa"
-                                                                data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                                <i class="fa-solid fa-pencil"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-3 me-2">
-                                                            <button type="button" class="btn btn-danger mt-2"
-                                                                data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                                data-bs-whatever="@mdo" id="btnborrar">
-                                                                <i class="fa-solid fa-trash-can"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Número de laboratorio</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Capacidad de personas</th>
+                                                    <th scope="col">Tipo de espacio</th>
+                                                    <th scope="col">Encargado</th>
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Especialidad</th>
+                                                    <th scope="col">Institución</th>
+                                                    <th scope="col">Inventario</th>
+                                                    <th scope="col" style="width: 200px;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- aca empiezan las filas de las tablas-->
+                                                <!-- Los datos se llenarán desde el archivo JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+        </div>
+    </div>
+
+    <!-- Modal para agregar espacio -->
+    <div class="modal fade" id="AgregarEspacio" tabindex="-1" aria-labelledby="AgregarEspacioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AgregarEspacioLabel">Agregar Espacio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgregarEspacio">
+                        <div class="mb-3">
+                            <label for="nombreEspacio" class="form-label">Nombre del Espacio</label>
+                            <input type="text" class="form-control" id="nombreEspacio" name="nombreEspacio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="capacidadPersonas" class="form-label">Capacidad de Personas</label>
+                            <input type="number" class="form-control" id="capacidadPersonas" name="capacidadPersonas"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoEspacio" class="form-label">Tipo de Espacio</label>
+                            <select class="form-select" id="tipoEspacio" name="tipoEspacio" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="Taller">Taller</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="encargadoEspacio" class="form-label">Encargado</label>
+                            <select class="form-select" id="encargadoEspacio" name="encargadoEspacio" required>
+                                <option value="">Seleccionar encargado</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                          <!-- Contenedor para la vista previa de la imagen -->
+                    <div class="mb-3 text-center">
+                        <img id="previewImagenEspacio" src="#" alt="Vista previa de la imagen" style="display:none; width:100%; max-width:200px; height:auto;" class="mx-auto">
+                    </div>
+                        <div class="mb-3">
+                            <label for="imagenEspacio" class="form-label">Imagen del Espacio</label>
+                            <input type="file" class="form-control" id="imagenEspacio" name="imagenEspacio"
+                                accept="image/jpeg, image/png">
+                        </div>
+                      
+                        <div class="mb-3">
+                            <label for="especialidadEspacio" class="form-label">Especialidad</label>
+                            <select class="form-select" id="especialidadEspacio" name="especialidadEspacio" required>
+                                <option value="">Seleccionar especialidad</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="institucionEspacio" class="form-label">Institución</label>
+                            <select class="form-select" id="institucionEspacio" name="institucionEspacio" required>
+                                <option value="">Seleccionar institución</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inventarioEspacio" class="form-label">Inventario</label>
+                            <input type="file" class="form-control" id="inventarioEspacio" name="inventarioEspacio"
+                                accept=".pdf, .doc, .docx, .xls, .xlsx">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
     <!--Scrip que si funionan -->
-    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../recursos/js/sidebarmenu.js"></script>
     <script src="../../recursos/js/app.min.js"></script>
@@ -349,11 +389,12 @@
     <script src="../../controlador/utils/session_utils.js"></script>
     <script src="../../recursos/js/acciones.js"></script>
     <script src="../../controlador/admin_cfp/header.js"></script>
-
     <script src="../../recursos/js/modales.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scrip que dudosamente sirven-->
     <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
     <script src="../../recursos/js/dashboard.js"></script>
+    <script src="../../controlador/admin_itr/gestionar_espacios.js"></script>
 </body>
 
 </html>
