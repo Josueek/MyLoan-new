@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>${espacio.nombre_especialidad}</td>
                     <td>${espacio.nombre_institucion}</td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#descargarInvet" data-bs-whatever="${espacio.inventario_doc}">
+                        <button type="button" class="btn btn-primary btn-descargar-inventario" data-inventario="${espacio.inventario_doc}">
                             <i class="fa-solid fa-download"></i>
                         </button>
                     </td>
@@ -87,12 +87,56 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editarEspa" data-bs-whatever="${espacio.id_espacio}" id="btnEditarEspa">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalBorar" data-bs-whatever="${espacio.id_espacio}" id="btnborrar">
+                        <button type="button" class="btn btn-danger btn-eliminar-espacio" data-id="${espacio.id_espacio}">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
                 `;
                 tbody.appendChild(tr);
+            });
+
+            document.querySelectorAll('.btn-descargar-inventario').forEach(button => {
+                button.addEventListener('click', function() {
+                    const inventario = this.getAttribute('data-inventario');
+                    Swal.fire({
+                        title: '¿Quieres descargar el inventario de este espacio?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, descargar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch(`../../api/inventario/${inventario}`, {
+                                method: 'HEAD'
+                            }).then(response => {
+                                if (response.ok) {
+                                    window.location.href = `../../api/inventario/${inventario}`;
+                                } else {
+                                    Swal.fire('Error!', 'No se ha encontrado el inventario de este espacio.', 'error');
+                                }
+                            }).catch(() => {
+                                Swal.fire('Error!', 'No se ha encontrado el inventario de este espacio.', 'error');
+                            });
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.btn-eliminar-espacio').forEach(button => {
+                button.addEventListener('click', function() {
+                    const idEspacio = this.getAttribute('data-id');
+                    Swal.fire({
+                        title: '¿Estas seguro que quieres eliminar este espacio?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            eliminarEspacio(idEspacio);
+                        }
+                    });
+                });
             });
         } else {
             const noRecordsRow = document.createElement('tr');
@@ -153,6 +197,30 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             Swal.fire('Error!', 'Hubo un problema al agregar el espacio.', 'error');
             console.error('Error al agregar espacio:', error);
+        });
+    }
+
+    function eliminarEspacio(idEspacio) {
+        fetch(`../../api/services/espacios_services.php?action=deleteEspacio`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idEspacio: idEspacio })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                Swal.fire('Éxito!', 'El espacio ha sido eliminado correctamente.', 'success').then(() => {
+                    cargarDatosTabla();
+                });
+            } else {
+                Swal.fire('Error!', data.message || 'Hubo un problema al eliminar el espacio.', 'error');
+            }
+        })
+        .catch(error => {
+            Swal.fire('Error!', 'Hubo un problema al eliminar el espacio.', 'error');
+            console.error('Error al eliminar espacio:', error);
         });
     }
 });

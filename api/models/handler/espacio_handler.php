@@ -42,6 +42,38 @@ class EspacioHandler
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         return Database::executeRow($sql, $params);
     }
+
+    public function deleteEspacio($idEspacio)
+{
+    // Primero, obtenemos los nombres de los archivos asociados con el espacio.
+    $sql = 'SELECT foto_espacio, inventario_doc FROM tb_espacios WHERE id_espacio = ?';
+    $params = array($idEspacio);
+    $data = Database::getRow($sql, $params);
+
+    if ($data) {
+        // Intentamos eliminar los archivos de imagen e inventario.
+        $imageDeleted = Validator::deleteFile('../../api/images/espacios/', $data['foto_espacio']);
+        $inventoryDeleted = Validator::deleteFile('../../api/inventario/', $data['inventario_doc']);
+
+        // Ahora eliminamos el registro de la base de datos.
+        $sql = 'DELETE FROM tb_espacios WHERE id_espacio = ?';
+        if (Database::executeRow($sql, $params)) {
+            return true;
+        } else {
+            // Si la eliminación del registro falla, restauramos los archivos eliminados (si es necesario).
+            if (!$imageDeleted) {
+                Validator::saveFile(['tmp_name' => '../../api/images/espacios/' . $data['foto_espacio']], '../../api/images/espacios/');
+            }
+            if (!$inventoryDeleted) {
+                Validator::saveFile(['tmp_name' => '../../api/inventario/' . $data['inventario_doc']], '../../api/inventario/');
+            }
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
     
 }
 ?>

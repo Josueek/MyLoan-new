@@ -329,14 +329,15 @@ class Validator
     *   Retorno: booleano (true si el archivo fue borrado del servidor o false en caso contrario).
     */
     public static function deleteFile($path, $filename)
-    {
-        if ($filename == 'default.png') {
-            return true;
-        } elseif (@unlink($path . $filename)) {
-            return true;
-        } else {
-            return false;
-        }
+{
+    if ($filename == 'default.png') {
+        return true;
+    } elseif (@unlink($path . $filename)) {
+        return true;
+    } else {
+        return false;
     }
+}
+
 }
 ?>

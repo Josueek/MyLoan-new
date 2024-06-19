@@ -41,35 +41,35 @@ if (isset($_GET['action'])) {
                 $inventarioEspacio = null;
 
                 if (isset($_FILES['imagenEspacio']) && $_FILES['imagenEspacio']['error'] == UPLOAD_ERR_OK) {
-                    if (!Validator::validateImageFile($_FILES['imagenEspacio'], 500, 500)) {
-                        $result['message'] = Validator::getFileError();
-                        break;
-                    }
                     $imagenEspacio = Validator::getFilename();
+                    move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $imagenEspacio);
                 }
 
                 if (isset($_FILES['inventarioEspacio']) && $_FILES['inventarioEspacio']['error'] == UPLOAD_ERR_OK) {
-                    $fileType = pathinfo($_FILES['inventarioEspacio']['name'], PATHINFO_EXTENSION);
-                    if (!in_array($fileType, ['pdf', 'doc', 'docx', 'xls', 'xlsx'])) {
-                        $result['message'] = 'Formato de inventario no permitido';
-                        break;
-                    }
-                    $inventarioEspacio = uniqid() . '.' . $fileType;
+                    $inventarioEspacio = uniqid() . '.' . pathinfo($_FILES['inventarioEspacio']['name'], PATHINFO_EXTENSION);
+                    move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $inventarioEspacio);
                 }
 
                 $params = array($nombre, $capacidad, $tipo, $encargado, $especialidad, $institucion, $inventarioEspacio, $imagenEspacio);
 
                 if ($espacio->addEspacio($params)) {
-                    if ($imagenEspacio) {
-                        Validator::saveFile($_FILES['imagenEspacio'], '../../api/images/espacios/');
-                    }
-                    if ($inventarioEspacio) {
-                        move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $inventarioEspacio);
-                    }
                     $result['status'] = 1;
                     $result['message'] = 'Espacio agregado correctamente';
                 } else {
                     $result['message'] = 'No se pudo agregar el espacio';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+        case 'deleteEspacio':
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (isset($data['idEspacio']) && Validator::validateNaturalNumber($data['idEspacio'])) {
+                if ($espacio->deleteEspacio($data['idEspacio'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Espacio eliminado correctamente';
+                } else {
+                    $result['message'] = 'No se pudo eliminar el espacio';
                 }
             } else {
                 $result['message'] = 'Datos inválidos';
@@ -82,4 +82,5 @@ if (isset($_GET['action'])) {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 }
+
 ?>
