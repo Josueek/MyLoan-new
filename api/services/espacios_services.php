@@ -2,10 +2,11 @@
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/handler/espacio_handler.php');
+require_once('../models/data/espacio_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
-    $espacio = new EspacioHandler();
+    $espacio = new EspacioData();
     $result = array('status' => 0, 'message' => null, 'dataset' => null);
 
     switch ($_GET['action']) {
@@ -41,13 +42,21 @@ if (isset($_GET['action'])) {
                 $inventarioEspacio = null;
 
                 if (isset($_FILES['imagenEspacio']) && $_FILES['imagenEspacio']['error'] == UPLOAD_ERR_OK) {
-                    $imagenEspacio = Validator::getFilename();
-                    move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $imagenEspacio);
+                    $imagenEspacio = uniqid() . '.' . pathinfo($_FILES['imagenEspacio']['name'], PATHINFO_EXTENSION);
+                    if (!move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $imagenEspacio)) {
+                        $result['message'] = 'Error al subir la imagen';
+                        echo json_encode($result);
+                        return;
+                    }
                 }
 
                 if (isset($_FILES['inventarioEspacio']) && $_FILES['inventarioEspacio']['error'] == UPLOAD_ERR_OK) {
                     $inventarioEspacio = uniqid() . '.' . pathinfo($_FILES['inventarioEspacio']['name'], PATHINFO_EXTENSION);
-                    move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $inventarioEspacio);
+                    if (!move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $inventarioEspacio)) {
+                        $result['message'] = 'Error al subir el inventario';
+                        echo json_encode($result);
+                        return;
+                    }
                 }
 
                 $params = array($nombre, $capacidad, $tipo, $encargado, $especialidad, $institucion, $inventarioEspacio, $imagenEspacio);
@@ -82,5 +91,4 @@ if (isset($_GET['action'])) {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 }
-
 ?>

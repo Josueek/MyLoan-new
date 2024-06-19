@@ -7,10 +7,30 @@ document.addEventListener('DOMContentLoaded', function() {
         agregarEspacio();
     });
 
-    // Evento para mostrar la vista previa de la imagen
+    // Evento para mostrar la vista previa de la imagen al agregar
     document.getElementById('imagenEspacio').addEventListener('change', function(event) {
         const input = event.target;
         const preview = document.getElementById('previewImagenEspacio');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    });
+
+    // Evento para mostrar la vista previa de la imagen al editar
+    document.getElementById('editarImagenEspacio').addEventListener('change', function(event) {
+        const input = event.target;
+        const preview = document.getElementById('previewImagenEspacioEditar');
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
@@ -84,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </button>
                     </td>
                     <td class="d-flex justify-content-around">
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editarEspa" data-bs-whatever="${espacio.id_espacio}" id="btnEditarEspa">
+                        <button type="button" class="btn btn-success btn-editar-espacio" data-id="${espacio.id_espacio}" data-bs-toggle="modal" data-bs-target="#editarEspacio">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
                         <button type="button" class="btn btn-danger btn-eliminar-espacio" data-id="${espacio.id_espacio}">
@@ -136,6 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             eliminarEspacio(idEspacio);
                         }
                     });
+                });
+            });
+
+            document.querySelectorAll('.btn-editar-espacio').forEach(button => {
+                button.addEventListener('click', function() {
+                    const idEspacio = this.getAttribute('data-id');
+                    cargarEspacio(idEspacio);
                 });
             });
         } else {
@@ -221,6 +248,74 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             Swal.fire('Error!', 'Hubo un problema al eliminar el espacio.', 'error');
             console.error('Error al eliminar espacio:', error);
+        });
+    }
+
+    function cargarEspacio(idEspacio) {
+        fetch(`../../api/services/espacios_services.php?action=getEspacioById`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idEspacio: idEspacio })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status && data.dataset) {
+                const espacio = data.dataset;
+                document.getElementById('editarNombreEspacio').value = espacio.nombre_espacio;
+                document.getElementById('editarCapacidadPersonas').value = espacio.capacidad_personas;
+                document.getElementById('editarTipoEspacio').value = espacio.tipo_espacio;
+                document.getElementById('editarEncargadoEspacio').value = espacio.id_empleado;
+                document.getElementById('editarEspecialidadEspacio').value = espacio.id_especialidad;
+                document.getElementById('editarInstitucionEspacio').value = espacio.id_institucion;
+                document.getElementById('previewImagenEspacioEditar').src = `../../api/images/espacios/${espacio.foto_espacio}`;
+                document.getElementById('previewImagenEspacioEditar').style.display = 'block';
+                document.getElementById('editarInventarioEspacio').files[0] = null; // Limpia el campo de inventario
+
+                // Cargar los comboboxes en el modal de edición
+                fetchComboboxDataEditar(espacio.id_empleado, espacio.id_especialidad, espacio.id_institucion);
+
+                Swal.fire('Cargado!', 'Los datos del espacio se han cargado correctamente.', 'success');
+                new bootstrap.Modal(document.getElementById('editarEspacio')).show();
+            } else {
+                Swal.fire('Error!', 'Hubo un problema al obtener los datos del espacio.', 'error');
+            }
+        })
+        .catch(error => {
+            Swal.fire('Error!', 'Hubo un problema al obtener los datos del espacio.', 'error');
+            console.error('Error al obtener espacio:', error);
+        });
+    }
+
+    function fetchComboboxDataEditar(selectedEmpleado, selectedEspecialidad, selectedInstitucion) {
+        fetch(`../../api/services/espacios_services.php?action=getAllEmpleados`)
+            .then(response => response.json())
+            .then(data => llenarComboboxEditar('editarEncargadoEspacio', data, 'id_datos_empleado', 'nombre_empleado', selectedEmpleado))
+            .catch(error => console.error('Error al obtener empleados:', error));
+
+        fetch(`../../api/services/espacios_services.php?action=getAllEspecialidades`)
+            .then(response => response.json())
+            .then(data => llenarComboboxEditar('editarEspecialidadEspacio', data, 'id_especialidad', 'nombre_especialidad', selectedEspecialidad))
+            .catch(error => console.error('Error al obtener especialidades:', error));
+
+        fetch(`../../api/services/espacios_services.php?action=getAllInstituciones`)
+            .then(response => response.json())
+            .then(data => llenarComboboxEditar('editarInstitucionEspacio', data, 'id_institucion', 'nombre_institucion', selectedInstitucion))
+            .catch(error => console.error('Error al obtener instituciones:', error));
+    }
+
+    function llenarComboboxEditar(elementId, data, valueField, textField, selectedValue) {
+        const select = document.getElementById(elementId);
+        select.innerHTML = '<option selected>Seleccionar</option>'; // Limpiar opciones anteriores y añadir "Seleccionar"
+        data.dataset.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item[valueField];
+            option.textContent = item[textField];
+            if (item[valueField] == selectedValue) {
+                option.selected = true;
+            }
+            select.appendChild(option);
         });
     }
 });

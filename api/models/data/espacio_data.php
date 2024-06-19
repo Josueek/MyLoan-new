@@ -76,51 +76,49 @@ class EspacioData extends EspacioHandler
     public function setImagen($imagen)
     {
         if ($imagen['error'] === UPLOAD_ERR_OK && Validator::validateImageFile($imagen, 500, 500)) {
-            $this->imagen = Validator::getFilename($imagen);
+            $this->imagen = uniqid() . '.' . pathinfo($imagen['name'], PATHINFO_EXTENSION);
             return true;
         } else {
             return false;
         }
     }
-    
+
     public function setInventario($inventario)
     {
         if ($inventario['error'] === UPLOAD_ERR_OK) {
             $fileType = pathinfo($inventario['name'], PATHINFO_EXTENSION);
             if (in_array($fileType, ['pdf', 'doc', 'docx', 'xls', 'xlsx'])) {
-                $this->inventario = Validator::getFilename($inventario);
+                $this->inventario = uniqid() . '.' . $fileType;
                 return true;
             }
         }
         return false;
     }
-    
 
     public function save()
-{
-    $params = array(
-        $this->nombre,
-        $this->capacidad,
-        $this->tipo,
-        $this->encargado,
-        $this->especialidad,
-        $this->institucion,
-        $this->inventario,
-        $this->imagen
-    );
+    {
+        $params = array(
+            $this->nombre,
+            $this->capacidad,
+            $this->tipo,
+            $this->encargado,
+            $this->especialidad,
+            $this->institucion,
+            $this->inventario,
+            $this->imagen
+        );
 
-    if ($this->addEspacio($params)) {
-        if ($this->imagen) {
-            Validator::saveFile($_FILES['imagenEspacio'], '../../api/images/espacios/');
+        if ($this->addEspacio($params)) {
+            if ($this->imagen) {
+                move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $this->imagen);
+            }
+            if ($this->inventario) {
+                move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $this->inventario);
+            }
+            return true;
+        } else {
+            return false;
         }
-        if ($this->inventario) {
-            Validator::saveFile($_FILES['inventarioEspacio'], '../../api/inventario/');
-        }
-        return true;
-    } else {
-        return false;
     }
-}
-
 }
 ?>
