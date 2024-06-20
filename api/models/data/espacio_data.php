@@ -120,5 +120,31 @@ class EspacioData extends EspacioHandler
             return false;
         }
     }
+
+    public function update()
+    {
+        $params = array(
+            $this->nombre,
+            $this->capacidad,
+            $this->tipo,
+            $this->encargado,
+            $this->especialidad,
+            $this->institucion,
+            $this->inventario,
+            $this->imagen,
+        );
+
+        if ($this->updateEspacio($params)) {
+            if ($this->imagen) {
+                move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $this->imagen);
+            }
+            if ($this->inventario) {
+                move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $this->inventario);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

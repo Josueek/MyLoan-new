@@ -44,6 +44,23 @@ class EspacioHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function getEspacioById($idEspacio)
+    {
+        $sql = 'SELECT id_espacio, nombre_espacio, capacidad_personas, tipo_espacio, id_empleado, id_especialidad, id_institucion, inventario_doc, foto_espacio
+                FROM tb_espacios
+                WHERE id_espacio = ?';
+        $params = array($idEspacio);
+        return Database::getRow($sql, $params);
+    }
+
+    public function updateEspacio($params)
+    {
+        $sql = 'UPDATE tb_espacios 
+                SET nombre_espacio = ?, capacidad_personas = ?, tipo_espacio = ?, id_empleado = ?, id_especialidad = ?, id_institucion = ?, inventario_doc = ?, foto_espacio = ? 
+                WHERE id_espacio = ?';
+        return Database::executeRow($sql, $params);
+    }
+
     public function deleteEspacio($idEspacio)
     {
         // Primero, obtenemos los nombres de los archivos asociados con el espacio.

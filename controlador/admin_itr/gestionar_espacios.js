@@ -263,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.status && data.dataset) {
                 const espacio = data.dataset;
+                document.getElementById('editarIdEspacio').value = espacio.id_espacio;
                 document.getElementById('editarNombreEspacio').value = espacio.nombre_espacio;
                 document.getElementById('editarCapacidadPersonas').value = espacio.capacidad_personas;
                 document.getElementById('editarTipoEspacio').value = espacio.tipo_espacio;
@@ -271,12 +272,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('editarInstitucionEspacio').value = espacio.id_institucion;
                 document.getElementById('previewImagenEspacioEditar').src = `../../api/images/espacios/${espacio.foto_espacio}`;
                 document.getElementById('previewImagenEspacioEditar').style.display = 'block';
-                document.getElementById('editarInventarioEspacio').files[0] = null; // Limpia el campo de inventario
+                
+                // Cargar los nombres de los archivos seleccionados
+                document.getElementById('archivoImagenLabel').textContent = espacio.foto_espacio;
+                document.getElementById('archivoInventarioLabel').textContent = espacio.inventario_doc;
 
                 // Cargar los comboboxes en el modal de edición
                 fetchComboboxDataEditar(espacio.id_empleado, espacio.id_especialidad, espacio.id_institucion);
 
-                Swal.fire('Cargado!', 'Los datos del espacio se han cargado correctamente.', 'success');
                 new bootstrap.Modal(document.getElementById('editarEspacio')).show();
             } else {
                 Swal.fire('Error!', 'Hubo un problema al obtener los datos del espacio.', 'error');
@@ -318,4 +321,73 @@ document.addEventListener('DOMContentLoaded', function() {
             select.appendChild(option);
         });
     }
+
+    function editarEspacio() {
+        const idEspacio = document.getElementById('editarIdEspacio').value;
+        const nombreEspacio = document.getElementById('editarNombreEspacio').value;
+        const capacidadPersonas = document.getElementById('editarCapacidadPersonas').value;
+        const tipoEspacio = document.getElementById('editarTipoEspacio').value;
+        const encargadoEspacio = document.getElementById('editarEncargadoEspacio').value;
+        const especialidadEspacio = document.getElementById('editarEspecialidadEspacio').value;
+        const institucionEspacio = document.getElementById('editarInstitucionEspacio').value;
+        const imagenEspacio = document.getElementById('editarImagenEspacio').files[0];
+        const inventarioEspacio = document.getElementById('editarInventarioEspacio').files[0];
+
+        if (!nombreEspacio || !capacidadPersonas || !tipoEspacio || !encargadoEspacio || !especialidadEspacio || !institucionEspacio) {
+            Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
+            return;
+        }
+
+        if (isNaN(capacidadPersonas) || capacidadPersonas <= 0 || !Number.isInteger(parseFloat(capacidadPersonas))) {
+            Swal.fire('Error!', 'Capacidad de Personas debe ser un número entero positivo.', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('idEspacio', idEspacio);
+        formData.append('nombreEspacio', nombreEspacio);
+        formData.append('capacidadPersonas', capacidadPersonas);
+        formData.append('tipoEspacio', tipoEspacio);
+        formData.append('encargadoEspacio', encargadoEspacio);
+        formData.append('especialidadEspacio', especialidadEspacio);
+        formData.append('institucionEspacio', institucionEspacio);
+
+        if (imagenEspacio) {
+            formData.append('imagenEspacio', imagenEspacio);
+        } else {
+            formData.append('imagenEspacio', document.getElementById('archivoImagenLabel').textContent);
+        }
+
+        if (inventarioEspacio) {
+            formData.append('inventarioEspacio', inventarioEspacio);
+        } else {
+            formData.append('inventarioEspacio', document.getElementById('archivoInventarioLabel').textContent);
+        }
+
+        fetch('../../api/services/espacios_services.php?action=updateEspacio', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                Swal.fire('Actualizado!', 'El espacio ha sido actualizado correctamente.', 'success').then(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editarEspacio'));
+                    modal.hide();
+                    cargarDatosTabla();
+                });
+            } else {
+                Swal.fire('Error!', data.message || 'Hubo un problema al actualizar el espacio.', 'error');
+            }
+        })
+        .catch(error => {
+            Swal.fire('Error!', 'Hubo un problema al actualizar el espacio.', 'error');
+            console.error('Error al actualizar espacio:', error);
+        });
+    }
+
+    document.getElementById('formEditarEspacio').addEventListener('submit', function(event) {
+        event.preventDefault();
+        editarEspacio();
+    });
 });

@@ -390,6 +390,7 @@
             </div>
             <div class="modal-body">
                 <form id="formEditarEspacio">
+                    <input type="hidden" id="editarIdEspacio">
                     <div class="mb-3">
                         <label for="editarNombreEspacio" class="form-label">Nombre del Espacio</label>
                         <input type="text" class="form-control" id="editarNombreEspacio" name="nombreEspacio" required>
@@ -420,6 +421,7 @@
                     <div class="mb-3">
                         <label for="editarImagenEspacio" class="form-label">Imagen del Espacio</label>
                         <input type="file" class="form-control" id="editarImagenEspacio" name="imagenEspacio" accept="image/jpeg, image/png">
+                        <label id="archivoImagenLabel"></label>
                     </div>
                     <div class="mb-3">
                         <label for="editarEspecialidadEspacio" class="form-label">Especialidad</label>
@@ -438,6 +440,7 @@
                     <div class="mb-3">
                         <label for="editarInventarioEspacio" class="form-label">Inventario</label>
                         <input type="file" class="form-control" id="editarInventarioEspacio" name="inventarioEspacio" accept=".pdf, .doc, .docx, .xls, .xlsx">
+                        <label id="archivoInventarioLabel"></label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -448,6 +451,7 @@
         </div>
     </div>
 </div>
+
 
 
     <!--Scrip que si funionan -->
