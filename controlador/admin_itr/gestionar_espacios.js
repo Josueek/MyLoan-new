@@ -2,25 +2,22 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarDatosTabla();
     cargarComboboxData();
 
-
     // Evento para la búsqueda
-document.getElementById('buscarEspacio').addEventListener('input', function() {
-    buscarEspacio();
-});
+    document.getElementById('buscarEspacio').addEventListener('input', function() {
+        buscarEspacio();
+    });
 
-// Evento para el filtro
-document.getElementById('filtrarEspecialidad').addEventListener('change', function() {
-    buscarEspacio();
-});
+    // Evento para el filtro
+    document.getElementById('filtrarEspecialidad').addEventListener('change', function() {
+        buscarEspacio();
+    });
 
-
-function cargarDatosTabla(buscar = '', filtrar = '') {
-    fetch(`../../api/services/espacios_services.php?action=getAllEspacios&buscar=${buscar}&filtrar=${filtrar}`)
-        .then(response => response.json())
-        .then(data => mostrarDatosTabla(data))
-        .catch(error => console.error('Error al obtener espacios:', error));
-}
-
+    function cargarDatosTabla(buscar = '', filtrar = '') {
+        fetch(`../../api/services/espacios_services.php?action=getAllEspacios&buscar=${buscar}&filtrar=${filtrar}`)
+            .then(response => response.json())
+            .then(data => mostrarDatosTabla(data))
+            .catch(error => console.error('Error al obtener espacios:', error));
+    }
 
     document.getElementById('formAgregarEspacio').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -65,37 +62,29 @@ function cargarDatosTabla(buscar = '', filtrar = '') {
         }
     });
 
-    function cargarDatosTabla() {
-        fetch(`../../api/services/espacios_services.php?action=getAllEspacios`)
-            .then(response => response.json())
-            .then(data => mostrarDatosTabla(data))
-            .catch(error => console.error('Error al obtener espacios:', error));
-    }
-
     function cargarComboboxData() {
         fetch(`../../api/services/espacios_services.php?action=getAllEmpleados`)
             .then(response => response.json())
             .then(data => llenarCombobox('encargadoEspacio', data, 'id_datos_empleado', 'nombre_empleado'))
             .catch(error => console.error('Error al obtener empleados:', error));
-    
+
         fetch(`../../api/services/espacios_services.php?action=getAllEspecialidades`)
             .then(response => response.json())
             .then(data => {
                 llenarCombobox('especialidadEspacio', data, 'id_especialidad', 'nombre_especialidad');
-                llenarCombobox('filtrarEspecialidad', data, 'id_especialidad', 'nombre_especialidad');
+                llenarCombobox('filtrarEspecialidad', data, 'id_especialidad', 'nombre_especialidad', true); // Añadir la opción "Todos" aquí
             })
             .catch(error => console.error('Error al obtener especialidades:', error));
-    
+
         fetch(`../../api/services/espacios_services.php?action=getAllInstituciones`)
             .then(response => response.json())
             .then(data => llenarCombobox('institucionEspacio', data, 'id_institucion', 'nombre_institucion'))
             .catch(error => console.error('Error al obtener instituciones:', error));
     }
-    
 
-    function llenarCombobox(elementId, data, valueField, textField) {
+    function llenarCombobox(elementId, data, valueField, textField, addTodos = false) {
         const select = document.getElementById(elementId);
-        select.innerHTML = '<option selected>Seleccionar</option>';
+        select.innerHTML = addTodos ? '<option value="">Todos</option>' : '<option selected>Seleccionar</option>';
         data.dataset.forEach(item => {
             const option = document.createElement('option');
             option.value = item[valueField];
@@ -340,7 +329,6 @@ function cargarDatosTabla(buscar = '', filtrar = '') {
             console.error('Error al obtener espacio:', error);
         });
     }
-    
 
     function fetchComboboxDataEditar(selectedEmpleado, selectedEspecialidad, selectedInstitucion) {
         fetch(`../../api/services/espacios_services.php?action=getAllEmpleados`)
@@ -457,28 +445,26 @@ function cargarDatosTabla(buscar = '', filtrar = '') {
             console.error('Error al actualizar espacio:', error);
         });
     }
-    
+
     document.getElementById('formEditarEspacio').addEventListener('submit', function(event) {
         event.preventDefault();
         editarEspacio();
     });
-    
-   // Asegurarse de limpiar correctamente el modal al cerrarlo
-   const modalElement = document.getElementById('editarEspacio');
-   modalElement.addEventListener('hidden.bs.modal', function () {
-       const form = document.getElementById('formEditarEspacio');
-       form.reset();
-       const preview = document.getElementById('previewImagenEspacioEditar');
-       preview.src = '';
-       preview.style.display = 'none';
-       const archivoImagenLabel = document.getElementById('archivoImagenLabel');
-       if (archivoImagenLabel) archivoImagenLabel.remove();
-       const archivoInventarioLabel = document.getElementById('archivoInventarioLabel');
-       if (archivoInventarioLabel) archivoInventarioLabel.remove();
 
-       // Limpiar el backdrop manualmente para evitar que se quede la pantalla en gris
-       document.body.classList.remove('modal-open');
-       const backdrops = document.querySelectorAll('.modal-backdrop');
-       backdrops.forEach(backdrop => backdrop.remove());
-   });
+    const modalElement = document.getElementById('editarEspacio');
+    modalElement.addEventListener('hidden.bs.modal', function () {
+        const form = document.getElementById('formEditarEspacio');
+        form.reset();
+        const preview = document.getElementById('previewImagenEspacioEditar');
+        preview.src = '';
+        preview.style.display = 'none';
+        const archivoImagenLabel = document.getElementById('archivoImagenLabel');
+        if (archivoImagenLabel) archivoImagenLabel.remove();
+        const archivoInventarioLabel = document.getElementById('archivoInventarioLabel');
+        if (archivoInventarioLabel) archivoInventarioLabel.remove();
+
+        document.body.classList.remove('modal-open');
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach(backdrop => backdrop.remove());
+    });
 });
