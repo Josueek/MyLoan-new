@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crear curso</title>
+
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+        <aside class="left-sidebar">
+            <!-- Imagen del sistema -->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
+                    <a href="../vistas_admin/inicio.html" class="text-nowrap logo-img">
+                        <img src="../../recursos/img/logos/myloan_logo.png" width="180" alt="" />
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+
+                <!-- Inicio de los menus-->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
+                                <span>
+                                    <i class="fa-solid fa-house"></i>
+                                </span>
+                                <span class="hide-menu">Inicio</span>
+                            </a>
+                        </li>
+                        <!-- Menú de administrar -->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
+                                <span>
+                                    <i class="fa-solid fa-pager"></i>
+                                </span>
+                                <span class="hide-menu">Administrar</span>
+                            </a>
+
+                            <ul id="submenu" class="submenu">
+                                <li class="submenu-item d-flex align-items-center">
+                                    <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
+                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
+                                        <span>
+                                            <i class="fa-solid fa-user me-2"></i>
+                                        </span>
+                                        <!-- Texto -->
+                                        <span class="hide-menu">Usuarios</span>
+                                    </a>
+                                </li>
+
+                                <li class="submenu-item d-flex align-items-center">
+                                    <!-- Icono -->
+                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
+                                        <span>
+                                            <i class="ti ti-settings me-2"></i>
+                                        </span>
+                                        <!-- Texto -->
+                                        <span class="hide-menu">Gestionar espacios</span>
+                                    </a>
+                                </li>
+                                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+                                <li class="submenu-item  d-flex align-items-center">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="ti ti-tool me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Gestionar inventario de herramienta</span>
+                                    </a>
+                                </li>
+                                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+                                <li class="submenu-item  d-flex align-items-center">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fas fa-desktop me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Gestionar inventario de equipos</span>
+                                    </a>
+                                </li>
+                                <!-- Nuevo elemento 3: Inventario de materiales -->
+                                <li class="submenu-item  d-flex align-items-center">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="ti ti-package  me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Inventario de materiales</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
+                                <span>
+                                    <i class="fa-solid fa-certificate"></i>
+                                </span>
+                                <span class="hide-menu">Cursos</span>
+                            </a>
+                            <ul id="submenu9" class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="far fa-eye me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Ver cursos</span>
+                                    </a>
+                                </li>
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-plus me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Crear cursos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
+                                <span>
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                </span>
+                                <span class="hide-menu">Mis préstamos</span>
+                            </a>
+                            <ul id="submenu10" class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-plus me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Crear solicitud</a>
+                                    </li>
+                                    <li class="submenu-item">
+                                        <!--Configurar nombre del archivo-->
+                                        <a href=".." class="submenu-link">
+                                            <span>
+                                                <i class="fa-solid fa-inbox me-2"></i>
+                                            </span>
+                                            <span class="hide-menu">Visualizar préstamos</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="sidebar-item">
+                                <!--Configurar nombre del archivo-->
+                                <a class="sidebar-link" href=".." aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-cards"></i>
+                                    </span>
+                                    <span class="hide-menu">Gestionar solicitudes</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
+                                    <span>
+                                        <i class="fa-solid fa-eye"></i>
+                                    </span>
+                                    <span class="hide-menu">Observaciones</span>
+                                </a>
+                                <ul id="submenu7" class="submenu" style="display: none;">
+                                    <li class="submenu-item ">
+                                        <!--Configurar nombre del archivo-->
+                                        <a href=".." class="submenu-link">
+                                            <span>
+                                                <i class="far fa-eye-slash me-2"></i>
+                                            </span>
+                                            <span class="hide-menu">Observaciones generales</span>
+                                        </a>
+                                    </li>
+                                    <li class="submenu-item">
+                                        <!--Configurar nombre del archivo-->
+                                        <a href=".." class="submenu-link">
+                                            <span>
+                                                <i class="far fa-eye me-2"></i>
+                                            </span>
+                                            <span class="hide-menu">Mis observaciones</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <!--Configurar nombre del archivo-->
+                                <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
+                                    <span>
+                                        <i class="fa-solid fa-folder"></i>
+                                    </span>
+                                    <span class="hide-menu">Reportes</span>
+                                </a>
+                                <ul id="submenu8" class="submenu" style="display: none;">
+                                    <li class="submenu-item">
+                                        <!--Configurar nombre del archivo-->
+                                        <a href=".." class="submenu-link">
+                                            <span>
+                                                <i class="fa-solid fa-table-list me-2"></i>
+                                            </span>
+                                            <span class="hide-menu">Mis solicitudes</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <!--Configurar nombre del archivo-->
+                                <a class="sidebar-link" href=".." aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-gear"></i>
+                                    </span>
+                                    <span class="hide-menu">Configuración</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- aca termina el menu lateral -->
+                </div>
+
+            </aside>
+
+            <!--  aca empieza el header -->
+            <div class="body-wrapper">
+                <div id="headerContainer" data-title="Crear curso"></div>
+
+
+                <section class="container-fluid">
+                    <div class="row">
+                        <!-- Tabla de cursos -->
+                        <div class="container mt-5">
+                            <div class="row mb-5">
+                                <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                    <button class="btn btn-transparent border-0 p-0">
+                                        <i class="fas fa-search me-2"></i>
+                                    </button>
+                                    <!-- Barra de búsqueda -->
+                                    <input id="buscarCurso" type="search" class="form-control" placeholder="Buscar">
+                                </div>
+                                <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                    <button id="btnAgregarCurso" type="button" class="btn btn-primary mx-lg-3" data-bs-toggle="modal" data-bs-target="#agregarCursoModal">Agregar curso</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre del curso</th>
+                                    <th scope="col">Fecha de inicio</th>
+                                    <th scope="col">Fecha de fin</th>
+                                    <th scope="col">Cantidad de personas</th>
+                                    <th scope="col">Grupo</th>
+                                    <th scope="col">Programa de formación</th>
+                                    <th scope="col">Código del curso</th>
+                                    <th scope="col">Empleado</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaCursos">
+                                <!-- Se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Modal para agregar curso -->
+            <div class="modal fade" id="agregarCursoModal" tabindex="-1" aria-labelledby="agregarCursoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="agregarCursoModalLabel">Agregar Curso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formAgregarCurso">
+                                <div class="mb-3">
+                                    <label for="nombreCurso" class="form-label">Nombre del curso</label>
+                                    <input type="text" class="form-control" id="nombreCurso" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fechaInicio" class="form-label">Fecha de inicio</label>
+                                    <input type="text" class="form-control flatpickr" id="fechaInicio" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fechaFin" class="form-label">Fecha de fin</label>
+                                    <input type="text" class="form-control flatpickr" id="fechaFin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidadPersonas" class="form-label">Cantidad de personas</label>
+                                    <input type="number" class="form-control" id="cantidadPersonas" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="grupo" class="form-label">Grupo</label>
+                                    <input type="text" class="form-control" id="grupo" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="programaFormacion" class="form-label">Programa de formación</label>
+                                    <select id="programaFormacion" class="form-select" required>
+                                        <option value="HTP">HTP</option>
+                                        <option value="EC">EC</option>
+                                        <option value="FCAT">FCAT</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="codigoCurso" class="form-label">Código del curso</label>
+                                    <input type="text" class="form-control" id="codigoCurso" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="empleadoCurso" class="form-label">Empleado</label>
+                                    <select id="empleadoCurso" class="form-select" required>
+                                        <!-- Se cargarán dinámicamente -->
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para editar curso -->
+            <div class="modal fade" id="editarCursoModal" tabindex="-1" aria-labelledby="editarCursoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editarCursoModalLabel">Editar Curso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formEditarCurso">
+                                <input type="hidden" id="editarIdCurso">
+                                <div class="mb-3">
+                                    <label for="editarNombreCurso" class="form-label">Nombre del curso</label>
+                                    <input type="text" class="form-control" id="editarNombreCurso" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarFechaInicio" class="form-label">Fecha de inicio</label>
+                                    <input type="text" class="form-control flatpickr" id="editarFechaInicio" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarFechaFin" class="form-label">Fecha de fin</label>
+                                    <input type="text" class="form-control flatpickr" id="editarFechaFin" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarCantidadPersonas" class="form-label">Cantidad de personas</label>
+                                    <input type="number" class="form-control" id="editarCantidadPersonas" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarGrupo" class="form-label">Grupo</label>
+                                    <input type="text" class="form-control" id="editarGrupo" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarProgramaFormacion" class="form-label">Programa de formación</label>
+                                    <select id="editarProgramaFormacion" class="form-select" required>
+                                        <option value="HTP">HTP</option>
+                                        <option value="EC">EC</option>
+                                        <option value="FCAT">FCAT</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarCodigoCurso" class="form-label">Código del curso</label>
+                                    <input type="text" class="form-control" id="editarCodigoCurso" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarEmpleadoCurso" class="form-label">Empleado</label>
+                                    <select id="editarEmpleadoCurso" class="form-select" required>
+                                        <!-- Se cargarán dinámicamente -->
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editarEstadoCurso" class="form-label">Estado</label>
+                                    <select id="editarEstadoCurso" class="form-select" required>
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="denegado">Denegado</option>
+                                        <option value="en curso">En curso</option>
+                                        <option value="finalizado">Finalizado</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Scrip que si funionan -->
+        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../recursos/js/sidebarmenu.js"></script>
+        <script src="../../recursos/js/app.min.js"></script>
+        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+        <script src="../../controlador/utils/session_utils.js"></script>
+        <script src="../../recursos/js/acciones.js"></script>
+        <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/admin_itr/cursos.js"></script>
+        <script src="../../recursos/js/modales.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Scrip que dudosamente sirven-->
+        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+        <script src="../../recursos/js/dashboard.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            // Inicializar Flatpickr para los campos de fecha
+            document.addEventListener('DOMContentLoaded', function() {
+                flatpickr('.flatpickr', {
+                    dateFormat: 'Y-m-d'
+                });
+            });
+        </script>
+</body>
+
+</html>

@@ -249,48 +249,9 @@
 
         <div class="body-wrapper">
             <div id="headerContainer" data-title="Inventario de herramientas"></div>
-            ader -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <section class="container-fluid">
+            <br><br><br><br>
+            <section class="container-fluid">                   
                 <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <label for="codigo" class="mb-1">Codigo de herramienta</label>
-                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el codigo"
-                            required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 2 -->
-                        <label for="herramienta" class="mb-1">Herramienta</label>
-                        <input type="text" id="herramienta" class="form-control input-short"
-                            placeholder="Nombre de herramienta" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="stock" class="mb-1">En stock</label>
-                        <input type="number" id="stock" class="form-control input-short"
-                            placeholder="Seleccione una cantidad" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Institución correspondiente</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Institucion</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Descripción</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingrese una descripción"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Tabla de empleados -->
                     <div class="container mt-5">
                         <div class="row mb-5">
                             <div class="col-lg-3 mb-3 d-flex align-items-center">
@@ -298,21 +259,17 @@
                                     <i class="fas fa-search me-2"></i>
                                 </button>
                                 <!-- Barra de búsqueda -->
-                                <input type="search" class="form-control" placeholder="Buscar">
+                                <input id="buscarHerramienta" type="search" class="form-control" placeholder="Buscar">
                             </div>
-
-                            <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                <label for="inputGroupFile02" id="SubirDOC" class="input-group-text ml-2">
-                                    <i class="fa-solid fa-upload" style="color: #ffffff;"></i> Subir DOC
-                                </label>
-                                <input type="file" class="form-control visually-hidden" id="inputGroupFile02">
+                            <div class="col-lg-3 mb-3">
+                                <!-- input para filtrar -->
+                                <select id="filtroInstitucion" class="form-select">
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                                
                             </div>
-                            
-                            
-
                             <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                                <button id="btnAgregarherramienta" type="button" class="btn btn-primary mx-lg-3"
-                                    data-bs-toggle="modal" data-bs-target="#Especialidad">Agregar herramienta</button>
+                                <button id="btnAgregarherramienta" type="button" class="btn btn-primary mx-lg-3" data-bs-toggle="modal" data-bs-target="#agregarHerramientaModal">Agregar herramienta</button>
                             </div>
                         </div>
                     </div>
@@ -324,87 +281,102 @@
                                 <th scope="col">Codigo de herramienta</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">En stock</th>
-                                <th scope="col"> En uso</th>
+                                <th scope="col">Institución</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Lennyn Vides</td>
-                                <td>12.03.2024</td>
-                                <td>24.04.2024</td>
-                                <td>$34.24</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Lennyn Rodriguèz</td>
-                                <td>12.06.2024</td>
-                                <td>24.07.2024</td>
-                                <td>$50.24</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Lennyn Vides</td>
-                                <td>12.03.2024</td>
-                                <td>24.04.2024</td>
-                                <td>$34.24</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody id="tablaHerramientas">
+                            <!-- Se cargarán dinámicamente -->
                         </tbody>
                     </table>
                 </div>
             </section>
         </div>
+        
+        <!-- Modal para agregar herramienta -->
+        <div class="modal fade" id="agregarHerramientaModal" tabindex="-1" aria-labelledby="agregarHerramientaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarHerramientaModalLabel">Agregar Herramienta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarHerramienta">
+                            <div class="mb-3">
+                                <label for="codigoHerramienta" class="form-label">Código</label>
+                                <input type="text" class="form-control" id="codigoHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombreHerramienta" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombreHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="stockHerramienta" class="form-label">En stock</label>
+                                <input type="number" class="form-control" id="stockHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="institucionHerramienta" class="form-label">Institución</label>
+                                <select id="institucionHerramienta" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcionHerramienta" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripcionHerramienta" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal para editar herramienta -->
+        <div class="modal fade" id="editarHerramientaModal" tabindex="-1" aria-labelledby="editarHerramientaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarHerramientaModalLabel">Editar Herramienta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarHerramienta">
+                            <input type="hidden" id="editarIdHerramienta">
+                            <div class="mb-3">
+                                <label for="editarCodigoHerramienta" class="form-label">Código</label>
+                                <input type="text" class="form-control" id="editarCodigoHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarNombreHerramienta" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editarNombreHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarStockHerramienta" class="form-label">En stock</label>
+                                <input type="number" class="form-control" id="editarStockHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarInstitucionHerramienta" class="form-label">Institución</label>
+                                <select id="editarInstitucionHerramienta" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarDescripcionHerramienta" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="editarDescripcionHerramienta" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
         <!--Scrip que si funionan -->
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../../recursos/js/sidebarmenu.js"></script>
         <script src="../../recursos/js/app.min.js"></script>
@@ -412,9 +384,11 @@
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../recursos/js/acciones.js"></script>
         <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/utils/session_utils.js"></script>
         <!-- Scrip que dudosamente sirven-->
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
+        <script src="../../controlador/admin_itr/inventario_herramienta.js"></script>
 </body>
 
 </html>
