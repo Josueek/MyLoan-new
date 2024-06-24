@@ -249,42 +249,15 @@
 
         <div class="body-wrapper">
             <div id="headerContainer" data-title="Inventario de equipos"></div>
-            <!--  Aca termina la parte del menu y el header -->
+        
+            <!-- Aca termina la parte del menu y el header -->
             <br>
             <br>
             <br>
             <br>
             <section class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 mb-2">
-                        <!-- Contenido de la columna 1 -->
-                        <label for="codigo" class="mb-1">Nombre del equipo</label>
-                        <input type="text" id="codigo" class="form-control input-short" placeholder="Ingresa el nombre"
-                            required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="stock" class="mb-1">Cantidad</label>
-                        <input type="number" id="stock" class="form-control input-short"
-                            placeholder="Seleccione una cantidad" required>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Espacio asignado</label>
-                        <select id="institucion" class="form-control">
-                            <option value="0">Institucion</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
-                    </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="descripcion" class="mb-1">Descripción</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingrese una descripción"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Tabla de empleados -->
+                    <!-- Tabla de equipos -->
                     <div class="container mt-5">
                         <div class="row mb-5">
                             <div class="col-lg-3 mb-3 d-flex align-items-center">
@@ -292,13 +265,18 @@
                                     <i class="fas fa-search me-2"></i>
                                 </button>
                                 <!-- Barra de búsqueda -->
-                                <input type="search" class="form-control" placeholder="Buscar">
+                                <input id="buscarEquipo" type="search" class="form-control" placeholder="Buscar">
                             </div>
-
+        
                             <div class="col-lg-3 mb-3 d-flex justify-content-end">
-
-                                <button id="btnAgregarequipo" type="button" class="btn btn-primary mx-lg-3"
-                                    data-bs-toggle="modal" data-bs-target="#Especialidad">Agregar equipo</button>
+                                <select id="filtroCantidad" class="form-select">
+                                    <option value="mayor">Mayor a menor</option>
+                                    <option value="menor">Menor a mayor</option>
+                                </select>
+                            </div>
+        
+                            <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                <button id="btnAgregarEquipo" type="button" class="btn btn-primary mx-lg-3" data-bs-toggle="modal" data-bs-target="#agregarEquipoModal">Agregar equipo</button>
                             </div>
                         </div>
                     </div>
@@ -307,93 +285,117 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Nombre del equipp</th>
+                                <th scope="col">Nombre del equipo</th>
                                 <th scope="col">Cantidad</th>
-                                <th scope="col">Espacio asignado</th>
-                                <th scope="col"> Descripción</th>
+                                <th scope="col">Descripción</th>
+
+                                <th scope="col">Espacio</th>
+                                <th scope="col">Institución</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Lennyn Vides</td>
-                                <td>12.03.2024</td>
-                                <td>24.04.2024</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Lennyn Rodriguèz</td>
-                                <td>12.06.2024</td>
-                                <td>24.07.2024</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Lennyn Vides</td>
-                                <td>12.03.2024</td>
-                                <td>24.04.2024</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editarEspa" data-bs-whatever="@mdo" id="btnEditarEspa">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-3 me-2">
-                                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#modalBorar" data-bs-whatever="@mdo" id="btnborrar">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody id="tablaEquipos">
+                            <!-- Se cargarán dinámicamente -->
                         </tbody>
                     </table>
                 </div>
             </section>
         </div>
+        
+        <!-- Modal para agregar equipo -->
+        <div class="modal fade" id="agregarEquipoModal" tabindex="-1" aria-labelledby="agregarEquipoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarEquipoModalLabel">Agregar Equipo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarEquipo">
+                            <div class="mb-3">
+                                <label for="nombreEquipo" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombreEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cantidadEquipo" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="cantidadEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="espacioEquipo" class="form-label">Espacio</label>
+                                <select id="espacioEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="institucionEquipo" class="form-label">Institución</label>
+                                <select id="institucionEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcionEquipo" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripcionEquipo" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal para editar equipo -->
+        <div class="modal fade" id="editarEquipoModal" tabindex="-1" aria-labelledby="editarEquipoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarEquipoModalLabel">Editar Equipo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarEquipo">
+                            <input type="hidden" id="editarIdEquipo">
+                            <div class="mb-3">
+                                <label for="editarNombreEquipo" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editarNombreEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarCantidadEquipo" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="editarCantidadEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarEspacioEquipo" class="form-label">Espacio</label>
+                                <select id="editarEspacioEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarInstitucionEquipo" class="form-label">Institución</label>
+                                <select id="editarInstitucionEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarDescripcionEquipo" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="editarDescripcionEquipo" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         <!--Scrip que si funionan -->
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../../recursos/js/sidebarmenu.js"></script>
         <script src="../../recursos/js/app.min.js"></script>
         <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../recursos/js/acciones.js"></script>
         <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/admin_itr/equipos.js"></script>
         <script src="../../controlador/utils/session_utils.js"></script>
 
         <!-- Scrip que dudosamente sirven-->
