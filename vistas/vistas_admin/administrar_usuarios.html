@@ -4,21 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio</title>
-
-    <!--Icono de la pestaña-->
+    <title>Gestionar Empleados</title>
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
-
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
-
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- Codigo del clima -->
-    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
-    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
-
 </head>
 
 <body>
@@ -38,140 +28,255 @@
                 </div>
 
                 <!-- Inicio de los menus-->
-                <!-- Inicio de los menus-->
-                <div id="sidebarContainer"></div>
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
+                                <span>
+                                    <i class="fa-solid fa-house"></i>
+                                </span>
+                                <span class="hide-menu">Inicio</span>
+                            </a>
+                        </li>
+                        <!-- Menú de administrar -->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
+                                <span>
+                                    <i class="fa-solid fa-pager"></i>
+                                </span>
+                                <span class="hide-menu">Administrar</span>
+                            </a>
+
+                            <ul id="submenu" class="submenu">
+                                <li class="submenu-item d-flex align-items-center">
+                                    <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
+                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
+                                        <span>
+                                            <i class="fa-solid fa-user me-2"></i>
+                                        </span>
+                                        <!-- Texto -->
+                                        <span class="hide-menu">Usuarios</span>
+                                    </a>
+                                </li>
+
+                                <li class="submenu-item d-flex align-items-center">
+                                    <!-- Icono -->
+                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
+                                        <span>
+                                            <i class="ti ti-settings me-2"></i>
+                                        </span>
+                                        <!-- Texto -->
+                                        <span class="hide-menu">Gestionar espacios</span>
+                                    </a>
+                                </li>
+                                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
+                                <li class="submenu-item  d-flex align-items-center">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="ti ti-tool me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Gestionar inventario de herramienta</span>
+                                    </a>
+                                </li>
+                                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
+                                <li class="submenu-item  d-flex align-items-center">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fas fa-desktop me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Gestionar inventario de equipos</span>
+                                    </a>
+                                </li>
+                                <!-- Nuevo elemento 3: Inventario de materiales -->
+                                <li class="submenu-item  d-flex align-items-center">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="ti ti-package  me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Inventario de materiales</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
+                                <span>
+                                    <i class="fa-solid fa-certificate"></i>
+                                </span>
+                                <span class="hide-menu">Cursos</span>
+                            </a>
+                            <ul id="submenu9" class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="far fa-eye me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Ver cursos</span>
+                                    </a>
+                                </li>
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-plus me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Crear cursos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
+                                <span>
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                </span>
+                                <span class="hide-menu">Mis préstamos</span>
+                            </a>
+                            <ul id="submenu10" class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-plus me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Crear solicitud</span>
+                                    </a>
+                                </li>
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-inbox me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Visualizar préstamos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <!--Configurar nombre del archivo-->
+                            <a class="sidebar-link" href=".." aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-cards"></i>
+                                </span>
+                                <span class="hide-menu">Gestionar solicitudes</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
+                                <span>
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                                <span class="hide-menu">Observaciones</span>
+                            </a>
+                            <ul id="submenu7" class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="far fa-eye-slash me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Observaciones generales</span>
+                                    </a>
+                                </li>
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="far fa-eye me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Mis observaciones</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <!--Configurar nombre del archivo-->
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
+                                <span>
+                                    <i class="fa-solid fa-folder"></i>
+                                </span>
+                                <span class="hide-menu">Reportes</span>
+                            </a>
+                            <ul id="submenu8" class="submenu" style="display: none;">
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-table-list me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Mis solicitudes</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <!--Configurar nombre del archivo-->
+                            <a class="sidebar-link" href=".." aria-expanded="false">
+                                <span>
+                                    <i class="fa-solid fa-gear"></i>
+                                </span>
+                                <span class="hide-menu">Configuración</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
                 <!-- aca termina el menu lateral -->
             </div>
-
         </aside>
 
-        <!--  aca empieza el header -->
         <div class="body-wrapper">
-            <div id="headerContainer" data-title="Usuarios registrados"></div>
-            <!--  Aca termina la parte del menu y el header -->
-
-            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
-             
-            <!-- Inicio del cuadro con efecto 3D -->
-            <div class="container-fluid" id="miCuadro">
+            <div id="headerContainer" data-title="Gestionar Empleados"></div>
+            <section class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
-                            <!-- Parte superior para credenciales -->
                             <div class="card-header">
                                 <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h4>Credenciales del usuario</h4>
-                                    </div>
                                     <div>
                                         <h4>Datos del empleado</h4>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Parte inferior para datos -->
                             <div class="card-body">
-                                <!-- Contenido del cuadro -->
-                                <div class="row">
-                                    <!-- Columna 1 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 1 -->
-                                        <label for="correo" class="mb-1">Correo electrónico:</label>
-                                        <input type="email" id="correo" class="form-control" placeholder="Correo"
-                                            required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="contraseña" class="mb-1">Contraseña:</label>
-                                        <input type="password" id="contraseña" class="form-control"
-                                            placeholder="Escribe una contraseña" minlength="8" required>
-                                    </div>
-
-                                    <!-- Columna 2 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 2 -->
-                                        <label for="nombre" class="mb-1">Nombre:</label>
-                                        <input type="text" id="nombre" class="form-control"
-                                            placeholder="Escribe un nombre" required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="telefono" class="mb-1">Teléfono:</label>
-                                        <input type="tel" id="telefono" class="form-control"
-                                            placeholder="Escribe un número de teléfono" required pattern="[0-9]+"
-                                            title="Por favor, introduce solo números">
-                                    </div>
-
-
-                                    <!-- Columna 3 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="cargo" class="mb-1">Cargo del empleado:</label>
-                                        <select id="cargo" class="form-select" required>
-                                            <option value="">Selecciona un cargo</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Instructor">Instructor</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="estado" class="mb-1">Estado del empleado:</label>
-                                        <select id="estado" class="form-select" required>
-                                            <option value="">Selecciona un estado</option>
-                                            <option value="Activo">Activo</option>
-                                            <option value="Inactivo">Inactivo</option>
-                                        </select>
-                                    </div>
-                                    <!-- Columna 4 -->
-                                    <div class="col-lg-3 mb-3">
-                                        <!-- Contenido de la columna 4 -->
-                                        <label for="apellido" class="mb-1">Apellido:</label>
-                                        <input type="text" id="apellido" class="form-control"
-                                            placeholder="Escribe un apellido" required>
-                                    </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <label for="especialidad" class="mb-1">Especialidad del empleado:</label>
-                                        <select id="especialidad" class="form-select" required>
-                                            <option value="">Selecciona una especialidad</option>
-                                            <option value="Software">Software</option>
-                                            <option value="Enca">Enca</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                                <!-- Tabla de empleados -->
                                 <div class="container mt-5">
                                     <div class="row mb-5">
                                         <div class="col-lg-3 mb-3 d-flex align-items-center">
                                             <button class="btn btn-transparent border-0 p-0">
                                                 <i class="fas fa-search me-2"></i>
                                             </button>
-                                            <!-- Barra de búsqueda -->
-                                            <input type="search" class="form-control" placeholder="Buscar">
+                                            <input id="buscarEmpleado" type="search" class="form-control"
+                                                placeholder="Buscar">
                                         </div>
-
                                         <div class="col-lg-3 mb-3 d-flex align-items-center">
-
-                                            <!-- input para filtrar -->
-                                            <select id="filtro especialidad" class="form-select" required>
+                                            <select id="filtroEspecialidad" class="form-select" required>
                                                 <option value="">Filtrar por:</option>
                                                 <option value="Software">Software</option>
                                                 <option value="Enca">Enca</option>
                                             </select>
                                         </div>
-
                                         <div class="col-lg-3 mb-3 d-flex justify-content-end">
-
-                                            <button id="btnAgregarespecialidad" type="button"
+                                            <button id="btnAgregarEspecialidad" type="button"
                                                 class="btn btn-primary mx-lg-3" data-bs-toggle="modal"
-                                                data-bs-target="#Especialidad">Agregar
-                                                especialidad</button>
+                                                data-bs-target="#agregarEspecialidadModal">Agregar especialidad</button>
                                         </div>
                                         <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                                            <button id="btnAgregarEmpleado" type="button"
-                                                class="btn btn-primary mx-lg-3">Agregar
-                                                empleado</button>
+                                            <button id="btnAgregarCargo" type="button" class="btn btn-primary mx-lg-3"
+                                                data-bs-toggle="modal" data-bs-target="#agregarCargoModal">Agregar
+                                                cargo</button>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Inicio de la tabla de usuarios-->
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -179,108 +284,227 @@
                                             <th scope="col">Apellido</th>
                                             <th scope="col">Teléfono</th>
                                             <th scope="col">Estado del empleado</th>
-                                            <th scope="col">Foto</th>
                                             <th scope="col">Correo electrónico</th>
-                                            <th scope="col">Contraseña</th>
                                             <th scope="col">Cargo</th>
                                             <th scope="col">Especialidad</th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">josué</th>
-                                            <td>Abdel</td>
-                                            <td>7067 9635</td>
-                                            <td>Activo</td>
-
-                                            <td>
-                                                <img src="" alt="">
-                                            </td>
-                                            <td>20220329@ricaldone.edu.sv</td>
-                                            <td>*********</td>
-                                            <td>Administrador</td>
-                                            <td>No</td>
-
-                                            <td>
-                                                <div class="col-3">
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                        data-bs-target="#asigEspecialidad" data-bs-whatever="@mdo"
-                                                        id="btnAsignarEspecialidad">
-                                                        <i class="fa-solid fa-user-tie"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-danger mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBorar"
-                                                        data-bs-whatever="@mdo" id="btnborrar">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
+                                    <tbody id="tablaEmpleados">
+                                        <!-- Los datos de la tabla se cargarán dinámicamente -->
                                     </tbody>
                                 </table>
-                                <!-- Fin de la tabla de empleados -->
-
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
+
+        <!-- Modal para agregar especialidad -->
+        <div class="modal fade" id="agregarEspecialidadModal" tabindex="-1"
+            aria-labelledby="agregarEspecialidadModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarEspecialidadModalLabel">Agregar Especialidad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarEspecialidad">
+                            <div class="mb-3">
+                                <label for="nombreEspecialidad" class="form-label">Nombre de la especialidad</label>
+                                <input type="text" class="form-control" id="nombreEspecialidad" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar especialidad</button>
+                        </form>
+                        <table class="table table-hover mt-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Nombre de la especialidad</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaEspecialidades">
+                                <!-- Los datos de la tabla se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- Modal para editar especialidad -->
+        <div class="modal fade" id="editarEspecialidadModal" tabindex="-1"
+            aria-labelledby="editarEspecialidadModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarEspecialidadModalLabel">Editar Especialidad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarEspecialidad">
+                            <input type="hidden" id="idEditarEspecialidad">
+                            <div class="mb-3">
+                                <label for="nombreEditarEspecialidad" class="form-label">Nombre de la
+                                    especialidad</label>
+                                <input type="text" class="form-control" id="nombreEditarEspecialidad" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Actualizar especialidad</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal para agregar cargo -->
+        <div class="modal fade" id="agregarCargoModal" tabindex="-1" aria-labelledby="agregarCargoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarCargoModalLabel">Agregar Cargo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarCargo">
+                            <div class="mb-3">
+                                <label for="nombreCargo" class="form-label">Nombre del cargo</label>
+                                <input type="text" class="form-control" id="nombreCargo" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar cargo</button>
+                        </form>
+                        <table class="table table-hover mt-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Nombre del cargo</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaCargos">
+                                <!-- Los datos de la tabla se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para editar cargo -->
+        <div class="modal fade" id="editarCargoModal" tabindex="-1" aria-labelledby="editarCargoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarCargoModalLabel">Editar Cargo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarCargo">
+                            <input type="hidden" id="idEditarCargo">
+                            <div class="mb-3">
+                                <label for="nombreEditarCargo" class="form-label">Nombre del cargo</label>
+                                <input type="text" class="form-control" id="nombreEditarCargo" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Actualizar cargo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editarEmpleadoModal" tabindex="-1" aria-labelledby="editarEmpleadoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarEmpleadoModalLabel">Editar Empleado</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarEmpleado">
+                            <input type="hidden" id="editarEmpleadoId">
+                            <div class="mb-3">
+                                <label for="editarNombreEmpleado" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editarNombreEmpleado" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarApellidoEmpleado" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="editarApellidoEmpleado" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarTelefonoEmpleado" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="editarTelefonoEmpleado" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarEstadoEmpleado" class="form-label">Estado</label>
+                                <select id="editarEstadoEmpleado" class="form-select" required>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarCorreoEmpleado" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="editarCorreoEmpleado" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Actualizar empleado</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
-    <!--Scrip que si funionan -->
-    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
-    <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-    <script src="../../recursos/js/acciones.js"></script>
-    <script src="../../recursos/js/modales.js"></script>
-    <script src="../../controlador/admin_cfp/header.js"></script>
-    <script src="../../controlador/utils/session_utils.js"></script>
-    <script src="../../controlador/admin_cfp/barralateral_cfp.js" defer></script>
-    <!-- Scrip que dudosamente sirven-->
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../recursos/js/dashboard.js"></script>
+        <!-- Modal para asignar especialidad -->
+        <div class="modal fade" id="asigEspecialidad" tabindex="-1" aria-labelledby="asigEspecialidadLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="asigEspecialidadLabel">Asignar Especialidad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAsignarEspecialidad">
+                            <div class="mb-3">
+                                <label for="empleadoEspecialidad" class="form-label">Empleado</label>
+                                <select id="empleadoEspecialidad" class="form-select" required>
+                                    <!-- Opciones se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="especialidadAsignar" class="form-label">Especialidad</label>
+                                <select id="especialidadAsignar" class="form-select" required>
+                                    <!-- Opciones se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Asignar especialidad</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Scrip que si funionan -->
+        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../recursos/js/sidebarmenu.js"></script>
+        <script src="../../recursos/js/app.min.js"></script>
+        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+        <script src="../../controlador/utils/session_utils.js"></script>
+        <script src="../../recursos/js/acciones.js"></script>
+        <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/admin_itr/empleado.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Scrip que dudosamente sirven-->
+        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+        <script src="../../recursos/js/dashboard.js"></script>
 </body>
 
 </html>

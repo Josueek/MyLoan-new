@@ -46,6 +46,11 @@ class Database
             return 0;
         }
     }
+
+    public static function getLastRowId()
+    {
+        return self::$connection->lastInsertId();
+    }
     
 
     public static function getRow($query, $values = null)
