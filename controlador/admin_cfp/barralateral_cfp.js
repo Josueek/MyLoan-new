@@ -51,11 +51,11 @@ function generarSidebar() {
                             </a>
                         </li>
                         <li class="submenu-item  d-flex align-items-center">
-                            <a href="../vistas/vistas_admin/inventario_materiales.html" class="submenu-link">
+                            <a href="../vistas/vistas_admin/inventario_equipos.html" class="submenu-link">
                                 <span>
-                                    <i class="ti ti-package  me-2"></i>
+                                    <i class="fas fa-desktop me-2"></i>
                                 </span>
-                                <span class="hide-menu">Inventario de materiales</span>
+                                <span class="hide-menu">Gestionar inventario de equipos</span>
                             </a>
                         </li>
                     </ul>

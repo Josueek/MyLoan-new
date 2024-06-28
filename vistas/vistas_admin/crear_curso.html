@@ -75,7 +75,7 @@
                                 <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
                                 <li class="submenu-item  d-flex align-items-center">
                                     <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/inventario_herramientas.html" class="submenu-link">
                                         <span>
                                             <i class="ti ti-tool me-2"></i>
                                         </span>
@@ -85,7 +85,7 @@
                                 <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
                                 <li class="submenu-item  d-flex align-items-center">
                                     <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/inventario_equipos.html" class="submenu-link">
                                         <span>
                                             <i class="fas fa-desktop me-2"></i>
                                         </span>
@@ -95,7 +95,7 @@
                                 <!-- Nuevo elemento 3: Inventario de materiales -->
                                 <li class="submenu-item  d-flex align-items-center">
                                     <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/inventario_materiales.html" class="submenu-link">
                                         <span>
                                             <i class="ti ti-package  me-2"></i>
                                         </span>
@@ -113,20 +113,20 @@
                                 <span class="hide-menu">Cursos</span>
                             </a>
                             <ul id="submenu9" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
+                                <li class="submenu-item">
                                     <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/crear_curso.html" class="submenu-link">
                                         <span>
-                                            <i class="far fa-eye me-2"></i>
+                                            <i class="fa-solid fa-plus me-2"></i>
                                         </span>
-                                        <span class="hide-menu">Ver cursos</span>
+                                        <span class="hide-menu">Crear cursos</span>
                                     </a>
                                 </li>
                                 <li class="submenu-item">
                                     <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
                                         <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
+                                            <i class="fa-solid fa-briefcase"></i>
                                         </span>
                                         <span class="hide-menu">Crear cursos</span>
                                     </a>
@@ -145,98 +145,101 @@
                             <ul id="submenu10" class="submenu" style="display: none;">
                                 <li class="submenu-item ">
                                     <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
+                                    <a href="../vistas_admin/crear_solicitud_prestamo.html" class="submenu-link">
                                         <span>
                                             <i class="fa-solid fa-plus me-2"></i>
+                                        </span> 
+                                        <span class="hide-menu">Crear solicitud</span>
+                                    </a>
+                                </li>
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-inbox me-2"></i>
                                         </span>
-                                        <span class="hide-menu">Crear solicitud</a>
-                                    </li>
-                                    <li class="submenu-item">
-                                        <!--Configurar nombre del archivo-->
-                                        <a href=".." class="submenu-link">
-                                            <span>
-                                                <i class="fa-solid fa-inbox me-2"></i>
-                                            </span>
-                                            <span class="hide-menu">Visualizar préstamos</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                        <span class="hide-menu">Visualizar préstamos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
 
-                            <li class="sidebar-item">
-                                <!--Configurar nombre del archivo-->
-                                <a class="sidebar-link" href=".." aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-cards"></i>
-                                    </span>
-                                    <span class="hide-menu">Gestionar solicitudes</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
-                                    <span>
-                                        <i class="fa-solid fa-eye"></i>
-                                    </span>
-                                    <span class="hide-menu">Observaciones</span>
-                                </a>
-                                <ul id="submenu7" class="submenu" style="display: none;">
-                                    <li class="submenu-item ">
-                                        <!--Configurar nombre del archivo-->
-                                        <a href=".." class="submenu-link">
-                                            <span>
-                                                <i class="far fa-eye-slash me-2"></i>
-                                            </span>
-                                            <span class="hide-menu">Observaciones generales</span>
-                                        </a>
-                                    </li>
-                                    <li class="submenu-item">
-                                        <!--Configurar nombre del archivo-->
-                                        <a href=".." class="submenu-link">
-                                            <span>
-                                                <i class="far fa-eye me-2"></i>
-                                            </span>
-                                            <span class="hide-menu">Mis observaciones</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li class="sidebar-item">
+                            <!--Configurar nombre del archivo-->
+                            <a class="sidebar-link" href="../vistas_admin/gestionar_solicitudes.html" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-cards"></i>
+                                </span>
+                                <span class="hide-menu">Gestionar solicitudes</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
+                                <span>
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                                <span class="hide-menu">Observaciones</span>
+                            </a>
+                            <ul id="submenu7" class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="far fa-eye-slash me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Observaciones generales</span>
+                                    </a>
+                                </li>
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="far fa-eye me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Mis observaciones</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="sidebar-item">
-                                <!--Configurar nombre del archivo-->
-                                <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
-                                    <span>
-                                        <i class="fa-solid fa-folder"></i>
-                                    </span>
-                                    <span class="hide-menu">Reportes</span>
-                                </a>
-                                <ul id="submenu8" class="submenu" style="display: none;">
-                                    <li class="submenu-item">
-                                        <!--Configurar nombre del archivo-->
-                                        <a href=".." class="submenu-link">
-                                            <span>
-                                                <i class="fa-solid fa-table-list me-2"></i>
-                                            </span>
-                                            <span class="hide-menu">Mis solicitudes</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <!--Configurar nombre del archivo-->
-                                <a class="sidebar-link" href=".." aria-expanded="false">
-                                    <span>
-                                        <i class="fa-solid fa-gear"></i>
-                                    </span>
-                                    <span class="hide-menu">Configuración</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- aca termina el menu lateral -->
-                </div>
+                        <li class="sidebar-item">
+                            <!--Configurar nombre del archivo-->
+                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
+                                <span>
+                                    <i class="fa-solid fa-folder"></i>
+                                </span>
+                                <span class="hide-menu">Reportes</span>
+                            </a>
+                            <ul id="submenu8" class="submenu" style="display: none;">
+                                <li class="submenu-item">
+                                    <!--Configurar nombre del archivo-->
+                                    <a href=".." class="submenu-link">
+                                        <span>
+                                            <i class="fa-solid fa-table-list me-2"></i>
+                                        </span>
+                                        <span class="hide-menu">Mis solicitudes</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <!--Configurar nombre del archivo-->
+                            <a class="sidebar-link" href=".." aria-expanded="false">
+                                <span>
+                                    <i class="fa-solid fa-gear"></i>
+                                </span>
+                                <span class="hide-menu">Configuración</span>
+                            </a>
+                        </li>
 
-            </aside>
+                    </ul>
+
+                </nav>
+                <!-- aca termina el menu lateral -->
+            </div>
+
+        </aside>
 
             <!--  aca empieza el header -->
             <div class="body-wrapper">
