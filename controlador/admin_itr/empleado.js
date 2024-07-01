@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
     cargarEmpleados();
     cargarEspecialidades();
     cargarCargos();
+    cargarEstados();
 
     document.getElementById('buscarEmpleado').addEventListener('input', buscarEmpleado);
-    document.getElementById('filtroEspecialidad').addEventListener('change', buscarEmpleado);
+    document.getElementById('filtroEstado').addEventListener('change', buscarEmpleado);
+
     document.getElementById('formAgregarEspecialidad').addEventListener('submit', function (event) {
         event.preventDefault();
         agregarEspecialidad();
@@ -30,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
         actualizarCargo();
     });
 
+    document.getElementById('formAsignarEspecialidad').addEventListener('submit', function (event) {
+        event.preventDefault();
+        asignarEspecialidadSubmit();
+    });
+
     function cargarEmpleados() {
         fetch('../../api/services/empleado_services.php?action=getEmpleados')
             .then(response => response.json())
@@ -46,27 +53,33 @@ document.addEventListener('DOMContentLoaded', function () {
     function mostrarEmpleados(empleados) {
         const tbody = document.getElementById('tablaEmpleados');
         tbody.innerHTML = '';
-        empleados.forEach(empleado => {
+        if (empleados.length > 0) {
+            empleados.forEach(empleado => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${empleado.nombre_empleado}</td>
+                    <td>${empleado.apellido_empleado}</td>
+                    <td>${empleado.telefono}</td>
+                    <td>${empleado.estado_empleado}</td>
+                    <td>${empleado.correo_electronico}</td>
+                    <td>${empleado.cargo}</td>
+                    <td>${empleado.especialidad}</td>
+                    <td>
+                        <button type="button" class="btn btn-success" onclick="cargarEmpleado(${empleado.id_datos_empleado})" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="asignarEspecialidad(${empleado.id_datos_empleado}, '${empleado.nombre_empleado}')" data-bs-toggle="modal" data-bs-target="#asigEspecialidad">
+                            <i class="fa-solid fa-award"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } else {
             const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${empleado.nombre_empleado}</td>
-                <td>${empleado.apellido_empleado}</td>
-                <td>${empleado.telefono}</td>
-                <td>${empleado.estado_empleado}</td>
-                <td>${empleado.correo_electronico}</td>
-                <td>${empleado.cargo}</td>
-                <td>${empleado.especialidad}</td>
-                <td>
-                    <button type="button" class="btn btn-success" onclick="cargarEmpleado(${empleado.id_datos_empleado})" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal">
-                        <i class="fa-solid fa-pencil"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning" onclick="asignarEspecialidad(${empleado.id_datos_empleado})" data-bs-toggle="modal" data-bs-target="#asigEspecialidad">
-                        <i class="fa-solid fa-award"></i>
-                    </button>
-                </td>
-            `;
+            tr.innerHTML = `<td colspan="8" class="text-center">No se encontraron registros</td>`;
             tbody.appendChild(tr);
-        });
+        }
     }
 
     function cargarEspecialidades() {
@@ -134,6 +147,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 </td>
             `;
             tbody.appendChild(tr);
+        });
+    }
+
+    function cargarEstados() {
+        const estados = ['Activo', 'Inactivo'];
+        const selectEstado = document.getElementById('filtroEstado');
+        estados.forEach(estado => {
+            const option = document.createElement('option');
+            option.value = estado;
+            option.textContent = estado;
+            selectEstado.appendChild(option);
         });
     }
 
@@ -306,6 +330,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('editarTelefonoEmpleado').value = data.dataset.telefono;
                     document.getElementById('editarEstadoEmpleado').value = data.dataset.estado_empleado;
                     document.getElementById('editarCorreoEmpleado').value = data.dataset.correo_electronico;
+
+                    // Bloquear todos los campos excepto el estado
+                    document.getElementById('editarNombreEmpleado').disabled = true;
+                    document.getElementById('editarApellidoEmpleado').disabled = true;
+                    document.getElementById('editarTelefonoEmpleado').disabled = true;
+                    document.getElementById('editarCorreoEmpleado').disabled = true;
                 } else {
                     Swal.fire('Error!', data.message, 'error');
                 }
@@ -315,18 +345,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function actualizarEmpleado() {
         const id = document.getElementById('editarEmpleadoId').value;
-        const nombre = document.getElementById('editarNombreEmpleado').value;
-        const apellido = document.getElementById('editarApellidoEmpleado').value;
-        const telefono = document.getElementById('editarTelefonoEmpleado').value;
         const estado = document.getElementById('editarEstadoEmpleado').value;
-        const correo = document.getElementById('editarCorreoEmpleado').value;
 
         fetch('../../api/services/empleado_services.php?action=updateEmpleado', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id, nombre, apellido, telefono, estado, correo })
+            body: JSON.stringify({ id, estado })
         })
             .then(response => response.json())
             .then(data => {
@@ -361,19 +387,69 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function buscarEmpleado() {
-        const searchValue = document.getElementById('buscarEmpleado').value;
-        const filtroEspecialidad = document.getElementById('filtroEspecialidad').value;
+        const buscar = document.getElementById('buscarEmpleado').value;
+        const estado = document.getElementById('filtroEstado').value;
 
-        fetch(`../../api/services/empleado_services.php?action=searchEmpleados&search=${searchValue}&especialidad=${filtroEspecialidad}`)
+        fetch(`../../api/services/empleado_services.php?action=searchEmpleados&buscar=${buscar}&estado=${estado}`)
             .then(response => response.json())
             .then(data => {
                 if (data.status) {
                     mostrarEmpleados(data.dataset);
                 } else {
-                    console.error('Error al buscar empleados:', data.message);
+                    mostrarEmpleados([]); // Llamar a mostrarEmpleados con una lista vacía
                 }
             })
             .catch(error => console.error('Error al buscar empleados:', error));
+    }
+
+    function asignarEspecialidad(idEmpleado, nombreEmpleado) {
+        document.getElementById('empleadoEspecialidad').value = nombreEmpleado;
+        document.getElementById('empleadoEspecialidad').disabled = true; // Bloquear campo empleado
+        document.getElementById('idEmpleadoEspecialidad').value = idEmpleado;
+        cargarEspecialidadesAsignar();
+    }
+
+    function cargarEspecialidadesAsignar() {
+        fetch('../../api/services/empleado_services.php?action=getAllEspecialidades')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    const selectEspecialidad = document.getElementById('especialidadAsignar');
+                    selectEspecialidad.innerHTML = ''; // Limpiar las opciones anteriores
+                    data.dataset.forEach(especialidad => {
+                        const option = document.createElement('option');
+                        option.value = especialidad.id_especialidad;
+                        option.textContent = especialidad.nombre_especialidad;
+                        selectEspecialidad.appendChild(option);
+                    });
+                } else {
+                    console.error('Error al obtener especialidades:', data.message);
+                }
+            })
+            .catch(error => console.error('Error al obtener especialidades:', error));
+    }
+
+    function asignarEspecialidadSubmit() {
+        const idEmpleado = document.getElementById('idEmpleadoEspecialidad').value;
+        const idEspecialidad = document.getElementById('especialidadAsignar').value;
+
+        fetch('../../api/services/empleado_services.php?action=assignEspecialidad', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idEmpleado, idEspecialidad })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'Especialidad asignada correctamente.', 'success');
+                    cargarEmpleados();
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch(error => console.error('Error al asignar especialidad:', error));
     }
 
     window.cargarEmpleado = cargarEmpleado;

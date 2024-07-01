@@ -30,6 +30,9 @@ class GestionarEmpleadoData extends GestionarEmpleadoHandler
         }
     }
 
+   
+
+
     public function updateEmployee($id, $estado)
     {
         if ($this->setId($id) && $this->setEstado($estado)) {
