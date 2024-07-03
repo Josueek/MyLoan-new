@@ -1,80 +1,104 @@
 <?php
 require_once('../helpers/database.php');
 
-class ObservacionesHandler
-{
-    // Método para obtener todas las observaciones con filtro opcional
-    public function getAllObservaciones($buscar = '', $filtrar = '')
+class ObservacionesHandler {
+    private $db;
+
+    public function __construct()
     {
-        $sql = 'SELECT id_observacion, fecha_observacion, observacion, foto_observacion, tipo_observacion, tipo_prestamo, id_espacio, id_usuario, id_prestamo
-                FROM tb_observaciones
-                WHERE observacion LIKE ? AND tipo_prestamo LIKE ?';
-        $params = ["%$buscar%", $filtrar ? $filtrar : '%'];
-        $data = Database::getRows($sql, $params);
-        if ($data) {
-            return array('status' => 1, 'dataset' => $data);
+        $this->db = Database::connect();
+    }
+
+    public function getAllObservaciones($buscar = '')
+    {
+        $query = "SELECT * FROM tb_observaciones WHERE observacion LIKE '%$buscar%' ORDER BY fecha_observacion DESC";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            $observaciones = array();
+            while ($row = $result->fetch_assoc()) {
+                $observaciones[] = $row;
+            }
+            $result->free();
+            return $observaciones;
         } else {
-            return array('status' => 0, 'message' => 'No se encontraron registros');
+            return null;
         }
     }
 
-    // Método para obtener los tipos de observación
     public function getTiposObservacion()
     {
-        return ['Previa', 'Durante', 'Despues', 'Fuera'];
+        $query = "SELECT DISTINCT tipo_observacion FROM tb_observaciones";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            $tipos = array();
+            while ($row = $result->fetch_assoc()) {
+                $tipos[] = $row['tipo_observacion'];
+            }
+            $result->free();
+            return $tipos;
+        } else {
+            return null;
+        }
     }
 
-    // Método para obtener los tipos de préstamo
     public function getTiposPrestamo()
     {
-        return ['Taller', 'Laboratorio', 'Equipo', 'Material', 'Herramienta'];
+        $query = "SELECT DISTINCT tipo_prestamo FROM tb_observaciones";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            $tipos = array();
+            while ($row = $result->fetch_assoc()) {
+                $tipos[] = $row['tipo_prestamo'];
+            }
+            $result->free();
+            return $tipos;
+        } else {
+            return null;
+        }
     }
 
-    // Método para obtener los espacios
     public function getEspacios()
     {
-        $sql = 'SELECT id_espacio, nombre_espacio FROM tb_espacios'; // Suponiendo que hay una tabla tb_espacios
-        return Database::getRows($sql);
+        $query = "SELECT id_espacio, nombre_espacio FROM tb_espacios";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            $espacios = array();
+            while ($row = $result->fetch_assoc()) {
+                $espacios[] = $row;
+            }
+            $result->free();
+            return $espacios;
+        } else {
+            return null;
+        }
     }
 
-    // Método para obtener los préstamos
     public function getPrestamos()
     {
-        $sql = 'SELECT id_prestamo, descripcion_prestamo FROM tb_prestamos'; // Suponiendo que hay una tabla tb_prestamos
-        return Database::getRows($sql);
+        $query = "SELECT id_prestamo, nombre_prestamo FROM tb_prestamos";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            $prestamos = array();
+            while ($row = $result->fetch_assoc()) {
+                $prestamos[] = $row;
+            }
+            $result->free();
+            return $prestamos;
+        } else {
+            return null;
+        }
     }
 
-    // Método para añadir una nueva observación
-    public function addObservacion($params)
-    {
-        $sql = 'INSERT INTO tb_observaciones (fecha_observacion, observacion, foto_observacion, tipo_observacion, tipo_prestamo, id_espacio, id_usuario, id_prestamo) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        return Database::executeRow($sql, $params);
-    }
-
-    // Método para obtener una observación por ID
-    public function getObservacionById($idObservacion)
-    {
-        $sql = 'SELECT * FROM tb_observaciones WHERE id_observacion = ?';
-        $params = array($idObservacion);
-        return Database::getRow($sql, $params);
-    }
-
-    // Método para actualizar una observación
-    public function updateObservacion($params)
-    {
-        $sql = 'UPDATE tb_observaciones 
-                SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, tipo_prestamo = ?, id_espacio = ?, id_usuario = ?, id_prestamo = ?
-                WHERE id_observacion = ?';
-        return Database::executeRow($sql, $params);
-    }
-
-    // Método para eliminar una observación
-    public function deleteObservacion($idObservacion)
-    {
-        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?';
-        $params = array($idObservacion);
-        return Database::executeRow($sql, $params);
-    }
+    // Otros métodos según sea necesario para manejar datos específicos
 }
 ?>

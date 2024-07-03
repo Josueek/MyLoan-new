@@ -1,137 +1,180 @@
 <?php
-require_once('../helpers/validator.php');
-require_once('../models/handler/mis_observaciones_handler.php'); // Adjust the path as per your file structure
+require_once('../helpers/database.php');
 
-class ObservacionesData extends ObservacionesHandler
-{
+class ObservacionData {
+    private $db;
     private $idObservacion;
     private $fechaObservacion;
     private $observacion;
-    private $fotoObservacion;
     private $tipoObservacion;
     private $tipoPrestamo;
     private $idEspacio;
     private $idUsuario;
     private $idPrestamo;
 
-    public function setIdObservacion($idObservacion)
+    public function __construct()
     {
-        if (Validator::validateNaturalNumber($idObservacion)) {
-            $this->idObservacion = $idObservacion;
-            return true;
+        $this->db = Database::connect();
+    }
+
+    public function getAllObservaciones($buscar = '')
+    {
+        $observaciones = array();
+
+        $query = "SELECT * FROM tb_observaciones WHERE observacion LIKE '%$buscar%' ORDER BY fecha_observacion DESC";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $observaciones[] = $row;
+            }
+            $result->free();
+            return $observaciones;
         } else {
-            return false;
+            return null;
         }
     }
 
-    public function setFechaObservacion($fechaObservacion)
+    public function getTiposObservacion()
     {
-        // Assuming $fechaObservacion is in 'YYYY-MM-DD' format
-        if (Validator::validateDate($fechaObservacion)) {
-            $this->fechaObservacion = $fechaObservacion;
-            return true;
+        $tipos = array();
+
+        $query = "SELECT DISTINCT tipo_observacion FROM tb_observaciones";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $tipos[] = $row['tipo_observacion'];
+            }
+            $result->free();
+            return $tipos;
         } else {
-            return false;
+            return null;
         }
     }
 
-    public function setObservacion($observacion)
+    public function getTiposPrestamo()
     {
-        if (Validator::validateString($observacion)) {
-            $this->observacion = $observacion;
-            return true;
+        $tipos = array();
+
+        $query = "SELECT DISTINCT tipo_prestamo FROM tb_observaciones";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $tipos[] = $row['tipo_prestamo'];
+            }
+            $result->free();
+            return $tipos;
         } else {
-            return false;
+            return null;
         }
     }
 
-    public function setFotoObservacion($fotoObservacion)
+    public function getEspacios()
     {
-        // You might want to validate and handle the photo upload in more detail
-        $this->fotoObservacion = $fotoObservacion;
-    }
+        $espacios = array();
 
-    public function setTipoObservacion($tipoObservacion)
-    {
-        // Assuming $tipoObservacion is validated elsewhere
-        $this->tipoObservacion = $tipoObservacion;
-    }
+        $query = "SELECT id_espacio, nombre_espacio FROM tb_espacios";
 
-    public function setTipoPrestamo($tipoPrestamo)
-    {
-        // Assuming $tipoPrestamo is validated elsewhere
-        $this->tipoPrestamo = $tipoPrestamo;
-    }
+        $result = $this->db->query($query);
 
-    public function setIdEspacio($idEspacio)
-    {
-        if (Validator::validateNaturalNumber($idEspacio)) {
-            $this->idEspacio = $idEspacio;
-            return true;
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $espacios[] = $row;
+            }
+            $result->free();
+            return $espacios;
         } else {
-            return false;
+            return null;
         }
     }
 
-    public function setIdUsuario($idUsuario)
+    public function getPrestamos()
     {
-        if (Validator::validateNaturalNumber($idUsuario)) {
-            $this->idUsuario = $idUsuario;
-            return true;
+        $prestamos = array();
+
+        $query = "SELECT id_prestamo, nombre_prestamo FROM tb_prestamos";
+
+        $result = $this->db->query($query);
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $prestamos[] = $row;
+            }
+            $result->free();
+            return $prestamos;
         } else {
-            return false;
+            return null;
         }
     }
 
-    public function setIdPrestamo($idPrestamo)
+    public function getObservacionById($id)
     {
-        if (Validator::validateNaturalNumber($idPrestamo)) {
-            $this->idPrestamo = $idPrestamo;
-            return true;
+        $query = "SELECT * FROM tb_observaciones WHERE id_observacion = $id LIMIT 1";
+
+        $result = $this->db->query($query);
+
+        if ($result && $result->num_rows == 1) {
+            $observacion = $result->fetch_assoc();
+            $result->free();
+            return $observacion;
         } else {
-            return false;
+            return null;
         }
     }
 
     public function create()
     {
-        $params = array(
-            $this->fechaObservacion,
-            $this->observacion,
-            $this->fotoObservacion,
-            $this->tipoObservacion,
-            $this->tipoPrestamo,
-            $this->idEspacio,
-            $this->idUsuario,
-            $this->idPrestamo
-        );
-        return $this->addObservacion($params);
-    }
+        $query = "INSERT INTO tb_observaciones (fecha_observacion, observacion, tipo_observacion, tipo_prestamo, id_espacio, id_usuario, id_prestamo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    public function getObservacionById($idObservacion)
-    {
-        return parent::getObservacionById($idObservacion);
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssssiii', $this->fechaObservacion, $this->observacion, $this->tipoObservacion, $this->tipoPrestamo, $this->idEspacio, $this->idUsuario, $this->idPrestamo);
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
     public function update()
     {
-        $params = array(
-            $this->fechaObservacion,
-            $this->observacion,
-            $this->fotoObservacion,
-            $this->tipoObservacion,
-            $this->tipoPrestamo,
-            $this->idEspacio,
-            $this->idUsuario,
-            $this->idPrestamo,
-            $this->idObservacion
-        );
-        return parent::updateObservacion($params);
+        $query = "UPDATE tb_observaciones SET fecha_observacion = ?, observacion = ?, tipo_observacion = ?, tipo_prestamo = ?, id_espacio = ?, id_usuario = ?, id_prestamo = ? WHERE id_observacion = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssssiiii', $this->fechaObservacion, $this->observacion, $this->tipoObservacion, $this->tipoPrestamo, $this->idEspacio, $this->idUsuario, $this->idPrestamo, $this->idObservacion);
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
-    public function delete($idObservacion)
+    public function delete($id)
     {
-        return parent::deleteObservacion($idObservacion);
+        $query = "DELETE FROM tb_observaciones WHERE id_observacion = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
+
+    // Getters y setters para propiedades de la clase ObservacionData
+    // Implementar según sea necesario para manipular los datos de observación
+    // Ejemplo de getter:
+    public function setIdObservacion($idObservacion)
+    {
+        $this->idObservacion = $idObservacion;
+    }
+
+    // Implementar otros getters y setters según sea necesario
+    // ...
 }
 ?>
