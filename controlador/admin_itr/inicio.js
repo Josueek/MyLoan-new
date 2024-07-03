@@ -7,6 +7,5 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => mostrarDatosTabla(data))
             .catch(error => console.error('Error al obtener espacios:', error));
-    }
-    
+    }    
 });
