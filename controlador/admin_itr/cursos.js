@@ -10,33 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Evento para agregar curso
     document.getElementById('formAgregarCurso').addEventListener('submit', function(event) {
         event.preventDefault();
-        Swal.fire({
-            title: `¿Estás seguro que deseas agregar el curso ${document.getElementById('nombreCurso').value}?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, agregar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                agregarCurso();
-            }
-        });
+        agregarCurso();
     });
 
     // Evento para editar curso
     document.getElementById('formEditarCurso').addEventListener('submit', function(event) {
         event.preventDefault();
-        Swal.fire({
-            title: `¿Estás seguro que deseas editar el curso ${document.getElementById('editarNombreCurso').value}?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, editar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                editarCurso();
-            }
-        });
+        editarCurso();
     });
 
     function cargarDatosTabla(buscar = '') {
@@ -49,12 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function cargarComboboxData() {
         fetch(`../../api/services/curso_services.php?action=getAllEmpleados`)
             .then(response => response.json())
-            .then(data => llenarCombobox('empleadoCurso', data, 'id_datos_empleado', 'nombre_empleado'))
-            .catch(error => console.error('Error al obtener empleados:', error));
-        
-        fetch(`../../api/services/curso_services.php?action=getAllEmpleados`)
-            .then(response => response.json())
-            .then(data => llenarCombobox('editarEmpleadoCurso', data, 'id_datos_empleado', 'nombre_empleado'))
+            .then(data => {
+                llenarCombobox('empleadoCurso', data, 'id_datos_empleado', 'nombre_empleado');
+                llenarCombobox('editarEmpleadoCurso', data, 'id_datos_empleado', 'nombre_empleado');
+            })
             .catch(error => console.error('Error al obtener empleados:', error));
     }
 
@@ -126,70 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function agregarCurso() {
-        const nombre = document.getElementById('nombreCurso').value;
-        const fechaInicio = document.getElementById('fechaInicio').value;
-        const fechaFin = document.getElementById('fechaFin').value;
-        const cantidadPersonas = document.getElementById('cantidadPersonas').value;
-        const grupo = document.getElementById('grupo').value;
-        const programaFormacion = document.getElementById('programaFormacion').value;
-        const codigoCurso = document.getElementById('codigoCurso').value;
-        const empleado = document.getElementById('empleadoCurso').value;
-
-        if (!nombre || !fechaInicio || !fechaFin || !cantidadPersonas || !grupo || !programaFormacion || !codigoCurso || !empleado) {
-            Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
-            return;
-        }
-
-        const fechaActual = new Date().toISOString().split('T')[0];
-        if (fechaInicio < fechaActual) {
-            Swal.fire('Error!', 'La fecha de inicio debe ser la actual o una fecha futura.', 'error');
-            return;
-        }
-
-        if (fechaFin < fechaInicio) {
-            Swal.fire('Error!', 'La fecha de fin debe ser mayor o igual a la fecha de inicio.', 'error');
-            return;
-        }
-
-        if (isNaN(cantidadPersonas) || cantidadPersonas <= 0 || !Number.isInteger(parseFloat(cantidadPersonas))) {
-            Swal.fire('Error!', 'Cantidad de personas debe ser un número entero positivo.', 'error');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('nombre', nombre);
-        formData.append('fechaInicio', fechaInicio);
-        formData.append('fechaFin', fechaFin);
-        formData.append('cantidadPersonas', cantidadPersonas);
-        formData.append('grupo', grupo);
-        formData.append('programaFormacion', programaFormacion);
-        formData.append('codigoCurso', codigoCurso);
-        formData.append('empleado', empleado);
-        formData.append('estado', 'pendiente'); // Estado por defecto
-
-        fetch('../../api/services/curso_services.php?action=addCurso', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'Curso agregado correctamente.', 'success').then(() => {
-                    document.getElementById('formAgregarCurso').reset();
-                    cargarDatosTabla();
-                    $('#agregarCursoModal').modal('hide');
-                });
-            } else {
-                Swal.fire('Error!', data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error al agregar curso:', error);
-            Swal.fire('Error!', 'Hubo un problema al agregar el curso.', 'error');
-        });
-    }
-
     function cargarCurso(idCurso) {
         fetch(`../../api/services/curso_services.php?action=getCurso&id=${idCurso}`)
             .then(response => response.json())
@@ -206,15 +120,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('editarCodigoCurso').value = curso.codigo_curso;
                     document.getElementById('editarEmpleadoCurso').value = curso.id_empleado;
                     document.getElementById('editarEstadoCurso').value = curso.estado;
-                    Swal.fire('Datos cargados!', 'Se han cargado los datos del curso correctamente.', 'success');
+
+                    if (curso.estado === 'denegado' || curso.estado === 'finalizado') {
+                        bloquearCampos(true);
+                        document.getElementById('guardarCambiosBtn').disabled = true;
+                    } else {
+                        bloquearCampos(false);
+                        document.getElementById('guardarCambiosBtn').disabled = false;
+                    }
                 } else {
-                    Swal.fire('Error!', 'No se pudieron obtener los datos del curso.', 'error');
+                    Swal.fire('¡Datos cargados!', 'Los datos del curso se han cargado con éxito.', 'success');
                 }
             })
             .catch(error => {
                 console.error('Error al obtener datos del curso:', error);
-                Swal.fire('Error!', 'Hubo un problema al obtener los datos del curso.', 'error');
+                Swal.fire('¡Datos cargados!', 'Los datos del curso se han cargado con éxito.', 'success');
             });
+    }
+
+    function bloquearCampos(bloquear) {
+        const campos = [
+            'editarNombreCurso',
+            'editarFechaInicio',
+            'editarFechaFin',
+            'editarCantidadPersonas',
+            'editarGrupo',
+            'editarProgramaFormacion',
+            'editarCodigoCurso',
+            'editarEmpleadoCurso',
+            'editarEstadoCurso'
+        ];
+        campos.forEach(campo => {
+            document.getElementById(campo).disabled = bloquear;
+        });
     }
 
     function editarCurso() {
@@ -231,22 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!nombre || !fechaInicio || !fechaFin || !cantidadPersonas || !grupo || !programaFormacion || !codigoCurso || !empleado || !estado) {
             Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
-            return;
-        }
-
-        const fechaActual = new Date().toISOString().split('T')[0];
-        if (fechaInicio < fechaActual) {
-            Swal.fire('Error!', 'La fecha de inicio debe ser la actual o una fecha futura.', 'error');
-            return;
-        }
-
-        if (fechaFin < fechaInicio) {
-            Swal.fire('Error!', 'La fecha de fin debe ser mayor o igual a la fecha de inicio.', 'error');
-            return;
-        }
-
-        if (isNaN(cantidadPersonas) || cantidadPersonas <= 0 || !Number.isInteger(parseFloat(cantidadPersonas))) {
-            Swal.fire('Error!', 'Cantidad de personas debe ser un número entero positivo.', 'error');
             return;
         }
 
@@ -271,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status) {
                 Swal.fire('Éxito!', 'Curso actualizado correctamente.', 'success').then(() => {
                     cargarDatosTabla();
-                    $('#editarCursoModal').modal('hide');
+                    document.getElementById('editarCursoModal').querySelector('.btn-close').click();
                 });
             } else {
                 Swal.fire('Error!', data.message, 'error');
@@ -280,6 +202,53 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error al actualizar curso:', error);
             Swal.fire('Error!', 'Hubo un problema al actualizar el curso.', 'error');
+        });
+    }
+
+    function agregarCurso() {
+        const nombre = document.getElementById('nombreCurso').value;
+        const fechaInicio = document.getElementById('fechaInicio').value;
+        const fechaFin = document.getElementById('fechaFin').value;
+        const cantidadPersonas = document.getElementById('cantidadPersonas').value;
+        const grupo = document.getElementById('grupo').value;
+        const programaFormacion = document.getElementById('programaFormacion').value;
+        const codigoCurso = document.getElementById('codigoCurso').value;
+        const empleado = document.getElementById('empleadoCurso').value;
+
+        if (!nombre || !fechaInicio || !fechaFin || !cantidadPersonas || !grupo || !programaFormacion || !codigoCurso || !empleado) {
+            Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('fechaInicio', fechaInicio);
+        formData.append('fechaFin', fechaFin);
+        formData.append('cantidadPersonas', cantidadPersonas);
+        formData.append('grupo', grupo);
+        formData.append('programaFormacion', programaFormacion);
+        formData.append('codigoCurso', codigoCurso);
+        formData.append('empleado', empleado);
+
+        fetch('../../api/services/curso_services.php?action=addCurso', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                Swal.fire('Éxito!', 'Curso agregado correctamente.', 'success').then(() => {
+                    document.getElementById('formAgregarCurso').reset();
+                    cargarDatosTabla();
+                    document.getElementById('agregarCursoModal').querySelector('.btn-close').click();
+                });
+            } else {
+                Swal.fire('Error!', data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error al agregar curso:', error);
+            Swal.fire('Error!', 'Hubo un problema al agregar el curso.', 'error');
         });
     }
 
