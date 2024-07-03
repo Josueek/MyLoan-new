@@ -23,23 +23,22 @@ class prestamos_handler
 
     public function readAll()
     {
-        $sql = 'SELECT p.id_prestamo, p.fecha_solicitud, c.programa_formacion, p.estado_prestamo, p.observacion, c.nombre_curso, e.nombre_empleado
+        $sql = 'SELECT p.id_prestamo, p.fecha_solicitud, p.programa_formacion, p.estado_prestamo, p.observacion, c.nombre_curso, e.nombre_empleado
                 FROM tb_prestamos p
-                INNER JOIN tb_cursos c ON p.id_curso = c.id_curso
-                INNER JOIN tb_datos_empleados e ON c.id_empleado = e.id_datos_ empleado
+                LEFT JOIN tb_cursos c ON p.id_curso = c.id_curso
+                LEFT JOIN tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
                 ORDER BY p.id_prestamo';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT p.id_prestamo, p.fecha_solicitud, c.programa_formacion, p.estado_prestamo, p.observacion, c.nombre_curso, e.nombre_empleado
+        $sql = 'SELECT p.id_prestamo, p.fecha_solicitud, p.programa_formacion, p.estado_prestamo, p.observacion, c.nombre_curso, e.nombre_empleado
                 FROM tb_prestamos p
-                INNER JOIN tb_cursos c ON p.id_curso = c.id_curso
-                INNER JOIN tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
+                LEFT JOIN tb_cursos c ON p.id_curso = c.id_curso
+                LEFT JOIN tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
                 WHERE p.id_prestamo = ?';
         $params = array($this->id_prestamo);
         return Database::getRow($sql, $params);
     }
-}
-
+};
