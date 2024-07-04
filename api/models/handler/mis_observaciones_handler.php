@@ -1,104 +1,68 @@
 <?php
+
 require_once('../helpers/database.php');
+require_once('../helpers/validator.php');
 
-class ObservacionesHandler {
-    private $db;
-
-    public function __construct()
-    {
-        $this->db = Database::connect();
-    }
-
+class ObservacionHandler
+{
     public function getAllObservaciones($buscar = '')
     {
-        $query = "SELECT * FROM tb_observaciones WHERE observacion LIKE '%$buscar%' ORDER BY fecha_observacion DESC";
-
-        $result = $this->db->query($query);
-
-        if ($result) {
-            $observaciones = array();
-            while ($row = $result->fetch_assoc()) {
-                $observaciones[] = $row;
-            }
-            $result->free();
-            return $observaciones;
+        $sql = 'SELECT o.id_observacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, o.tipo_prestamo, o.id_espacio, o.id_usuario, o.id_prestamo
+                FROM tb_observaciones o
+                WHERE o.observacion LIKE ?';
+        $params = ["%$buscar%"];
+        $data = Database::getRows($sql, $params);
+        if ($data) {
+            return array('status' => 1, 'dataset' => $data);
         } else {
-            return null;
+            return array('status' => 0, 'message' => 'No se encontraron observaciones');
         }
     }
 
-    public function getTiposObservacion()
+    public function addObservacion($params)
     {
-        $query = "SELECT DISTINCT tipo_observacion FROM tb_observaciones";
-
-        $result = $this->db->query($query);
-
-        if ($result) {
-            $tipos = array();
-            while ($row = $result->fetch_assoc()) {
-                $tipos[] = $row['tipo_observacion'];
-            }
-            $result->free();
-            return $tipos;
-        } else {
-            return null;
-        }
+        $sql = 'INSERT INTO tb_observaciones (fecha_observacion, observacion, foto_observacion, tipo_observacion, tipo_prestamo, id_espacio, id_usuario, id_prestamo) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        return Database::executeRow($sql, $params);
     }
 
-    public function getTiposPrestamo()
+    public function getObservacionById($idObservacion)
     {
-        $query = "SELECT DISTINCT tipo_prestamo FROM tb_observaciones";
-
-        $result = $this->db->query($query);
-
-        if ($result) {
-            $tipos = array();
-            while ($row = $result->fetch_assoc()) {
-                $tipos[] = $row['tipo_prestamo'];
-            }
-            $result->free();
-            return $tipos;
-        } else {
-            return null;
-        }
+        $sql = 'SELECT * FROM tb_observaciones WHERE id_observacion = ?';
+        $params = array($idObservacion);
+        return Database::getRow($sql, $params);
     }
 
-    public function getEspacios()
+    public function updateObservacion($params)
     {
-        $query = "SELECT id_espacio, nombre_espacio FROM tb_espacios";
-
-        $result = $this->db->query($query);
-
-        if ($result) {
-            $espacios = array();
-            while ($row = $result->fetch_assoc()) {
-                $espacios[] = $row;
-            }
-            $result->free();
-            return $espacios;
-        } else {
-            return null;
-        }
+        $sql = 'UPDATE tb_observaciones 
+                SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, tipo_prestamo = ?, id_espacio = ?, id_usuario = ?, id_prestamo = ? 
+                WHERE id_observacion = ?';
+        return Database::executeRow($sql, $params);
     }
 
-    public function getPrestamos()
+    public function deleteObservacion($idObservacion)
     {
-        $query = "SELECT id_prestamo, nombre_prestamo FROM tb_prestamos";
-
-        $result = $this->db->query($query);
-
-        if ($result) {
-            $prestamos = array();
-            while ($row = $result->fetch_assoc()) {
-                $prestamos[] = $row;
-            }
-            $result->free();
-            return $prestamos;
-        } else {
-            return null;
-        }
+        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?';
+        $params = array($idObservacion);
+        return Database::executeRow($sql, $params);
+    }
+    public function getAllPrestamoOb()
+    {
+        $sql = 'SELECT id_datos_empleado, nombre_empleado FROM tb_datos_empleados';
+        return Database::getRows($sql);
     }
 
-    // Otros métodos según sea necesario para manejar datos específicos
+    public function getAllEspecialidades()
+    {
+        $sql = 'SELECT id_especialidad, nombre_especialidad FROM tb_especialidades';
+        return Database::getRows($sql);
+    }
+
+    public function getAllInstituciones()
+    {
+        $sql = 'SELECT id_institucion, nombre_institucion FROM tb_instituciones';
+        return Database::getRows($sql);
+    }
 }
 ?>
