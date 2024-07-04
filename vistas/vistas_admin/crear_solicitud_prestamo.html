@@ -15,10 +15,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-        <link rel="stylesheet" href="../../recursos/libs/simplebar/dist/simplebar.css">
 </head>
 
 <body>
@@ -26,209 +27,9 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <aside class="left-sidebar">
-            <!-- Imagen del sistema -->
-            <div>
-                <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
-                    <a href="../vistas_admin/inicio.html" class="text-nowrap logo-img">
-                        <img src="../../recursos/img/logos/myloan_logo.png" width="180" alt="" />
-                    </a>
-                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                        <i class="ti ti-x fs-8"></i>
-                    </div>
-                </div>
+        <div class="dashboard">
 
-                <!-- Inicio de los menus-->
-                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-house"></i>
-                                </span>
-                                <span class="hide-menu">Inicio</span>
-                            </a>
-                        </li>
-                        <!-- Menú de administrar -->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
-                                <span>
-                                    <i class="fa-solid fa-pager"></i>
-                                </span>
-                                <span class="hide-menu">Administrar</span>
-                            </a>
-
-                            <ul id="submenu" class="submenu">
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
-                                        <span>
-                                            <i class="fa-solid fa-user me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Usuarios</span>
-                                    </a>
-                                </li>
-
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono -->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-settings me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_herramientas.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-tool me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de herramienta</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_equipos.html" class="submenu-link">
-                                        <span>
-                                            <i class="fas fa-desktop me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de equipos</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 3: Inventario de materiales -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_materiales.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-package  me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Inventario de materiales</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
-                                <span>
-                                    <i class="fa-solid fa-certificate"></i>
-                                </span>
-                                <span class="hide-menu">Cursos</span>
-                            </a>
-                            <ul id="submenu9" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/crear_curso.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear cursos</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-layer-group"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
-                                <span>
-                                    <i class="fa-solid fa-circle-exclamation"></i>
-                                </span>
-                                <span class="hide-menu">Mis préstamos</span>
-                            </a>
-                            <ul id="submenu10" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/crear_solicitud_prestamo.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear solicitud</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="../vistas_admin/gestionar_solicitudes.html"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-cards"></i>
-                                </span>
-                                <span class="hide-menu">Gestionar solicitudes</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
-                                <span>
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                                <span class="hide-menu">Observaciones</span>
-                            </a>
-                            <ul id="submenu7" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/observaciones_generales.html" class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye-slash me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Observaciones generales</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis observaciones</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
-                                <span>
-                                    <i class="fa-solid fa-folder"></i>
-                                </span>
-                                <span class="hide-menu">Reportes</span>
-                            </a>
-                            <ul id="submenu8" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-table-list me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis solicitudes</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- aca termina el menu lateral -->
-            </div>
-
-        </aside>
+        </div>
 
         <section class="body-wrapper">
             <div id="headerContainer" data-title="Crear solicitud de prestamo"></div>
@@ -299,16 +100,47 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Estado del empleado</th>
-                                <th scope="col">Correo electrónico</th>
-                                <th scope="col">Cargo</th>
-                                <th scope="col">Especialidad</th>
+                                <th scope="col">Apelido</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col"> Estado empleado</th>
+                                <th scope="col"> Foto empleado</th>
+                                <th scope="col"> Correo electronico</th>
+                                <th scope="col"> Cargo</th>
+                                <th scope="col"> Especialidad</th>
+
                             </tr>
                         </thead>
-                        <tbody id="tablaEmpleados">
-                            <!-- Los datos de la tabla se cargarán dinámicamente -->
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Lennyn Emmanuel</td>
+                                <td>Videz Perez</td>
+                                <td>7766-5566</td>
+                                <td>Foto empleado</td>
+                                <td>lennyn@gmail.com</td>
+                                <td>adminnistradorr</td>
+                                <td>Desarrollo de software</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Lennyn Emmanuel</td>
+                                <td>Videz Perez</td>
+                                <td>7766-5566</td>
+                                <td>Foto empleado</td>
+                                <td>lennyn@gmail.com</td>
+                                <td>adminnistradorr</td>
+                                <td>Desarrollo de software</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Lennyn Emmanuel</td>
+                                <td>Videz Perez</td>
+                                <td>7766-5566</td>
+                                <td>Foto empleado</td>
+                                <td>lennyn@gmail.com</td>
+                                <td>adminnistradorr</td>
+                                <td>Desarrollo de software</td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="col-lg-3 mb-3 d-flex justify-content-start">
@@ -316,25 +148,27 @@
                     </div>
                 </div>
             </section>
-        </section>
 
-        <!-- Scripts que funcionan -->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        </section>
+        <!--Scrip que si funionan -->
+        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../../recursos/js/sidebarmenu.js"></script>
         <script src="../../recursos/js/app.min.js"></script>
-<!-- Verifica que la ruta sea correcta -->
-<script src="../../controlador/admin_itr/empleado.js"></script>
-
-
+        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="/recursos/js/crear_solicitud_prestamo.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="../../controlador/utils/dashboard.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+        <script src="../../recursos/js/acciones.js"></script>
         <script src="../../recursos/js/modal/boton.js"></script>
-        <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/admin_cfp/header.js"></script>c
         <script src="../../controlador/utils/session_utils.js"></script>
-
-        <!-- Scripts cuestionables -->
+        <!-- Scrip que dudosamente sirven-->
+        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
 </body>
 
 </html>

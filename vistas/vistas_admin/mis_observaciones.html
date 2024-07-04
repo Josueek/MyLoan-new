@@ -27,209 +27,10 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <aside class="left-sidebar">
-            <!-- Imagen del sistema -->
-            <div>
-                <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
-                    <a href="../vistas_admin/inicio.html" class="text-nowrap logo-img">
-                        <img src="../../recursos/img/logos/myloan_logo.png" width="180" alt="" />
-                    </a>
-                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                        <i class="ti ti-x fs-8"></i>
-                    </div>
-                </div>
+        <div class="dashboard">
 
-                <!-- Inicio de los menus-->
-                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-house"></i>
-                                </span>
-                                <span class="hide-menu">Inicio</span>
-                            </a>
-                        </li>
-                        <!-- Menú de administrar -->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
-                                <span>
-                                    <i class="fa-solid fa-pager"></i>
-                                </span>
-                                <span class="hide-menu">Administrar</span>
-                            </a>
+        </div>
 
-                            <ul id="submenu" class="submenu">
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
-                                        <span>
-                                            <i class="fa-solid fa-user me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Usuarios</span>
-                                    </a>
-                                </li>
-
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono -->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-settings me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_herramientas.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-tool me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de herramienta</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_equipos.html" class="submenu-link">
-                                        <span>
-                                            <i class="fas fa-desktop me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de equipos</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 3: Inventario de materiales -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_materiales.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-package  me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Inventario de materiales</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
-                                <span>
-                                    <i class="fa-solid fa-certificate"></i>
-                                </span>
-                                <span class="hide-menu">Cursos</span>
-                            </a>
-                            <ul id="submenu9" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/crear_curso.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear cursos</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-layer-group"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
-                                <span>
-                                    <i class="fa-solid fa-circle-exclamation"></i>
-                                </span>
-                                <span class="hide-menu">Mis préstamos</span>
-                            </a>
-                            <ul id="submenu10" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/crear_solicitud_prestamo.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear solicitud</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="../vistas_admin/gestionar_solicitudes.html"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-cards"></i>
-                                </span>
-                                <span class="hide-menu">Gestionar solicitudes</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
-                                <span>
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                                <span class="hide-menu">Observaciones</span>
-                            </a>
-                            <ul id="submenu7" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/observaciones_generales.html" class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye-slash me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Observaciones generales</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis observaciones</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
-                                <span>
-                                    <i class="fa-solid fa-folder"></i>
-                                </span>
-                                <span class="hide-menu">Reportes</span>
-                            </a>
-                            <ul id="submenu8" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-table-list me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis solicitudes</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- aca termina el menu lateral -->
-            </div>
-
-        </aside>
         <!--  aca empieza el header -->
         <div class="body-wrapper">
             <div id="headerContainer" data-title="Mis observaciones"></div>
@@ -241,64 +42,76 @@
                 <!--  Row 1 -->
                 <!-- tabla -->
                 <!-- formulario-->
-                <div class="row g-0 text-center">
-                    <div class="col-lg-9">
-                        <div class="row">
-                            <!-- Columna 1 -->
-                            <div class="col-lg-4 mb-3">
-                                <!-- Contenido de la columna 1 -->
-                                <label for="fechaObservacion" class="form-label">Fecha de observación:</label>
-                                <input type="date" id="fechaObservacion" class="form-control" required>
+                <!-- Modal para agregar observación -->
+                <div class="modal fade" id="observationModal" tabindex="-1" aria-labelledby="observationModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="observationModalLabel">Agregar Observación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
-                            <div class="col-lg-4 mb-3">
-                                <label for="observacion" class="form-label">Observación:</label>
-                                <input type="text" id="observacion" class="form-control" placeholder="Observaciones"
-                                    minlength="8" required>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="fechaObservacion" class="form-label">Fecha de observación:</label>
+                                        <input type="date" id="fechaObservacion" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="observacion" class="form-label">Observación:</label>
+                                        <input type="text" id="observacion" class="form-control"
+                                            placeholder="Observaciones" minlength="8" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tipoObservacion" class="form-label">Tipo de observación:</label>
+                                        <select id="tipoObservacion" class="form-select" required>
+                                            <option value="">Selecciona un tipo</option>
+                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tipoPrestamo" class="form-label">Tipo de préstamo a
+                                            observar:</label>
+                                        <select id="tipoPrestamo" class="form-select" required>
+                                            <option value="">Selecciona un tipo</option>
+                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="espacioObservar" class="form-label">Espacio a observar:</label>
+                                        <select id="espacioObservar" class="form-select" required>
+                                            <option value="">Selecciona un espacio</option>
+                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="prestamoObservar" class="form-label">Préstamo a observar:</label>
+                                        <select id="prestamoObservar" class="form-select" required>
+                                            <option value="">Selecciona un préstamo</option>
+                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tipoObservar" class="form-label">Tipo de observacion:</label>
+                                        <select id="tipoObservar" class="form-select" required>
+                                            <option value="">Selecciona un tipo</option>
+                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputFile" class="form-label">Subir imagen de la
+                                            observación:</label>
+                                        <input type="file" id="inputFile" accept="image/*" class="form-control">
+                                        <div id="imagePreview" class="mt-3"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Columna 2 -->
-                            <div class="col-lg-4 mb-3">
-                                <!-- Contenido de la columna 2 -->
-                                <label for="tipoObservacion" class="form-label">Tipo de observación:</label>
-                                <select id="tipoObservacion" class="form-select" required>
-                                    <option value="">Selecciona un tipo</option>
-                                    <option value="previa">Previa</option>
-                                    <option value="otro">Otro</option>
-                                </select>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="guardarObservacion">Guardar
+                                    Observación</button>
                             </div>
-                            <div class="col-lg-4 mb-3">
-                                <label for="tipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
-                                <select id="tipoPrestamo" class="form-select" required>
-                                    <option value="">Selecciona un tipo</option>
-                                    <option value="herramienta">Herramienta</option>
-                                    <option value="otro">Otro</option>
-                                </select>
-                            </div>
-                            <!-- Columna 3 -->
-                            <div class="col-lg-4 mb-3">
-                                <label for="espacioObservar" class="form-label">Espacio a observar:</label>
-                                <select id="espacioObservar" class="form-select" required>
-                                    <option value="">Selecciona un espacio</option>
-                                    <option value="lab will">Lab will</option>
-                                    <option value="lab">Lab</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 mb-3">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#buscarEspacio" data-bs-whatever="@mdo" id="btnBuscarEspacio">
-                                    Buscar Espacio
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="circle text-center" id="circleContainer">
-                            <label for="inputFile" class="form-label">
-                                <i class="fa-solid fa-pen" alt="Subir imagen"></i>
-                            </label>
-                            <input type="file" id="inputFile" accept="image/*" onchange="previewImage(event)">
-                            <div id="imagePreview" class="circle-preview"></div>
-                            <span class="upload-text" id="uploadText">Subir imagen</span>
                         </div>
                     </div>
                 </div>
@@ -311,15 +124,22 @@
                                 <i class="fas fa-search me-2"></i>
                             </button>
                             <!-- Barra de búsqueda -->
-                            <input type="search" class="form-control" id="search-input" placeholder="Buscar">
+                            <input type="search" class="form-control me-2" id="search-input" placeholder="Buscar">
                         </div>
-                        <div class="col-lg-6 mb-3 d-flex justify-content-end">
-                            <button id="" type="button" class="btn btn-warning mx-1 btnestilo" data-bs-toggle="modal"
-                                data-bs-target="">
-                                Agregar observación
-                            </button>
+                        <div class="col-lg-3 mb-3 d-flex align-items-center">
+                            <label for="filter-select" class="form-label me-2">Filtrar por:</label>
+                            <select id="filter-select" class="form-select">
+                                <option value="">Todos</option>
+                                <option value="previa">Previa</option>
+                                <option value="durante">Durante</option>
+                                <option value="despues">Después</option>
+                            </select>
                         </div>
                         <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                            <button id="addObservationButton" type="button" class="btn btn-warning mx-1 btnestilo"
+                                data-bs-toggle="modal" data-bs-target="#observationModal">
+                                Agregar observación
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -376,10 +196,12 @@
     <script src="../../recursos/js/sidebarmenu.js"></script>
     <script src="../../recursos/js/app.min.js"></script>
     <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../../controlador/utils/dashboard.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
     <script src="../../recursos/js/acciones.js"></script>
     <script src="../../controlador/admin_cfp/header.js"></script>
     <script src="../../controlador/utils/session_utils.js"></script>
+    <script src="../../controlador/admin_itr/observaciones_itr.js"></script>
     <!-- el de calendario se puede mejorar-->
     <script src="../../recursos/js/calendario.js"></script>
     <script src="../../recursos/js/clima.js"></script>
