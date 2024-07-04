@@ -10,7 +10,7 @@
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
-    
+
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -23,213 +23,14 @@
 
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
-        <aside class="left-sidebar">
-            <!-- Imagen del sistema -->
-            <div>
-                <div class="brand-logo d-flex align-items-center justify-content-between" id="imagenlogo">
-                    <a href="../vistas_admin/inicio.html" class="text-nowrap logo-img">
-                        <img src="../../recursos/img/logos/myloan_logo.png" width="180" alt="" />
-                    </a>
-                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                        <i class="ti ti-x fs-8"></i>
-                    </div>
-                </div>
+        <!--Menu lateral plantilla-->
+        <div class="dashboard">
 
-                <!-- Inicio de los menus-->
-                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-house"></i>
-                                </span>
-                                <span class="hide-menu">Inicio</span>
-                            </a>
-                        </li>
-                        <!-- Menú de administrar -->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
-                                <span>
-                                    <i class="fa-solid fa-pager"></i>
-                                </span>
-                                <span class="hide-menu">Administrar</span>
-                            </a>
+        </div>
 
-                            <ul id="submenu" class="submenu">
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
-                                        <span>
-                                            <i class="fa-solid fa-user me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Usuarios</span>
-                                    </a>
-                                </li>
-
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono -->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-settings me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_herramientas.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-tool me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de herramienta</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_equipos.html" class="submenu-link">
-                                        <span>
-                                            <i class="fas fa-desktop me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de equipos</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 3: Inventario de materiales -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/inventario_materiales.html" class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-package  me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Inventario de materiales</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
-                                <span>
-                                    <i class="fa-solid fa-certificate"></i>
-                                </span>
-                                <span class="hide-menu">Cursos</span>
-                            </a>
-                            <ul id="submenu9" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/crear_curso.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear cursos</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-layer-group"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
-                                <span>
-                                    <i class="fa-solid fa-circle-exclamation"></i>
-                                </span>
-                                <span class="hide-menu">Mis préstamos</span>
-                            </a>
-                            <ul id="submenu10" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/crear_solicitud_prestamo.html" class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear solicitud</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="../vistas_admin/gestionar_solicitudes.html"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-cards"></i>
-                                </span>
-                                <span class="hide-menu">Gestionar solicitudes</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
-                                <span>
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                                <span class="hide-menu">Observaciones</span>
-                            </a>
-                            <ul id="submenu7" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/observaciones_generales.html" class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye-slash me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Observaciones generales</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis observaciones</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
-                                <span>
-                                    <i class="fa-solid fa-folder"></i>
-                                </span>
-                                <span class="hide-menu">Reportes</span>
-                            </a>
-                            <ul id="submenu8" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-table-list me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis solicitudes</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- aca termina el menu lateral -->
-            </div>
-
-        </aside>
-        
         <div class="body-wrapper">
             <div id="headerContainer" data-title="Inventario de materiales"></div>
-        
+
             <!--  Aca termina la parte del menu y el header -->
             <br>
             <br>
@@ -247,7 +48,7 @@
                                 <!-- Barra de búsqueda -->
                                 <input id="buscarMaterial" type="search" class="form-control" placeholder="Buscar">
                             </div>
-        
+
                             <div class="col-lg-3 mb-3 d-flex align-items-center">
                                 <label for="filtrarCantidad" class="me-2">Filtrar de forma:</label>
                                 <select id="filtrarCantidad" class="form-select">
@@ -256,10 +57,11 @@
                                     <option value="desc">Descendente</option>
                                 </select>
                             </div>
-        
+
                             <div class="col-lg-3 mb-3 d-flex justify-content-end">
                                 <button id="btnAgregarmateriales" type="button" class="btn btn-primary mx-lg-3"
-                                    data-bs-toggle="modal" data-bs-target="#agregarMaterialModal">Agregar material</button>
+                                    data-bs-toggle="modal" data-bs-target="#agregarMaterialModal">Agregar
+                                    material</button>
                             </div>
                         </div>
                     </div>
@@ -281,9 +83,10 @@
                 </div>
             </section>
         </div>
-        
+
         <!-- Modal para agregar material -->
-        <div class="modal fade" id="agregarMaterialModal" tabindex="-1" aria-labelledby="agregarMaterialModalLabel" aria-hidden="true">
+        <div class="modal fade" id="agregarMaterialModal" tabindex="-1" aria-labelledby="agregarMaterialModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -310,9 +113,10 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Modal para editar material -->
-        <div class="modal fade" id="editarMaterialModal" tabindex="-1" aria-labelledby="editarMaterialModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editarMaterialModal" tabindex="-1" aria-labelledby="editarMaterialModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -340,20 +144,21 @@
                 </div>
             </div>
         </div>
-        
-</html>         <!--Scrip que si funionan -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../recursos/js/sidebarmenu.js"></script>
-        <script src="../../recursos/js/app.min.js"></script>
-        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-        <script src="../../recursos/js/acciones.js"></script>
-        <script src="../../controlador/utils/session_utils.js"></script>
-        <script src="../../controlador/admin_cfp/header.js"></script>
-        <script src="../../controlador/admin_itr/material.js"></script>
 
-        <!-- Scrip que dudosamente sirven-->
-        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-        <script src="../../recursos/js/dashboard.js"></script >
+</html> <!--Scrip que si funionan -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../recursos/js/sidebarmenu.js"></script>
+<script src="../../recursos/js/app.min.js"></script>
+<script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../../controlador/utils/dashboard.js"></script>
+<!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+<script src="../../recursos/js/acciones.js"></script>
+<script src="../../controlador/utils/session_utils.js"></script>
+<script src="../../controlador/admin_cfp/header.js"></script>
+<script src="../../controlador/admin_itr/material.js"></script>
+
+<!-- Scrip que dudosamente sirven-->
+<script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+<script src="../../recursos/js/dashboard.js"></script>
 </body>
