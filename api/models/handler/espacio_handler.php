@@ -10,7 +10,7 @@ class EspacioHandler
                 FROM tb_espacios e
                 LEFT JOIN tb_especialidades es ON e.id_especialidad = es.id_especialidad
                 LEFT JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
-                LEFT JOIN tb_datos_empleados d ON e.id_empleado = d.id_datos_empleado
+                LEFT JOIN tb_da tos_empleados d ON e.id_empleado = d.id_datos_empleado
                 WHERE e.nombre_espacio LIKE ? AND es.id_especialidad LIKE ?';
         $params = ["%$buscar%", $filtrar ? $filtrar : '%'];
         $data = Database::getRows($sql, $params);
@@ -38,7 +38,7 @@ class EspacioHandler
     {
         $sql = 'SELECT id_institucion, nombre_institucion FROM tb_instituciones';
         return Database::getRows($sql);
-    }a
+    }
 
     public function addEspacio($params)
     {
@@ -97,4 +97,5 @@ class EspacioHandler
         }
     }
 }
+
 ?>
