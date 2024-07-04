@@ -1,25 +1,25 @@
 <!doctype html>
 <html lang="es">
- 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestionar solicitudes</title>
- 
+
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
- 
+
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
- 
+
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
- 
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
- 
+
     <!-- Codigo del clima -->
     <link rel="stylesheet" href="../../recursos/css/css_general/observaciones_generales.css">
- 
+
 </head>
- 
+
 <body>
     <!--  Inicio del menu lateral -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -228,25 +228,39 @@
             </div>
 
         </aside>
- 
+
         <!--  aca empieza el header -->
         <div class="body-wrapper">
-
             <div id="headerContainer" data-title="Gestionar solicitudes"></div>
-            <!--  Aca termina la parte del menu y el header -->
- 
-            <!--  Aca termina la parte del menu y el header -->
+            <!-- Aca termina la parte del menu y el header -->
             <div class="container-fluid" id="miCuadro">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
                             <div class="container-fluid">
-                                <!--  Row 1 -->
-                                <!-- tabla -->
-                                <!-- Inicio de la tabla de usuarios-->
-                                <table class="table table-hover">
- 
+                                <!-- Row 1 -->
+                                <!-- Filtros -->
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label for="filtroCurso">Filtrar por Curso:</label>
+                                        <select id="filtroCurso" class="form-select">
+                                            <!-- Opciones dinámicas cargadas con JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="filtroPrograma">Filtrar por Programa de Formación:</label>
+                                        <select id="filtroPrograma" class="form-select">
+                                            <option value="">Todos</option>
+                                            <option value="HTP">HTP</option>
+                                            <option value="EC">EC</option>
+                                            <option value="FCAT">FCAT</option>
+                                        </select>
+                                    </div>
+                                </div>
+    
+                                <!-- Tabla -->
+                                <table class="table table-hover mt-3">
                                     <!-- Buscador-->
                                     <div class="container mt-5">
                                         <div class="row justify-content-center">
@@ -256,116 +270,122 @@
                                                         <i class="fas fa-search me-2"></i>
                                                     </button>
                                                     <!-- Barra de búsqueda -->
-                                                    <input type="search" class="form-control" placeholder="Buscar">
+                                                    <input type="search" class="form-control" id="buscarPrestamo" placeholder="Buscar por empleado">
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button type="button" class="btn btn-warning btn-block">Imprimir
-                                                    documento</button>
                                             </div>
                                         </div>
                                     </div>
- 
- 
+    
                                     <div class="my-5">
                                         <h5 class="card-title fw-semibold"></h5>
                                     </div>
                                     <thead>
                                         <tr>
                                             <th scope="col">Número préstamo</th>
-                                            <th scope="col">Usuario</th>
+                                            <th scope="col">Empleado</th>
                                             <th scope="col">Programa formación</th>
                                             <th scope="col">Observación</th>
                                             <th scope="col">Curso</th>
                                             <th scope="col">Fecha solicitud</th>
+                                            <th scope="col">Estado del préstamo</th>
                                             <th scope="col">Detalles</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                     
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Wilfredo</td>
-                                            <td>EC</td>
-                                            <td>Taladro tiene problemas al funcionar</td>
-                                            <td>Electricidad</td>
-                                            <td>2/05/2024</td>
-                                            <td>
-                                                <div class="col-3 me-2 mt-2">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#verSolicitud"
-                                                        data-bs-whatever="@mdo" id="btnVerSolicitud">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </button>
- 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Wilfredo</td>
-                                            <td>EC</td>
-                                            <td>Taladro tiene problemas al funcionar</td>
-                                            <td>Electricidad</td>
-                                            <td>2/05/2024</td>
-                                            <td>
-                                                <div class="col-3 me-2 mt-2">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#verSolicitud"
-                                                        data-bs-whatever="@mdo" id="btnVerSolicitud">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </button>
- 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Wilfredo</td>
-                                            <td>EC</td>
-                                            <td>Taladro tiene problemas al funcionar</td>
-                                            <td>Electricidad</td>
-                                            <td>2/05/2024</td>
-
-                                            <td>
-                                                <div class="col-3 me-2 mt-2">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#verSolicitud"
-                                                        data-bs-whatever="@mdo" id="btnVerSolicitudS">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tbody id="tablaPrestamos">
+                                        <!-- Contenido dinámico cargado con JavaScript -->
                                     </tbody>
                                 </table>
                                 <!-- Fin de la tabla de empleados -->
-                                <!-- fin tabla -->
-                                <div class="row">
- 
-                                </div>
+                                <div class="row"></div>
                             </div>
                         </div>
                     </div>
-                    <!--Scrip que si funionan -->
-                    <script src="../../recursos/js/modales.js"></script>
-                    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-                    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="../../recursos/js/sidebarmenu.js"></script>
-                    <script src="../../recursos/js/app.min.js"></script>
-                    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-                    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-                 
-                    <script src="../../recursos/js/acciones.js"></script>
-                    <script src="../../controlador/admin_cfp/header.js"></script>
-                    <script src="../../controlador/utils/session_utils.js"></script>
-2
-                    <!-- el de calendario se puede mejorar-->
-                    <script src="../../recursos/js/calendario.js"></script>
-                    <script src="../../recursos/js/clima.js"></script>
-                    <!-- Scrip que dudosamente sirven-->
-                    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-                    <script src="../../recursos/js/dashboard.js"></script>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para ver detalles del préstamo -->
+<div class="modal fade" id="verSolicitud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Detalles del préstamo</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Unidad</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Número de préstamo</th>
+                            <th scope="col">Espacio</th>
+                            <th scope="col">Equipo</th>
+                            <th scope="col">Material</th>
+                            <th scope="col">Herramienta</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="denegarSolicitud" type="button" class="btn btn-danger mx-lg-3">Denegar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Aceptar Solicitud -->
+    <div class="modal fade" id="aceptarSolicitud" tabindex="-1" aria-labelledby="aceptarSolicitudLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="aceptarSolicitudLabel">Detalle sobre el periodo del préstamo</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
+                            <label for="fechaEntrega" class="form-label">Fecha de inicio del préstamo</label>
+                            <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha" readonly>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <label for="codigo" class="form-label">Nombre del encargado de recibir el préstamo</label>
+                            <input type="text" id="codigo" class="form-control" placeholder="Ingresa el nombre" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+                    <button id="btnAceptar" type="button" class="btn btn-warning mx-lg-3">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+            <!--  Aca termina el cuerpo de la pagina-->
+
+            <!--Scrip que si funionan -->
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>           
+             <script src="../../recursos/js/sidebarmenu.js"></script>
+            <script src="../../recursos/js/app.min.js"></script>
+            <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+            <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+
+            <script src="../../recursos/js/acciones.js"></script>
+            <script src="../../controlador/admin_cfp/header.js"></script>
+            <script src="../../controlador/utils/session_utils.js"></script>
+            <script src="../../controlador/admin_itr/gestionar_solicitudes.js"></script>
+            <!-- el de calendario se puede mejorar-->
+            <script src="../../recursos/js/calendario.js"></script>
+            <script src="../../recursos/js/clima.js"></script>
+            <!-- Scrip que dudosamente sirven-->
+            <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+            <script src="../../recursos/js/dashboard.js"></script>
 </body>
- 
+
 </html>

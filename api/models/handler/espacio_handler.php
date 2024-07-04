@@ -38,7 +38,7 @@ class EspacioHandler
     {
         $sql = 'SELECT id_institucion, nombre_institucion FROM tb_instituciones';
         return Database::getRows($sql);
-    }a
+    }
 
     public function addEspacio($params)
     {
