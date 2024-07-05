@@ -94,70 +94,68 @@
                     </div>
                 </div>
 
-                <!-- Modal para editar observación -->
-                <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editarModalLabel">Editar Observación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="editarFechaObservacion" class="form-label">Fecha de observación:</label>
-                                        <input type="date" id="editarFechaObservacion" class="form-control" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="editarObservacion" class="form-label">Observación:</label>
-                                        <input type="text" id="editarObservacion" class="form-control"
-                                            placeholder="Observaciones" minlength="8" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="editarTipoObservacion" class="form-label">Tipo de observación:</label>
-                                        <select id="editarTipoObservacion" class="form-select" required>
-                                            <option value="">Selecciona un tipo</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="editarTipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
-                                        <select id="editarTipoPrestamo" class="form-select" required>
-                                            <option value="">Selecciona un tipo</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="editarEspacioObservar" class="form-label">Espacio a observar:</label>
-                                        <select id="editarEspacioObservar" class="form-select" required>
-                                            <option value="">Selecciona un espacio</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="editarPrestamoObservar" class="form-label">Préstamo a observar:</label>
-                                        <select id="editarPrestamoObservar" class="form-select" required>
-                                            <option value="">Selecciona un préstamo</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="editarEmpleadoObservar" class="form-label">Quien realiza la observación:</label>
-                                        <select id="editarEmpleadoObservar" class="form-select" required>
-                                            <option value="">Selecciona un empleado</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="editarInputFile" class="form-label">Subir imagen de la observación:</label>
-                                        <input type="file" id="editarInputFile" accept="image/*" class="form-control">
-                                        <div id="editarImagePreview" class="mt-3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="editarGuardarObservacion">Guardar Cambios</button>
-                            </div>
-                        </div>
+                <<!-- Modal para editar observación -->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">Editar Observación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="editarFechaObservacion" class="form-label">Fecha de observación:</label>
+                        <input type="date" id="editarFechaObservacion" class="form-control" readonly required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editarObservacion" class="form-label">Observación:</label>
+                        <input type="text" id="editarObservacion" class="form-control" placeholder="Observaciones" minlength="8" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editarTipoObservacion" class="form-label">Tipo de observación:</label>
+                        <select id="editarTipoObservacion" class="form-select" required>
+                            <option value="">Selecciona un tipo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editarTipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
+                        <select id="editarTipoPrestamo" class="form-select" required>
+                            <option value="">Selecciona un tipo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editarEspacioObservar" class="form-label">Espacio a observar:</label>
+                        <select id="editarEspacioObservar" class="form-select" required>
+                            <option value="">Selecciona un espacio</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editarPrestamoObservar" class="form-label">Préstamo a observar:</label>
+                        <select id="editarPrestamoObservar" class="form-select" required>
+                            <option value="">Selecciona un préstamo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="editarEmpleadoObservar" class="form-label">Quien realiza la observación:</label>
+                        <select id="editarEmpleadoObservar" class="form-select" readonly required>
+                            <option value="">Selecciona un empleado</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="editarInputFile" class="form-label">Subir imagen de la observación:</label>
+                        <input type="file" id="editarInputFile" accept="image/*" class="form-control">
+                        <div id="editarImagePreview" class="mt-3"></div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="editarGuardarObservacion">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Buscador y botón -->
                 <div class="container mt-5">
@@ -173,7 +171,7 @@
                             <label for="filter-select" class="form-label me-2">Filtrar por:</label>
                             <select id="filter-select" class="form-select">
                                 <option value="">Todos</option>
-                                <option value="Previo">Previo</option>
+                                <option value="Previo">Previa</option>
                                 <option value="Durante">Durante</option>
                                 <option value="Despues">Después</option>
                             </select>
