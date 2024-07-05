@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
         case 'getEmpleados':
+            // Obtiene todos los empleados.
             if ($result['dataset'] = $empleado->getAllEmployees()) {
                 $result['status'] = 1;
             } else {
@@ -23,6 +24,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'searchEmpleados':
+            // Busca empleados según criterios específicos.
             $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
             $estado = isset($_GET['estado']) ? $_GET['estado'] : '';
             if ($result['dataset'] = $empleado->searchEmployees($buscar, $estado)) {
@@ -35,6 +37,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'getEmpleado':
+            // Obtiene un empleado por su ID.
             if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
                 if ($result['dataset'] = $empleado->getEmployeeById($_GET['id'])) {
                     $result['status'] = 1;
@@ -47,6 +50,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'updateEmpleado':
+            // Actualiza el estado de un empleado.
             $_POST = json_decode(file_get_contents('php://input'), true);
             if (isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
                 isset($_POST['estado']) && Validator::validateString($_POST['estado'])) {
@@ -66,6 +70,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'deleteEmpleado':
+            // Elimina un empleado por su ID.
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
                 if ($empleado->deleteEmployee($data['id'])) {
@@ -80,6 +85,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'getAllEspecialidades':
+            // Obtiene todas las especialidades.
             if ($result['dataset'] = $especialidad->readAll()) {
                 $result['status'] = 1;
             } else {
@@ -88,6 +94,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'createEspecialidad':
+             // Crea una nueva especialidad.
             $_POST = json_decode(file_get_contents('php://input'), true);
             if (isset($_POST['nombre']) && Validator::validateString($_POST['nombre'])) {
                 if ($especialidad->setNombre($_POST['nombre'])) {
@@ -106,6 +113,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'getEspecialidad':
+            // Obtiene una especialidad por su ID.
             if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
                 if ($especialidad->setId($_GET['id'])) {
                     if ($result['dataset'] = $especialidad->readOne()) {
@@ -122,6 +130,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'updateEspecialidad':
+            // Actualiza una especialidad existente.
             $_POST = json_decode(file_get_contents('php://input'), true);
             if (isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
                 isset($_POST['nombre']) && Validator::validateAlphabetic($_POST['nombre'])) {
@@ -141,6 +150,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'deleteEspecialidad':
+            // Elimina una especialidad por su ID.
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
                 if ($especialidad->setId($data['id'])) {
@@ -159,6 +169,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'getAllCargos':
+            // Obtiene todos los cargos.
             if ($result['dataset'] = $cargo->readAll()) {
                 $result['status'] = 1;
             } else {
@@ -167,6 +178,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'createCargo':
+            // Crea un nuevo cargo.
             $_POST = json_decode(file_get_contents('php://input'), true);
             if (isset($_POST['nombre']) && Validator::validateString($_POST['nombre'])) {
                 if ($cargo->setNombre($_POST['nombre'])) {
@@ -220,6 +232,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'deleteCargo':
+            // Obtiene un cargo por su ID.
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
                 if ($cargo->setId($data['id'])) {
@@ -238,6 +251,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'assignEspecialidad':
+            // Actualiza un cargo existente.
             $_POST = json_decode(file_get_contents('php://input'), true);
             if (isset($_POST['idEmpleado']) && Validator::validateNaturalNumber($_POST['idEmpleado']) &&
                 isset($_POST['idEspecialidad']) && Validator::validateNaturalNumber($_POST['idEspecialidad'])) {

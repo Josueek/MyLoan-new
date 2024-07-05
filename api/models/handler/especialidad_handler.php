@@ -1,8 +1,17 @@
 <?php
-require_once('../helpers/database.php');
+require_once ('../helpers/database.php');
 
 class EspecialidadHandler
 {
+    /**
+     * Clase EspecialidadHandler
+     * Esta clase maneja las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las especialidades en la base de datos.
+     * Las operaciones incluyen la configuración de ID y nombre de la especialidad, la creación de una nueva especialidad,
+     * la lectura de todas las especialidades, la lectura de una especialidad específica por su ID, la actualización de una especialidad,
+     * y la eliminación de una especialidad. Utiliza una conexión a la base de datos a través de la clase Database.
+     */
+
+     //Variables para almacenar los datos
     protected $id = null;
     protected $nombre = null;
 
@@ -39,7 +48,7 @@ class EspecialidadHandler
         return Database::getRows($sql);
     }
 
-    
+
 
     public function readOne()
     {
