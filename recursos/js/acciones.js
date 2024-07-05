@@ -73,4 +73,4 @@ document.getElementById('btnDocumento').addEventListener('click', function () {
 document.getElementById('documentoInput').addEventListener('change', function () {
     var fileName = this.files[0].name;
     document.getElementById('inputdocumento').value = fileName;
-});
+});    3696                                                                                     

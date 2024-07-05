@@ -53,17 +53,17 @@
                     </div>
                     <div class="col-lg-3 mb-2">
                         <label for="institucion">Programa de formación</label>
-                        <select id="institucion" class="form-control">
+                        <select id="programaformacion" class="form-control">
                             <option value="0">Elija el prorgrama de formación</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="1">FCAT</option>
+                            <option value="2">EC</option>
+                            <option value="3">HTP</option>
                             <!-- Agrega más opciones según necesites -->
                         </select>
                     </div>
                     <div class="col-lg-3 mb-2">
                         <label for="institucion">Persona solicitante</label>
-                        <select id="institucion" class="form-control">
+                        <select id="empleadño" class="form-control">
                             <option value="0">Elige el nombre del instructor</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -71,6 +71,14 @@
                             <!-- Agrega más opciones según necesites -->
                         </select>
                     </div>
+                    <div class="col-lg-3 mb-2">
+                        <label for="institucion">Curso solicitar</label>
+                        <select id="institucion" class="form-control">
+                            <option value="0">Elije un curso</option>
+                            <!-- Se cargarán dinámicamente -->
+                        </select>
+                    </div>
+                    
                     <div class="col-lg-3 mb-2">
                         <label for="descripcion" class="mb-1">Observación</label>
                         <textarea id="descripcion" class="form-control input-short" rows="5"
@@ -135,6 +143,7 @@
         <script src="../../controlador/admin_cfp/header.js"></script>c
         <script src="../../controlador/utils/session_utils.js"></script>
         <script src="../../controlador/admin_itr/empleado.js"></script>
+        <script src="../../controlador/admin_itr/prestamo.js"></script>
         <!-- Scrip que dudosamente sirven-->
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>

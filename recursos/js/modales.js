@@ -1,4 +1,13 @@
 // Modal para agregar especialidades
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnCancelar = document.getElementById('btnCancelar');
+
+    btnCancelar.addEventListener('click', function() {
+        window.location.href = '../../vistas/vistas_admin/crear_solicitud_prestamo.html';
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
     function createModal() {
@@ -937,4 +946,5 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#aceptarSolicitud').on('hidden.bs.modal', function (e) {
         $('.modal-backdrop').remove();
     });
+
 });
