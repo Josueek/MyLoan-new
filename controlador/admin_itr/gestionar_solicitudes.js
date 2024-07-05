@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     const myModal = new bootstrap.Modal(document.getElementById('aceptarSolicitud'));
                     myModal.show();
+                    document.getElementById('btnEnviar').setAttribute('data-id', prestamoId);
                 }
             });
         });
@@ -118,7 +119,17 @@ document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('click', function (e) {
             if (e.target && e.target.id === 'denegarSolicitud') {
                 const idPrestamo = e.target.getAttribute('data-id');
-                validarEstadoParaDenegar(idPrestamo);
+                Swal.fire({
+                    title: '¿Estás seguro que quieres denegar el préstamo?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, denegar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        denegarSolicitud(idPrestamo);
+                    }
+                });
             }
         });
 
@@ -142,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     const myModal = new bootstrap.Modal(document.getElementById('verSolicitud'));
                     myModal.show();
                     document.getElementById('denegarSolicitud').setAttribute('data-id', prestamoId);
-                    document.getElementById('denegarSolicitud').setAttribute('data-estado', data.dataset[0].estado_prestamo);
                 } else {
                     Swal.fire('Error', 'No se pudieron obtener los detalles del préstamo', 'error');
                 }
@@ -179,36 +189,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function validarEstadoParaDenegar(idPrestamo) {
-        fetch(`../../api/services/solicitud_services.php?action=getSolicitud&id=${idPrestamo}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status) {
-                    const estado = data.dataset.estado_prestamo;
-                    if (estado === 'Aceptado') {
-                        Swal.fire('No se puede denegar el préstamo', 'El préstamo ya ha sido aceptado.', 'error');
-                    } else if (estado === 'Denegado') {
-                        Swal.fire('No se puede denegar el préstamo', 'El préstamo ya ha sido denegado.', 'error');
-                    } else {
-                        Swal.fire({
-                            title: '¿Estás seguro que quieres denegar el préstamo?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Sí, denegar',
-                            cancelButtonText: 'Cancelar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                denegarSolicitud(idPrestamo);
-                            }
-                        });
-                    }
-                } else {
-                    Swal.fire('Error', 'No se pudo obtener el estado del préstamo', 'error');
-                }
-            })
-            .catch(error => console.error('Error al validar estado del préstamo:', error));
-    }
-
     function denegarSolicitud(idPrestamo) {
         fetch(`../../api/services/solicitud_services.php?action=denegarSolicitud`, {
             method: 'POST',
@@ -217,19 +197,72 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify({ id: idPrestamo })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Denegado!', 'El préstamo ha sido denegado.', 'success');
-                cargarDatosTabla(); // Actualizar la tabla después de denegar
-            } else {
-                Swal.fire('Error!', data.message, 'error');
-            }
-        })
-        .catch(error => console.error('Error al denegar la solicitud:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Denegado!', 'El préstamo ha sido denegado.', 'success');
+                    cargarDatosTabla(); // Actualizar la tabla después de denegar
+                    const myModal = bootstrap.Modal.getInstance(document.getElementById('verSolicitud'));
+                    myModal.hide();
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch(error => console.error('Error al denegar la solicitud:', error));
     }
-    
-    
+
+    // Manejo del botón "Enviar" en el modal "aceptarSolicitud"
+    document.getElementById('btnEnviar').addEventListener('click', function () {
+        const idPrestamo = this.getAttribute('data-id');
+        const fechaInicio = document.getElementById('fechaInicio').value;
+        const personaRecibe = document.getElementById('personaRecibe').value;
+
+        if (!fechaInicio || !personaRecibe) {
+            Swal.fire('Error', 'Todos los campos son obligatorios', 'error');
+            return;
+        }
+
+        const fechaActual = new Date().toISOString().split('T')[0];
+        if (fechaInicio < fechaActual) {
+            Swal.fire('Error', 'La fecha de inicio debe ser igual o mayor a la fecha actual', 'error');
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Estás seguro que quieres aceptar el préstamo?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, aceptar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`../../api/services/solicitud_services.php?action=aceptarSolicitud`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: idPrestamo, fecha_inicio: fechaInicio, persona_recibe: personaRecibe })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status) {
+                            Swal.fire('Aceptado!', 'El préstamo ha sido aceptado.', 'success');
+                            cargarDatosTabla(); // Actualizar la tabla después de aceptar
+                            const myModal = bootstrap.Modal.getInstance(document.getElementById('aceptarSolicitud'));
+                            myModal.hide();
+                        } else {
+                            Swal.fire('Error!', data.message, 'error');
+                        }
+                    })
+                    .catch(error => console.error('Error al aceptar la solicitud:', error));
+            }
+        });
+    });
+
+    // Inicializar Flatpickr para el campo de fecha
+    flatpickr('#fechaInicio', {
+        dateFormat: 'Y-m-d'
+    });
 
     // Inicializar modales y asignar eventos
     gestionarModales();

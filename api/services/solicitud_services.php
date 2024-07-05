@@ -127,9 +127,8 @@ if (isset($_GET['action'])) {
         case 'denegarSolicitud':
             $data = json_decode(file_get_contents("php://input"), true);
             $id = $data['id'] ?? null;
-            $prestamo = new SolicitudData();
-            if ($prestamo->setId($id)) {
-                $prestamoInfo = $prestamo->getSolicitudById($id);
+            if ($solicitud->setId($id)) {
+                $prestamoInfo = $solicitud->getSolicitudById($id);
                 if ($prestamoInfo['estado_prestamo'] == 'Aceptado') {
                     $result['status'] = 0;
                     $result['message'] = 'El préstamo ya ha sido aceptado y no puede ser denegado.';
@@ -137,7 +136,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 0;
                     $result['message'] = 'El préstamo ya ha sido denegado.';
                 } else {
-                    if ($prestamo->denegarSolicitud($id)) {
+                    if ($solicitud->denegarSolicitud($id)) {
                         $result['status'] = 1;
                         $result['message'] = 'Préstamo denegado correctamente.';
                     } else {
@@ -148,6 +147,31 @@ if (isset($_GET['action'])) {
             } else {
                 $result['status'] = 0;
                 $result['message'] = 'ID de préstamo inválido.';
+            }
+            break;
+
+        case 'aceptarSolicitud':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $id = $data['id'] ?? null;
+            $fecha_inicio = $data['fecha_inicio'] ?? null;
+            $persona_recibe = $data['persona_recibe'] ?? null;
+
+            if ($solicitud->setId($id) && $fecha_inicio && $persona_recibe) {
+                $sql = 'INSERT INTO tb_periodo_prestamos (fecha_inicio, persona_recibe, id_detalle_prestamo) 
+                        VALUES (?, ?, ?)';
+                $params = [$fecha_inicio, $persona_recibe, $id];
+                if (Database::executeRow($sql, $params)) {
+                    $update_sql = 'UPDATE tb_prestamos SET estado_prestamo = "Aceptado" WHERE id_prestamo = ?';
+                    Database::executeRow($update_sql, [$id]);
+                    $result['status'] = 1;
+                    $result['message'] = 'Periodo de préstamo asignado correctamente.';
+                } else {
+                    $result['status'] = 0;
+                    $result['message'] = 'No se pudo asignar el periodo de préstamo.';
+                }
+            } else {
+                $result['status'] = 0;
+                $result['message'] = 'Datos inválidos.';
             }
             break;
 

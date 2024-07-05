@@ -3,29 +3,41 @@
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 
-class ObservacionHandler
+/**
+ * Clase para manejar las observaciones.
+ */
+class MisObservacionesHandler
 {
-    public function getAllObservaciones($buscar = '')
+    /**
+     * Método para obtener todas las observaciones.
+     * @param string $buscar El término de búsqueda para filtrar las observaciones.
+     * @param string $tipo El tipo de observación para filtrar las observaciones.
+     * @return array El resultado de la consulta con el estado y los datos.
+     */
+    public function getAllObservaciones($buscar = '', $tipo = '')
     {
-        $sql = 'SELECT o.id_observacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, o.tipo_prestamo, o.id_espacio, o.id_usuario, o.id_prestamo
+        $sql = 'SELECT o.id_observacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, 
+                       o.tipo_prestamo, e.nombre_espacio, p.id_prestamo, u.nombre_empleado 
                 FROM tb_observaciones o
-                WHERE o.observacion LIKE ?';
-        $params = ["%$buscar%"];
+                LEFT JOIN tb_espacios e ON o.id_espacio = e.id_espacio
+                LEFT JOIN tb_prestamos p ON o.id_prestamo = p.id_prestamo
+                LEFT JOIN tb_datos_empleados u ON o.id_usuario = u.id_datos_empleado
+                WHERE (o.observacion LIKE ? OR ? = "")
+                AND (o.tipo_observacion = ? OR ? = "")';
+        $params = ["%$buscar%", $buscar, $tipo, $tipo];
         $data = Database::getRows($sql, $params);
         if ($data) {
             return array('status' => 1, 'dataset' => $data);
         } else {
-            return array('status' => 0, 'message' => 'No se encontraron observaciones');
+            return array('status' => 0, 'message' => 'No se encontraron registros');
         }
     }
 
-    public function addObservacion($params)
-    {
-        $sql = 'INSERT INTO tb_observaciones (fecha_observacion, observacion, foto_observacion, tipo_observacion, tipo_prestamo, id_espacio, id_usuario, id_prestamo) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        return Database::executeRow($sql, $params);
-    }
-
+    /**
+     * Método para obtener una observación por su ID.
+     * @param int $idObservacion El ID de la observación.
+     * @return array La información de la observación.
+     */
     public function getObservacionById($idObservacion)
     {
         $sql = 'SELECT * FROM tb_observaciones WHERE id_observacion = ?';
@@ -33,36 +45,88 @@ class ObservacionHandler
         return Database::getRow($sql, $params);
     }
 
+    /**
+     * Método para agregar una nueva observación.
+     * @param array $params Los parámetros necesarios para crear la observación.
+     * @return boolean El resultado de la ejecución de la consulta.
+     */
+    public function addObservacion($params)
+    {
+        $sql = 'INSERT INTO tb_observaciones (fecha_observacion, observacion, foto_observacion, tipo_observacion, 
+                tipo_prestamo, id_espacio, id_prestamo, id_usuario) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        return Database::executeRow($sql, $params);
+    }
+
+    /**
+     * Método para actualizar una observación existente.
+     * @param array $params Los parámetros necesarios para actualizar la observación.
+     * @return boolean El resultado de la ejecución de la consulta.
+     */
     public function updateObservacion($params)
     {
         $sql = 'UPDATE tb_observaciones 
-                SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, tipo_prestamo = ?, id_espacio = ?, id_usuario = ?, id_prestamo = ? 
+                SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, 
+                tipo_prestamo = ?, id_espacio = ?, id_prestamo = ?, id_usuario = ? 
                 WHERE id_observacion = ?';
         return Database::executeRow($sql, $params);
     }
 
+    /**
+     * Método para eliminar una observación por su ID.
+     * @param int $idObservacion El ID de la observación.
+     * @return boolean El resultado de la ejecución de la consulta.
+     */
     public function deleteObservacion($idObservacion)
     {
         $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?';
         $params = array($idObservacion);
         return Database::executeRow($sql, $params);
     }
-    public function getAllPrestamoOb()
+
+    /**
+     * Método para obtener las opciones necesarias para el formulario de observaciones.
+     * @return array Las opciones para los select del formulario.
+     */
+    public function getOpciones()
     {
-        $sql = 'SELECT id_datos_empleado, nombre_empleado FROM tb_datos_empleados';
-        return Database::getRows($sql);
+        $result = array();
+
+        $sqlTiposObservacion = 'SELECT DISTINCT tipo_observacion AS id, tipo_observacion AS nombre FROM tb_observaciones';
+        $result['tiposObservacion'] = Database::getRows($sqlTiposObservacion);
+
+        $sqlTiposPrestamo = 'SELECT DISTINCT tipo_prestamo AS id, tipo_prestamo AS nombre FROM tb_observaciones';
+        $result['tiposPrestamo'] = Database::getRows($sqlTiposPrestamo);
+
+        $sqlEspacios = 'SELECT id_espacio AS id, nombre_espacio AS nombre FROM tb_espacios';
+        $result['espacios'] = Database::getRows($sqlEspacios);
+
+        $sqlPrestamos = 'SELECT id_prestamo AS id, id_prestamo AS nombre FROM tb_prestamos';
+        $result['prestamos'] = Database::getRows($sqlPrestamos);
+
+        $sqlEmpleados = 'SELECT id_datos_empleado AS id, nombre_empleado AS nombre FROM tb_datos_empleados';
+        $result['empleados'] = Database::getRows($sqlEmpleados);
+
+        if ($result) {
+            return array('status' => 1, 'dataset' => $result);
+        } else {
+            return array('status' => 0, 'message' => 'No se encontraron opciones');
+        }
     }
 
-    public function getAllEspecialidades()
+    /**
+     * Método para guardar una imagen.
+     * @param array $file El archivo de la imagen.
+     * @return boolean El resultado de la validación y guardado de la imagen.
+     */
+    public function saveImage($file)
     {
-        $sql = 'SELECT id_especialidad, nombre_especialidad FROM tb_especialidades';
-        return Database::getRows($sql);
-    }
-
-    public function getAllInstituciones()
-    {
-        $sql = 'SELECT id_institucion, nombre_institucion FROM tb_instituciones';
-        return Database::getRows($sql);
+        if (Validator::validateImageFile($file, 800, 800)) {
+            $path = '../images/observaciones/';
+            return Validator::saveFile($file, $path);
+        } else {
+            return false;
+        }
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once('../helpers/validator.php');
-require_once('../models/handler/gestionarEmpleadoHandler.php');
+require_once('../models/handler/gestionar_empleado_handler.php');
 
 class GestionarEmpleadoData extends GestionarEmpleadoHandler
 {

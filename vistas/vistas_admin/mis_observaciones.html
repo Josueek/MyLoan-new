@@ -10,16 +10,9 @@
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
-
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- Codigo del clima -->
-    <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
-    <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
-    <link rel="stylesheet" href="../../recursos/css/css_general/foto.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -27,21 +20,14 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <div class="dashboard">
-
-        </div>
-
+        <div class="dashboard"></div>
         <!--  aca empieza el header -->
         <div class="body-wrapper">
             <div id="headerContainer" data-title="Mis observaciones"></div>
-
             <!--  Aca termina la parte del menu y el header -->
             <br>
             <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
             <div class="container-fluid">
-                <!--  Row 1 -->
-                <!-- tabla -->
-                <!-- formulario-->
                 <!-- Modal para agregar observación -->
                 <div class="modal fade" id="observationModal" tabindex="-1" aria-labelledby="observationModalLabel"
                     aria-hidden="true">
@@ -67,41 +53,34 @@
                                         <label for="tipoObservacion" class="form-label">Tipo de observación:</label>
                                         <select id="tipoObservacion" class="form-select" required>
                                             <option value="">Selecciona un tipo</option>
-                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="tipoPrestamo" class="form-label">Tipo de préstamo a
-                                            observar:</label>
+                                        <label for="tipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
                                         <select id="tipoPrestamo" class="form-select" required>
                                             <option value="">Selecciona un tipo</option>
-                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="espacioObservar" class="form-label">Espacio a observar:</label>
                                         <select id="espacioObservar" class="form-select" required>
                                             <option value="">Selecciona un espacio</option>
-                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="prestamoObservar" class="form-label">Préstamo a observar:</label>
                                         <select id="prestamoObservar" class="form-select" required>
                                             <option value="">Selecciona un préstamo</option>
-                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="tipoObservar" class="form-label">Tipo de observacion:</label>
-                                        <select id="tipoObservar" class="form-select" required>
-                                            <option value="">Selecciona un tipo</option>
-                                            <!-- Opciones cargadas dinámicamente por JavaScript -->
+                                        <label for="empleadoObservar" class="form-label">Quien realiza la observación:</label>
+                                        <select id="empleadoObservar" class="form-select" required>
+                                            <option value="">Selecciona un empleado</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputFile" class="form-label">Subir imagen de la
-                                            observación:</label>
+                                        <label for="inputFile" class="form-label">Subir imagen de la observación:</label>
                                         <input type="file" id="inputFile" accept="image/*" class="form-control">
                                         <div id="imagePreview" class="mt-3"></div>
                                     </div>
@@ -109,14 +88,78 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="guardarObservacion">Guardar
-                                    Observación</button>
+                                <button type="button" class="btn btn-primary" id="guardarObservacion">Guardar Observación</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!--buscador y boton-->
+                <!-- Modal para editar observación -->
+                <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarModalLabel">Editar Observación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="editarFechaObservacion" class="form-label">Fecha de observación:</label>
+                                        <input type="date" id="editarFechaObservacion" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editarObservacion" class="form-label">Observación:</label>
+                                        <input type="text" id="editarObservacion" class="form-control"
+                                            placeholder="Observaciones" minlength="8" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editarTipoObservacion" class="form-label">Tipo de observación:</label>
+                                        <select id="editarTipoObservacion" class="form-select" required>
+                                            <option value="">Selecciona un tipo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editarTipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
+                                        <select id="editarTipoPrestamo" class="form-select" required>
+                                            <option value="">Selecciona un tipo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editarEspacioObservar" class="form-label">Espacio a observar:</label>
+                                        <select id="editarEspacioObservar" class="form-select" required>
+                                            <option value="">Selecciona un espacio</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editarPrestamoObservar" class="form-label">Préstamo a observar:</label>
+                                        <select id="editarPrestamoObservar" class="form-select" required>
+                                            <option value="">Selecciona un préstamo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editarEmpleadoObservar" class="form-label">Quien realiza la observación:</label>
+                                        <select id="editarEmpleadoObservar" class="form-select" required>
+                                            <option value="">Selecciona un empleado</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="editarInputFile" class="form-label">Subir imagen de la observación:</label>
+                                        <input type="file" id="editarInputFile" accept="image/*" class="form-control">
+                                        <div id="editarImagePreview" class="mt-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="editarGuardarObservacion">Guardar Cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buscador y botón -->
                 <div class="container mt-5">
                     <div class="row mb-5">
                         <div class="col-lg-6 mb-3 d-flex align-items-center">
@@ -130,9 +173,9 @@
                             <label for="filter-select" class="form-label me-2">Filtrar por:</label>
                             <select id="filter-select" class="form-select">
                                 <option value="">Todos</option>
-                                <option value="previa">Previa</option>
-                                <option value="durante">Durante</option>
-                                <option value="despues">Después</option>
+                                <option value="Previo">Previo</option>
+                                <option value="Durante">Durante</option>
+                                <option value="Despues">Después</option>
                             </select>
                         </div>
                         <div class="col-lg-3 mb-3 d-flex justify-content-end">
@@ -143,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- tabla -->
+                <!-- Tabla -->
                 <table class="table table-hover" id="tabla-ejemplo">
                     <thead>
                         <tr>
@@ -154,63 +197,26 @@
                             <th scope="col">Tipo de préstamo a observar</th>
                             <th scope="col">Espacio a observar</th>
                             <th scope="col">Préstamo a observar</th>
+                            <th scope="col">Empleado que realizo la observación</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="search-item">
-                            <th scope="row">17.04.2024</th>
-                            <td>todo estabien me guta como lo dejaron</td>
-                            <td><img src="../../recursos/img/img_generales/sol.png" width="100px" height="100px"></td>
-                            <td>Despues</td>
-                            <td>Herramientas</td>
-                            <td>No</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr class="search-item">
-                            <th scope="row">17.04.2024</th>
-                            <td>todo estabien me guta como lo dejaron</td>
-                            <td><img src="../../recursos/img/img_generales/sol.png" width="100px" height="100px"></td>
-                            <td>Despues</td>
-                            <td>Herramientas</td>
-                            <td>No</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr class="search-item">
-                            <th scope="row">17.04.2024</th>
-                            <td>todo estabien me guta como lo dejaron</td>
-                            <td><img src="../../recursos/img/img_generales/sol.png" width="100px" height="100px"></td>
-                            <td>Despues</td>
-                            <td>Herramientas</td>
-                            <td>No</td>
-                            <td>Lennyn Vides</td>
-                        </tr>
+                        <!-- Filas cargadas dinámicamente por JavaScript -->
                     </tbody>
                 </table>
-                <!--fin tabla -->
+                <!-- Fin tabla -->
             </div>
         </div>
     </div>
-    <!--Scrip que si funionan -->
-    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Scripts -->
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
-    <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="../../controlador/utils/dashboard.js"></script>
-    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-    <script src="../../recursos/js/acciones.js"></script>
     <script src="../../controlador/admin_cfp/header.js"></script>
     <script src="../../controlador/utils/session_utils.js"></script>
-    <script src="../../controlador/admin_itr/observaciones_itr.js"></script>
-    <!-- el de calendario se puede mejorar-->
-    <script src="../../recursos/js/calendario.js"></script>
-    <script src="../../recursos/js/clima.js"></script>
-    <script src="../../recursos/js/circulo.js"></script>
-    <script src="../../recursos/js/modales.js"></script>
-    <script src="../../recursos/js/buscar.js"></script>
-    <!-- Scrip que dudosamente sirven-->
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../recursos/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="../../controlador/admin_itr/mis_observaciones.js"></script>
 </body>
 
 </html>
