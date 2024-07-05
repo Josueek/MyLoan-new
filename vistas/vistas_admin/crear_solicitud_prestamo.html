@@ -10,26 +10,18 @@
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
-
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-
+    <!-- CSS de Bootstrap Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 </head>
 
 <body>
-
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <div class="dashboard">
-
-        </div>
+        <div class="dashboard"></div>
 
         <section class="body-wrapper">
             <div id="headerContainer" data-title="Crear solicitud de prestamo"></div>
@@ -47,8 +39,7 @@
                         <div class="form-group">
                             <label for="fechaEntrega">Fecha de solicitud</label>
                             <!-- Eliminación del icono de calendario -->
-                            <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha"
-                                readonly>
+                            <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha">
                         </div>
                     </div>
                     <div class="col-lg-3 mb-2">
@@ -61,15 +52,11 @@
                             <!-- Agrega más opciones según necesites -->
                         </select>
                     </div>
-                    <div class="col-lg-3 mb-2">
-                        <label for="institucion">Persona solicitante</label>
-                        <select id="empleadño" class="form-control">
-                            <option value="0">Elige el nombre del instructor</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                        </select>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="usuarioPrestamos">Usuario a solicitar préstamo</label>
+                            <input type="text" id="usuarioPrestamos" class="form-control" placeholder="Usuario">
+                        </div>
                     </div>
                     <div class="col-lg-3 mb-2">
                         <label for="institucion">Curso solicitar</label>
@@ -78,11 +65,9 @@
                             <!-- Se cargarán dinámicamente -->
                         </select>
                     </div>
-                    
                     <div class="col-lg-3 mb-2">
                         <label for="descripcion" class="mb-1">Observación</label>
-                        <textarea id="descripcion" class="form-control input-short" rows="5"
-                            placeholder="Ingresa una observación para el prestamo"></textarea>
+                        <textarea id="descripcion" class="form-control input-short" rows="5" placeholder="Ingresa una observación para el prestamo"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -96,7 +81,6 @@
                                 <!-- Barra de búsqueda -->
                                 <input type="search" class="form-control" placeholder="Buscar">
                             </div>
-
                             <div class="col-lg-5 mb-3 d-flex justify-content-end">
                                 <h3><label class="form-label"> Lista de usuarios registrados en ITR</label></h3>
                             </div>
@@ -125,8 +109,8 @@
                     </div>
                 </div>
             </section>
-
         </section>
+
         <!--Scrip que si funionan -->
         <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -134,20 +118,19 @@
         <script src="../../recursos/js/app.min.js"></script>
         <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
         <script src="/recursos/js/crear_solicitud_prestamo.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script src="../../controlador/utils/dashboard.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../recursos/js/acciones.js"></script>
         <script src="../../recursos/js/modal/boton.js"></script>
-        <script src="../../controlador/admin_cfp/header.js"></script>c
+        <script src="../../controlador/admin_cfp/header.js"></script>
         <script src="../../controlador/utils/session_utils.js"></script>
         <script src="../../controlador/admin_itr/empleado.js"></script>
         <script src="../../controlador/admin_itr/prestamo.js"></script>
         <!-- Scrip que dudosamente sirven-->
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
-
+        <!-- Script para la funcionalidad específica de crear préstamos -->
+        <script src="../../recursos/js/datepicker.js"></script>
 </body>
-
 </html>
