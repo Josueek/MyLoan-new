@@ -72,23 +72,26 @@ function generarHeader(titulo, userData) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Obtén el título de la página de alguna manera
-    // Por ejemplo, podrías tener un data attribute en el contenedor del header
     var titulo = document.getElementById("headerContainer").getAttribute("data-title");
 
-    // Realizar una solicitud AJAX para obtener los datos del usuario
-    fetch('../../api//services/header_services.php')
+    fetch('../../api/services/header_services.php')
         .then(response => response.json())
         .then(data => {
-            if (data.status === 1) {
-                // Generar el header con los datos del usuario
-                var headerHTML = generarHeader(titulo, data.user);
-                document.getElementById("headerContainer").innerHTML = headerHTML;
-            } else {
-                // Generar el header sin datos de usuario
-                var headerHTML = generarHeader(titulo, null);
-                document.getElementById("headerContainer").innerHTML = headerHTML;
-            }
+            var headerHTML = generarHeader(titulo, data.status === 1 ? data.user : null);
+            document.getElementById("headerContainer").innerHTML = headerHTML;
+
+            // Agregar eventos de clic para el menú de hamburguesa y el botón de cierre
+            var headerCollapse = document.getElementById("headerCollapse");
+            var sidebarCollapse = document.getElementById("sidebarCollapse");
+            var sidebar = document.querySelector('.left-sidebar');
+
+            headerCollapse.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+            });
+
+            sidebarCollapse.addEventListener('click', function() {
+                sidebar.classList.remove('show');
+            });
         })
         .catch(error => console.error('Error al obtener los datos del usuario:', error));
 });
