@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         guardarObservacion();
     });
 
+    document.getElementById('editarGuardarObservacion').addEventListener('click', function () {
+        actualizarObservacion();
+    });
+
     function cargarDatosTabla(buscar = '', tipo = '') {
         fetch(`../../api/services/mis_observaciones_services.php?action=getAllObservaciones&buscar=${buscar}&tipo=${tipo}`)
             .then(response => response.json())
@@ -33,11 +37,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (data.status && data.dataset.length > 0) {
             data.dataset.forEach(observacion => {
+                const rutaImagen = observacion.foto_observacion ? `../../api/images/observaciones/${observacion.foto_observacion}` : '';
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${observacion.fecha_observacion}</td>
                     <td>${observacion.observacion}</td>
-                    <td><img src="../../api/images/observaciones/${observacion.foto_observacion}" width="100px" height="100px"></td>
+                    <td><img src="${rutaImagen}" width="100px" height="100px"></td>
                     <td>${observacion.tipo_observacion}</td>
                     <td>${observacion.tipo_prestamo}</td>
                     <td>${observacion.nombre_espacio}</td>
@@ -53,12 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             const noRecordsRow = document.createElement('tr');
             const noRecordsCell = document.createElement('td');
-            noRecordsCell.colSpan = 9;
+            noRecordsCell.colSpan = 9; // Ajuste para incluir la nueva columna
             noRecordsCell.textContent = 'No se encontraron registros';
             noRecordsRow.appendChild(noRecordsCell);
             tbody.appendChild(noRecordsRow);
         }
 
+        // Reasignar eventos para los botones después de agregar el contenido dinámicamente
         gestionarModales();
     }
 
@@ -72,6 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     const espacioSelect = document.getElementById('espacioObservar');
                     const prestamoSelect = document.getElementById('prestamoObservar');
                     const empleadoSelect = document.getElementById('empleadoObservar');
+                    const editarTipoObservacionSelect = document.getElementById('editarTipoObservacion');
+                    const editarTipoPrestamoSelect = document.getElementById('editarTipoPrestamo');
+                    const editarEspacioSelect = document.getElementById('editarEspacioObservar');
+                    const editarPrestamoSelect = document.getElementById('editarPrestamoObservar');
+                    const editarEmpleadoSelect = document.getElementById('editarEmpleadoObservar');
 
                     tipoObservacionSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
                     tipoPrestamoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
@@ -79,24 +90,35 @@ document.addEventListener('DOMContentLoaded', function () {
                     prestamoSelect.innerHTML = '<option value="">Selecciona un préstamo</option>';
                     empleadoSelect.innerHTML = '<option value="">Selecciona un empleado</option>';
 
+                    editarTipoObservacionSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+                    editarTipoPrestamoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+                    editarEspacioSelect.innerHTML = '<option value="">Selecciona un espacio</option>';
+                    editarPrestamoSelect.innerHTML = '<option value="">Selecciona un préstamo</option>';
+                    editarEmpleadoSelect.innerHTML = '<option value="">Selecciona un empleado</option>';
+
                     data.dataset.tiposObservacion.forEach(option => {
                         tipoObservacionSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
+                        editarTipoObservacionSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
                     });
 
                     data.dataset.tiposPrestamo.forEach(option => {
                         tipoPrestamoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
+                        editarTipoPrestamoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
                     });
 
                     data.dataset.espacios.forEach(option => {
                         espacioSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
+                        editarEspacioSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
                     });
 
                     data.dataset.prestamos.forEach(option => {
                         prestamoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
+                        editarPrestamoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
                     });
 
                     data.dataset.empleados.forEach(option => {
                         empleadoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
+                        editarEmpleadoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
                     });
                 }
             })
@@ -134,19 +156,19 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status) {
-                    document.getElementById('fechaObservacion').value = data.dataset.fecha_observacion;
-                    document.getElementById('observacion').value = data.dataset.observacion;
-                    document.getElementById('tipoObservacion').value = data.dataset.tipo_observacion;
-                    document.getElementById('tipoPrestamo').value = data.dataset.tipo_prestamo;
-                    document.getElementById('espacioObservar').value = data.dataset.id_espacio;
-                    document.getElementById('prestamoObservar').value = data.dataset.id_prestamo;
-                    document.getElementById('empleadoObservar').value = data.dataset.id_usuario;
-                    document.getElementById('inputFile').value = '';
+                    document.getElementById('editarFechaObservacion').value = data.dataset.fecha_observacion;
+                    document.getElementById('editarObservacion').value = data.dataset.observacion;
+                    document.getElementById('editarTipoObservacion').value = data.dataset.tipo_observacion;
+                    document.getElementById('editarTipoPrestamo').value = data.dataset.tipo_prestamo;
+                    document.getElementById('editarEspacioObservar').value = data.dataset.id_espacio;
+                    document.getElementById('editarPrestamoObservar').value = data.dataset.id_prestamo;
+                    document.getElementById('editarEmpleadoObservar').value = data.dataset.id_usuario;
+                    document.getElementById('editarInputFile').value = '';
 
-                    const myModal = new bootstrap.Modal(document.getElementById('observationModal'));
+                    const myModal = new bootstrap.Modal(document.getElementById('editarModal'));
                     myModal.show();
 
-                    document.getElementById('guardarObservacion').setAttribute('data-id', idObservacion);
+                    document.getElementById('editarGuardarObservacion').setAttribute('data-id', idObservacion);
                 } else {
                     Swal.fire('Error', 'No se pudieron obtener los detalles de la observación', 'error');
                 }
@@ -155,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function guardarObservacion() {
-        const idObservacion = document.getElementById('guardarObservacion').getAttribute('data-id');
         const fechaObservacion = document.getElementById('fechaObservacion').value;
         const observacion = document.getElementById('observacion').value;
         const tipoObservacion = document.getElementById('tipoObservacion').value;
@@ -185,12 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
             formData.append('foto_observacion', '');
         }
 
-        const action = idObservacion ? 'updateObservacion' : 'addObservacion';
-        if (idObservacion) {
-            formData.append('id', idObservacion);
-        }
-
-        fetch(`../../api/services/mis_observaciones_services.php?action=${action}`, {
+        fetch(`../../api/services/mis_observaciones_services.php?action=addObservacion`, {
             method: 'POST',
             body: formData
         })
@@ -206,6 +222,56 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .catch(error => console.error('Error al guardar la observación:', error));
+    }
+
+    function actualizarObservacion() {
+        const idObservacion = document.getElementById('editarGuardarObservacion').getAttribute('data-id');
+        const fechaObservacion = document.getElementById('editarFechaObservacion').value;
+        const observacion = document.getElementById('editarObservacion').value;
+        const tipoObservacion = document.getElementById('editarTipoObservacion').value;
+        const tipoPrestamo = document.getElementById('editarTipoPrestamo').value;
+        const idEspacio = document.getElementById('editarEspacioObservar').value;
+        const idPrestamo = document.getElementById('editarPrestamoObservar').value;
+        const idUsuario = document.getElementById('editarEmpleadoObservar').value;
+        const inputFile = document.getElementById('editarInputFile').files[0];
+
+        if (!fechaObservacion || !observacion || !tipoObservacion || !tipoPrestamo || !idEspacio || !idPrestamo || !idUsuario) {
+            Swal.fire('Error', 'Por favor, completa todos los campos requeridos.', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('id', idObservacion);
+        formData.append('fecha_observacion', fechaObservacion);
+        formData.append('observacion', observacion);
+        formData.append('tipo_observacion', tipoObservacion);
+        formData.append('tipo_prestamo', tipoPrestamo);
+        formData.append('id_espacio', idEspacio);
+        formData.append('id_prestamo', idPrestamo);
+        formData.append('id_usuario', idUsuario);
+
+        if (inputFile) {
+            formData.append('foto_observacion', inputFile);
+        } else {
+            formData.append('foto_observacion', '');
+        }
+
+        fetch(`../../api/services/mis_observaciones_services.php?action=updateObservacion`, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito', data.message, 'success');
+                    cargarDatosTabla();
+                    const myModal = bootstrap.Modal.getInstance(document.getElementById('editarModal'));
+                    myModal.hide();
+                } else {
+                    Swal.fire('Error', data.message, 'error');
+                }
+            })
+            .catch(error => console.error('Error al actualizar la observación:', error));
     }
 
     function eliminarObservacion(idObservacion) {
@@ -225,20 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error al eliminar la observación:', error));
     }
 
-    async function verificarSesion() {
-        try {
-            const response = await fetch('../../api/services/sesion_status.php');
-            const sessionData = await response.json();
-            if (sessionData.status) {
-                document.getElementById('empleadoObservar').value = sessionData.id_usuario;
-                document.getElementById('empleadoObservar').disabled = true;
-            } else {
-                window.location.href = '../../vistas/index.html';
-            }
-        } catch (error) {
-            console.error('Error al verificar la sesión:', error);
-        }
-    }
-
-    verificarSesion();
+    // Configurar fecha por defecto como la fecha del sistema
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fechaObservacion').value = today;
 });

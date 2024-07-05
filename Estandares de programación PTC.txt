@@ -20,7 +20,9 @@ Validación de Entradas:
 Valida todas las entradas del usuario antes de procesarlas.
 Ejemplo: Verifica si una variable está configurada y no está vacía antes de usarla.
 
-
+Manejo de errores
+Validación de Datos
+Sanitización y validación: Siempre valida y sanitiza la entrada del usuario utilizando una clase de validación, como Validator.
 
 JavaScript
 Uso de let y const:
