@@ -37,19 +37,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (data.status && data.dataset.length > 0) {
             data.dataset.forEach(observacion => {
-                const rutaImagen = observacion.foto_observacion ? `../../api/images/observaciones/${observacion.foto_observacion}` : '';
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${observacion.fecha_observacion}</td>
                     <td>${observacion.observacion}</td>
-                    <td><img src="${rutaImagen}" width="100px" height="100px"></td>
+                    <td><img src="../../api/images/observaciones/${observacion.foto_observacion}" width="100px" height="100px"></td>
                     <td>${observacion.tipo_observacion}</td>
                     <td>${observacion.tipo_prestamo}</td>
                     <td>${observacion.nombre_espacio}</td>
                     <td>${observacion.id_prestamo}</td>
                     <td>${observacion.nombre_empleado}</td>
                     <td>
-                        <button type="button" class="btn btn-primary editar-observacion" data-id="${observacion.id_observacion}">Editar</button>
+                        <button type="button" class="btn btn-primary editar-observacion" data-id="${observacion.id_observacion}" data-imagen="${observacion.foto_observacion}">Editar</button>
                         <button type="button" class="btn btn-danger eliminar-observacion" data-id="${observacion.id_observacion}">Eliminar</button>
                     </td>
                 `;
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     espacioSelect.innerHTML = '<option value="">Selecciona un espacio</option>';
                     prestamoSelect.innerHTML = '<option value="">Selecciona un préstamo</option>';
                     empleadoSelect.innerHTML = '<option value="">Selecciona un empleado</option>';
-
                     editarTipoObservacionSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
                     editarTipoPrestamoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
                     editarEspacioSelect.innerHTML = '<option value="">Selecciona un espacio</option>';
@@ -129,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('button.editar-observacion').forEach(button => {
             button.addEventListener('click', function () {
                 const idObservacion = this.getAttribute('data-id');
-                cargarDetalleObservacion(idObservacion);
+                const imagenObservacion = this.getAttribute('data-imagen');
+                cargarDetalleObservacion(idObservacion, imagenObservacion);
             });
         });
 
@@ -151,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function cargarDetalleObservacion(idObservacion) {
+    function cargarDetalleObservacion(idObservacion, imagenObservacion) {
         fetch(`../../api/services/mis_observaciones_services.php?action=getObservacion&id=${idObservacion}`)
             .then(response => response.json())
             .then(data => {
@@ -165,6 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('editarEmpleadoObservar').value = data.dataset.id_usuario;
                     document.getElementById('editarInputFile').value = '';
 
+                    // Guardamos la imagen actual en un atributo de datos del modal
+                    document.getElementById('editarGuardarObservacion').setAttribute('data-imagen', imagenObservacion);
+
                     const myModal = new bootstrap.Modal(document.getElementById('editarModal'));
                     myModal.show();
 
@@ -177,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function guardarObservacion() {
+        const idObservacion = document.getElementById('guardarObservacion').getAttribute('data-id');
         const fechaObservacion = document.getElementById('fechaObservacion').value;
         const observacion = document.getElementById('observacion').value;
         const tipoObservacion = document.getElementById('tipoObservacion').value;
@@ -206,7 +209,12 @@ document.addEventListener('DOMContentLoaded', function () {
             formData.append('foto_observacion', '');
         }
 
-        fetch(`../../api/services/mis_observaciones_services.php?action=addObservacion`, {
+        const action = idObservacion ? 'updateObservacion' : 'addObservacion';
+        if (idObservacion) {
+            formData.append('id', idObservacion);
+        }
+
+        fetch(`../../api/services/mis_observaciones_services.php?action=${action}`, {
             method: 'POST',
             body: formData
         })
@@ -235,13 +243,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const idUsuario = document.getElementById('editarEmpleadoObservar').value;
         const inputFile = document.getElementById('editarInputFile').files[0];
 
+        const imagenActual = document.getElementById('editarGuardarObservacion').getAttribute('data-imagen');
+
         if (!fechaObservacion || !observacion || !tipoObservacion || !tipoPrestamo || !idEspacio || !idPrestamo || !idUsuario) {
             Swal.fire('Error', 'Por favor, completa todos los campos requeridos.', 'error');
             return;
         }
 
         const formData = new FormData();
-        formData.append('id', idObservacion);
         formData.append('fecha_observacion', fechaObservacion);
         formData.append('observacion', observacion);
         formData.append('tipo_observacion', tipoObservacion);
@@ -253,8 +262,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (inputFile) {
             formData.append('foto_observacion', inputFile);
         } else {
-            formData.append('foto_observacion', '');
+            formData.append('foto_observacion', imagenActual);
         }
+
+        formData.append('id', idObservacion);
 
         fetch(`../../api/services/mis_observaciones_services.php?action=updateObservacion`, {
             method: 'POST',
@@ -290,8 +301,4 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error al eliminar la observación:', error));
     }
-
-    // Configurar fecha por defecto como la fecha del sistema
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('fechaObservacion').value = today;
 });
