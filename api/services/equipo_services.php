@@ -11,20 +11,24 @@ if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
         case 'getAllEquipos':
+             // Obtiene todos los equipos, con opción de búsqueda y filtrado
             $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
             $filtrar = isset($_GET['filtrar']) ? $_GET['filtrar'] : '';
             $result = $equipo->getAllEquipos($buscar, $filtrar);
             break;
 
         case 'getAllInstituciones':
+            // Obtiene todas las instituciones disponibles
             $result = array('status' => 1, 'dataset' => $equipo->getAllInstituciones());
             break;
 
         case 'getAllEspacios':
+            // Obtiene todos los espacios disponibles
             $result = array('status' => 1, 'dataset' => $equipo->getAllEspacios());
             break;
 
         case 'addEquipo':
+            // Añade un nuevo equipo
             $_POST = Validator::validateForm($_POST);
             if ($equipo->setNombre($_POST['nombre']) &&
                 $equipo->setDescripcion($_POST['descripcion']) &&
@@ -43,6 +47,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'getEquipo':
+            // Obtiene los datos de un equipo por su ID
             if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
                 if ($result['dataset'] = $equipo->getEquipoById($_GET['id'])) {
                     $result['status'] = 1;
@@ -55,6 +60,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'updateEquipo':
+            // Actualiza los datos de un equipo
             $_POST = Validator::validateForm($_POST);
             if ($equipo->setId($_POST['id']) &&
                 $equipo->setNombre($_POST['nombre']) &&
@@ -74,6 +80,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'deleteEquipo':
+            // Elimina un equipo por su ID
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
                 if ($equipo->delete($data['id'])) {

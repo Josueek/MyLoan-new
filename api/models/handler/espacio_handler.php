@@ -1,8 +1,18 @@
 <?php
-require_once('../helpers/database.php');
+require_once ('../helpers/database.php');
 
 class EspacioHandler
 {
+    /**
+     * Clase EspacioHandler
+     * Esta clase maneja las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para los espacios en la base de datos.
+     * Las operaciones incluyen la obtención de todos los espacios con opciones de búsqueda y filtrado, 
+     * la obtención de empleados, especialidades e instituciones,
+     * la adición de un nuevo espacio, la obtención de un espacio por su ID, la actualización y la eliminación de espacios.
+     * Utiliza una conexión a la base de datos a través de la clase Database.
+     */
+
+    //Obtener los datso de todos los espacios
     public function getAllEspacios($buscar = '', $filtrar = '')
     {
         $sql = 'SELECT e.id_espacio, e.nombre_espacio, e.capacidad_personas, e.tipo_espacio, e.inventario_doc, e.foto_espacio, 
@@ -20,14 +30,15 @@ class EspacioHandler
             return array('status' => 0, 'message' => 'No se encontraron registros');
         }
     }
-    
 
+    //Obtener los datos de los empleados 
     public function getAllEmpleados()
     {
         $sql = 'SELECT id_datos_empleado, nombre_empleado FROM tb_datos_empleados';
         return Database::getRows($sql);
     }
 
+    //Obtener especialidad para llenar combobox
     public function getAllEspecialidades()
     {
         $sql = 'SELECT id_especialidad, nombre_especialidad FROM tb_especialidades';
@@ -40,6 +51,7 @@ class EspacioHandler
         return Database::getRows($sql);
     }
 
+    //Consulta para agregar espacios
     public function addEspacio($params)
     {
         $sql = 'INSERT INTO tb_espacios (nombre_espacio, capacidad_personas, tipo_espacio, id_empleado, id_especialidad, id_institucion, inventario_doc, foto_espacio) 
@@ -56,6 +68,7 @@ class EspacioHandler
         return Database::getRow($sql, $params);
     }
 
+    //Actualizar datos del espacio
     public function updateEspacio($params)
     {
         $sql = 'UPDATE tb_espacios 
@@ -64,8 +77,7 @@ class EspacioHandler
         return Database::executeRow($sql, $params);
     }
 
-    
-
+    //Eliminar datos de la tabla espacio
     public function deleteEspacio($idEspacio)
     {
         // Primero, obtenemos los nombres de los archivos asociados con el espacio.
