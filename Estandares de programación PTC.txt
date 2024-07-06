@@ -13,7 +13,7 @@ Añade comentarios claros y útiles para explicar el propósito del código.
 Ejemplo: Antes de una función, escribe un comentario que explique qué hace la función.
 Uso de Includes y Requires:
 
-Usa include y require para incluir archivos externos y mantener el código modular.
+Usa include y require para incluir archivos ex   0ternos y mantener el código modular.
 Ejemplo: Usa require 'config.php'; para incluir un archivo de configuración.
 Validación de Entradas:
 
