@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
         case 'getAllEquipos':
-             // Obtiene todos los equipos, con opción de búsqueda y filtrado
+            // Obtiene todos los equipos, con opción de búsqueda y filtrado
             $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
             $filtrar = isset($_GET['filtrar']) ? $_GET['filtrar'] : '';
             $result = $equipo->getAllEquipos($buscar, $filtrar);

@@ -1,9 +1,8 @@
 // Modal para agregar especialidades
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const btnCancelar = document.getElementById('btnCancelar');
 
-    btnCancelar.addEventListener('click', function() {
+    btnCancelar.addEventListener('click', function () {
         window.location.href = '../../vistas/vistas_admin/crear_solicitud_prestamo.html';
     });
 });
@@ -300,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createModal() {
         const modalContainer = document.createElement('div');
         modalContainer.innerHTML =
-        `<style>
+            `<style>
     /* Estilo para la imagen dentro del contenedor */
     .circle img {
         width: auto; /* Establecer el ancho al 100% */
@@ -376,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 `
-;
+            ;
         document.body.appendChild(modalContainer);
     }
 
@@ -397,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
     function createModal() {
-        const modalContainer = document.createElement('div');
+        const modalContainer = document.getElementById('modal-container');
         modalContainer.innerHTML = `
         <!-- Modal para asignar la especialidad a un empleado -->
         <div class="modal fade" id="modal-material" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -407,55 +406,28 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h3 class="modal-title" id="exampleModalLabel">Listado de materiales disponibles</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                     <div class="modal-body">
-                         <div class="row">
-                         <div class="col-lg-3 mb-2">
-                         <label for="institucion">Persona solicitante</label>
-                         <select id="institucion" class="form-control">
-                            <option value="0">Material a solicitar</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                           </select>
-                           </div> 
-                           <div class="col-lg-3 mb-2">
-                           <label for="stock" class="mb-1">Cantidad a solicitar</label>
-                           <input type="number" id="stock" class="form-control input-short"
-                               placeholder="Seleccione una cantidad" required>
-                             </div>
-                             <div class="col-lg-3 mb-2">
-                         <label for="institucion">Unidad a solicitar</label>
-                         <select id="institucion" class="form-control">
-                            <option value="0">Unidad</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                           </select>
-                           </div> 
-                           <div class="col-lg-3 mb-2">
-                           <label for="descripcion" class="mb-1">Descripción</label>
-                           <textarea id="descripcion" class="form-control input-short" rows="5"
-                               placeholder="Ingresa una descripción del equipo"></textarea>
-                       </div>
-                       <div class="col-lg-3 mb-3 d-flex align-items-center">
-                       <button class="btn btn-transparent border-0 p-0">
-                           <i class="fas fa-search me-2"></i>
-                       </button>
-                       <!-- Barra de búsqueda -->
-                       <input type="search" class="form-control" placeholder="Buscar">
-                       
-                   </div>
-                   <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                   <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
-               </div>
-               <div class="col-lg-3 mb-3 d-flex justify-content-start">
-               <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
-           </div>
-                           </div>
-
-                          <div class="table-responsive mt-5">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3 mb-2"></div> 
+                            <div class="col-lg-3 mb-2">
+                                <label for="stock" class="mb-1">Cantidad a solicitar</label>
+                                <input type="number" id="stock" class="form-control input-short" placeholder="Cantidad" required>
+                            </div>
+                            <div class="col-lg-3 mb-2">
+                                <label for="descripcion" class="mb-1">Equipo</label>
+                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Equipo">
+                            </div>
+                            <div class="col-lg-3 mb-2"></div>
+                            <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                <button class="btn btn-transparent border-0 p-0">
+                                    <i class="fas fa-search me-2"></i>
+                                </button>
+                                <input type="search" id="search-input" class="form-control" placeholder="Buscar">
+                            </div>
+                            <div class="col-lg-3 mb-3 d-flex justify-content-end"></div>
+                            <div class="col-lg-3 mb-3 d-flex justify-content-start"></div>
+                        </div>
+                        <div class="table-responsive mt-5">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -464,41 +436,75 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <th scope="col">Descripción</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Monitor DELL</td>
-                                        <td>45</td>
-                                        <td>Monitores dell de 24”, con entradas vga, hdm.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Monitor DELL</td>
-                                        <td>45</td>
-                                        <td>Monitores dell de 24”, con entradas vga, hdm.</td>
-                                    </tr>
-                                    <!-- Puedes agregar más filas según sea necesario -->
+                                <tbody id="tabla-materiales">
+                                    <!-- Filas dinámicas -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
         `;
-        document.body.appendChild(modalContainer);
     }
 
-    createModal(); // Llama a la función para crear el modal
+    // Llamar a la función para crear el modal
+    createModal();
 
-    // Abre el modal cuando se haga clic en el botón
-    document.getElementById('btnagregarmaterial').addEventListener('click', function () {
-        const myModal = new bootstrap.Modal(document.getElementById('modal-material'));
-        myModal.show();
-    });
+    // Función para cargar datos en la tabla
+    function cargarDatosTabla(buscar = '', filtrar = '') {
+        fetch(`../../api/services/material_services.php?action=getAllMateriales&buscar=${buscar}&filtrar=${filtrar}`)
+            .then(response => response.json())
+            .then(data => mostrarDatosTabla(data))
+            .catch(error => console.error('Error al obtener materiales:', error));
+    }
+
+    // Función para mostrar datos en la tabla
+    function mostrarDatosTabla(data) {
+        const tbody = document.getElementById('tabla-materiales');
+        tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
+
+        if (data.status === 1 && data.dataset) {
+            data.dataset.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.nombre}</td>
+                    <td>${item.cantidad}</td>
+                    <td>${item.descripcion}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        } else {
+            const row = document.createElement('tr');
+            row.innerHTML = '<td colspan="3">No se encontraron registros</td>';
+            tbody.appendChild(row);
+        }
+    }
+
+    // Asegúrate de que los elementos existen antes de agregar los event listeners
+    const btnAgregarMaterial = document.getElementById('btnagregarmaterial');
+    const searchInput = document.getElementById('search-input');
+
+    if (btnAgregarMaterial) {
+        btnAgregarMaterial.addEventListener('click', function () {
+            const myModal = new bootstrap.Modal(document.getElementById('modal-material'));
+            myModal.show();
+
+            // Cargar los datos al abrir el modal
+            cargarDatosTabla();
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function (event) {
+            const buscar = event.target.value;
+            cargarDatosTabla(buscar);
+        });
+    }
 
     // Elimina el fondo oscuro cuando se cierra el modal
     $('#modal-material').on('hidden.bs.modal', function (e) {
@@ -506,12 +512,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
     function createModal() {
         const modalContainer = document.createElement('div');
         modalContainer.innerHTML = `
-        <!-- Modal para asignar la especialidad a un empleado -->
+        <!-- Modal para listar los equipos disponibles -->
         <div class="modal fade" id="modal-equipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -519,55 +529,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h3 class="modal-title" id="exampleModalLabel">Listado de equipos disponibles</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                     <div class="modal-body">
-                         <div class="row">
-                         <div class="col-lg-3 mb-2">
-                         <label for="institucion">Equipo a solicitar</label>
-                         <select id="institucion" class="form-control">
-                            <option value="0">Elige un equipo</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                           </select>
-                           </div> 
-                           <div class="col-lg-3 mb-2">
-                           <label for="stock" class="mb-1">Cantidad a solicitar</label>
-                           <input type="number" id="stock" class="form-control input-short"
-                               placeholder="Seleccione una cantidad" required>
-                             </div>
-                             <div class="col-lg-3 mb-2">
-                         <label for="institucion">Unidad a solicitar</label>
-                         <select id="institucion" class="form-control">
-                            <option value="0">Unidad</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                           </select>
-                           </div> 
-                           <div class="col-lg-3 mb-2">
-                           <label for="descripcion" class="mb-1">Descripción</label>
-                           <textarea id="descripcion" class="form-control input-short" rows="5"
-                               placeholder="Ingresa una descripción del equipo"></textarea>
-                       </div>
-                       <div class="col-lg-3 mb-3 d-flex align-items-center">
-                       <button class="btn btn-transparent border-0 p-0">
-                           <i class="fas fa-search me-2"></i>
-                       </button>
-                       <!-- Barra de búsqueda -->
-                       <input type="search" class="form-control" placeholder="Buscar">
-                       
-                   </div>
-                   <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                   <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
-               </div>
-               <div class="col-lg-3 mb-3 d-flex justify-content-start">
-               <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
-           </div>
-                           </div>
-
-                          <div class="table-responsive mt-5">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3 mb-2">
+                                <label for="stock" class="mb-1">Cantidad a solicitar</label>
+                                <input type="number" id="stock" class="form-control input-short" placeholder="Cantidad" required>
+                            </div>
+                            <div class="col-lg-3 mb-2">
+                                <label for="descripcion" class="mb-1">Equipo</label>
+                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Equipo">
+                            </div>
+                            <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                <button class="btn btn-transparent border-0 p-0">
+                                    <i class="fas fa-search me-2"></i>
+                                </button>
+                                <input type="search" id="search-input" class="form-control" placeholder="Buscar">
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-5">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -577,41 +556,68 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <th scope="col">Espacio asignado</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Monitor DELL</td>
-                                        <td>45</td>
-                                        <td>Monitores dell de 24”, con entradas vga, hdm.</td>
-                                        <td>Laboratorio de Software - 5456</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Monitor DELL</td>
-                                        <td>45</td>
-                                        <td>Laboratorio de Software - 5456</td>
-                                    </tr>
-                                    <!-- Puedes agregar más filas según sea necesario -->
+                                <tbody id="tabla-equipos">
+                                    <!-- Filas dinámicas -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
         `;
         document.body.appendChild(modalContainer);
     }
 
     createModal(); // Llama a la función para crear el modal
 
+    // Función para cargar datos en la tabla
+    function cargarDatosTabla(buscar = '', filtrar = '') {
+        fetch(`../../api/services/equipo_services.php?action=getAllEquipos&buscar=${buscar}&filtrar=${filtrar}`)
+            .then(response => response.json())
+            .then(data => mostrarDatosTabla(data))
+            .catch(error => console.error('Error al obtener equipos:', error));
+    }
+
+    // Función para mostrar datos en la tabla
+    function mostrarDatosTabla(data) {
+        const tbody = document.getElementById('tabla-equipos');
+        tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
+
+        if (data.status === 1 && data.dataset) {
+            data.dataset.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.nombre}</td>
+                    <td>${item.cantidad}</td>
+                    <td>${item.descripcion}</td>
+                    <td>${item.nombre_espacio}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        } else {
+            const row = document.createElement('tr');
+            row.innerHTML = '<td colspan="4">No se encontraron registros</td>';
+            tbody.appendChild(row);
+        }
+    }
+
     // Abre el modal cuando se haga clic en el botón
     document.getElementById('btnagregarequipo').addEventListener('click', function () {
         const myModal = new bootstrap.Modal(document.getElementById('modal-equipo'));
         myModal.show();
+        // Cargar los datos al abrir el modal
+        cargarDatosTabla();
+    });
+
+    // Agregar event listener al campo de búsqueda
+    document.getElementById('search-input').addEventListener('input', function (event) {
+        const buscar = event.target.value;
+        cargarDatosTabla(buscar);
     });
 
     // Elimina el fondo oscuro cuando se cierra el modal
@@ -619,6 +625,11 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.modal-backdrop').remove();
     });
 });
+
+
+// modalHandler.js
+
+// modalHandler.js
 
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
@@ -630,123 +641,116 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLabel">Listado de equipos disponibles</h3>
+                        <h3 class="modal-title" id="exampleModalLabel">Listado de herramientas disponibles</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                     <div class="modal-body">
-                         <div class="row">
-                         <div class="col-lg-3 mb-2">
-                         <label for="institucion">Herramienta a solicitar</label>
-                         <select id="institucion" class="form-control">
-                            <option value="0">Elige una herramienta</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                           </select>
-                           </div> 
-                           <div class="col-lg-3 mb-2">
-                           <label for="stock" class="mb-1">Cantidad a solicitar</label>
-                           <input type="number" id="stock" class="form-control input-short"
-                               placeholder="Seleccione una cantidad" required>
-                             </div>
-                             <div class="col-lg-3 mb-2">
-                         <label for="institucion">Unidad a solicitar</label>
-                         <select id="institucion" class="form-control">
-                            <option value="0">Unidad</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <!-- Agrega más opciones según necesites -->
-                           </select>
-                           </div> 
-                           <div class="col-lg-3 mb-2">
-                           <label for="descripcion" class="mb-1">Descripción</label>
-                           <textarea id="descripcion" class="form-control input-short" rows="5"
-                               placeholder="Ingresa una descripción del equipo"></textarea>
-                       </div>
-                       <div class="col-lg-3 mb-3 d-flex align-items-center">
-                       <button class="btn btn-transparent border-0 p-0">
-                           <i class="fas fa-search me-2"></i>
-                       </button>
-                       <!-- Barra de búsqueda -->
-                       <input type="search" class="form-control" placeholder="Buscar">
-                       
-                   </div>
-                   <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                   <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
-               </div>
-               <div class="col-lg-3 mb-3 d-flex justify-content-start">
-               <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
-           </div>
-                           </div>
-
-                          <div class="table-responsive mt-5">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3 mb-2"></div> 
+                            <div class="col-lg-3 mb-2">
+                                <label for="stock" class="mb-1">Cantidad a solicitar</label>
+                                <input type="number" id="stock" class="form-control input-short" placeholder="Cantidad" required>
+                            </div>
+                            <div class="col-lg-3 mb-2">
+                                <label for="descripcion" class="mb-1">Herramienta</label>
+                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Herramienta">
+                            </div>
+                            <div class="col-lg-3 mb-2"></div>
+                            <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                <button class="btn btn-transparent border-0 p-0">
+                                    <i class="fas fa-search me-2"></i>
+                                </button>
+                                <input type="search" id="search-input" class="form-control" placeholder="Buscar">
+                            </div>
+                            <div class="col-lg-3 mb-3 d-flex justify-content-end"></div>
+                            <div class="col-lg-3 mb-3 d-flex justify-content-start"></div>
+                        </div>
+                        <div class="table-responsive mt-5">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Codigo de herramienta</th>
+                                        <th scope="col">Código de herramienta</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Sotck</th>
-                                        <th scope="col">En uso</th>
                                         <th scope="col">Descripción</th>
-                                        <th scope="col">Institución correspondiente</th>   
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">En uso</th>
+                                        <th scope="col">Institución correspondiente</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>AA54D66ASD</td>
-                                        <td>Martillo </td>
-                                        <td>5</td>
-                                        <td>1</td>
-                                        <td>Martillo marca Stanley, color amarillo</td>
-                                        <td>Ricaldone</td>
-                                    </tr>
-                                    <tr>
-                                        <td>AA54D66ASD</td>
-                                        <td>Martillo </td>
-                                        <td>5</td>
-                                        <td>1</td>
-                                        <td>Martillo marca Stanley, color amarillo</td>
-                                        <td>Ricaldone</td>
-                                    </tr>
-                                    <tr>
-                                    <td>AA54D66ASD</td>
-                                    <td>Martillo </td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>Martillo marca Stanley, color amarillo</td>
-                                    <td>Ricaldone</td>
-                                </tr>
-                                </tbody>
+                                <tbody id="tabla-herramientas"></tbody>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
         `;
         document.body.appendChild(modalContainer);
     }
 
-    createModal(); // Llama a la función para crear el modal
+    // Función para cargar datos en la tabla
+    function cargarDatosTabla(buscar = '', filtrar = '') {
+        fetch(`../../api/services/inventario_herramienta_services.php?action=getAllHerramientas&buscar=${buscar}&filtrar=${filtrar}`)
+            .then(response => response.json())
+            .then(data => mostrarDatosTabla(data))
+            .catch(error => console.error('Error al obtener herramientas:', error));
+    }
 
-    // Abre el modal cuando se haga clic en el botón
-    document.getElementById('btnagregarherramienta').addEventListener('click', function () {
-        const myModal = new bootstrap.Modal(document.getElementById('modal-herramienta'));
-        myModal.show();
+    // Función para mostrar datos en la tabla
+    function mostrarDatosTabla(data) {
+        const tbody = document.getElementById('tabla-herramientas');
+        tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
+
+        if (data.status === 1 && data.dataset) {
+            data.dataset.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.codigo_herramienta}</td>
+                    <td>${item.nombre_herramienta}</td>
+                    <td>${item.descripcion}</td>
+                    <td>${item.stock}</td>
+                    <td>${item.en_uso}</td>
+                    <td>${item.nombre_institucion}</td>
+                `;
+                // Añadir el evento de clic a cada fila
+                row.addEventListener('click', function () {
+                    document.getElementById('descripcion').value = item.nombre_herramienta;
+                });
+                tbody.appendChild(row);
+            });
+        } else {
+            const row = document.createElement('tr');
+            row.innerHTML = '<td colspan="6">No se encontraron registros</td>';
+            tbody.appendChild(row);
+        }
+    }
+
+    createModal();
+
+    const modal = new bootstrap.Modal(document.getElementById('modal-herramienta'));
+
+    // Cargar los datos al abrir el modal
+    document.getElementById('modal-herramienta').addEventListener('show.bs.modal', function () {
+        cargarDatosTabla();
     });
 
-    // Elimina el fondo oscuro cuando se cierra el modal
-    $('#modal-herramienta').on('hidden.bs.modal', function (e) {
-        $('.modal-backdrop').remove();
+    // Evento de búsqueda
+    document.getElementById('search-input').addEventListener('input', function (event) {
+        const buscar = event.target.value;
+        cargarDatosTabla(buscar);
+    });
+
+    // Abre el modal cuando se haga clic en el botón (asegúrate de que el botón exista en tu HTML)
+    document.getElementById('btnagregarherramienta').addEventListener('click', function () {
+        modal.show();
     });
 });
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
@@ -817,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createModal() {
         const modalContainer = document.createElement('div');
         modalContainer.innerHTML =
-`
+            `
 <div class="modal fade" id="VerSolicitud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
@@ -948,3 +952,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+

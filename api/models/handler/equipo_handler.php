@@ -1,20 +1,10 @@
 <?php
 
-require_once ('../helpers/database.php');
-require_once ('../helpers/validator.php');
+require_once('../helpers/database.php');
+require_once('../helpers/validator.php');
 
 class EquipoHandler
 {
-
-    /**
-     * Clase EquipoHandler
-     * Esta clase maneja las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para los equipos en la base de datos.
-     * Las operaciones incluyen la obtención de todos los equipos con opciones de búsqueda y filtrado, la obtención de instituciones y espacios,
-     * la adición de un nuevo equipo, la obtención de un equipo por su ID, la actualización y la eliminación de equipos.
-     * Utiliza una conexión a la base de datos a través de la clase Database.
-     */
-
-    //Metodo para obtener los datos de todos los equipos mediante consulta SQL
     public function getAllEquipos($buscar = '', $filtrar = '')
     {
         $orderBy = '';
@@ -39,21 +29,18 @@ class EquipoHandler
         }
     }
 
-    //Metodo para obtener las instituciones, sirve para llenar los combobox
     public function getAllInstituciones()
     {
         $sql = 'SELECT id_institucion, nombre_institucion FROM tb_instituciones';
         return Database::getRows($sql);
     }
 
-    //Obtener los datos de los espacios
     public function getAllEspacios()
     {
         $sql = 'SELECT id_espacio, nombre_espacio FROM tb_espacios';
         return Database::getRows($sql);
     }
 
-    //Consulta para agregar espacios nuevos
     public function addEquipo($params)
     {
         $sql = 'INSERT INTO tb_equipos (nombre, descripcion, cantidad, id_espacio, id_institucion) 
@@ -61,7 +48,6 @@ class EquipoHandler
         return Database::executeRow($sql, $params);
     }
 
-    //Obtener datos especificos mediante el id
     public function getEquipoById($idEquipo)
     {
         $sql = 'SELECT * FROM tb_equipos WHERE id_equipo = ?';
@@ -69,7 +55,6 @@ class EquipoHandler
         return Database::getRow($sql, $params);
     }
 
-    //ACtualizar datos de la tabla de tb_equipos
     public function updateEquipo($params)
     {
         $sql = 'UPDATE tb_equipos 
@@ -78,7 +63,6 @@ class EquipoHandler
         return Database::executeRow($sql, $params);
     }
 
-    //Borrar equipo
     public function deleteEquipo($idEquipo)
     {
         $sql = 'DELETE FROM tb_equipos WHERE id_equipo = ?';
