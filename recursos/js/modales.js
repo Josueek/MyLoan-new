@@ -653,7 +653,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                             <div class="col-lg-3 mb-2">
                                 <label for="descripcion" class="mb-1">Herramienta</label>
-                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Herramienta">
+                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Herramienta" readonly>
                             </div>
                             <div class="col-lg-3 mb-2"></div>
                             <div class="col-lg-3 mb-3 d-flex align-items-center">
@@ -680,9 +680,11 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <tbody id="tabla-herramientas"></tbody>
                             </table>
                         </div>
+                        <!-- Campo oculto para el código de la herramienta -->
+                        <input type="hidden" id="codigo_herramienta">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+                        <button type="button" class="btn btn-primary" id="agregarHerramienta" data-bs-dismiss="modal">Agregar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
@@ -690,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         `;
         document.body.appendChild(modalContainer);
-    }
+    }    
 
     // Función para cargar datos en la tabla
     function cargarDatosTabla(buscar = '', filtrar = '') {
@@ -704,7 +706,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function mostrarDatosTabla(data) {
         const tbody = document.getElementById('tabla-herramientas');
         tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
-
+    
         if (data.status === 1 && data.dataset) {
             data.dataset.forEach(item => {
                 const row = document.createElement('tr');
@@ -718,7 +720,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
                 // Añadir el evento de clic a cada fila
                 row.addEventListener('click', function () {
-                    document.getElementById('descripcion').value = item.nombre_herramienta;
+                    const descripcionElement = document.getElementById('descripcion');
+                    const codigoHerramientaElement = document.getElementById('codigo_herramienta');
+                    
+                    if (descripcionElement && codigoHerramientaElement) {
+                        descripcionElement.value = item.nombre_herramienta;
+                        codigoHerramientaElement.value = item.codigo_herramienta;
+                    }
                 });
                 tbody.appendChild(row);
             });
@@ -728,6 +736,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tbody.appendChild(row);
         }
     }
+    
 
     createModal();
 
@@ -748,6 +757,31 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btnagregarherramienta').addEventListener('click', function () {
         modal.show();
     });
+
+    // Evento para agregar herramienta al presionar el botón "Agregar" del modal
+document.getElementById('agregarHerramienta').addEventListener('click', function () {
+    const cantidad = document.getElementById('stock').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const codigoHerramienta = document.getElementById('codigo_herramienta').value; // Código oculto
+
+    if (cantidad && descripcion && codigoHerramienta) {
+        const articulo = {
+            cantidad,
+            unidad: 'unidad', // Ajusta según sea necesario
+            descripcion,
+            articulo: codigoHerramienta // Usamos el código de herramienta
+        };
+        agregarArticulo(articulo);
+    }
+});
+
+// Función para agregar un artículo al préstamo
+function agregarArticulo(articulo) {
+    let prestamo = JSON.parse(localStorage.getItem('prestamo')) || { articulos: [] };
+    prestamo.articulos.push(articulo);
+    localStorage.setItem('prestamo', JSON.stringify(prestamo));
+}
+
 });
 
 

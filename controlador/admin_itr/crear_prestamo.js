@@ -1,4 +1,32 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Guardar los datos del préstamo en localStorage al hacer clic en "Siguiente"
+    document.getElementById('btnAgregarequipo').addEventListener('click', function () {
+        // Obtener los datos del préstamo
+        const fechaSolicitud = document.getElementById('fechaEntrega').value;
+        const programaFormacion = document.getElementById('programaformacion').value;
+        const usuarioSolicitante = document.getElementById('usuarioPrestamos').value;
+        const curso = document.getElementById('institucion').value;
+        const observacion = document.getElementById('descripcion').value;
+
+        // Crear un objeto de préstamo
+        const prestamo = {
+            fechaSolicitud,
+            programaFormacion,
+            usuarioSolicitante,
+            curso,
+            observacion,
+            articulos: [] // Inicialmente vacío, se llenará en la segunda página
+        };
+
+        // Guardar el préstamo en localStorage
+        localStorage.setItem('prestamo', JSON.stringify(prestamo));
+
+        // Redirigir a la segunda página
+        window.location.href = 'crear_solicitud_prestamousar.html';
+    });
+});
+
+(document).ready(function() {
     $('#fechaEntrega').datepicker({
         format: 'mm/dd/yyyy',
         autoclose: true,
@@ -56,22 +84,4 @@ function mostrarEmpleados(empleados) {
 function seleccionarUsuario(nombre) {
     const usuarioPrestamos = document.getElementById('usuarioPrestamos');
     usuarioPrestamos.value = nombre;
-}
-
-function guardarDatosPrestamo() {
-    const fechaEntrega = $('#fechaEntrega').val();
-    const programaFormacion = $('#programaformacion').val();
-    const usuarioPrestamos = $('#usuarioPrestamos').val();
-    const cursoSolicitar = $('#institucion').val();
-    const descripcion = $('#descripcion').val();
-
-    const prestamoData = {
-        fechaEntrega,
-        programaFormacion,
-        usuarioPrestamos,
-        cursoSolicitar,
-        descripcion
-    };
-
-    localStorage.setItem('prestamoData', JSON.stringify(prestamoData));
 }

@@ -82,6 +82,72 @@ if (isset($_GET['action'])) {
             }
             break;
 
+        case 'crearPrestamo':
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            // Validar los datos recibidos
+            if (!empty($data['fechaSolicitud']) &&
+                !empty($data['programaFormacion']) &&
+                !empty($data['usuarioSolicitante']) &&
+                !empty($data['curso']) &&
+                isset($data['articulos']) && is_array($data['articulos'])) {
+
+                // Iniciar una transacción
+                Database::getConnection()->beginTransaction();
+                
+                try {
+                    // Insertar datos en la tabla de préstamos
+                    $sql = "INSERT INTO tb_prestamos (fecha_solicitud, programa_formacion, estado_prestamo, observacion, id_curso, id_usuario) 
+                            VALUES (:fechaSolicitud, :programaFormacion, 1, :observacion, :curso, :usuarioSolicitante)";
+                    $params = array(
+                        ':fechaSolicitud' => $data['fechaSolicitud'],
+                        ':programaFormacion' => $data['programaFormacion'],
+                        ':observacion' => $data['observacion'],
+                        ':curso' => $data['curso'],
+                        ':usuarioSolicitante' => $data['usuarioSolicitante']
+                    );
+                    $stmt = Database::getConnection()->prepare($sql);
+                    $stmt->execute($params);
+                    $prestamoId = Database::getConnection()->lastInsertId();
+
+                    // Insertar datos en la tabla de detalles del préstamo
+                    foreach ($data['articulos'] as $articulo) {
+                        $sql = "INSERT INTO detalle_prestamo (cantidad, unidad, descripcion, id_prestamo, codigo_herramienta) 
+                                VALUES (:cantidad, :unidad, :descripcion, :prestamoId, :codigoHerramienta)";
+                        $params = array(
+                            ':cantidad' => $articulo['cantidad'],
+                            ':unidad' => $articulo['unidad'],
+                            ':descripcion' => $articulo['descripcion'],
+                            ':prestamoId' => $prestamoId,
+                            ':codigoHerramienta' => $articulo['articulo']  // Assuming this is the 'codigoHerramienta'
+                        );
+                        $stmt = Database::getConnection()->prepare($sql);
+                        $stmt->execute($params);
+
+                        // Actualizar el stock de la herramienta
+                        $sql = "UPDATE herramientas SET stock = stock - :cantidad WHERE codigo_herramienta = :codigoHerramienta";
+                        $params = array(
+                            ':cantidad' => $articulo['cantidad'],
+                            ':codigoHerramienta' => $articulo['articulo']  // Assuming this is the 'codigoHerramienta'
+                        );
+                        $stmt = Database::getConnection()->prepare($sql);
+                        $stmt->execute($params);
+                    }
+
+                    // Confirmar la transacción
+                    Database::getConnection()->commit();
+                    $result['status'] = 1;
+                    $result['message'] = 'Préstamo creado con éxito';
+                } catch (Exception $e) {
+                    // Revertir la transacción en caso de error
+                    Database::getConnection()->rollBack();
+                    $result['message'] = 'Error al crear el préstamo: ' . $e->getMessage();
+                }
+            } else {
+                $result['message'] = 'Datos del préstamo incompletos o inválidos';
+            }
+            break;
+
         default:
             $result['message'] = 'Acción no disponible';
     }
