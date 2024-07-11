@@ -692,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         `;
         document.body.appendChild(modalContainer);
-    }    
+    }
 
     // Función para cargar datos en la tabla
     function cargarDatosTabla(buscar = '', filtrar = '') {
@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function mostrarDatosTabla(data) {
         const tbody = document.getElementById('tabla-herramientas');
         tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
-    
+
         if (data.status === 1 && data.dataset) {
             data.dataset.forEach(item => {
                 const row = document.createElement('tr');
@@ -736,53 +736,78 @@ document.addEventListener('DOMContentLoaded', function () {
             tbody.appendChild(row);
         }
     }
-    
 
     createModal();
 
-    const modal = new bootstrap.Modal(document.getElementById('modal-herramienta'));
+    const modalElement = document.getElementById('modal-herramienta');
+    if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
 
-    // Cargar los datos al abrir el modal
-    document.getElementById('modal-herramienta').addEventListener('show.bs.modal', function () {
-        cargarDatosTabla();
-    });
+        // Cargar los datos al abrir el modal
+        modalElement.addEventListener('show.bs.modal', function () {
+            cargarDatosTabla();
+        });
 
-    // Evento de búsqueda
-    document.getElementById('search-input').addEventListener('input', function (event) {
-        const buscar = event.target.value;
-        cargarDatosTabla(buscar);
-    });
+        // Evento de búsqueda
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function (event) {
+                const buscar = event.target.value;
+                cargarDatosTabla(buscar);
+            });
+        }
 
-    // Abre el modal cuando se haga clic en el botón (asegúrate de que el botón exista en tu HTML)
-    document.getElementById('btnagregarherramienta').addEventListener('click', function () {
-        modal.show();
-    });
+        // Abre el modal cuando se haga clic en el botón (asegúrate de que el botón exista en tu HTML)
+        const btnAgregarHerramienta = document.getElementById('btnagregarherramienta');
+        if (btnAgregarHerramienta) {
+            btnAgregarHerramienta.addEventListener('click', function () {
+                modal.show();
+            });
+        }
 
-    // Evento para agregar herramienta al presionar el botón "Agregar" del modal
-document.getElementById('agregarHerramienta').addEventListener('click', function () {
-    const cantidad = document.getElementById('stock').value;
-    const descripcion = document.getElementById('descripcion').value;
-    const codigoHerramienta = document.getElementById('codigo_herramienta').value; // Código oculto
+        // Evento para agregar herramienta al presionar el botón "Agregar" del modal
+        const agregarHerramientaBtn = document.getElementById('agregarHerramienta');
+        if (agregarHerramientaBtn) {
+            agregarHerramientaBtn.addEventListener('click', function () {
+                const cantidad = document.getElementById('stock').value;
+                const descripcion = document.getElementById('descripcion').value;
+                const codigoHerramienta = document.getElementById('codigo_herramienta').value; // Código oculto
 
-    if (cantidad && descripcion && codigoHerramienta) {
-        const articulo = {
-            cantidad,
-            unidad: 'unidad', // Ajusta según sea necesario
-            descripcion,
-            articulo: codigoHerramienta // Usamos el código de herramienta
-        };
-        agregarArticulo(articulo);
+                if (cantidad && descripcion && codigoHerramienta) {
+                    const articulo = {
+                        cantidad,
+                        unidad: 'unidad', // Ajusta según sea necesario
+                        descripcion,
+                        articulo: codigoHerramienta // Usamos el código de herramienta
+                    };
+                    agregarArticulo(articulo);
+                }
+            });
+        }
+    }
+
+    // Función para agregar artículo a la tabla de "crear_solicitud_prestamousar"
+    function agregarArticulo(articulo) {
+        const tablaArticulos = document.getElementById('detalleArticulos');
+        if (tablaArticulos) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${articulo.cantidad}</td>
+                <td>${articulo.unidad}</td>
+                <td>${articulo.descripcion}</td>
+                <td>${articulo.articulo}</td>
+                <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+            `;
+            // Añadir el evento de clic para eliminar la fila
+            row.querySelector('.btn-danger').addEventListener('click', function () {
+                row.remove();
+            });
+            tablaArticulos.appendChild(row);
+        }
     }
 });
 
-// Función para agregar un artículo al préstamo
-function agregarArticulo(articulo) {
-    let prestamo = JSON.parse(localStorage.getItem('prestamo')) || { articulos: [] };
-    prestamo.articulos.push(articulo);
-    localStorage.setItem('prestamo', JSON.stringify(prestamo));
-}
 
-});
 
 
 
