@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="row">
                                 <!-- Buscador -->
                                 <div class="col-lg-4 mb-3">
-                                    <input class="form-control" type="text" placeholder="Buscar espacio">
+                                    <input class="form-control" type="text" placeholder="Buscar esp-acio">
                                 </div>
                                 <!-- Botón Seleccionar -->
                                 <div class="col-lg-4 mb-8">
@@ -332,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <input type="text" id="tipoObservacion" class="form-control" placeholder="" required>
                             </div>
 
-                            
                             <!-- Campo de entrada 3 -->
 
                             <div class="col-lg-6 mb-3">
@@ -398,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createModal() {
         const modalContainer = document.getElementById('modal-container');
         modalContainer.innerHTML = `
-        <!-- Modal para asignar la especialidad a un empleado -->
+        <!-- Modal para listar los materiales disponibles -->
         <div class="modal fade" id="modal-material" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -407,26 +406,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-3 mb-2"></div> 
-                            <div class="col-lg-3 mb-2">
-                                <label for="stock" class="mb-1">Cantidad a solicitar</label>
-                                <input type="number" id="stock" class="form-control input-short" placeholder="Cantidad" required>
-                            </div>
-                            <div class="col-lg-3 mb-2">
-                                <label for="descripcion" class="mb-1">Equipo</label>
-                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Equipo">
-                            </div>
-                            <div class="col-lg-3 mb-2"></div>
-                            <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                <button class="btn btn-transparent border-0 p-0">
-                                    <i class="fas fa-search me-2"></i>
-                                </button>
-                                <input type="search" id="search-input" class="form-control" placeholder="Buscar">
-                            </div>
-                            <div class="col-lg-3 mb-3 d-flex justify-content-end"></div>
-                            <div class="col-lg-3 mb-3 d-flex justify-content-start"></div>
-                        </div>
                         <div class="table-responsive mt-5">
                             <table class="table table-hover">
                                 <thead>
@@ -476,6 +455,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${item.cantidad}</td>
                     <td>${item.descripcion}</td>
                 `;
+                // Añadir el evento de clic a cada fila
+                row.addEventListener('click', function () {
+                    const nombre = item.nombre;
+                    const descripcion = item.descripcion;
+                    agregarArticulo(nombre, descripcion);
+                });
                 tbody.appendChild(row);
             });
         } else {
@@ -510,11 +495,26 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#modal-material').on('hidden.bs.modal', function (e) {
         $('.modal-backdrop').remove();
     });
+
+    // Función para agregar artículo a la tabla de "detalleArticulos"
+    function agregarArticulo(nombre, descripcion) {
+        const tablaArticulos = document.getElementById('detalleArticulos');
+        if (tablaArticulos) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td></td>
+                <td>${nombre}</td>
+                <td>${descripcion}</td>
+                <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+            `;
+            // Añadir el evento de clic para eliminar la fila
+            row.querySelector('.btn-danger').addEventListener('click', function () {
+                row.remove();
+            });
+            tablaArticulos.appendChild(row);
+        }
+    }
 });
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     // Función para crear el modal
@@ -530,22 +530,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-3 mb-2">
-                                <label for="stock" class="mb-1">Cantidad a solicitar</label>
-                                <input type="number" id="stock" class="form-control input-short" placeholder="Cantidad" required>
-                            </div>
-                            <div class="col-lg-3 mb-2">
-                                <label for="descripcion" class="mb-1">Equipo</label>
-                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Equipo">
-                            </div>
-                            <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                <button class="btn btn-transparent border-0 p-0">
-                                    <i class="fas fa-search me-2"></i>
-                                </button>
-                                <input type="search" id="search-input" class="form-control" placeholder="Buscar">
-                            </div>
-                        </div>
                         <div class="table-responsive mt-5">
                             <table class="table table-hover">
                                 <thead>
@@ -597,6 +581,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${item.descripcion}</td>
                     <td>${item.nombre_espacio}</td>
                 `;
+                // Añadir el evento de clic a cada fila
+                row.addEventListener('click', function () {
+                    const nombre = item.nombre;
+                    const descripcion = item.descripcion;
+                    agregarArticulo(nombre, descripcion);
+                });
                 tbody.appendChild(row);
             });
         } else {
@@ -606,25 +596,59 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Abre el modal cuando se haga clic en el botón
-    document.getElementById('btnagregarequipo').addEventListener('click', function () {
-        const myModal = new bootstrap.Modal(document.getElementById('modal-equipo'));
-        myModal.show();
-        // Cargar los datos al abrir el modal
-        cargarDatosTabla();
-    });
+    // Verificar que los elementos existen antes de agregar los event listeners
+    function addEventListeners() {
+        const btnAgregarEquipo = document.getElementById('btnagregarequipo');
+        const searchInput = document.getElementById('search-input');
+        const modalEquipo = document.getElementById('modal-equipo');
 
-    // Agregar event listener al campo de búsqueda
-    document.getElementById('search-input').addEventListener('input', function (event) {
-        const buscar = event.target.value;
-        cargarDatosTabla(buscar);
-    });
+        if (btnAgregarEquipo) {
+            btnAgregarEquipo.addEventListener('click', function () {
+                const myModal = new bootstrap.Modal(modalEquipo);
+                myModal.show();
+                // Cargar los datos al abrir el modal
+                cargarDatosTabla();
+            });
+        }
 
-    // Elimina el fondo oscuro cuando se cierra el modal
-    $('#modal-equipo').on('hidden.bs.modal', function (e) {
-        $('.modal-backdrop').remove();
-    });
+        if (searchInput) {
+            searchInput.addEventListener('input', function (event) {
+                const buscar = event.target.value;
+                cargarDatosTabla(buscar);
+            });
+        }
+
+        if (modalEquipo) {
+            modalEquipo.addEventListener('hidden.bs.modal', function (e) {
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach(backdrop => backdrop.remove());
+            });
+        }
+    }
+
+    // Llamar a la función para agregar los event listeners
+    addEventListeners();
+
+    // Función para agregar artículo a la tabla de "detalleArticulos"
+    function agregarArticulo(nombre, descripcion) {
+        const tablaArticulos = document.getElementById('detalleArticulos');
+        if (tablaArticulos) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td></td>
+                <td>${nombre}</td>
+                <td>${descripcion}</td>
+                <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+            `;
+            // Añadir el evento de clic para eliminar la fila
+            row.querySelector('.btn-danger').addEventListener('click', function () {
+                row.remove();
+            });
+            tablaArticulos.appendChild(row);
+        }
+    }
 });
+
 
 
 // modalHandler.js
@@ -645,26 +669,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-3 mb-2"></div> 
-                            <div class="col-lg-3 mb-2">
-                                <label for="stock" class="mb-1">Cantidad a solicitar</label>
-                                <input type="number" id="stock" class="form-control input-short" placeholder="Cantidad" required>
-                            </div>
-                            <div class="col-lg-3 mb-2">
-                                <label for="descripcion" class="mb-1">Herramienta</label>
-                                <input type="text" class="form-control" id="descripcion" required="" placeholder="Herramienta" readonly>
-                            </div>
-                            <div class="col-lg-3 mb-2"></div>
-                            <div class="col-lg-3 mb-3 d-flex align-items-center">
-                                <button class="btn btn-transparent border-0 p-0">
-                                    <i class="fas fa-search me-2"></i>
-                                </button>
-                                <input type="search" id="search-input" class="form-control" placeholder="Buscar">
-                            </div>
-                            <div class="col-lg-3 mb-3 d-flex justify-content-end"></div>
-                            <div class="col-lg-3 mb-3 d-flex justify-content-start"></div>
-                        </div>
                         <div class="table-responsive mt-5">
                             <table class="table table-hover">
                                 <thead>
@@ -708,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
 
         if (data.status === 1 && data.dataset) {
-            data.dataset.forEach(item => {
+            data.dataset.forEach((item, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${item.codigo_herramienta}</td>
@@ -720,13 +724,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
                 // Añadir el evento de clic a cada fila
                 row.addEventListener('click', function () {
-                    const descripcionElement = document.getElementById('descripcion');
-                    const codigoHerramientaElement = document.getElementById('codigo_herramienta');
+                    const nombreElement = item.nombre_herramienta;
+                    const descripcionElement = item.descripcion;
                     
-                    if (descripcionElement && codigoHerramientaElement) {
-                        descripcionElement.value = item.nombre_herramienta;
-                        codigoHerramientaElement.value = item.codigo_herramienta;
-                    }
+                    agregarArticulo(nombreElement, descripcionElement);
                 });
                 tbody.appendChild(row);
             });
@@ -787,15 +788,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Función para agregar artículo a la tabla de "crear_solicitud_prestamousar"
-    function agregarArticulo(articulo) {
+    function agregarArticulo(nombre, descripcion) {
         const tablaArticulos = document.getElementById('detalleArticulos');
         if (tablaArticulos) {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${articulo.cantidad}</td>
-                <td>${articulo.unidad}</td>
-                <td>${articulo.descripcion}</td>
-                <td>${articulo.articulo}</td>
+                <td></td>
+                <td>${nombre}</td>
+                <td>${descripcion}</td>
                 <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
             `;
             // Añadir el evento de clic para eliminar la fila
@@ -806,6 +806,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
 
 
 
@@ -828,10 +829,9 @@ document.addEventListener('DOMContentLoaded', function () {
                          <div class="row">
                          <div class="col-lg-3">
                          <div class="form-group">
-                             <label for="fechaEntrega">Fecha de inicio del prestamo</label>
-                             <!-- Eliminación del icono de calendario -->
-                             <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha"
-                                 readonly>
+                            <label for="fechaEntrega">Fecha de solicitud</label>
+                            <!-- Eliminación del icono de calendario -->
+                            <input type="text" class="form-control" id="fechaEntrega" placeholder="Elegir fecha">
                          </div>
                  </div>
                  <div class="col-lg-3 mb-2">
@@ -845,7 +845,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="modal-footer">
 
                     <div class="col-lg-3 mb-1">
-                    <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+                    <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3" data-bs-dismiss="modal">Cancelar</button>
                 </div>
                 <div class="col-lg-3 mb-1">
                 <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
@@ -854,12 +854,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
         </div>
-
         `;
         document.body.appendChild(modalContainer);
     }
 
     createModal(); // Llama a la función para crear el modal
+
+    // Inicializa el datepicker cuando el modal se muestra
+    $('#modal-detalle').on('shown.bs.modal', function () {
+        $('#fechaEntrega').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
 
     // Abre el modal cuando se haga clic en el botón
     document.getElementById('btnAgregar').addEventListener('click', function () {
@@ -872,6 +880,7 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.modal-backdrop').remove();
     });
 });
+
 
 
 // modal de gestonar solicitudes
