@@ -8,6 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const curso = document.getElementById('institucion').value;
         const observacion = document.getElementById('descripcion').value;
 
+        // Validar que todos los campos estén llenos
+        if (!fechaSolicitud || programaFormacion === "0" || !usuarioSolicitante || curso === "0" || !observacion) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos incompletos',
+                text: 'Por favor, completa todos los campos antes de continuar.',
+            });
+            return;
+        }
+
         // Crear un objeto de préstamo
         const prestamo = {
             fechaSolicitud,
@@ -24,21 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Redirigir a la segunda página
         window.location.href = 'crear_solicitud_prestamousar.html';
     });
-});
 
-(document).ready(function() {
+    // Inicializar datepicker
     $('#fechaEntrega').datepicker({
         format: 'mm/dd/yyyy',
         autoclose: true,
         todayHighlight: true
     });
 
+    // Cargar empleados
     cargarEmpleados();
-
-    $('#btnSiguiente').click(function() {
-        guardarDatosPrestamo();
-        window.location.href = 'crear_uso_prestamo.html';  // Cambia esto a la ruta de tu segunda pantalla
-    });
 });
 
 function cargarEmpleados() {
@@ -76,7 +81,7 @@ function mostrarEmpleados(empleados) {
         });
     } else {
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td colspan="8" class="text-center">No se encontraron registros</td>`;
+        tr.innerHTML = `<td colspan="7" class="text-center">No se encontraron registros</td>`;
         tbody.appendChild(tr);
     }
 }
