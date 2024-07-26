@@ -135,7 +135,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="editarStockHerramienta" class="form-label">En stock</label>
-                                <input type="number" class="form-control" id="editarStockHerramienta" required>
+                                <input type="number" class="form-control" id="editarStockHerramienta" required min="0" oninput="validateInput(this)">
                             </div>
                             <div class="mb-3">
                                 <label for="editarInstitucionHerramienta" class="form-label">Institución</label>
@@ -163,6 +163,7 @@
         <script src="../../recursos/js/app.min.js"></script>
         <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
         <script src="../../controlador/utils/dashboard.js"></script>
+        <script src="../../recursos/js/validar.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../recursos/js/acciones.js"></script>
         <script src="../../controlador/admin_cfp/header.js"></script>

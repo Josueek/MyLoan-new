@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2024 a las 22:52:32
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 26-07-2024 a las 16:11:42
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,7 +58,7 @@ DELIMITER ;
 CREATE TABLE `tb_cargos` (
   `id_cargo` int(11) NOT NULL,
   `nombre_cargo` varchar(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_cargos`
@@ -70,7 +70,8 @@ INSERT INTO `tb_cargos` (`id_cargo`, `nombre_cargo`) VALUES
 (3, 'Técnico'),
 (4, 'Asistente'),
 (5, 'adwad'),
-(6, 'adwadxzxzx');
+(6, 'adwadxzxzx'),
+(7, 'sdf');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ CREATE TABLE `tb_cursos` (
   `codigo_curso` varchar(100) NOT NULL,
   `id_empleado` int(11) NOT NULL,
   `estado` enum('pendiente','denegado','en curso','finalizado') NOT NULL DEFAULT 'pendiente'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_cursos`
@@ -115,15 +116,16 @@ CREATE TABLE `tb_datos_empleados` (
   `estado_empleado` enum('Activo','Inactivo') NOT NULL,
   `foto_empleado` varchar(100) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_especialidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_especialidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_datos_empleados`
 --
 
 INSERT INTO `tb_datos_empleados` (`id_datos_empleado`, `nombre_empleado`, `apellido_empleado`, `telefono`, `estado_empleado`, `foto_empleado`, `id_usuario`, `id_especialidad`) VALUES
-(21, 'Brandon Daniel', 'Sanchez Santamaria', '76861206', 'Activo', '66723623b1f69.jpg', 30, 1);
+(21, 'Brandon Daniel', 'Sanchez Santamaria', '76861206', 'Activo', '66723623b1f69.jpg', 30, 2),
+(31, 'Dylan', 'Sanchez', '11223344', 'Activo', '66856a3d36126.png', 34, 5);
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,7 @@ CREATE TABLE `tb_detalles_cursos` (
   `id_espacio` int(11) NOT NULL,
   `id_curso` int(11) NOT NULL,
   `id_detalle_prestamo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_detalles_cursos`
@@ -155,24 +157,19 @@ INSERT INTO `tb_detalles_cursos` (`id_detalle_curso`, `id_espacio`, `id_curso`, 
 
 CREATE TABLE `tb_detalle_prestamos` (
   `id_detalle_prestamo` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
   `unidad` enum('unidad','unidades') NOT NULL,
   `descripcion` varchar(300) DEFAULT NULL,
-  `id_prestamo` int(11) NOT NULL,
-  `id_espacio` int(11) DEFAULT NULL,
-  `id_equipo` int(11) DEFAULT NULL,
-  `id_material` int(11) DEFAULT NULL,
-  `codigo_herramienta` int(11) DEFAULT NULL
-) ;
+  `id_espacio` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_detalle_prestamos`
 --
 
-INSERT INTO `tb_detalle_prestamos` (`id_detalle_prestamo`, `cantidad`, `unidad`, `descripcion`, `id_prestamo`, `id_espacio`, `id_equipo`, `id_material`, `codigo_herramienta`) VALUES
-(1, 2, 'unidad', 'Descripción detalle prestamo 1', 1, 1, NULL, 1, NULL),
-(2, 3, 'unidad', 'Descripción detalle prestamo 2', 2, NULL, 2, NULL, NULL),
-(3, 1, 'unidad', 'Descripción detalle prestamo 3', 3, NULL, NULL, 2, NULL);
+INSERT INTO `tb_detalle_prestamos` (`id_detalle_prestamo`, `unidad`, `descripcion`, `id_espacio`) VALUES
+(1, 'unidad', 'Descripción detalle prestamo 1', NULL),
+(2, 'unidad', 'Descripción detalle prestamo 2', NULL),
+(3, 'unidad', 'Descripción detalle prestamo 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -187,7 +184,7 @@ CREATE TABLE `tb_equipos` (
   `cantidad` int(11) NOT NULL,
   `id_espacio` int(11) NOT NULL,
   `id_institucion` int(11) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_equipos`
@@ -215,7 +212,7 @@ CREATE TABLE `tb_espacios` (
   `id_especialidad` int(11) NOT NULL,
   `id_institucion` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_espacios`
@@ -224,7 +221,6 @@ CREATE TABLE `tb_espacios` (
 INSERT INTO `tb_espacios` (`id_espacio`, `nombre_espacio`, `capacidad_personas`, `tipo_espacio`, `inventario_doc`, `foto_espacio`, `id_especialidad`, `id_institucion`, `id_empleado`) VALUES
 (34, 'Laboratorio emca 3', 12, 'Laboratorio', '6673072e166a9.pdf', '6673072e1624c.jpeg', 2, 2, 21),
 (39, 'Laboratorio emca 4', 21, 'Laboratorio', '6674e634656e1.pdf', '66731d99e557c.jpg', 2, 1, 21),
-(41, 'Laboratorio emca 5', 23, 'Laboratorio', '6674e5e8db12b.pdf', '6674e5bc1aa06.jpg', 1, 2, 21),
 (42, 'Software', 32, 'Laboratorio', '6674e60f8baf4.pdf', '6674e84bda85d.png', 1, 3, 21);
 
 -- --------------------------------------------------------
@@ -236,7 +232,7 @@ INSERT INTO `tb_espacios` (`id_espacio`, `nombre_espacio`, `capacidad_personas`,
 CREATE TABLE `tb_especialidades` (
   `id_especialidad` int(11) NOT NULL,
   `nombre_especialidad` varchar(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_especialidades`
@@ -258,7 +254,7 @@ INSERT INTO `tb_especialidades` (`id_especialidad`, `nombre_especialidad`) VALUE
 CREATE TABLE `tb_instituciones` (
   `id_institucion` int(11) NOT NULL,
   `nombre_institucion` varchar(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_instituciones`
@@ -284,7 +280,7 @@ CREATE TABLE `tb_instructores` (
   `foto_empleado` varchar(100) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_especialidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_instructores`
@@ -308,14 +304,14 @@ CREATE TABLE `tb_inventario_herramienta` (
   `stock` int(11) NOT NULL,
   `en_uso` int(11) DEFAULT 0,
   `id_institucion` int(11) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_inventario_herramienta`
 --
 
 INSERT INTO `tb_inventario_herramienta` (`codigo_herramienta`, `nombre_herramienta`, `descripcion`, `stock`, `en_uso`, `id_institucion`) VALUES
-(1, 'Llave', 'Esta es una llave y se usa para hacer esto y esto por esto', 30, 0, 1),
+(1, 'Llave', 'Esta es una llave y se usa para hacer esto y esto por esto', 1, 0, 3),
 (2, 'Llave 2', 'esta es la llave 2', 12, 0, 1);
 
 -- --------------------------------------------------------
@@ -325,23 +321,22 @@ INSERT INTO `tb_inventario_herramienta` (`codigo_herramienta`, `nombre_herramien
 --
 
 CREATE TABLE `tb_materiales` (
-  `id_material` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
+  `id_material` int(11) NOT NULL, 
+  `nombre` varchar(100) NOT NULL UNIQUE, /* EL nombre de los materiales será UNIQUE */
   `descripcion` varchar(300) DEFAULT NULL,
   `cantidad` int(11) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_materiales`
 --
 
 INSERT INTO `tb_materiales` (`id_material`, `nombre`, `descripcion`, `cantidad`) VALUES
-(1, 'Material 1', 'Descripción material 1', 100),
+(1, 'Material 1', 'Descripción material 1', 99),
 (2, 'Material 2', 'Descripción material 2', 150),
 (3, 'Material 3', 'Descripción material 3', 200);
 
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `tb_observaciones`
 --
@@ -356,7 +351,7 @@ CREATE TABLE `tb_observaciones` (
   `id_espacio` int(11) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_prestamo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_observaciones`
@@ -382,7 +377,7 @@ CREATE TABLE `tb_periodo_prestamos` (
   `entrega_persona` varchar(100) DEFAULT NULL,
   `recibe_persona` varchar(100) DEFAULT NULL,
   `id_detalle_prestamo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_periodo_prestamos`
@@ -405,14 +400,14 @@ CREATE TABLE `tb_prestamos` (
   `observacion` varchar(300) DEFAULT NULL,
   `id_curso` int(11) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_prestamos`
 --
 
 INSERT INTO `tb_prestamos` (`id_prestamo`, `fecha_solicitud`, `programa_formacion`, `estado_prestamo`, `observacion`, `id_curso`, `id_usuario`) VALUES
-(1, '2024-04-18', 'HTP', 'En Espera', 'Observación 1', 1, 1),
+(1, '2024-04-18', 'HTP', 'Denegado', 'Observación 1', 1, 1),
 (2, '2024-04-20', 'EC', 'Denegado', 'Observación 2', 2, 2),
 (3, '2024-04-30', 'FCAT', 'Aceptado', NULL, 3, 3);
 
@@ -426,7 +421,7 @@ CREATE TABLE `tb_recuperacion_contra` (
   `id_codigo` int(11) NOT NULL,
   `codigo_recuperacion` varchar(100) NOT NULL,
   `id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_recuperacion_contra`
@@ -449,14 +444,15 @@ CREATE TABLE `tb_usuarios` (
   `contraseña` varchar(300) NOT NULL,
   `id_cargo` int(11) NOT NULL,
   `id_institucion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tb_usuarios`
 --
 
 INSERT INTO `tb_usuarios` (`id_usuario`, `correo_electronico`, `contraseña`, `id_cargo`, `id_institucion`) VALUES
-(30, 'brandon5@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 2, 1);
+(30, 'brandon5@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 2, 1),
+(34, 'holahola@gmail.com', '$2y$10$bTfpqzvjvCmiL1F9AKUMpO2ahq7x9DSjvRIvwHVdXtZ3Duiut8BW.', 1, 2);
 
 --
 -- Índices para tablas volcadas
@@ -498,11 +494,7 @@ ALTER TABLE `tb_detalles_cursos`
 --
 ALTER TABLE `tb_detalle_prestamos`
   ADD PRIMARY KEY (`id_detalle_prestamo`),
-  ADD KEY `fk_detalle_prestamo` (`id_prestamo`),
-  ADD KEY `fk_detalle_espacio` (`id_espacio`),
-  ADD KEY `fk_detalle_equipo` (`id_equipo`),
-  ADD KEY `fk_detalle_material` (`id_material`),
-  ADD KEY `fk_detalle_herramienta` (`codigo_herramienta`);
+  ADD KEY `fk_prestamos` (`id_espacio`);
 
 --
 -- Indices de la tabla `tb_equipos`
@@ -604,19 +596,19 @@ ALTER TABLE `tb_usuarios`
 -- AUTO_INCREMENT de la tabla `tb_cargos`
 --
 ALTER TABLE `tb_cargos`
-  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_cursos`
 --
 ALTER TABLE `tb_cursos`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_datos_empleados`
 --
 ALTER TABLE `tb_datos_empleados`
-  MODIFY `id_datos_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_datos_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_detalles_cursos`
@@ -628,13 +620,13 @@ ALTER TABLE `tb_detalles_cursos`
 -- AUTO_INCREMENT de la tabla `tb_detalle_prestamos`
 --
 ALTER TABLE `tb_detalle_prestamos`
-  MODIFY `id_detalle_prestamo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalle_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_equipos`
 --
 ALTER TABLE `tb_equipos`
-  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_espacios`
@@ -664,7 +656,7 @@ ALTER TABLE `tb_instructores`
 -- AUTO_INCREMENT de la tabla `tb_materiales`
 --
 ALTER TABLE `tb_materiales`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_observaciones`
@@ -694,7 +686,7 @@ ALTER TABLE `tb_recuperacion_contra`
 -- AUTO_INCREMENT de la tabla `tb_usuarios`
 --
 ALTER TABLE `tb_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Restricciones para tablas volcadas
@@ -714,84 +706,10 @@ ALTER TABLE `tb_datos_empleados`
   ADD CONSTRAINT `fk_id_especialidad` FOREIGN KEY (`id_especialidad`) REFERENCES `tb_especialidades` (`id_especialidad`);
 
 --
--- Filtros para la tabla `tb_detalles_cursos`
---
-ALTER TABLE `tb_detalles_cursos`
-  ADD CONSTRAINT `fk_detalle_curso_curso` FOREIGN KEY (`id_curso`) REFERENCES `tb_cursos` (`id_curso`),
-  ADD CONSTRAINT `fk_detalle_curso_detalle_prestamo` FOREIGN KEY (`id_detalle_prestamo`) REFERENCES `tb_detalle_prestamos` (`id_detalle_prestamo`),
-  ADD CONSTRAINT `fk_detalle_curso_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `tb_espacios` (`id_espacio`);
-
---
 -- Filtros para la tabla `tb_detalle_prestamos`
 --
 ALTER TABLE `tb_detalle_prestamos`
-  ADD CONSTRAINT `fk_detalle_equipo` FOREIGN KEY (`id_equipo`) REFERENCES `tb_equipos` (`id_equipo`),
-  ADD CONSTRAINT `fk_detalle_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `tb_espacios` (`id_espacio`),
-  ADD CONSTRAINT `fk_detalle_herramienta` FOREIGN KEY (`codigo_herramienta`) REFERENCES `tb_inventario_herramienta` (`codigo_herramienta`),
-  ADD CONSTRAINT `fk_detalle_material` FOREIGN KEY (`id_material`) REFERENCES `tb_materiales` (`id_material`),
-  ADD CONSTRAINT `fk_detalle_prestamo` FOREIGN KEY (`id_prestamo`) REFERENCES `tb_prestamos` (`id_prestamo`);
-
---
--- Filtros para la tabla `tb_equipos`
---
-ALTER TABLE `tb_equipos`
-  ADD CONSTRAINT `fk_equipo_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `tb_espacios` (`id_espacio`),
-  ADD CONSTRAINT `fk_tb_equipos_institucion` FOREIGN KEY (`id_institucion`) REFERENCES `tb_instituciones` (`id_institucion`);
-
---
--- Filtros para la tabla `tb_espacios`
---
-ALTER TABLE `tb_espacios`
-  ADD CONSTRAINT `fk_espacio_especialidad` FOREIGN KEY (`id_especialidad`) REFERENCES `tb_especialidades` (`id_especialidad`),
-  ADD CONSTRAINT `fk_id_empleado` FOREIGN KEY (`id_empleado`) REFERENCES `tb_datos_empleados` (`id_datos_empleado`),
-  ADD CONSTRAINT `fk_tb_espacios_institucion` FOREIGN KEY (`id_institucion`) REFERENCES `tb_instituciones` (`id_institucion`);
-
---
--- Filtros para la tabla `tb_instructores`
---
-ALTER TABLE `tb_instructores`
-  ADD CONSTRAINT `fk_instructor_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`),
-  ADD CONSTRAINT `fk_instructores_especialidad` FOREIGN KEY (`id_especialidad`) REFERENCES `tb_especialidades` (`id_especialidad`);
-
---
--- Filtros para la tabla `tb_inventario_herramienta`
---
-ALTER TABLE `tb_inventario_herramienta`
-  ADD CONSTRAINT `fk_herramienta_institucion` FOREIGN KEY (`id_institucion`) REFERENCES `tb_instituciones` (`id_institucion`);
-
---
--- Filtros para la tabla `tb_observaciones`
---
-ALTER TABLE `tb_observaciones`
-  ADD CONSTRAINT `fk_observacion_espacio` FOREIGN KEY (`id_espacio`) REFERENCES `tb_espacios` (`id_espacio`),
-  ADD CONSTRAINT `fk_observacion_prestamo` FOREIGN KEY (`id_prestamo`) REFERENCES `tb_prestamos` (`id_prestamo`),
-  ADD CONSTRAINT `fk_observacion_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`);
-
---
--- Filtros para la tabla `tb_periodo_prestamos`
---
-ALTER TABLE `tb_periodo_prestamos`
-  ADD CONSTRAINT `fk_periodo_detalle_prestamo` FOREIGN KEY (`id_detalle_prestamo`) REFERENCES `tb_detalle_prestamos` (`id_detalle_prestamo`);
-
---
--- Filtros para la tabla `tb_prestamos`
---
-ALTER TABLE `tb_prestamos`
-  ADD CONSTRAINT `fk_prestamo_curso` FOREIGN KEY (`id_curso`) REFERENCES `tb_cursos` (`id_curso`),
-  ADD CONSTRAINT `fk_prestamo_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`);
-
---
--- Filtros para la tabla `tb_recuperacion_contra`
---
-ALTER TABLE `tb_recuperacion_contra`
-  ADD CONSTRAINT `fk_codigo_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`);
-
---
--- Filtros para la tabla `tb_usuarios`
---
-ALTER TABLE `tb_usuarios`
-  ADD CONSTRAINT `fk_usuario_cargo` FOREIGN KEY (`id_cargo`) REFERENCES `tb_cargos` (`id_cargo`),
-  ADD CONSTRAINT `fk_usuario_institucion` FOREIGN KEY (`id_institucion`) REFERENCES `tb_instituciones` (`id_institucion`);
+  ADD CONSTRAINT `fk_prestamos` FOREIGN KEY (`id_espacio`) REFERENCES `tb_prestamos` (`id_prestamo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
