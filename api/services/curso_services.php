@@ -122,6 +122,17 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
+            case 'obtenerFechasCurso':
+                try {
+                    $result = $curso->obtenerFechasCurso();
+                    echo json_encode($result);
+                } catch (Exception $e) {
+                    // Manejar el error y enviar un mensaje adecuado
+                    http_response_code(500); // Código de estado HTTP 500 para errores del servidor
+                    echo json_encode(['error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage()]);
+                }
+                break;
+            
 
         default:
             $result['message'] = 'Acción no disponible';

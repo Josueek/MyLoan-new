@@ -95,9 +95,12 @@
                         <div class="card w-100">
                             <div class="card-body p-4">
                                 <h5 class="card-title fw-semibold mb-4">Calendario</h5>
+                                <div id="mensaje-dias-restantes" class="mb-4">
+                                    <!-- Aquí se mostrará el mensaje de días restantes -->
+                                </div>
                                 <div class="table-responsive">
                                     <div class="container" id="calendar-container">
-                                        <div id="calendar-header"></div>
+                                        <div id="calendar-header" class="text-center mb-3"></div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <table class="table table-bordered">
@@ -113,15 +116,26 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="calendar-body">
+                                                        <!-- Aquí se llenará el calendario con JavaScript -->
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                    
+                                <!-- Sección de la leyenda -->
+                                <div class="legend mt-4">
+                                    <ul class="list-unstyled">
+                                        <li><span style="background-color: #ADD8E6; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc;"></span> Fecha actual</li>
+                                        <li><span style="background-color: #FCBE2D; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc;"></span> Inico del curso más próximo</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <!-- fin de calendario -->
                     <!-- clima -->
                     <div class="col-lg-4 d-flex align-items-stretch">
