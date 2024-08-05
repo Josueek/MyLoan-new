@@ -1,6 +1,6 @@
 <?php
-require_once('../helpers/validator.php');
-require_once('../models/handler/usuario_handler.php');
+require_once ('../helpers/validator.php');
+require_once ('../models/handler/usuario_handler.php');
 
 class UsuarioData extends UsuarioHandler
 {
@@ -37,17 +37,6 @@ class UsuarioData extends UsuarioHandler
         $data = Database::getRow($sql, $params);
         return $data;
     }
-
-    public function getNombreEmpleado($id_usuario)
-    {
-        $sql = 'SELECT nombre_empleado
-                FROM tb_datos_empleados
-                WHERE id_usuario = ?';
-        $params = array($id_usuario);
-        $data = Database::getRow($sql, $params);
-        return $data ? $data['nombre_empleado'] : null;
-    }
-
 
     public function setCargo($value)
     {
@@ -92,7 +81,7 @@ class UsuarioData extends UsuarioHandler
         return Database::executeRow($sql, $params);
     }
 
-   
+
     public function updateProfile()
     {
         // Actualiza solo el correo electrónico

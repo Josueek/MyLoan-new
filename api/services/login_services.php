@@ -1,6 +1,6 @@
 <?php
-require_once('../models/data/usuario_data.php');
-require_once('../models/data/empleado_data.php');
+require_once ('../models/data/usuario_data.php');
+require_once ('../models/data/empleado_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
@@ -22,6 +22,9 @@ if (isset($_GET['action'])) {
                             $result['status'] = 1;
                             $result['message'] = 'Inicio de sesión correcto';
                             $result['nombre'] = $empleado->getNombreEmpleado($data['id_usuario']); // Asegúrate de que esta función exista y devuelva el nombre
+                            $result['institucion'] = $empleado->getInstitucion($data['id_usuario']); // Asegúrate de que esta función exista
+                            $result['cargo'] = $empleado->getCargo($data['id_usuario']); // Asegúrate de que esta función exista
+                            $result['especialidad'] = $empleado->getEspecialidad($data['id_usuario']); // Asegúrate de que esta función exista
                         } else {
                             $result['error'] = 'Usuario inactivo';
                         }
@@ -38,8 +41,8 @@ if (isset($_GET['action'])) {
     }
     $result['exception'] = Database::getException();
     header('Content-type: application/json; charset=utf-8');
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }
 ?>
