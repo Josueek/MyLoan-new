@@ -63,5 +63,27 @@ class CursoHandler
         $params = array($idCurso);
         return Database::executeRow($sql, $params);
     }
+
+    public function obtenerFechasCurso()
+    {
+        $fechaActual = date('Y-m-d');
+        $sql = 'SELECT fecha_inicio 
+                FROM tb_cursos 
+                WHERE fecha_inicio >= CURDATE() 
+                ORDER BY fecha_inicio ASC 
+                LIMIT 1';
+        $result = Database::getRow($sql, []);
+        $fechaCursoMasCercano = $result ? $result['fecha_inicio'] : null;
+
+        return array('fechaActual' => $fechaActual, 'fechaCursoMasCercano' => $fechaCursoMasCercano);
+    }
 }
+
+// Crear una instancia de CursoHandler y obtener las fechas
+$cursoHandler = new CursoHandler();
+$fechas = $cursoHandler->obtenerFechasCurso();
+
+// Enviar la respuesta como JSON
+header('Content-Type: application/json');
+echo json_encode($fechas);
 ?>
