@@ -20,6 +20,7 @@ if (isset($_GET['action'])) {
                             $_SESSION['id_usuario'] = $data['id_usuario'];
                             $_SESSION['correo_electronico'] = $data['correo_electronico'];
                             $result['status'] = 1;
+                            $result['id_usuario'] = $data['id_usuario'];;
                             $result['message'] = 'Inicio de sesión correcto';
                             $result['nombre'] = $empleado->getNombreEmpleado($data['id_usuario']); // Asegúrate de que esta función exista y devuelva el nombre
                             $result['institucion'] = $empleado->getInstitucion($data['id_usuario']); // Asegúrate de que esta función exista
