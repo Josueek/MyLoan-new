@@ -18,6 +18,14 @@ if (isset($_GET['action'])) {
 
     // Define las acciones disponibles.
     switch ($_GET['action']) {
+        case 'logOut':
+            if (session_destroy()) {
+                $result['status'] = 1;
+                $result['message'] = 'Sesión eliminada correctamente';
+            } else {
+                $result['error'] = 'Ocurrió un problema al cerrar la sesión';
+            }
+            break;
         case 'getProfile':
             // Obtiene el perfil del usuario.
             if ($empleado->setIdUsuario($_SESSION['id_usuario'])) {

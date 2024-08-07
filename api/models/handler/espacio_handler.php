@@ -1,5 +1,5 @@
 <?php
-require_once ('../helpers/database.php');
+require_once('../helpers/database.php');
 
 class EspacioHandler
 {
@@ -16,12 +16,12 @@ class EspacioHandler
     public function getAllEspacios($buscar = '', $filtrar = '')
     {
         $sql = 'SELECT e.id_espacio, e.nombre_espacio, e.capacidad_personas, e.tipo_espacio, e.inventario_doc, e.foto_espacio, 
-                       es.nombre_especialidad, i.nombre_institucion, d.nombre_empleado
-                FROM tb_espacios e
-                LEFT JOIN tb_especialidades es ON e.id_especialidad = es.id_especialidad
-                LEFT JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
-                LEFT JOIN tb_da tos_empleados d ON e.id_empleado = d.id_datos_empleado
-                WHERE e.nombre_espacio LIKE ? AND es.id_especialidad LIKE ?';
+        es.nombre_especialidad, i.nombre_institucion, d.nombre_empleado
+        FROM tb_espacios e
+        LEFT JOIN tb_especialidades es ON e.id_especialidad = es.id_especialidad
+        LEFT JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
+        LEFT JOIN tb_datos_empleados d ON e.id_empleado = d.id_datos_empleado
+        WHERE e.nombre_espacio LIKE ? AND es.id_especialidad LIKE ?';
         $params = ["%$buscar%", $filtrar ? $filtrar : '%'];
         $data = Database::getRows($sql, $params);
         if ($data) {
@@ -109,5 +109,3 @@ class EspacioHandler
         }
     }
 }
-
-?>
