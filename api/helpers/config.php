@@ -7,4 +7,5 @@ date_default_timezone_set('America/El_Salvador');
 define('SERVER', 'localhost');
 define('DATABASE', 'my_loan_bd');
 define('USERNAME', 'root');
-define('PASSWORD', '');?>
+define('PASSWORD', '');
+?>

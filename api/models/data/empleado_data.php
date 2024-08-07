@@ -1,6 +1,6 @@
 <?php
-require_once('../helpers/validator.php');
-require_once('../models/handler/empleado_handler.php');
+require_once ('../helpers/validator.php');
+require_once ('../models/handler/empleado_handler.php');
 
 class EmpleadoData extends EmpleadoHandler
 {
@@ -140,6 +140,7 @@ class EmpleadoData extends EmpleadoHandler
         return $data && $data['estado_empleado'] === 'Activo';
     }
 
+    //Datos del empleado
     public function getNombreEmpleado($id_usuario)
     {
         $sql = 'SELECT nombre_empleado FROM tb_datos_empleados WHERE id_usuario = ?';
@@ -147,6 +148,38 @@ class EmpleadoData extends EmpleadoHandler
         $data = Database::getRow($sql, $params);
         return $data ? $data['nombre_empleado'] : null;
     }
+    // Obtener la especialidad del empleado
+    public function getEspecialidad($id_usuario)
+    {
+        $sql = 'SELECT id_especialidad
+                 FROM tb_instructores
+                 WHERE id_usuario = ?';
+        $params = array($id_usuario);
+        $data = Database::getRow($sql, $params);
+        return $data ? $data['id_especialidad'] : null;
+    }
+
+    // Obtener el cargo del empleado
+    public function getCargo($id_usuario)
+    {
+        $sql = 'SELECT id_cargo 
+                 FROM tb_usuarios
+                 WHERE id_usuario = ?';
+        $params = array($id_usuario);
+        $data = Database::getRow($sql, $params);
+        return $data ? $data['id_cargo'] : null;
+    }
+    // Obtener la institución del empleado
+    public function getInstitucion($id_usuario)
+    {
+        $sql = 'SELECT id_institucion 
+                    FROM tb_usuarios
+                    WHERE id_usuario = ?';
+        $params = array($id_usuario);
+        $data = Database::getRow($sql, $params);
+        return $data ? $data['id_institucion'] : null;
+    }
+
 
     public function getProfile()
     {

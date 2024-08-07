@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestionar espacios CFP</title>
+
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+        <div class="dashboard">
+
+        </div>
+
+        <!--  aca empieza el header -->
+        <div class="body-wrapper">
+            <div id="headerContainer" data-title="Gestionar espacio"></div>
+
+
+            <!-- Inicio del cuadro con efecto 3D -->
+            <div class="container-fluid" id="miCuadro">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <!-- Parte superior para credenciales -->
+
+                            <!-- Tabla de empleados -->
+                            <div class="container mt-3">
+                                <div class="row mb-5">
+                                    <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                        <button class="btn btn-transparent border-0 p-0">
+                                            <i class="fas fa-search me-2"></i>
+                                        </button>
+                                        <!-- Barra de búsqueda -->
+                                        <input type="search" id="buscarEspacio" class="form-control"
+                                            placeholder="Buscar">
+                                    </div>
+
+                                    <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                        <!-- input para filtrar -->
+                                        <select id="filtrarEspecialidad" class="form-select" required>
+                                            <option value="">Todos</option>
+                                        </select>
+                                    </div>
+                                
+
+                            <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                <button id="btnAgregarEspacio" type="button" class="btn btn-primary mx-1 btnestilo"
+                                    data-bs-toggle="modal" data-bs-target="#AgregarEspacio">Agregar espacio</button>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Número de laboratorio</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Capacidad de personas</th>
+                                            <th scope="col">Tipo de espacio</th>
+                                            <th scope="col">Encargado</th>
+                                            <th scope="col">Imagen</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Institución</th>
+                                            <th scope="col">Inventario</th>
+                                            <th scope="col" style="width: 200px;">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- aca empiezan las filas de las tablas-->
+                                        <!-- Los datos se llenarán desde el archivo JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    <!-- Modal para agregar espacio -->
+    <div class="modal fade" id="AgregarEspacio" tabindex="-1" aria-labelledby="AgregarEspacioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AgregarEspacioLabel">Agregar Espacio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgregarEspacio">
+                        <div class="mb-3">
+                            <label for="nombreEspacio" class="form-label">Nombre del Espacio</label>
+                            <input type="text" class="form-control" id="nombreEspacio" name="nombreEspacio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="capacidadPersonas" class="form-label">Capacidad de Personas</label>
+                            <input type="number" class="form-control" id="capacidadPersonas" name="capacidadPersonas"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoEspacio" class="form-label">Tipo de Espacio</label>
+                            <select class="form-select" id="tipoEspacio" name="tipoEspacio" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="Taller">Taller</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="encargadoEspacio" class="form-label">Encargado</label>
+                            <select class="form-select" id="encargadoEspacio" name="encargadoEspacio" required>
+                                <option value="">Seleccionar encargado</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <!-- Contenedor para la vista previa de la imagen -->
+                        <div class="mb-3 text-center">
+                            <img id="previewImagenEspacio" src="#" alt="Vista previa de la imagen"
+                                style="display:none; width:100%; max-width:200px; height:auto;" class="mx-auto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="imagenEspacio" class="form-label">Imagen del Espacio</label>
+                            <input type="file" class="form-control" id="imagenEspacio" name="imagenEspacio"
+                                accept="image/jpeg, image/png">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="especialidadEspacio" class="form-label">Especialidad</label>
+                            <select class="form-select" id="especialidadEspacio" name="especialidadEspacio" required>
+                                <option value="">Seleccionar especialidad</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="institucionEspacio" class="form-label">Institución</label>
+                            <select class="form-select" id="institucionEspacio" name="institucionEspacio" required>
+                                <option value="">Seleccionar institución</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inventarioEspacio" class="form-label">Inventario</label>
+                            <input type="file" class="form-control" id="inventarioEspacio" name="inventarioEspacio"
+                                accept=".pdf, .doc, .docx, .xls, .xlsx">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar espacio -->
+    <div class="modal fade" id="editarEspacio" tabindex="-1" aria-labelledby="editarEspacioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarEspacioLabel">Editar Espacio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEditarEspacio">
+                        <input type="hidden" id="editarIdEspacio" name="idEspacio">
+                        <div class="mb-3">
+                            <label for="editarNombreEspacio" class="form-label">Nombre del Espacio</label>
+                            <input type="text" class="form-control" id="editarNombreEspacio" name="nombreEspacio"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarCapacidadPersonas" class="form-label">Capacidad de Personas</label>
+                            <input type="number" class="form-control" id="editarCapacidadPersonas"
+                                name="capacidadPersonas" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarTipoEspacio" class="form-label">Tipo de Espacio</label>
+                            <select class="form-select" id="editarTipoEspacio" name="tipoEspacio" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="Taller">Taller</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarEncargadoEspacio" class="form-label">Encargado</label>
+                            <select class="form-select" id="editarEncargadoEspacio" name="encargadoEspacio" required>
+                                <option value="">Seleccionar encargado</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <!-- Contenedor para la vista previa de la imagen -->
+                        <div class="mb-3 text-center">
+                            <img id="previewImagenEspacioEditar" src="#" alt="Vista previa de la imagen"
+                                style="display:none; width:100%; max-width:200px; height:auto;" class="mx-auto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarImagenEspacio" class="form-label">Imagen del Espacio</label>
+                            <input type="file" class="form-control" id="editarImagenEspacio" name="imagenEspacio"
+                                accept="image/jpeg, image/png">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarEspecialidadEspacio" class="form-label">Especialidad</label>
+                            <select class="form-select" id="editarEspecialidadEspacio" name="especialidadEspacio"
+                                required>
+                                <option value="">Seleccionar especialidad</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarInstitucionEspacio" class="form-label">Institución</label>
+                            <select class="form-select" id="editarInstitucionEspacio" name="institucionEspacio"
+                                required>
+                                <option value="">Seleccionar institución</option>
+                                <!-- Opciones dinámicas generadas desde el JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarInventarioEspacio" class="form-label">Inventario</label>
+                            <input type="file" class="form-control" id="editarInventarioEspacio"
+                                name="inventarioEspacio" accept=".pdf, .doc, .docx, .xls, .xlsx">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--Scrip que si funionan -->
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../../controlador/utils/dashboard.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../controlador/utils/session_utils.js"></script>
+    <script src="../../recursos/js/acciones.js"></script>
+    <script src="../../controlador/admin_cfp/header.js"></script>
+    <script src="../../recursos/js/modales.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Scrip que dudosamente sirven-->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
+    <script src="../../controlador/admin_itr/gestionar_espacios.js"></script>
+</body>
+
+</html>
