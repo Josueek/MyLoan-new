@@ -9,19 +9,16 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null);
 
     switch ($_GET['action']) {
-        // Obtiene todos los cursos con opción de búsqueda.
         case 'getAllCursos':
             $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
             $result = $curso->getAllCursos($buscar);
             break;
 
         case 'getAllEmpleados':
-            // Obtiene todos los empleados asociados a cursos
             $result = array('status' => 1, 'dataset' => $curso->getAllEmpleados());
             break;
 
         case 'addCurso':
-            // Agrega un nuevo curso con validación de datos.
             $_POST = Validator::validateForm($_POST);
             if (isset($_POST['nombre']) &&
                 isset($_POST['fechaInicio']) &&
@@ -57,7 +54,6 @@ if (isset($_GET['action'])) {
             break;
 
         case 'getCurso':
-            // Obtiene un curso por su ID.
             if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
                 if ($result['dataset'] = $curso->getCursoById($_GET['id'])) {
                     $result['status'] = 1;
@@ -70,7 +66,6 @@ if (isset($_GET['action'])) {
             break;
 
         case 'updateCurso':
-            // Actualiza un curso existente con validación de datos.
             $_POST = Validator::validateForm($_POST);
             if (isset($_POST['id']) &&
                 isset($_POST['nombre']) &&
@@ -109,7 +104,6 @@ if (isset($_GET['action'])) {
             break;
 
         case 'deleteCurso':
-            // Elimina un curso por su ID.
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
                 if ($curso->delete($data['id'])) {
@@ -122,17 +116,15 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-            case 'obtenerFechasCurso':
-                try {
-                    $result = $curso->obtenerFechasCurso();
-                    echo json_encode($result);
-                } catch (Exception $e) {
-                    // Manejar el error y enviar un mensaje adecuado
-                    http_response_code(500); // Código de estado HTTP 500 para errores del servidor
-                    echo json_encode(['error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage()]);
-                }
-                break;
             
+        case 'obtenerFechasCurso':
+            try {
+                $result = $curso->obtenerFechasCurso();
+            } catch (Exception $e) {
+                http_response_code(500);
+                $result = array('error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage());
+            }
+            break;
 
         default:
             $result['message'] = 'Acción no disponible';
