@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al obtener especialidades:', error));
 
         fetch(`../../api/services/espacios_services.php?action=getAllInstituciones`)
-            .then(response => response.json())
+            .then(response => response.json())  
             .then(data => llenarCombobox('institucionEspacio', data, 'id_institucion', 'nombre_institucion'))
             .catch(error => console.error('Error al obtener instituciones:', error));
     }
