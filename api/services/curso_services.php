@@ -1,7 +1,7 @@
 <?php
-require_once('../helpers/database.php');
-require_once('../helpers/validator.php');
-require_once('../models/data/curso_data.php');
+require_once ('../helpers/database.php');
+require_once ('../helpers/validator.php');
+require_once ('../models/data/curso_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
@@ -15,24 +15,40 @@ if (isset($_GET['action'])) {
             $result = $curso->getAllCursos($buscar);
             break;
 
-        case 'getAllEmpleados':
-            // Obtiene todos los empleados asociados a cursos
-            $result = array('status' => 1, 'dataset' => $curso->getAllEmpleados());
+        //Obtenemos los programas de formacion
+        case 'getProgramaFormacion':
+            if ($result['dataset'] = $curso->getPrograma()) {
+                $result['status'] = 1;
+            } else {
+                $result['message'] = 'No se pudieron obtener los datos';
+            }
             break;
+        //Valor del estado
+        case 'getEstadoCurso':
+            if ($result['dataset'] = $curso->getEstadoCurso()) {
+                $result['status'] = 1;
+            } else {
+                $result['message'] = 'No se pudieron obtener los datos';
+            }
+            break;
+ 
 
         case 'addCurso':
             // Agrega un nuevo curso con validación de datos.
             $_POST = Validator::validateForm($_POST);
-            if (isset($_POST['nombre']) &&
+            if (
+                isset($_POST['nombre']) &&
                 isset($_POST['fechaInicio']) &&
                 isset($_POST['fechaFin']) &&
                 isset($_POST['cantidadPersonas']) &&
                 isset($_POST['grupo']) &&
                 isset($_POST['programaFormacion']) &&
                 isset($_POST['codigoCurso']) &&
-                isset($_POST['empleado'])) {
+                isset($_POST['empleado'])
+            ) {
 
-                if ($curso->setNombre($_POST['nombre']) &&
+                if (
+                    $curso->setNombre($_POST['nombre']) &&
                     $curso->setFechaInicio($_POST['fechaInicio']) &&
                     $curso->setFechaFin($_POST['fechaFin']) &&
                     $curso->setCantidadPersonas($_POST['cantidadPersonas']) &&
@@ -40,13 +56,15 @@ if (isset($_GET['action'])) {
                     $curso->setProgramaFormacion($_POST['programaFormacion']) &&
                     $curso->setCodigo($_POST['codigoCurso']) &&
                     $curso->setEmpleado($_POST['empleado']) &&
-                    $curso->setEstado('pendiente')) {
+                    $curso->setEstado('pendiente')
+                ) {
 
                     if ($curso->create()) {
                         $result['status'] = 1;
                         $result['message'] = 'Curso agregado correctamente';
                     } else {
                         $result['message'] = 'No se pudo agregar el curso';
+                        error_log(print_r($curso, true));
                     }
                 } else {
                     $result['message'] = 'Datos inválidos';
@@ -72,7 +90,8 @@ if (isset($_GET['action'])) {
         case 'updateCurso':
             // Actualiza un curso existente con validación de datos.
             $_POST = Validator::validateForm($_POST);
-            if (isset($_POST['id']) &&
+            if (
+                isset($_POST['id']) &&
                 isset($_POST['nombre']) &&
                 isset($_POST['fechaInicio']) &&
                 isset($_POST['fechaFin']) &&
@@ -81,9 +100,11 @@ if (isset($_GET['action'])) {
                 isset($_POST['programaFormacion']) &&
                 isset($_POST['codigoCurso']) &&
                 isset($_POST['empleado']) &&
-                isset($_POST['estado'])) {
+                isset($_POST['estado'])
+            ) {
 
-                if ($curso->setId($_POST['id']) &&
+                if (
+                    $curso->setId($_POST['id']) &&
                     $curso->setNombre($_POST['nombre']) &&
                     $curso->setFechaInicio($_POST['fechaInicio']) &&
                     $curso->setFechaFin($_POST['fechaFin']) &&
@@ -92,7 +113,8 @@ if (isset($_GET['action'])) {
                     $curso->setProgramaFormacion($_POST['programaFormacion']) &&
                     $curso->setCodigo($_POST['codigoCurso']) &&
                     $curso->setEmpleado($_POST['empleado']) &&
-                    $curso->setEstado($_POST['estado'])) {
+                    $curso->setEstado($_POST['estado'])
+                ) {
 
                     if ($curso->update()) {
                         $result['status'] = 1;
@@ -122,17 +144,17 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-            case 'obtenerFechasCurso':
-                try {
-                    $result = $curso->obtenerFechasCurso();
-                    echo json_encode($result);
-                } catch (Exception $e) {
-                    // Manejar el error y enviar un mensaje adecuado
-                    http_response_code(500); // Código de estado HTTP 500 para errores del servidor
-                    echo json_encode(['error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage()]);
-                }
-                break;
-            
+        case 'obtenerFechasCurso':
+            try {
+                $result = $curso->obtenerFechasCurso();
+                echo json_encode($result);
+            } catch (Exception $e) {
+                // Manejar el error y enviar un mensaje adecuado
+                http_response_code(500); // Código de estado HTTP 500 para errores del servidor
+                echo json_encode(['error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage()]);
+            }
+            break;
+
 
         default:
             $result['message'] = 'Acción no disponible';

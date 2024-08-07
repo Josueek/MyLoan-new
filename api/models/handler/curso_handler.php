@@ -23,6 +23,7 @@ class CursoHandler
         }
     }
 
+
     //Metodo para obtener los datos de empleados
     public function getAllEmpleados()
     {
@@ -45,6 +46,16 @@ class CursoHandler
         $sql = 'SELECT * FROM tb_cursos WHERE id_curso = ?';
         $params = array($idCurso);
         return Database::getRow($sql, $params);
+    }
+    //Metodo para obtener los programas de formacion
+    public function getPrograma(){
+        $sql = 'SELECT Programa_formacion FROM tb_cursos;';
+        return Database::getRows($sql);
+    }
+     //Metodo para obtener el estado de los cursos
+     public function getEstadoCurso(){
+        $sql = 'SELECT estado FROM tb_cursos;';
+        return Database::getRows($sql);
     }
 
     //Actualizar los datos d la tabla cursos 
