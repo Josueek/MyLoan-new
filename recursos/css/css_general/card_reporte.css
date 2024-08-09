@@ -1,102 +1,143 @@
 /* Estilo para las tarjetas */
 .custom-card {
-    border: 1px solid #ECF0F5;
-    border-radius: 10px; /* Aumenta el radio del borde para bordes más redondeados */
-    box-shadow: 0 0.125rem 0.25rem rgba(120, 120, 120, 0.1); /* Mejora la visibilidad de la sombra */
-    transition: box-shadow .15s ease-in-out;
+    border: #ecf0f580;
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 0.125rem 0.25rem rgba(214, 214, 214, 0.1); /* Sombra suave */
+    transition: box-shadow 0.1s ease-in-out; /* Transición suave para el hover */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Asegura que el contenido se distribuya correctamente */
-    height: 100%; /* Permite que la tarjeta ocupe toda la altura de la columna */
+    justify-content: space-between; /* Espaciado interno */
+    height: 100%; /* Ocupa toda la altura de la columna */
 }
 
 .custom-card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra más pronunciada en hover */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
 }
 
 .card-body {
-    padding: 1.5rem; /* Aumenta el padding para mayor espacio interno */
+    padding: 3.5rem; /* Espaciado interno */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido dentro del card-body */
-    background-color: #f9f9f9;
-    text-align: center; /* Alinea el texto al centro */
+    align-items: center; /* Centro del contenido */
+    background-color: #ecf0f580; /* Fondo semi-transparente */
+    text-align: center; /* Texto centrado */
+    border: #ecf0f580;
+    border-radius: 15px;
 }
 
 .icon-custom {
-    font-size: 2.5rem; /* Aumenta el tamaño del ícono para que sea más prominente */
-    color: #FCBE2D;
-    margin-bottom: 1rem; /* Espacio entre el ícono y el título */
+    font-size: 20px; /* Tamaño del ícono */
+    color: #5e5e5e;
+    margin-bottom: 1rem; /* Espacio debajo del ícono */
 }
 
 .btn-custom {
-    background-color: #FCBE2D;
+    background-color: #FCBE2D; /* Color de fondo del botón */
     color: white;
     border: none;
-    margin-top: auto; /* Asegura que el botón quede al final de la tarjeta */
-    padding: 0.5rem 1rem; /* Aumenta el padding del botón */
-    border-radius: 5px; /* Añade bordes redondeados al botón */
+    margin-top: auto; /* Ubica el botón al final de la tarjeta */
+    padding: 0.5rem 1rem; /* Espaciado interno del botón */
+    border-radius: 15px; /* Bordes redondeados */
 }
 
 .btn-custom:hover {
     background-color: #f67348; /* Color de fondo en hover */
-    color: white;
+}
+/* Asegúrate de que el main esté centrado en la página */
+
+/* Asegúrate de que el body-wrapper se ajuste al tamaño de la página */
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el contenedor ocupe al menos el alto de la ventana */
 }
 
+/* Asegúrate de que el contenedor tenga un ancho máximo y esté centrado */
+.container {
+    max-width: 1200px; /* Ajusta este valor según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+/* Asegúrate de que el menú lateral y otros elementos estén correctamente posicionados */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Ajusta el ancho del sidebar según tus necesidades */
+    height: 100%;
+    overflow-y: auto;
+    background-color: #f8f9fa; /* Color de fondo del sidebar */
+}
+
+/* Estilo del wrapper general */
+.page-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Ajusta el margen del botón y las tarjetas */
+.card {
+    margin: 0 auto; /* Centra las tarjetas en su columna */
+}
+
+.card-body {
+    text-align: center; /* Centra el contenido dentro de cada tarjeta */
+}
+
+
 .card-title {
-    font-size: 1.5rem; /* Aumenta el tamaño del texto del título */
+    font-size: 1.5rem; /* Tamaño del título */
     color: #343a40;
-    margin-bottom: 1rem; /* Espacio entre el título y el texto */
+    margin-bottom: 1rem; /* Espacio debajo del título */
 }
 
 .card-text {
     color: #495057;
-    margin-bottom: 1.5rem; /* Aumenta el espacio entre el texto y el botón */
+    margin-bottom: 1.5rem; /* Espacio debajo del texto */
 }
 
-/* Asegúrate de que el contenedor principal esté centrado */
+/* Centra el contenedor principal y ajusta el padding */
 .container-fluid {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alinea el contenido al inicio del contenedor */
-    padding: 2rem; /* Añade padding alrededor del contenedor */
+    padding: 1rem; /* Espaciado interno */
 }
 
-/* Centra la fila y asegura que las tarjetas se alineen en el centro */
+/* Centra las tarjetas dentro del contenedor */
 .row {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas si es necesario */
+    justify-content: center; /* Centra horizontalmente */
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas */
 }
 
 /* Ajusta el ancho de las tarjetas */
 .card {
-    width: 100%; /* Permite que la tarjeta ocupe todo el ancho de su contenedor */
-    max-width: 20rem; /* Ajusta el ancho máximo de la tarjeta */
-    height: 30rem; /* Ajusta la altura de la tarjeta */
+    width: 100%; /* Ocupa todo el ancho de su contenedor */
+    max-width: 20rem; /* Ancho máximo */
+    height: 30rem; /* Altura fija */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaciado interno */
 }
 
-/* Asegura que las tarjetas no excedan el ancho de sus columnas */
+/* Ajusta la columna para que las tarjetas se centren y no excedan el contenedor */
 .col-md-3 {
     display: flex;
-    justify-content: center;
-    margin-bottom: 2rem; /* Añade margen en la parte inferior para separarlas de otras filas */
+    justify-content: center; /* Centra horizontalmente */
+    margin-bottom: 2rem; /* Espacio debajo de cada tarjeta */
 }
 
 /* Ajustes para pantallas pequeñas */
-@media (max-width: 1062px) {
+@media (max-width: 1398px) {
     .col-md-3 {
-        flex: 0 0 50%; /* Ajusta el ancho de las tarjetas a la mitad de la columna */
-        max-width: 50%; /* Ajusta el ancho máximo de la tarjeta */
+        flex: 0 0 50%; /* Dos tarjetas por fila en pantallas más pequeñas */
+        max-width: 50%; /* Ancho máximo de la tarjeta */
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 876px) {
     .col-md-3 {
-        flex: 0 0 100%; /* Ajusta el ancho de las tarjetas a toda la columna */
-        max-width: 100%; /* Ajusta el ancho máximo de la tarjeta */
+        flex: 0 0 100%; /* Una tarjeta por fila en pantallas muy pequeñas */
+        max-width: 100%; /* Ancho máximo de la tarjeta */
     }
 }
