@@ -162,6 +162,44 @@ function generarMenuLateral() {
                         </ul>
                     </li>
 
+                      <li class="sidebar-item">
+                        <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnGrafica">
+                            <span>
+                                <i class="fa-solid fa-chart-bar"></i>
+                            </span>
+                            <span class="hide-menu">Gráficas</span>
+                        </a>
+                        <ul id="submenuGrafica" class="submenu" style="display: none;">
+                            <li class="submenu-item">
+                                <a href="path/to/graficas.html" class="submenu-link">
+                                    <span>
+                                        <i class="fa-solid fa-chart-line me-2"></i>
+                                    </span>
+                                    <span class="hide-menu">Visualizar gráficas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnProyeccion">
+                            <span>
+                                <i class="fa-solid fa-chart-line"></i>
+                            </span>
+                            <span class="hide-menu">Proyecciones</span>
+                        </a>
+                        <ul id="submenuProyeccion" class="submenu" style="display: none;">
+                            <li class="submenu-item">
+                                <a href="path/to/proyecciones.html" class="submenu-link">
+                                    <span>
+                                        <i class="fa-solid fa-calendar-alt me-2"></i>
+                                    </span>
+                                    <span class="hide-menu">Analizar proyecciones</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
                             <span>
@@ -171,15 +209,16 @@ function generarMenuLateral() {
                         </a>
                         <ul id="submenu8" class="submenu" style="display: none;">
                             <li class="submenu-item">
-                                <a href=".." class="submenu-link">
+                                <a href="../../vistas/vistas_admin/reportes.html" class="submenu-link">
                                     <span>
                                         <i class="fa-solid fa-table-list me-2"></i>
                                     </span>
-                                    <span class="hide-menu">Mis solicitudes</span>
+                                    <span class="hide-menu">Generar reportes</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                
                 </ul>
             </nav>
             <!-- aca termina el menu lateral -->
