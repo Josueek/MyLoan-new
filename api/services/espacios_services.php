@@ -1,8 +1,8 @@
 <?php
-require_once('../helpers/database.php');
-require_once('../helpers/validator.php');
-require_once('../models/handler/espacio_handler.php');
-require_once('../models/data/espacio_data.php');
+require_once ('../helpers/database.php');
+require_once ('../helpers/validator.php');
+require_once ('../models/handler/espacio_handler.php');
+require_once ('../models/data/espacio_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
@@ -14,10 +14,25 @@ if (isset($_GET['action'])) {
             // Obtiene todos los espacios, con opción de búsqueda y filtrado
             $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
             $filtrar = isset($_GET['filtrar']) ? $_GET['filtrar'] : '';
-        
+
             $result = $espacio->getAllEspacios($buscar, $filtrar);
             break;
-        
+
+        // Obtiene todos los espacios correspondiente al id del usuario
+        case 'getAllEspaciosByIdUsuario':
+            // Obtiene un espacio por su ID     
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (isset($data['idempleado']) && Validator::validateNaturalNumber($data['idempleado'])) {
+                if ($result['dataset'] = $espacio->getAllEspaciosByIdUsuario($data['idempleado'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se pudo obtener el espacio';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+
         case 'getAllEmpleados':
             // Obtiene todos los empleados asociados a los espacios
             $result = array('status' => 1, 'dataset' => $espacio->getAllEmpleados());
@@ -40,16 +55,18 @@ if (isset($_GET['action'])) {
             $especialidad = $_POST['especialidadEspacio'];
             $institucion = $_POST['institucionEspacio'];
             // Agrega un nuevo espacio
-            if (Validator::validateString($nombre) &&
+            if (
+                Validator::validateString($nombre) &&
                 Validator::validateNaturalNumber($capacidad) &&
                 Validator::validateString($tipo) &&
                 Validator::validateNaturalNumber($encargado) &&
                 Validator::validateNaturalNumber($especialidad) &&
-                Validator::validateNaturalNumber($institucion)) {
+                Validator::validateNaturalNumber($institucion)
+            ) {
 
                 $imagenEspacio = null;
                 $inventarioEspacio = null;
-                    // Manejo de carga de archivos (imagen e inventario)
+                // Manejo de carga de archivos (imagen e inventario)
                 if (isset($_FILES['imagenEspacio']) && $_FILES['imagenEspacio']['error'] == UPLOAD_ERR_OK) {
                     $imagenEspacio = uniqid() . '.' . pathinfo($_FILES['imagenEspacio']['name'], PATHINFO_EXTENSION);
                     if (!move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $imagenEspacio)) {
@@ -93,51 +110,53 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-            case 'updateEspacio':
-                // Actualiza un espacio existente   
-                $_POST = Validator::validateForm($_POST);
-                $idEspacio = $_POST['idEspacio'];
-                $nombre = $_POST['nombreEspacio'];
-                $capacidad = $_POST['capacidadPersonas'];
-                $tipo = $_POST['tipoEspacio'];
-                $encargado = $_POST['encargadoEspacio'];
-                $especialidad = $_POST['especialidadEspacio'];
-                $institucion = $_POST['institucionEspacio'];
-                // Validación de datos recibidos
-                if (Validator::validateNaturalNumber($idEspacio) &&
-                    Validator::validateString($nombre) &&
-                    Validator::validateNaturalNumber($capacidad) &&
-                    Validator::validateString($tipo) &&
-                    Validator::validateNaturalNumber($encargado) &&
-                    Validator::validateNaturalNumber($especialidad) &&
-                    Validator::validateNaturalNumber($institucion)) {
-            
-                    $imagenEspacio = $_POST['imagenEspacio'] ?? null;
-                    $inventarioEspacio = $_POST['inventarioEspacio'] ?? null;
-                        // Manejo de carga de archivos (imagen e inventario)
-                    if (isset($_FILES['imagenEspacio']) && $_FILES['imagenEspacio']['error'] == UPLOAD_ERR_OK) {
-                        $imagenEspacio = uniqid() . '.' . pathinfo($_FILES['imagenEspacio']['name'], PATHINFO_EXTENSION);
-                        move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $imagenEspacio);
-                    }
-            
-                    if (isset($_FILES['inventarioEspacio']) && $_FILES['inventarioEspacio']['error'] == UPLOAD_ERR_OK) {
-                        $inventarioEspacio = uniqid() . '.' . pathinfo($_FILES['inventarioEspacio']['name'], PATHINFO_EXTENSION);
-                        move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $inventarioEspacio);
-                    }
-                    // Parámetros para la actualización del espacio
-                    $params = array($nombre, $capacidad, $tipo, $encargado, $especialidad, $institucion, $inventarioEspacio, $imagenEspacio, $idEspacio);
-                    // Llama al método para actualizar el espacio
-                    if ($espacio->updateEspacio($params)) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Espacio actualizado correctamente';
-                    } else {
-                        $result['message'] = 'No se pudo actualizar el espacio';
-                    }
-                } else {
-                    $result['message'] = 'Datos inválidos';
+        case 'updateEspacio':
+            // Actualiza un espacio existente   
+            $_POST = Validator::validateForm($_POST);
+            $idEspacio = $_POST['idEspacio'];
+            $nombre = $_POST['nombreEspacio'];
+            $capacidad = $_POST['capacidadPersonas'];
+            $tipo = $_POST['tipoEspacio'];
+            $encargado = $_POST['encargadoEspacio'];
+            $especialidad = $_POST['especialidadEspacio'];
+            $institucion = $_POST['institucionEspacio'];
+            // Validación de datos recibidos
+            if (
+                Validator::validateNaturalNumber($idEspacio) &&
+                Validator::validateString($nombre) &&
+                Validator::validateNaturalNumber($capacidad) &&
+                Validator::validateString($tipo) &&
+                Validator::validateNaturalNumber($encargado) &&
+                Validator::validateNaturalNumber($especialidad) &&
+                Validator::validateNaturalNumber($institucion)
+            ) {
+
+                $imagenEspacio = $_POST['imagenEspacio'] ?? null;
+                $inventarioEspacio = $_POST['inventarioEspacio'] ?? null;
+                // Manejo de carga de archivos (imagen e inventario)
+                if (isset($_FILES['imagenEspacio']) && $_FILES['imagenEspacio']['error'] == UPLOAD_ERR_OK) {
+                    $imagenEspacio = uniqid() . '.' . pathinfo($_FILES['imagenEspacio']['name'], PATHINFO_EXTENSION);
+                    move_uploaded_file($_FILES['imagenEspacio']['tmp_name'], '../../api/images/espacios/' . $imagenEspacio);
                 }
-                break;
-            
+
+                if (isset($_FILES['inventarioEspacio']) && $_FILES['inventarioEspacio']['error'] == UPLOAD_ERR_OK) {
+                    $inventarioEspacio = uniqid() . '.' . pathinfo($_FILES['inventarioEspacio']['name'], PATHINFO_EXTENSION);
+                    move_uploaded_file($_FILES['inventarioEspacio']['tmp_name'], '../../api/inventario/' . $inventarioEspacio);
+                }
+                // Parámetros para la actualización del espacio
+                $params = array($nombre, $capacidad, $tipo, $encargado, $especialidad, $institucion, $inventarioEspacio, $imagenEspacio, $idEspacio);
+                // Llama al método para actualizar el espacio
+                if ($espacio->updateEspacio($params)) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Espacio actualizado correctamente';
+                } else {
+                    $result['message'] = 'No se pudo actualizar el espacio';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+
         case 'deleteEspacio':
             // Elimina un espacio por su ID 
             $data = json_decode(file_get_contents("php://input"), true);
