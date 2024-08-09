@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+ 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Observaciones generales</title>
+ 
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+ 
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
+ 
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ 
+    <!-- Codigo del clima -->
+    <link rel="stylesheet" href="../../recursos/css/css_general/observaciones_generales.css">
+ 
+</head>
+ 
+<body>
+    <!--  Inicio del menu lateral -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+       <div class="dashboard"></div>
+ 
+        <!--  aca empieza el header -->
+        <div class="body-wrapper">
+            <div id="headerContainer" data-title="Observaciones generales"></div>
+            <!--  Aca termina la parte del menu y el header -->
+ 
+            <!--  Aca termina la parte del menu y el header -->
+ 
+            <div class="container-fluid" id="miCuadro">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+                            <div class="container-fluid">
+                                <!--  Row 1 -->
+                                <!-- tabla -->
+                                <!-- Inicio de la tabla de usuarios-->
+                                <table class="table table-hover" id="tabla-ejemplo">
+ 
+                                    <!-- Buscador-->
+                                    <div class="container mt-5">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="d-flex align-items-center">
+                                                    <button class="btn btn-transparent border-0 p-0">
+                                                        <i class="fas fa-search me-2"></i>
+                                                    </button>
+                                                    <!-- Barra de búsqueda -->
+                                                    <input type="search" class="form-control" placeholder="Buscar">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-warning btn-block">Imprimir
+                                                    documento</button>
+                                            </div>
+                                        </div>
+                                    </div>
+ 
+ 
+                                    <div class="my-5">
+                                        <h5 class="card-title fw-semibold"></h5>
+                                    </div>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fecha observación</th>
+                                            <th scope="col">Observación</th>
+                                            <th scope="col">Foto</th>
+                                            <th scope="col">Tipo de observación</th>
+                                            <th scope="col">Tipo préstamo</th>
+                                            <th scope="col">Espacio observado</th>
+                                            <th scope="col">Persona solicitante</th>
+                                            <th scope="col">Detalles</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <!-- Fin de la tabla de empleados -->
+                                <!-- fin tabla -->
+                                <div class="row">
+ 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Scrip que si funionan -->
+                    <script src="../../recursos/js/modales.js"></script>
+                    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="../../recursos/js/sidebarmenu.js"></script>
+                    <script src="../../recursos/js/app.min.js"></script>
+                    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+                    <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
+                    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+                 
+                    <script src="../../recursos/js/acciones.js"></script>
+                    <script src="../../controlador/admin_cfp/header.js"></script>
+                    <script src="../../controlador/utils/session_utils.js"></script>
+
+                    <!-- el de calendario se puede mejorar-->
+                    <script src="../../recursos/js/calendario.js"></script>
+                    <script src="../../recursos/js/clima.js"></script>
+                    
+                    <!-- Scrip que dudosamente sirven-->
+                    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+                    <script src="../../recursos/js/dashboard.js"></script>
+                    <script src="../../controlador/admin_itr/mis_observaciones.js"></script>
+</body>
+ 
+</html>

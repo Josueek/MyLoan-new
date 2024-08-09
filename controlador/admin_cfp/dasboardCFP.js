@@ -17,7 +17,7 @@ function generarMenuLateral() {
             <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
                 <ul id="sidebarnav">
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
+                        <a class="sidebar-link" href="../vistas_admin_CFP/inicio.html" aria-expanded="false">
                             <span>
                                 <i class="fa-solid fa-house"></i>
                             </span>
@@ -144,7 +144,7 @@ function generarMenuLateral() {
                         </a>
                         <ul id="submenu7" class="submenu" style="display: none;">
                             <li class="submenu-item ">
-                                <a href="../vistas_admin/observaciones_generales.html" class="submenu-link">
+                                <a href="../vistas/vistas_admin_CFP/observaciones_CFP.html" class="submenu-link">
                                     <span>
                                         <i class="far fa-eye-slash me-2"></i>
                                     </span>
@@ -152,7 +152,7 @@ function generarMenuLateral() {
                                 </a>
                             </li>
                             <li class="submenu-item">
-                                <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
+                                <a href="../vistas_admin_CFP/mis_observaciones_CFP.html" class="submenu-link">
                                     <span>
                                         <i class="far fa-eye me-2"></i>
                                     </span>

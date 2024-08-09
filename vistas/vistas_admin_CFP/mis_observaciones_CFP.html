@@ -39,212 +39,16 @@
                     </div>
                 </div>
 
-                <!-- Inicio de los menus-->
-                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="../vistas_admin/inicio.html" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-house"></i>
-                                </span>
-                                <span class="hide-menu">Inicio</span>
-                            </a>
-                        </li>
-                        <!-- Menú de administrar -->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnAdministrar">
-                                <span>
-                                    <i class="fa-solid fa-pager"></i>
-                                </span>
-                                <span class="hide-menu">Administrar</span>
-                            </a>
-
-                            <ul id="submenu" class="submenu">
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono revisar el w-100 porque abarca todo lo largo lit -->
-                                    <a href=".." class="submenu-link  w-100">
-                                        <span>
-                                            <i class="fa-solid fa-user me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Usuarios</span>
-                                    </a>
-                                </li>
-
-                                <li class="submenu-item d-flex align-items-center">
-                                    <!-- Icono -->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-settings me-2"></i>
-                                        </span>
-                                        <!-- Texto -->
-                                        <span class="hide-menu">Gestionar espacios</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 1: Gestionar inventario de herramienta -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-tool me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de herramienta</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 2: Gestionar inventario de equipos -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fas fa-desktop me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Gestionar inventario de equipos</span>
-                                    </a>
-                                </li>
-                                <!-- Nuevo elemento 3: Inventario de materiales -->
-                                <li class="submenu-item  d-flex align-items-center">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="ti ti-package  me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Inventario de materiales</span>
-                                    </a>
-                                </li>
+                <div class="sidebar" id="sidebar">
+                    <div class="dashboard">
+                        <!-- Contenedor para la navegación del menú -->
+                        <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                            <ul id="sidebarnav">
+                                    <!-- Aquí se generarán dinámicamente los elementos del menú -->
                             </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
-                                <span>
-                                    <i class="fa-solid fa-certificate"></i>
-                                </span>
-                                <span class="hide-menu">Cursos</span>
-                            </a>
-                            <ul id="submenu9" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Ver cursos</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear cursos</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
-                                <span>
-                                    <i class="fa-solid fa-circle-exclamation"></i>
-                                </span>
-                                <span class="hide-menu">Mis préstamos</span>
-                            </a>
-                            <ul id="submenu10" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-plus me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Crear solicitud</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-inbox me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Visualizar préstamos</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item">
-                            <!-- Acá Configurar nombre del archivo-->
-                            <a class="sidebar-link" href=".." aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-cards"></i>
-                                </span>
-                                <span class="hide-menu">Gestionar solicitudes</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
-                                <span>
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                                <span class="hide-menu">Observaciones</span>
-                            </a>
-                            <ul id="submenu7" class="submenu" style="display: none;">
-                                <li class="submenu-item ">
-                                    <!--Aca Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye-slash me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Observaciones generales</span>
-                                    </a>
-                                </li>
-                                <li class="submenu-item">
-                                    <!--Aca Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="far fa-eye me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis observaciones</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <!-- Aca Configurar nombre del archivo-->
-                            <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnReporte">
-                                <span>
-                                    <i class="fa-solid fa-folder"></i>
-                                </span>
-                                <span class="hide-menu">Reportes</span>
-                            </a>
-                            <ul id="submenu8" class="submenu" style="display: none;">
-                                <li class="submenu-item">
-                                    <!--Aca Configurar nombre del archivo-->
-                                    <a href=".." class="submenu-link">
-                                        <span>
-                                            <i class="fa-solid fa-table-list me-2"></i>
-                                        </span>
-                                        <span class="hide-menu">Mis solicitudes</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item">
-                            <!--Configurar nombre del archivo-->
-                            <a class="sidebar-link" href=".." aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-gear"></i>
-                                </span>
-                                <span class="hide-menu">Configuración</span>
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </nav>
+                        </nav>
+                    </div>
+                </div>
                 <!-- aca termina el menu lateral -->
             </div>
 
@@ -337,18 +141,15 @@
                         <div class="row">
                             <!-- Columna 1 -->
                             <div class="col-lg-4 mb-3">
-                                <!-- Contenido de la columna 1 -->
                                 <label for="fechaObservacion" class="form-label">Fecha de observación:</label>
                                 <input type="date" id="fechaObservacion" class="form-control" required>
                             </div>
                             <div class="col-lg-4 mb-3">
                                 <label for="observacion" class="form-label">Observación:</label>
-                                <input type="text" id="observacion" class="form-control" placeholder="Observaciones"
-                                    minlength="8" required>
+                                <input type="text" id="observacion" class="form-control" placeholder="Observaciones" minlength="8" required>
                             </div>
                             <!-- Columna 2 -->
                             <div class="col-lg-4 mb-3">
-                                <!-- Contenido de la columna 2 -->
                                 <label for="tipoObservacion" class="form-label">Tipo de observación:</label>
                                 <select id="tipoObservacion" class="form-select" required>
                                     <option value="">Selecciona un tipo</option>
@@ -374,12 +175,10 @@
                                 </select>
                             </div>
                             <div class="col-lg-4 mb-3">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#buscarEspacio" data-bs-whatever="@mdo" id="btnBuscarEspacio">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buscarEspacio" data-bs-whatever="@mdo" id="btnBuscarEspacio">
                                     Buscar Espacio
                                 </button>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -392,7 +191,11 @@
                             <span class="upload-text" id="uploadText">Subir imagen</span>
                         </div>
                     </div>
+                    <div class="col-12 mt-3">
+                        <button type="button" class="btn btn-success" id="submitObservacion">Agregar Observación</button>
+                    </div>
                 </div>
+                
 
                 <!--buscador y boton-->
                 <div class="container mt-5">
@@ -403,19 +206,11 @@
                             </button>
                             <!-- Barra de búsqueda -->
                             <input type="search" class="form-control" placeholder="Buscar">
-                        </div>
-                        <div class="col-lg-6 mb-3 d-flex justify-content-end">
-                            <button id="" type="button" class="btn btn-warning mx-1 btnestilo" data-bs-toggle="modal"
-                                data-bs-target="">
-                                Agregar observación
-                            </button>
-                        </div>
-                        <div class="col-lg-3 mb-3 d-flex justify-content-end">
-                        </div>
+                        </div>  
                     </div>
                 </div>
                 <!-- tabla -->
-                <table class="table table-hover">
+                <table class="table table-hover" id="tabla-ejemplo">
                     <thead>
                         <tr>
                             <th scope="col">Fecha de observación</th>
@@ -425,36 +220,12 @@
                             <th scope="col">Tipo de préstamo a observar</th>
                             <th scope="col">Espacio a observar</th>
                             <th scope="col">Préstamo a observar</th>
+                            <th scope="col">Empleado que realizo la observación</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">17.04.2024</th>
-                            <td>todo estabien me guta como lo dejaron</td>
-                            <td><img src="../../recursos/img/img_generales/sol.png" class="w-20 h-20"></td>
-                            <td>Despues</td>
-                            <td>Herramientas</td>
-                            <td>No</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">17.04.2024</th>
-                            <td>todo estabien me guta como lo dejaron</td>
-                            <td><img src="../../recursos/img/img_generales/sol.png" class="w-20 h-20"></td>
-                            <td>Despues</td>
-                            <td>Herramientas</td>
-                            <td>No</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">17.04.2024</th>
-                            <td>todo estabien me guta como lo dejaron</td>
-                            <td><img src="../../recursos/img/img_generales/sol.png" class="w-20 h-20"></td>
-                            <td>Despues</td>
-                            <td>Herramientas</td>
-                            <td>No</td>
-                            <td>Wilfredo Granados</td>
-                        </tr>
+                        <!-- Filas cargadas dinámicamente por JavaScript -->
                     </tbody>
                 </table>
                 <!--fin tabla -->
@@ -468,6 +239,8 @@
     <script src="../../recursos/js/sidebarmenu.js"></script>
     <script src="../../recursos/js/app.min.js"></script>
     <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
+    <script src="../../controlador/admin_itr/mis_observaciones.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
     <script src="../../recursos/js/acciones.js"></script>
     <!-- el de calendario se puede mejorar-->

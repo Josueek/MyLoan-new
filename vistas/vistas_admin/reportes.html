@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generar reportes</title>
+
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css" />
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="../../recursos/css/css_general/barralaterla.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="../../recursos/css/css_general/card_reporte.css" />
+</head>
+
+<body>
+    <!--  Inicio del menu lateral -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Botón de hamburguesa -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                        <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!--  aca empieza el header -->
+        <div class="body-wrapper">
+            <div id="headerContainer" data-title="Generar reportes"></div>
+            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+
+            <div class="container-fluid" style="background-color: rgba(165, 42, 42, 0);">
+                <div class="row justify-content-center">
+                    <!-- Tarjeta 1 -->
+                    <div class="container ">
+                        <div class="row justify-content-center">
+                            <!-- Tarjeta 1 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-file-alt me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="card-title mb-0">
+                                                Reporte de Préstamos por Usuario
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte de las ventas de estado entregado
+                                            mensuales.
+                                        </p>
+                                        <button class="btn btn-custom" onclick="generarReporte1('ventasMensuales')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 2 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-tag me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+                                            <h5 class="card-title mb-0">
+                                                Reporte de Observaciones por Tipos
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte de los productos que tienen
+                                            existencias menores a 20.
+                                        </p>
+                                        <button class="btn btn-custom" onclick="generarReporte2('historialPrecios')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 3 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-chart-line me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="card-title mb-0">
+                                                Reporte de Detalles de Préstamos
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte con las proyecciones de ventas para
+                                            el próximo mes.
+                                        </p>
+                                        <button class="btn btn-custom" onclick="generarReporte3('proyeccionesVentas')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 4 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-box me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="card-title mb-0">
+                                                Inventario de Productos
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Reporte de Empleados Activos y sus Cargos
+                                        </p>
+                                        <button class="btn btn-custom" onclick="generarReporte4('inventarioProductos')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 5 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-users me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="card-title mb-0">
+                                                Clientes Registrados por Mes
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte de clientes registrados por mes del
+                                            año actual.
+                                        </p>
+                                        <button class="btn btn-custom"
+                                            onclick="generarReporte5('clientesRegistradosMes')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 6 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-user-shield me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+                                            <h5 class="card-title mb-0">
+                                                Registro de Administradores
+                                            </h5>
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte para visualizar los administradores
+                                            registrados.
+                                        </p>
+                                        <button class="btn btn-custom"
+                                            onclick="generarReporte6('registroAdministradores')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 7 -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-calendar-check me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="card-title mb-0">
+                                                Reporte de Eventos Programados
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte de todos los eventos programados
+                                            para el próximo trimestre.
+                                        </p>
+                                        <button class="btn btn-custom" onclick="generarReporte7('eventosProgramados')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tarjeta 8 (Duplicada) -->
+                            <div class="col-md-3 mb-4">
+                                <div class="card custom-card h-100">
+                                    <div class="card-body">
+                                        <i class="fa-solid fa-calendar-check me-2 icon-custom"></i>
+                                        <div class="d-flex align-items-center">
+
+                                            <h5 class="card-title mb-0">
+                                                Reporte de Eventos Programados
+                                            </h5>
+
+                                        </div>
+                                        <p class="card-text mt-2">
+                                            Genera un reporte de todos los eventos programados
+                                            para el próximo trimestre.
+                                        </p>
+                                        <button class="btn btn-custom" onclick="generarReporte7('eventosProgramados')">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Incluye jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap y sus dependencias -->
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Otros scripts que dependen de jQuery -->
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../controlador/utils/dashboard.js"></script>
+
+    <!-- Scripts adicionales -->
+    <script src="../../controlador/admin_cfp/header.js"></script>
+    <script src="../../recursos/js/acciones.js"></script>
+    <script src="../../controlador/utils/session_utils.js"></script>
+    <script src="../../recursos/js/calendario.js"></script>
+    <script src="../../recursos/js/clima.js"></script>
+    <script src="../../recursos/js/munu-burguer.js"></script>
+    <script src="../../controlador/admin_itr/tabla_prestamos.js"></script>
+
+    <!-- Scripts que pueden requerir revisión -->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
+    <script src="../../controlador/admin_itr/tabla_prestamos.js"></script>
+</body>
+
+</html>
