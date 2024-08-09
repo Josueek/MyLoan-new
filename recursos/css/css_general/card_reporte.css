@@ -46,37 +46,6 @@
 }
 /* Asegúrate de que el main esté centrado en la página */
 
-/* Asegúrate de que el body-wrapper se ajuste al tamaño de la página */
-.body-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que el contenedor ocupe al menos el alto de la ventana */
-}
-
-/* Asegúrate de que el contenedor tenga un ancho máximo y esté centrado */
-.container {
-    max-width: 1200px; /* Ajusta este valor según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor */
-}
-
-/* Asegúrate de que el menú lateral y otros elementos estén correctamente posicionados */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px; /* Ajusta el ancho del sidebar según tus necesidades */
-    height: 100%;
-    overflow-y: auto;
-    background-color: #f8f9fa; /* Color de fondo del sidebar */
-}
-
-/* Estilo del wrapper general */
-.page-wrapper {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    min-height: 100vh;
-}
 
 /* Ajusta el margen del botón y las tarjetas */
 .card {

@@ -1,0 +1,78 @@
+/* Estilo para las tarjetas */
+.custom-card {
+  border: #d3d5d8;
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 0.125rem 0.25rem rgba(214, 214, 214, 0.1); /* Sombra suave */
+  transition: box-shadow 0.1s ease-in-out; /* Transición suave para el hover */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espaciado interno */
+  height: 25rem; /* Aumenta la altura de la tarjeta */
+  background-color: #f0f0f0; /* Fondo gris para la tarjeta */
+  margin-bottom: 2rem; /* Margen inferior para separar las tarjetas */
+}
+
+.custom-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
+}
+
+.card-body {
+  padding: 3.5rem; /* Espaciado interno */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centro del contenido */
+  background-color: #ffffff; /* Fondo blanco dentro de la tarjeta */
+  text-align: center; /* Texto centrado */
+  border: #dddddd;
+  border-radius: 15px;
+  /* Eliminar cualquier padding adicional en el fondo si es necesario */
+}
+
+.icon-custom {
+  font-size: 20px; /* Tamaño del ícono */
+  color: #5e5e5e;
+  margin-bottom: 1rem; /* Espacio debajo del ícono */
+}
+
+.btn-custom {
+  background-color: #00B69B; /* Color de fondo del botón */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem; /* Espaciado interno del botón */
+  border-radius: 15px; /* Bordes redondeados */
+  margin-top: auto; /* Ubica el botón al final de la tarjeta */
+  /* Elimina cualquier margen inferior para ajustar el espaciado */
+  margin-bottom: 0; 
+}
+
+.btn-custom:hover {
+  background-color: #f67348; /* Color de fondo en hover */
+  color: white;
+}
+
+/* Centra el contenido dentro de cada tarjeta */
+.card-body {
+  text-align: center; /* Centra el contenido dentro de cada tarjeta */
+}
+
+.card-title {
+  font-size: 1.5rem; /* Tamaño del título */
+  color: #343a40;
+  margin-bottom: 1rem; /* Espacio debajo del título */
+}
+
+.card-text {
+  color: #495057;
+}
+
+/* Centra el contenedor principal y ajusta el padding */
+.container-fluid {
+  padding: 1rem; /* Espaciado interno */
+}
+
+/* Centra las tarjetas dentro del contenedor */
+.row {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente las tarjetas dentro del contenedor */
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas */
+}
