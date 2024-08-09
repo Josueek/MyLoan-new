@@ -7,9 +7,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Espaciado interno */
-  height: 25rem; /* Aumenta la altura de la tarjeta */
-  background-color: #f0f0f0; /* Fondo gris para la tarjeta */
-  margin-bottom: 2rem; /* Margen inferior para separar las tarjetas */
+  height: 40rem; /* Aumenta la altura de la tarjeta */
+  background-color: #ffffff80; /* Fondo gris para la tarjeta */
+  margin-bottom: 3rem; /* Margen inferior para separar las tarjetas */
+ 
+}
+
+.card-container {
+  background-color: transparent; /* Quita el color de fondo del contenedor */
+  
 }
 
 .custom-card:hover {
@@ -21,11 +27,10 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* Centro del contenido */
-  background-color: #ffffff; /* Fondo blanco dentro de la tarjeta */
+  background-color: #ecf0f580; /* Fondo blanco dentro de la tarjeta */
   text-align: center; /* Texto centrado */
   border: #dddddd;
   border-radius: 15px;
-  /* Eliminar cualquier padding adicional en el fondo si es necesario */
 }
 
 .icon-custom {
@@ -40,19 +45,11 @@
   border: none;
   padding: 0.5rem 1rem; /* Espaciado interno del botón */
   border-radius: 15px; /* Bordes redondeados */
-  margin-top: auto; /* Ubica el botón al final de la tarjeta */
-  /* Elimina cualquier margen inferior para ajustar el espaciado */
-  margin-bottom: 0; 
 }
 
 .btn-custom:hover {
   background-color: #f67348; /* Color de fondo en hover */
   color: white;
-}
-
-/* Centra el contenido dentro de cada tarjeta */
-.card-body {
-  text-align: center; /* Centra el contenido dentro de cada tarjeta */
 }
 
 .card-title {
@@ -65,12 +62,10 @@
   color: #495057;
 }
 
-/* Centra el contenedor principal y ajusta el padding */
 .container-fluid {
   padding: 1rem; /* Espaciado interno */
 }
 
-/* Centra las tarjetas dentro del contenedor */
 .row {
   display: flex;
   justify-content: center; /* Centra horizontalmente las tarjetas dentro del contenedor */
