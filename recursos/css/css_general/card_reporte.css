@@ -32,7 +32,7 @@
 }
 
 .btn-custom {
-    background-color: #FCBE2D; /* Color de fondo del botón */
+    background-color: #00B69B; /* Color de fondo del botón */
     color: white;
     border: none;
     margin-top: auto; /* Ubica el botón al final de la tarjeta */
@@ -42,6 +42,7 @@
 
 .btn-custom:hover {
     background-color: #f67348; /* Color de fondo en hover */
+    color: white;
 }
 /* Asegúrate de que el main esté centrado en la página */
 
