@@ -7,67 +7,108 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Espaciado interno */
-  height: 40rem; /* Aumenta la altura de la tarjeta */
   background-color: #ffffff80; /* Fondo gris para la tarjeta */
-  margin-bottom: 3rem; /* Margen inferior para separar las tarjetas */
- 
+  margin-bottom: 2rem; /* Reducir el margen inferior para más tarjetas en fila */
+  max-width: 16rem; /* Ancho máximo más pequeño */
+  height: 20rem; /* Altura fija más pequeña */
 }
 
+/* Ajustar el contenedor de las tarjetas */
 .card-container {
   background-color: transparent; /* Quita el color de fondo del contenedor */
-  
 }
 
+/* Estilo para la tarjeta al pasar el cursor */
 .custom-card:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
 }
 
+/* Estilo para el contenido de la tarjeta */
 .card-body {
-  padding: 3.5rem; /* Espaciado interno */
+  padding: 2rem; /* Reducir el espaciado interno */
   display: flex;
   flex-direction: column;
   align-items: center; /* Centro del contenido */
   background-color: #ecf0f580; /* Fondo blanco dentro de la tarjeta */
-  text-align: center; /* Texto centrado */
   border: #dddddd;
   border-radius: 15px;
+  height: auto; /* Ajustar altura automáticamente para contenido dinámico */
 }
 
+/* Estilo para los íconos dentro de la tarjeta */
 .icon-custom {
-  font-size: 20px; /* Tamaño del ícono */
+  font-size: 18px; /* Tamaño del ícono reducido */
   color: #5e5e5e;
-  margin-bottom: 1rem; /* Espacio debajo del ícono */
+  margin-bottom: 0.75rem; /* Espacio debajo del ícono reducido */
 }
 
+/* Estilo para los botones dentro de la tarjeta */
 .btn-custom {
-  background-color: #00B69B; /* Color de fondo del botón */
+  background-color: #FCBE2D; /* Color de fondo del botón */
   color: white;
+  font-weight: 800;
+  font-size: 0.8rem; /* Reducir tamaño del texto del botón */
   border: none;
-  padding: 0.5rem 1rem; /* Espaciado interno del botón */
-  border-radius: 15px; /* Bordes redondeados */
+  padding: 0.7rem 1.1rem; /* Espaciado interno del botón reducido */
+  border-radius: 30px; /* Bordes redondeados */
 }
 
+/* Estilo para el botón en hover */
 .btn-custom:hover {
   background-color: #f67348; /* Color de fondo en hover */
   color: white;
 }
 
+/* Estilo para el título de la tarjeta */
 .card-title {
-  font-size: 1.5rem; /* Tamaño del título */
+  font-size: 1.25rem; /* Tamaño del título reducido */
   color: #343a40;
-  margin-bottom: 1rem; /* Espacio debajo del título */
+  margin-bottom: 1.5rem; /* Espacio debajo del título reducido */
 }
 
+/* Estilo para el texto de la tarjeta */
 .card-text {
   color: #495057;
+  font-size: 0.9rem; /* Reducir tamaño del texto */
+  margin-bottom: 1.5rem; /* Espacio debajo del texto */
+  margin-top: 1rem; /* Espacio encima del texto */
+  text-align: center;
 }
 
+/* Estilo para el contenedor de la página */
 .container-fluid {
   padding: 1rem; /* Espaciado interno */
 }
 
+/* Estilo para la fila de tarjetas */
 .row {
   display: flex;
   justify-content: center; /* Centra horizontalmente las tarjetas dentro del contenedor */
   flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas */
+}
+
+/* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
+@media (max-width: 992px) {
+  .custom-card {
+    margin-bottom: 1rem; /* Reducir el margen inferior en pantallas medianas y pequeñas */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem; /* Reducir el espaciado interno en pantallas pequeñas */
+  }
+
+  .btn-custom {
+    font-size: 0.8rem; /* Reducir el tamaño del texto del botón en pantallas pequeñas */
+    padding: 0.6rem 1rem; /* Ajustar el espaciado interno del botón */
+  }
+
+  .card-title {
+    font-size: 1.1rem; /* Reducir el tamaño del título en pantallas pequeñas */
+  }
+
+  .card-text {
+    font-size: 0.8rem; /* Reducir el tamaño del texto en pantallas pequeñas */
+  }
 }
