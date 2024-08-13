@@ -7,6 +7,17 @@
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
+-- Crear la base de datos si no existe
+CREATE DATABASE IF NOT EXISTS `my_loan_bd` 
+  DEFAULT CHARACTER SET utf8mb4 
+  COLLATE utf8mb4_general_ci;
+
+-- Seleccionar la base de datos para usarla
+USE `my_loan_bd`;
+
+-- El resto de las instrucciones SQL para crear tablas, procedimientos, funciones, etc., vienen después
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";

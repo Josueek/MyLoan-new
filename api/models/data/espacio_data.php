@@ -1,9 +1,10 @@
 <?php
-require_once('../helpers/validator.php');
-require_once('../models/handler/espacio_handler.php');
+require_once ('../helpers/validator.php');
+require_once ('../models/handler/espacio_handler.php');
 
 class EspacioData extends EspacioHandler
 {
+    private $id_empleado;
     private $nombre;
     private $capacidad;
     private $tipo;
