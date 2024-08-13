@@ -1,3 +1,6 @@
+// Llama a la función para cargar los cursos al cargar la página
+document.addEventListener('DOMContentLoaded', cargarCursos);
+
 document.addEventListener('DOMContentLoaded', function() {
     cargarDatosTabla();
     cargarComboboxData();
@@ -288,3 +291,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+

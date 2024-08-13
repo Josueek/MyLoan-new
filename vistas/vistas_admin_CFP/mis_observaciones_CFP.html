@@ -150,19 +150,22 @@
                             </div>
                             <!-- Columna 2 -->
                             <div class="col-lg-4 mb-3">
-                                <label for="tipoObservacion" class="form-label">Tipo de observación:</label>
-                                <select id="tipoObservacion" class="form-select" required>
-                                    <option value="">Selecciona un tipo</option>
-                                    <option value="previa">Previa</option>
-                                    <option value="otro">Otro</option>
+                                <label for="tipoPrestamo" class="form-label">Tipo de préstamo:</label>
+                                <select id="tipoPrestamo" class="form-select" required>
+                                    <option value="">Selecciona un tipo de préstamo</option>
+                                    <!-- Se cargarán dinámicamente -->
                                 </select>
                             </div>
+                            
+                            
                             <div class="col-lg-4 mb-3">
                                 <label for="tipoPrestamo" class="form-label">Tipo de préstamo a observar:</label>
-                                <select id="tipoPrestamo" class="form-select" required>
+                                <select class="form-select" required>
                                     <option value="">Selecciona un tipo</option>
-                                    <option value="herramienta">Herramienta</option>
-                                    <option value="otro">Otro</option>
+                                    <option value="herramienta">Taller</option>
+                                    <option value="herramienta">Laboratorio</option>
+                                    <option value="herramienta">Equipo</option>
+                                    <option value="herramienta">Material</option>
                                 </select>
                             </div>
                             <!-- Columna 3 -->
@@ -170,15 +173,18 @@
                                 <label for="espacioObservar" class="form-label">Espacio a observar:</label>
                                 <select id="espacioObservar" class="form-select" required>
                                     <option value="">Selecciona un espacio</option>
-                                    <option value="lab will">Lab will</option>
-                                    <option value="lab">Lab</option>
+                                    <!-- Se cargarán dinámicamente -->
                                 </select>
                             </div>
+                            
                             <div class="col-lg-4 mb-3">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buscarEspacio" data-bs-whatever="@mdo" id="btnBuscarEspacio">
-                                    Buscar Espacio
-                                </button>
+                                <label for="cursoObservar" class="form-label">Curso a observar:</label>
+                                <select id="cursoObservar" class="form-select" required>
+                                    <option value="">Selecciona un curso</option>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -219,7 +225,7 @@
                             <th scope="col">Tipo de observación</th>
                             <th scope="col">Tipo de préstamo a observar</th>
                             <th scope="col">Espacio a observar</th>
-                            <th scope="col">Préstamo a observar</th>
+                            <th scope="col">Préstamo</th>
                             <th scope="col">Empleado que realizo la observación</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -241,15 +247,15 @@
     <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
     <script src="../../controlador/admin_itr/mis_observaciones.js"></script>
+    <script src="../../controlador/admin_itr/obtener_espacios.js"></script>
+    <script src="../../controlador/admin_itr/cargar_curso.js"></script>
+    <script src="../../controlador/admin_itr/tipo_prestamos.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
-    <script src="../../recursos/js/acciones.js"></script>
+
     <!-- el de calendario se puede mejorar-->
-    <script src="../../recursos/js/calendario.js"></script>
-    <script src="../../recursos/js/clima.js"></script>
-    <script src="../../recursos/js/circulo.js"></script>
     <script src="../../recursos/js/modales.js"></script>
     <!-- Scrip que dudosamente sirven-->
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script> 
+
     <script src="../../recursos/js/dashboard.js"></script>
 </body>
 </html>
