@@ -10,7 +10,7 @@
   background-color: #ffffff80; /* Fondo gris para la tarjeta */
   margin-bottom: 2rem; /* Reducir el margen inferior para más tarjetas en fila */
   max-width: 16rem; /* Ancho máximo más pequeño */
-  height: 20rem; /* Altura fija más pequeña */
+  height: 25rem; /* Altura fija más pequeña */
 }
 
 /* Ajustar el contenedor de las tarjetas */
@@ -25,6 +25,17 @@
 
 /* Estilo para el contenido de la tarjeta */
 .card-body {
+  padding: 2rem; /* Reducir el espaciado interno */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centro del contenido */
+  background-color: #ecf0f580; /* Fondo blanco dentro de la tarjeta */
+  border: #dddddd;
+  border-radius: 15px;
+  height: 22.7rem; /* Ajustar altura automáticamente para contenido dinámico */
+}
+
+.card-bodyG {
   padding: 2rem; /* Reducir el espaciado interno */
   display: flex;
   flex-direction: column;
