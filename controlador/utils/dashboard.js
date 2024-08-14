@@ -171,7 +171,7 @@ function generarMenuLateral() {
                         </a>
                         <ul id="submenuGrafica" class="submenu" style="display: none;">
                             <li class="submenu-item">
-                                <a href="path/to/graficas.html" class="submenu-link">
+                                <a href="../vistas_admin/proyecciones.html" class="submenu-link">
                                     <span>
                                         <i class="fa-solid fa-chart-line me-2"></i>
                                     </span>
@@ -182,7 +182,7 @@ function generarMenuLateral() {
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnProyeccion">
+                        <a  href="../vistas_admin/proyecciones.html" class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnProyeccion">
                             <span>
                                 <i class="fa-solid fa-chart-line"></i>
                             </span>

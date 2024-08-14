@@ -15,7 +15,7 @@
 }
 
 .card-body {
-    padding: 3.5rem; /* Espaciado interno */
+    padding: 1.5rem; /* Espaciado interno */
     display: flex;
     flex-direction: column;
     align-items: center; /* Centro del contenido */
@@ -23,16 +23,17 @@
     text-align: center; /* Texto centrado */
     border: #ecf0f580;
     border-radius: 15px;
+    height: 18rem; 
 }
 
 .icon-custom {
-    font-size: 20px; /* Tamaño del ícono */
+    font-size: 24px; /* Tamaño del ícono */
     color: #5e5e5e;
     margin-bottom: 1rem; /* Espacio debajo del ícono */
 }
 
 .btn-custom {
-    background-color: #00B69B; /* Color de fondo del botón */
+    background-color: #FCBE2D; /* Color de fondo del botón */
     color: white;
     border: none;
     margin-top: auto; /* Ubica el botón al final de la tarjeta */
@@ -43,60 +44,6 @@
 .btn-custom:hover {
     background-color: #f67348; /* Color de fondo en hover */
     color: white;
-}
-/* Asegúrate de que el main esté centrado en la página */
-
-/* Asegúrate de que el body-wrapper se ajuste al tamaño de la página */
-.body-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que el contenedor ocupe al menos el alto de la ventana */
-}
-
-/* Asegúrate de que el contenedor tenga un ancho máximo y esté centrado */
-.container {
-    max-width: 1200px; /* Ajusta este valor según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor */
-}
-
-/* Asegúrate de que el menú lateral y otros elementos estén correctamente posicionados */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px; /* Ajusta el ancho del sidebar según tus necesidades */
-    height: 100%;
-    overflow-y: auto;
-    background-color: #f8f9fa; /* Color de fondo del sidebar */
-}
-
-/* Estilo del wrapper general */
-.page-wrapper {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    min-height: 100vh;
-}
-
-/* Ajusta el margen del botón y las tarjetas */
-.card {
-    margin: 0 auto; /* Centra las tarjetas en su columna */
-}
-
-.card-body {
-    text-align: center; /* Centra el contenido dentro de cada tarjeta */
-}
-
-
-.card-title {
-    font-size: 1.5rem; /* Tamaño del título */
-    color: #343a40;
-    margin-bottom: 1rem; /* Espacio debajo del título */
-}
-
-.card-text {
-    color: #495057;
-    margin-bottom: 1.5rem; /* Espacio debajo del texto */
 }
 
 /* Centra el contenedor principal y ajusta el padding */
@@ -120,6 +67,13 @@
     flex-direction: column;
     justify-content: space-between; /* Espaciado interno */
 }
+.card-text {
+    color: #495057;
+    font-size: 15px; 
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
 
 /* Ajusta la columna para que las tarjetas se centren y no excedan el contenedor */
 .col-md-3 {

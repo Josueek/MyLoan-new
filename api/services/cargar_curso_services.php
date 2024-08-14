@@ -1,16 +1,16 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/handler/prestamos_handler.php');
+require_once('../models/handler/cargar_curso_handler.php');
 
 if (isset($_GET['action'])) {
     session_start();
-    $curso = new prestamos_handler();
+    $cursosHandler = new CursosHandler();
     $result = array('status' => 0, 'message' => null, 'dataset' => null);
 
     switch ($_GET['action']) {
         case 'getAllCursos':
-            $result = array('status' => 1, 'dataset' => $curso->readAll());
+            $result = array('status' => 1, 'dataset' => $cursosHandler->getAllCursos());
             break;
 
         default:
@@ -21,3 +21,4 @@ if (isset($_GET['action'])) {
     echo json_encode($result);
 }
 ?>
+ 
