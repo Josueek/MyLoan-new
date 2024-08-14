@@ -27,9 +27,23 @@
                 <div class="row">
                     <!-- Primer Contenedor -->
                     <div class="col-lg-8">
+                        
                         <div class="card">
                             <div class="card-body">
-                                <p>Vamos a poner las Graficas</p>
+                                <button type="button" class="btn" style="background-color: #60BFB2; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
+                                    <i class="bi bi-card-checklist"></i>
+                                Instructivo para analizar los datos 
+                                </button>
+                                <div class="col-lg-6">
+                                    <canvas id="lineChart"></canvas>
+                                </div>
+                                <button type="button" class="btn" style="background-color: #60BFB2; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
+                                    <i class="bi bi-card-checklist"></i>
+                                Instructivo para analizar los datos 
+                                </button>
+                                <div class="col-lg-6">
+                                    <canvas id="barChart"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,6 +101,138 @@
             </section>
         </div>
 
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle">Gráfica de Proyección Utilizando el Método Incremental</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="alert-warning">
+                            <h5>Esta gráfica funciona cuando ya se cuentan con mínimo 5 meses de ventas mensuales.</h5>
+                        </div>
+                        <h5>¿Cómo Funciona el Método Incremental?</h5>
+                        <ol>
+                            <li><strong>Proyección Inicial:</strong>
+                                <p>Establece una proyección base. Comienza con una proyección financiera o de negocio inicial, como una proyección de ventas, ingresos, gastos, o cualquier otra métrica clave.</p>
+                            </li>
+                            <li><strong>Identificación de Incrementos:</strong>
+                                <p>Determina los cambios. Identifica los factores que cambiarán respecto a la proyección base, como incrementos en ventas, aumentos de costos, o cambios en la tasa de crecimiento.</p>
+                            </li>
+                            <li><strong>Aplicación de Incrementos:</strong>
+                                <p>Ajusta la proyección. Modifica la proyección base aplicando los incrementos identificados. Por ejemplo, si esperas un incremento del 10% en las ventas, ajusta las cifras de ventas en la proyección base en consecuencia.</p>
+                            </li>
+                            <li><strong>Revisión y Ajustes:</strong>
+                                <p>Revisa la proyección ajustada para asegurar que los cambios sean realistas y consistentes con los supuestos y condiciones del mercado. Ajusta según sea necesario.</p>
+                            </li>
+                            <li><strong>Comparación y Análisis:</strong>
+                                <p>Compara la proyección ajustada con la proyección base y otras proyecciones para analizar el impacto de los cambios. Esto te ayudará a entender cómo los incrementos afectan el resultado final.</p>
+                            </li>
+                            <li><strong>Actualización Continua:</strong>
+                                <p>Actualiza regularmente. A medida que se reciben nuevos datos o se producen cambios, ajusta los incrementos y la proyección en consecuencia.</p>
+                            </li>
+                        </ol>
+        
+                        <h5>Ejemplo Práctico</h5>
+                        <p>Supongamos que tienes una proyección de ventas para el próximo año basada en una tasa de crecimiento del 5%. Luego, decides que debido a una nueva estrategia de marketing, esperas un incremento adicional del 3% en las ventas.</p>
+                        <ul>
+                            <li><strong>Proyección Inicial:</strong> $100,000 en ventas para el próximo año.</li>
+                            <li><strong>Incremento Identificado:</strong> Incremento de la tasa de crecimiento en un 3%.</li>
+                            <li><strong>Ajuste de Proyección:</strong>
+                                <ul>
+                                    <li>Proyección base con crecimiento del 5%: $100,000 × 1.05 = $105,000.</li>
+                                    <li>Ajuste por incremento adicional del 3%: $105,000 × 1.03 = $108,150.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Revisión:</strong> Verifica que el incremento sea factible y ajusta otros parámetros si es necesario.</li>
+                            <li><strong>Actualización:</strong> Continúa revisando y ajustando a medida que surgen nuevos datos o cambios en el mercado.</li>
+                        </ul>
+        
+                        <h5>Ventajas del Método Incremental</h5>
+                        <ul>
+                            <li><strong>Simplicidad:</strong> Permite ajustes fáciles y rápidos sin necesidad de crear nuevas proyecciones desde cero.</li>
+                            <li><strong>Flexibilidad:</strong> Facilita la adaptación a cambios en condiciones de mercado o en la estrategia.</li>
+                            <li><strong>Enfoque en Cambios:</strong> Enfoca el análisis en los cambios incrementales, lo cual puede ser más manejable y relevante.</li>
+                        </ul>
+        
+                        <h5>Desventajas</h5>
+                        <ul>
+                            <li><strong>Supuestos Lineales:</strong> Asume que los incrementos se aplican de manera lineal, lo que puede no ser siempre el caso.</li>
+                            <li><strong>Dependencia de la Proyección Base:</strong> La precisión de la proyección ajustada depende de la exactitud de la proyección base.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle">Gráfica de Proyección Utilizando el Método Incremental</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="alert-warning">
+                            <h5>Esta gráfica funciona cuando ya se cuentan con mínimo 5 meses de ventas mensuales.</h5>
+                        </div>
+                        <h5>¿Cómo Funciona el Método Incremental?</h5>
+                        <ol>
+                            <li><strong>Proyección Inicial:</strong>
+                                <p>Establece una proyección base. Comienza con una proyección financiera o de negocio inicial, como una proyección de ventas, ingresos, gastos, o cualquier otra métrica clave.</p>
+                            </li>
+                            <li><strong>Identificación de Incrementos:</strong>
+                                <p>Determina los cambios. Identifica los factores que cambiarán respecto a la proyección base, como incrementos en ventas, aumentos de costos, o cambios en la tasa de crecimiento.</p>
+                            </li>
+                            <li><strong>Aplicación de Incrementos:</strong>
+                                <p>Ajusta la proyección. Modifica la proyección base aplicando los incrementos identificados. Por ejemplo, si esperas un incremento del 10% en las ventas, ajusta las cifras de ventas en la proyección base en consecuencia.</p>
+                            </li>
+                            <li><strong>Revisión y Ajustes:</strong>
+                                <p>Revisa la proyección ajustada para asegurar que los cambios sean realistas y consistentes con los supuestos y condiciones del mercado. Ajusta según sea necesario.</p>
+                            </li>
+                            <li><strong>Comparación y Análisis:</strong>
+                                <p>Compara la proyección ajustada con la proyección base y otras proyecciones para analizar el impacto de los cambios. Esto te ayudará a entender cómo los incrementos afectan el resultado final.</p>
+                            </li>
+                            <li><strong>Actualización Continua:</strong>
+                                <p>Actualiza regularmente. A medida que se reciben nuevos datos o se producen cambios, ajusta los incrementos y la proyección en consecuencia.</p>
+                            </li>
+                        </ol>
+        
+                        <h5>Ejemplo Práctico</h5>
+                        <p>Supongamos que tienes una proyección de ventas para el próximo año basada en una tasa de crecimiento del 5%. Luego, decides que debido a una nueva estrategia de marketing, esperas un incremento adicional del 3% en las ventas.</p>
+                        <ul>
+                            <li><strong>Proyección Inicial:</strong> $100,000 en ventas para el próximo año.</li>
+                            <li><strong>Incremento Identificado:</strong> Incremento de la tasa de crecimiento en un 3%.</li>
+                            <li><strong>Ajuste de Proyección:</strong>
+                                <ul>
+                                    <li>Proyección base con crecimiento del 5%: $100,000 × 1.05 = $105,000.</li>
+                                    <li>Ajuste por incremento adicional del 3%: $105,000 × 1.03 = $108,150.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Revisión:</strong> Verifica que el incremento sea factible y ajusta otros parámetros si es necesario.</li>
+                            <li><strong>Actualización:</strong> Continúa revisando y ajustando a medida que surgen nuevos datos o cambios en el mercado.</li>
+                        </ul>
+        
+                        <h5>Ventajas del Método Incremental</h5>
+                        <ul>
+                            <li><strong>Simplicidad:</strong> Permite ajustes fáciles y rápidos sin necesidad de crear nuevas proyecciones desde cero.</li>
+                            <li><strong>Flexibilidad:</strong> Facilita la adaptación a cambios en condiciones de mercado o en la estrategia.</li>
+                            <li><strong>Enfoque en Cambios:</strong> Enfoca el análisis en los cambios incrementales, lo cual puede ser más manejable y relevante.</li>
+                        </ul>
+        
+                        <h5>Desventajas</h5>
+                        <ul>
+                            <li><strong>Supuestos Lineales:</strong> Asume que los incrementos se aplican de manera lineal, lo que puede no ser siempre el caso.</li>
+                            <li><strong>Dependencia de la Proyección Base:</strong> La precisión de la proyección ajustada depende de la exactitud de la proyección base.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Scripts -->
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../../recursos/js/sidebarmenu.js"></script>
@@ -100,6 +246,8 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../../controlador/admin_itr/graficas.js"></script>
 
 </body>
 
