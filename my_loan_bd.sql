@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `my_loan_bd`
+
+
+DROP DATABASE IF EXISTS `my_loan_bd`;
+
+--
+-- Crear base de datos `my_loan_bd` si no existe
+--
+
+CREATE DATABASE IF NOT EXISTS `my_loan_bd`;
+USE `my_loan_bd`;
+
 --
 
 DELIMITER $$
