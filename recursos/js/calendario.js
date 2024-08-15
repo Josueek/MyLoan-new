@@ -1,96 +1,111 @@
 $(document).ready(function () {
-  function generarCalendario() {
-      const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-      const fechaHoy = new Date();
-      const mes = fechaHoy.getMonth();
-      const año = fechaHoy.getFullYear();
+    function generarCalendario(fechaActual) {
+        const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const [año, mes, dia] = fechaActual.split('-').map(Number);
+        const fechaHoy = new Date(año, mes - 1, dia);
+        const mesActual = fechaHoy.getMonth();
+        const añoActual = fechaHoy.getFullYear();
 
-      $('#calendar-header').text(`${fechaHoy.toLocaleString('default', { month: 'long' })} ${año}`);
+        $('#calendar-header').text(`${fechaHoy.toLocaleString('default', { month: 'long' })} ${añoActual}`);
 
-      const primerDiaMes = new Date(año, mes, 1);
-      const ultimoDiaMes = new Date(año, mes + 1, 0);
-      const primerDiaSemana = primerDiaMes.getDay();
-      const totalDiasMes = ultimoDiaMes.getDate();
+        const primerDiaMes = new Date(añoActual, mesActual, 1);
+        const ultimoDiaMes = new Date(añoActual, mesActual + 1, 0);
+        const primerDiaSemana = primerDiaMes.getDay();
+        const totalDiasMes = ultimoDiaMes.getDate();
 
-      let calendarBody = '';
-      let diaActual = 1;
-      for (let i = 0; i < 6; i++) { // 6 semanas
-          let row = '<tr>';
-          for (let j = 0; j < 7; j++) { // 7 días a la semana
-              if (i === 0 && j < primerDiaSemana) {
-                  row += '<td></td>';
-              } else if (diaActual > totalDiasMes) {
-                  break;
-              } else {
-                  row += `<td>${diaActual}</td>`;
-                  diaActual++;
-              }
-          }
-          row += '</tr>';
-          calendarBody += row;
-          if (diaActual > totalDiasMes) {
-              break;
-          }
-      }
-      $('#calendar-body').html(calendarBody);
-  }
+        let calendarBody = '';
+        let diaActual = 1;
+        for (let i = 0; i < 6; i++) { // 6 semanas
+            let row = '<tr>';
+            for (let j = 0; j < 7; j++) { // 7 días a la semana
+                if (i === 0 && j < primerDiaSemana) {
+                    row += '<td></td>';
+                } else if (diaActual > totalDiasMes) {
+                    break;
+                } else {
+                    row += `<td>${diaActual}</td>`;
+                    diaActual++;
+                }
+            }
+            row += '</tr>';
+            calendarBody += row;
+            if (diaActual > totalDiasMes) {
+                break;
+            }
+        }
+        $('#calendar-body').html(calendarBody);
+    }
 
-  function marcarFechas(fechaActual, fechaCursoMasCercano) {
-      $('#calendar-body td').each(function () {
-          const dia = parseInt($(this).text());
-          if (!isNaN(dia)) {
-              const mes = new Date().getMonth() + 1;
-              const año = new Date().getFullYear();
-              const fechaComparar = `${año}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
+    function marcarFechas(fechaActual, fechaCursoMasCercano) {
+        const [añoActual, mesActual, diaActual] = fechaActual.split('-').map(Number);
+        let cursoEnMesActual = false;
 
-              if (fechaComparar === fechaActual) {
-                  $(this).css('background-color', '#ADD8E6'); // LightBlue en hexadecimal
-              }
-              if (fechaComparar === fechaCursoMasCercano) {
-                  $(this).css('background-color', '#FCBE2D'); // Amarillo en hexadecimal
-              }
-          }
-      });
-  }
+        $('#calendar-body td').each(function () {
+            const dia = parseInt($(this).text());
+            if (!isNaN(dia)) {
+                const fechaComparar = new Date(añoActual, mesActual - 1, dia);
+                const fechaCompararStr = fechaComparar.toISOString().split('T')[0];
 
-  function calcularDiasRestantes(fechaCursoMasCercano) {
-      const fechaHoy = new Date();
-      const fechaCurso = new Date(fechaCursoMasCercano);
-      const diferenciaTiempo = fechaCurso - fechaHoy;
-      const diasRestantes = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24)); // Convertir de milisegundos a días
+                if (fechaCompararStr === fechaActual) {
+                    $(this).css('background-color', '#ADD8E6'); // LightBlue en hexadecimal
+                }
+                if (fechaCompararStr === fechaCursoMasCercano) {
+                    $(this).css('background-color', '#FCBE2D'); // Amarillo en hexadecimal
+                    cursoEnMesActual = true;
+                }
+            }
+        });
 
-      return diasRestantes;
-  }
+        if (!cursoEnMesActual) {
+            $('#mensaje-dias-restantes').text('No hay cursos programados para este mes.');
+        }
+    }
 
-  function cargarFechas() {
-      fetch('../../api/services/curso_services.php') // Asegúrate de que la URL sea correcta
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Red no está disponible.');
-              }
-              return response.json();
-          })
-          .then(data => {
-              if (data.fechaActual && data.fechaCursoMasCercano) {
-                  const fechaActual = data.fechaActual;
-                  const fechaCursoMasCercano = data.fechaCursoMasCercano;
+    function calcularDiasRestantes(fechaCursoMasCercano) {
+        const fechaHoy = new Date();
+        const fechaCurso = new Date(fechaCursoMasCercano);
+        const diferenciaTiempo = fechaCurso - fechaHoy;
+        const diasRestantes = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24)); // Convertir de milisegundos a días
 
-                  // Generar el calendario
-                  generarCalendario();
+        return diasRestantes;
+    }
 
-                  // Marcar las fechas en el calendario
-                  marcarFechas(fechaActual, fechaCursoMasCercano);
+    function cargarFechas() {
+        fetch('../../api/services/curso_services.php') // Asegúrate de que la URL sea correcta
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Red no está disponible.');
+                }
+                return response.text(); // Leer como texto para verificar el contenido
+            })
+            .then(text => {
+                try {
+                    const data = JSON.parse(text); // Intentar parsear el texto como JSON
+                    if (data.fechaActual && data.fechaCursoMasCercano) {
+                        const fechaActual = data.fechaActual;
+                        const fechaCursoMasCercano = data.fechaCursoMasCercano;
 
-                  // Calcular y mostrar los días restantes
-                  const diasRestantes = calcularDiasRestantes(fechaCursoMasCercano);
-                  $('#mensaje-dias-restantes').text(`Faltan ${diasRestantes} días para el inicio del curso más cercano.`);
-              } else {
-                  console.error('Error al obtener las fechas:', data.message);
-              }
-          })
-          .catch(error => console.error('Error al obtener las fechas:', error));
-  }
+                        // Generar el calendario con la fecha actual
+                        generarCalendario(fechaActual);
 
-  // Cargar las fechas al cargar la página
-  cargarFechas();
+                        // Marcar las fechas en el calendario
+                        marcarFechas(fechaActual, fechaCursoMasCercano);
+
+                        // Calcular y mostrar los días restantes
+                        if (fechaCursoMasCercano) {
+                            const diasRestantes = calcularDiasRestantes(fechaCursoMasCercano);
+                            $('#mensaje-dias-restantes').text(`Faltan ${diasRestantes} días para el inicio del curso más cercano.`);
+                        }
+                    } else {
+                        $('#mensaje-dias-restantes').text('No hay cursos disponibles.');
+                    }
+                } catch (e) {
+                    console.error('Error al parsear JSON:', e);
+                }
+            })
+            .catch(error => console.error('Error al obtener las fechas:', error));
+    }
+
+    // Cargar las fechas al cargar la página
+    cargarFechas();
 });

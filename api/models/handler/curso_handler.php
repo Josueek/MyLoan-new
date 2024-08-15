@@ -75,6 +75,7 @@ class CursoHandler
         return Database::executeRow($sql, $params);
     }
 
+
     public function obtenerFechasCurso()
     {
         $fechaActual = date('Y-m-d');
@@ -90,5 +91,10 @@ class CursoHandler
     }
 }
 
+// Crear una instancia de CursoHandler y obtener las fechas
+$cursoHandler = new CursoHandler();
+$fechas = $cursoHandler->obtenerFechasCurso();
 
-?>
+// Enviar la respuesta como JSON
+header('Content-Type: application/json');
+echo json_encode($fechas);
