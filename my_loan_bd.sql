@@ -3,20 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-07-2024 a las 16:11:42
+-- Tiempo de generación: 15-08-2024 a las 16:05:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
-
--- Crear la base de datos si no existe
-CREATE DATABASE IF NOT EXISTS `my_loan_bd` 
-  DEFAULT CHARACTER SET utf8mb4 
-  COLLATE utf8mb4_general_ci;
-
--- Seleccionar la base de datos para usarla
-USE `my_loan_bd`;
-
--- El resto de las instrucciones SQL para crear tablas, procedimientos, funciones, etc., vienen después
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -332,8 +321,8 @@ INSERT INTO `tb_inventario_herramienta` (`codigo_herramienta`, `nombre_herramien
 --
 
 CREATE TABLE `tb_materiales` (
-  `id_material` int(11) NOT NULL, 
-  `nombre` varchar(100) NOT NULL UNIQUE, /* EL nombre de los materiales será UNIQUE */
+  `id_material` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(300) DEFAULT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -348,30 +337,23 @@ INSERT INTO `tb_materiales` (`id_material`, `nombre`, `descripcion`, `cantidad`)
 (3, 'Material 3', 'Descripción material 3', 200);
 
 -- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `tb_observaciones`
 --
 
 CREATE TABLE `tb_observaciones` (
-  `id_observacion` int(11) NOT NULL,
+  `id_obsevacion` int(11) NOT NULL,
   `fecha_observacion` date NOT NULL,
-  `observacion` varchar(300) NOT NULL,
+  `observacion` varchar(40) NOT NULL,
   `foto_observacion` varchar(255) DEFAULT NULL,
   `tipo_observacion` enum('Previa','Durante','Despues','Fuera') NOT NULL,
   `tipo_prestamo` enum('Taller','Laboratorio','Equipo','Material','Herramienta') NOT NULL,
   `id_espacio` int(11) DEFAULT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_prestamo` int(11) DEFAULT NULL
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_prestamo` int(11) DEFAULT NULL,
+  `id_curso` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tb_observaciones`
---
-
-INSERT INTO `tb_observaciones` (`id_observacion`, `fecha_observacion`, `observacion`, `foto_observacion`, `tipo_observacion`, `tipo_prestamo`, `id_espacio`, `id_usuario`, `id_prestamo`) VALUES
-(1, '2024-04-10', 'Observación 1', NULL, 'Previa', 'Taller', 1, 1, NULL),
-(2, '2024-04-11', 'Observación 2', NULL, 'Durante', 'Laboratorio', 2, 2, NULL),
-(3, '2024-04-12', 'Observación 3', NULL, 'Despues', 'Equipo', 3, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -562,10 +544,11 @@ ALTER TABLE `tb_materiales`
 -- Indices de la tabla `tb_observaciones`
 --
 ALTER TABLE `tb_observaciones`
-  ADD PRIMARY KEY (`id_observacion`),
-  ADD KEY `fk_observacion_espacio` (`id_espacio`),
+  ADD PRIMARY KEY (`id_obsevacion`),
+  ADD KEY `fk_espacios_prestamo` (`id_espacio`),
   ADD KEY `fk_observacion_usuario` (`id_usuario`),
-  ADD KEY `fk_observacion_prestamo` (`id_prestamo`);
+  ADD KEY `fk_observacion_prestamo` (`id_prestamo`),
+  ADD KEY `fk_observaciones_cursos` (`id_curso`);
 
 --
 -- Indices de la tabla `tb_periodo_prestamos`
@@ -673,7 +656,7 @@ ALTER TABLE `tb_materiales`
 -- AUTO_INCREMENT de la tabla `tb_observaciones`
 --
 ALTER TABLE `tb_observaciones`
-  MODIFY `id_observacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_obsevacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_periodo_prestamos`
@@ -721,6 +704,15 @@ ALTER TABLE `tb_datos_empleados`
 --
 ALTER TABLE `tb_detalle_prestamos`
   ADD CONSTRAINT `fk_prestamos` FOREIGN KEY (`id_espacio`) REFERENCES `tb_prestamos` (`id_prestamo`);
+
+--
+-- Filtros para la tabla `tb_observaciones`
+--
+ALTER TABLE `tb_observaciones`
+  ADD CONSTRAINT `fk_espacios_prestamo` FOREIGN KEY (`id_espacio`) REFERENCES `tb_espacios` (`id_espacio`),
+  ADD CONSTRAINT `fk_observacion_prestamo` FOREIGN KEY (`id_prestamo`) REFERENCES `tb_prestamos` (`id_prestamo`),
+  ADD CONSTRAINT `fk_observacion_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuarios` (`id_usuario`),
+  ADD CONSTRAINT `fk_observaciones_cursos` FOREIGN KEY (`id_curso`) REFERENCES `tb_cursos` (`id_curso`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
