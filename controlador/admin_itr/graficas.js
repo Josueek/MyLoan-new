@@ -1,40 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Datos para los gráficos
+    // Datos para los gráficos con nuevos colores (sin rojo)
     const lineChartData = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
             label: 'Monthly Sales',
             data: [30, 40, 35, 50, 60, 70, 80],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: '#0466F8', // Color de línea
+            backgroundColor: 'rgba(4, 102, 248, 0.2)', // Color de fondo
             fill: true
         }]
     };
 
     const barChartData = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
             label: 'Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            data: [19, 3, 5, 2, 3],
+            backgroundColor: '#0466F8', // Color de fondo de las barras
+            borderColor: '#11015C', // Color del borde de las barras
             borderWidth: 1
         }]
     };
 
     const pieChartData = {
-        labels: ['Red', 'Blue', 'Yellow'],
+        labels: ['Blue', 'Yellow', 'Green'],
         datasets: [{
-            data: [300, 50, 100],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            data: [50, 100, 70],
+            backgroundColor: ['#0466F8', '#FCBE2D', '#0B7F4B'] // Colores del pie
         }]
     };
 
     const doughnutChartData = {
-        labels: ['Red', 'Blue', 'Yellow'],
+        labels: ['Blue', 'Yellow', 'Green'],
         datasets: [{
-            data: [300, 50, 100],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            data: [50, 100, 70],
+            backgroundColor: ['#0466F8', '#FCBE2D', '#0B7F4B'] // Colores del doughnut
         }]
     };
 
@@ -43,18 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
         datasets: [{
             label: 'Activity Levels',
             data: [65, 59, 90, 81, 56],
-            backgroundColor: 'rgba(179, 181, 198, 0.2)',
-            borderColor: 'rgba(179, 181, 198, 1)',
+            backgroundColor: 'rgba(11, 127, 75, 0.2)', // Color de fondo del radar
+            borderColor: '#0B7F4B', // Color del borde del radar
             borderWidth: 1
         }]
     };
 
     const polarAreaChartData = {
-        labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+        labels: ['Green', 'Yellow', 'Grey', 'Blue'],
         datasets: [{
             label: 'Data',
-            data: [11, 16, 7, 22, 17],
-            backgroundColor: ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB']
+            data: [16, 7, 22, 17],
+            backgroundColor: ['#0B7F4B', '#FCBE2D', '#E7E9ED', '#0466F8'] // Colores del polar area
         }]
     };
 
@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 {x: 20, y: 10, r: 10},
                 {x: 15, y: 30, r: 20}
             ],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: '#0466F8', // Color de fondo de las burbujas
+            borderColor: '#11015C', // Color del borde de las burbujas
             borderWidth: 1
         }]
     };
@@ -81,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 {x: 20, y: 30},
                 {x: 25, y: 35}
             ],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: '#FCBE2D', // Color de los puntos en el gráfico de dispersión
+            borderColor: '#11015C', // Color del borde de los puntos
             borderWidth: 1
         }]
     };
