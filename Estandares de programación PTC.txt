@@ -70,3 +70,21 @@ Indentación Consistente:
 
 Usa 2 o 4 espacios para la indentación del código HTML.
 Ejemplo: Indenta el contenido de una lista anidada para que sea fácil de leer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Accion no valida*/

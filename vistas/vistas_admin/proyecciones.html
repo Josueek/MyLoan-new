@@ -6,11 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Proyecciones</title>
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
-
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../../recursos/css/css_general/proyecciones.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+        }
+    
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Ajusta la altura de la gráfica aquí */
+            margin-bottom: 20px; /* Espacio debajo de la gráfica */
+        }
+    
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -28,8 +45,21 @@
                     <!-- Primer Contenedor -->
                     <div class="col-lg-8">
                         <div class="card">
-                            <div class="card-body">
-                                <p>Vamos a poner las Graficas</p>
+                            <div class="card-bodyG">
+                                <button type="button" class="btn" style="background-color: #60BFB2; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
+                                    <i class="bi bi-card-checklist"></i>
+                                    Instructivo para analizar los datos 
+                                </button>
+                                <div class="col-lg-6 canvas-container">
+                                    <canvas id="lineChart"></canvas>
+                                </div>
+                                <button type="button" class="btn" style="background-color: #60BFB2; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
+                                    <i class="bi bi-card-checklist"></i>
+                                    Instructivo para analizar los datos 
+                                </button>
+                                <div class="col-lg-6 canvas-container">
+                                    <canvas id="pieChart"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,7 +73,6 @@
                                 <div class="col-12 mb-3">
                                     <div class="card custom-card h-100">
                                         <div class="card-body">
-                                           
                                             <div class="d-flex align-items-center">
                                                 <h5 class="card-title mb-0">
                                                     Reporte de Préstamos por Usuario
@@ -63,7 +92,6 @@
                                 <div class="col-12">
                                     <div class="card custom-card h-100">
                                         <div class="card-body">
-                                          
                                             <div class="d-flex align-items-center">
                                                 <h5 class="card-title mb-0">
                                                     Reporte de Préstamos por Usuario
@@ -87,6 +115,44 @@
             </section>
         </div>
 
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle">Gráfica de Proyección Utilizando el Método Incremental</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert-warning">
+                            <h5>Esta gráfica funciona cuando ya se cuentan con mínimo 5 meses de ventas mensuales.</h5>
+                        </div>
+                        <h5>¿Cómo Funciona el Método Incremental?</h5>
+                        <ol>
+                            <li><strong>Proyección Inicial:</strong>
+                                <p>Establece una proyección base. Comienza con una proyección financiera o de negocio inicial, como una proyección de ventas, ingresos, gastos, o cualquier otra métrica clave.</p>
+                            </li>
+                            <li><strong>Identificación de Incrementos:</strong>
+                                <p>Determina los cambios. Identifica los factores que cambiarán respecto a la proyección base, como incrementos en ventas, aumentos de costos, o cambios en la tasa de crecimiento.</p>
+                            </li>
+                            <li><strong>Aplicación de Incrementos:</strong>
+                                <p>Ajusta la proyección. Modifica la proyección base aplicando los incrementos identificados. Por ejemplo, si esperas un incremento del 10% en las ventas, ajusta las cifras de ventas en la proyección base en consecuencia.</p>
+                            </li>
+                            <li><strong>Revisión y Ajustes:</strong>
+                                <p>Revisa la proyección ajustada para asegurar que los cambios sean realistas y consistentes con los supuestos y condiciones del mercado. Ajusta según sea necesario.</p>
+                            </li>
+                            <li><strong>Comparación y Análisis:</strong>
+                                <p>Compara la proyección ajustada con la proyección base y otras proyecciones para analizar el impacto de los cambios. Esto te ayudará a entender cómo los incrementos afectan el resultado final.</p>
+                            </li>
+                            <li><strong>Actualización Continua:</strong>
+                                <p>Actualiza regularmente. A medida que se reciben nuevos datos o se producen cambios, ajusta los incrementos y la proyección en consecuencia.</p>
+                            </li>
+                        </ol>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Scripts -->
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../../recursos/js/sidebarmenu.js"></script>
@@ -100,7 +166,47 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../../controlador/admin_itr/graficas.js"></script>
+        
+        <script>
+            // Código para inicializar el gráfico de pastel
+            document.addEventListener('DOMContentLoaded', function() {
+                var ctxPie = document.getElementById('pieChart').getContext('2d');
+                var pieChart = new Chart(ctxPie, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                        datasets: [{
+                            label: 'My Pie Chart',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            });
+        </script>
+    </div>
 </body>
 
 </html>

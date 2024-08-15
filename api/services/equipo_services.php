@@ -4,6 +4,9 @@ require_once('../helpers/validator.php');
 require_once('../models/handler/equipo_handler.php');
 require_once('../models/data/equipo_data.php');
 
+/**
+ * Servicios para obtener los datos de los espacios que se han registrado en el ricaldones
+ */
 if (isset($_GET['action'])) {
     session_start();
     $equipo = new EquipoData();

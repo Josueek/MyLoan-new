@@ -142,7 +142,6 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-
             
         case 'obtenerFechasCurso':
             try {
@@ -152,7 +151,6 @@ if (isset($_GET['action'])) {
                 $result = array('error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage());
             }
             break;
-
         case 'obtenerFechasCurso':
             try {
                 $result = $curso->obtenerFechasCurso();
