@@ -89,6 +89,77 @@ class CursoHandler
 
         return array('fechaActual' => $fechaActual, 'fechaCursoMasCercano' => $fechaCursoMasCercano);
     }
+
+    public function CursosPorEstado()
+{
+    // Definir la consulta SQL para contar cursos por estado
+    $sql = 'SELECT estado, COUNT(*) AS cantidad FROM tb_cursos GROUP BY estado';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
+public function CantidadCursosPorPrograma()
+{
+    // Definir la consulta SQL para obtener la cantidad de cursos por programa de formación FALTA EL SERVICES
+    $sql = '
+        SELECT programa_formacion, COUNT(*) AS cantidad_cursos
+        FROM tb_cursos
+        GROUP BY programa_formacion
+    ';
+
+    // Ejecutar la consulta y retornar los resultados FALTA EL SERVICES
+    return Database::getRows($sql);
+}
+
+public function getCantidadCursosUltimos12Meses()
+{
+    $sql = '
+        SELECT 
+            DATE_FORMAT(fecha_inicio, "%Y-%m") AS mes_anio, 
+            COUNT(*) AS cantidad_cursos
+        FROM 
+            tb_cursos
+        WHERE 
+            fecha_inicio >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+        GROUP BY 
+            DATE_FORMAT(fecha_inicio, "%Y-%m")
+        ORDER BY 
+            mes_anio
+        LIMIT 0, 12
+    ';
+    
+    // Ejecutar la consulta y obtener los resultados
+    $result = Database::getRows($sql);
+    
+    // Crear un array para los nombres de los meses en español FALTA EL SERVICES
+    $meses = array(
+        '01' => 'Enero',
+        '02' => 'Febrero',
+        '03' => 'Marzo',
+        '04' => 'Abril',
+        '05' => 'Mayo',
+        '06' => 'Junio',
+        '07' => 'Julio',
+        '08' => 'Agosto',
+        '09' => 'Septiembre',
+        '10' => 'Octubre',
+        '11' => 'Noviembre',
+        '12' => 'Diciembre'
+    );
+    
+    // Convertir los datos de mes_año a nombres de meses en español
+    foreach ($result as &$row) {
+        list($anio, $mes) = explode('-', $row['mes_anio']);
+        $row['mes_anio'] = $meses[$mes] . ' ' . $anio;
+    }
+    
+    return $result;
+}
+
+
+
+
 }
 
 // Crear una instancia de CursoHandler y obtener las fechas

@@ -61,5 +61,22 @@ class UsuarioHandler
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    
+public function UsuariosConMasPrestamos()
+{
+    // Definir la consulta SQL para obtener los top 5 usuarios con más préstamos FALTA EL SERVICES
+    $sql = '
+        SELECT u.correo_electronico, COUNT(p.id_prestamo) AS cantidad_prestamos
+        FROM tb_usuarios u
+        LEFT JOIN tb_prestamos p ON u.id_usuario = p.id_usuario
+        GROUP BY u.id_usuario
+        ORDER BY cantidad_prestamos DESC
+        LIMIT 5
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
 }
 ?>

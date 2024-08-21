@@ -53,5 +53,21 @@ class MaterialHandler
         $params = array($idMaterial);
         return Database::executeRow($sql, $params);
     }
+
+    public function TotalMaterialesPorInstitucion()
+{
+    // Definir la consulta SQL para obtener el total de materiales por institución FALTA EL SERVICES
+    $sql = '
+        SELECT i.nombre_institucion, SUM(m.cantidad) AS total_materiales
+        FROM tb_materiales m
+        JOIN tb_equipos e ON m.id_material = e.id_espacio
+        JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
+        GROUP BY i.id_institucion
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
 }
 ?>
