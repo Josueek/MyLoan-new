@@ -1,15 +1,41 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Datos para los gráficos con nuevos colores (sin rojo)
-    const lineChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'Monthly Sales',
-            data: [30, 40, 35, 50, 60, 70, 80],
-            borderColor: '#0466F8', // Color de línea
-            backgroundColor: 'rgba(4, 102, 248, 0.2)', // Color de fondo
-            fill: true
-        }]
-    };
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Hacer una solicitud AJAX para obtener los datos de PHP
+    fetch('../../api/services/curso_services.php?action=getCantidadCursosUltimos12Meses')
+        .then(response => response.json())
+        .then(data => {
+            // Crear los datos para el gráfico
+            const lineChartData = {
+                labels: data.labels,  // Etiquetas de los meses
+                datasets: [{
+                    label: 'Cantidad de Cursos',
+                    data: data.data,  // Cantidad de cursos por mes
+                    borderColor: '#0466F8', // Color de línea
+                    backgroundColor: 'rgba(4, 102, 248, 0.2)', // Color de fondo
+                    fill: true
+                }]
+            };
+
+            // Configuración del gráfico
+            const ctx = document.getElementById('myLineChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: lineChartData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error:', error));
+});
 
     const barChartData = {
         labels: ['Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -88,11 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Inicializa los gráficos
-    const lineCtx = document.getElementById('lineChart').getContext('2d');
-    new Chart(lineCtx, {
-        type: 'line',
-        data: lineChartData
-    });
 
     const barCtx = document.getElementById('barChart').getContext('2d');
     new Chart(barCtx, {
@@ -135,4 +156,3 @@ document.addEventListener('DOMContentLoaded', function() {
         type: 'scatter',
         data: scatterChartData
     });
-});

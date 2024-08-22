@@ -153,6 +153,15 @@ if (isset($_GET['action'])) {
             }
             break;
 
+            case 'getCantidadCursosUltimos12Meses':
+                try {
+                    $result = $curso->getCantidadCursosUltimos12Meses();
+                    echo json_encode($result);
+                } catch (Exception $e) {
+                    // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                    echo json_encode(['error' => 'Hubo un problema al obtener los cursos' . $e->getMessage()]);
+                }
+                break;
 
         default:
             $result['message'] = 'Acción no disponible';

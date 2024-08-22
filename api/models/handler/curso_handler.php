@@ -169,3 +169,4 @@ $fechas = $cursoHandler->obtenerFechasCurso();
 // Enviar la respuesta como JSON
 header('Content-Type: application/json');
 echo json_encode($fechas);
+
