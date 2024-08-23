@@ -84,20 +84,25 @@ class CursoHandler
                 WHERE fecha_inicio >= CURDATE() 
                 ORDER BY fecha_inicio ASC 
                 LIMIT 1';
-        $result = Database::getRow($sql, []);
+        $result = Database::getRow($sql);
         $fechaCursoMasCercano = $result ? $result['fecha_inicio'] : null;
 
         return array('fechaActual' => $fechaActual, 'fechaCursoMasCercano' => $fechaCursoMasCercano);
     }
-
     public function CursosPorEstado()
-{
-    // Definir la consulta SQL para contar cursos por estado
-    $sql = 'SELECT estado, COUNT(*) AS cantidad FROM tb_cursos GROUP BY estado';
-
-    // Ejecutar la consulta y retornar los resultados
-    return Database::getRows($sql);
-}
+    {
+        // Definir la consulta SQL para obtener nombres de cursos agrupados por estado
+        $sql = '
+            SELECT estado, 
+                   GROUP_CONCAT(nombre_curso SEPARATOR ", ") AS nombres_cursos
+            FROM tb_cursos 
+            GROUP BY estado
+        ';
+    
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
+    
 
 public function CantidadCursosPorPrograma()
 {
@@ -160,13 +165,4 @@ public function getCantidadCursosUltimos12Meses()
 
 
 
-}
-
-// Crear una instancia de CursoHandler y obtener las fechas
-$cursoHandler = new CursoHandler();
-$fechas = $cursoHandler->obtenerFechasCurso();
-
-// Enviar la respuesta como JSON
-header('Content-Type: application/json');
-echo json_encode($fechas);
-
+};

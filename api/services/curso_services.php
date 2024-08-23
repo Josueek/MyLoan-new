@@ -1,12 +1,12 @@
 <?php
-require_once ('../helpers/database.php');
-require_once ('../helpers/validator.php');
-require_once ('../models/data/curso_data.php');
+require_once('../helpers/database.php');
+require_once('../helpers/validator.php');
+require_once('../models/data/curso_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
     $curso = new CursoData();
-    $result = array('status' => 0, 'message' => null, 'dataset' => null);
+    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null);
 
     switch ($_GET['action']) {
         case 'getAllCursos':
@@ -33,7 +33,7 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'No se pudieron obtener los datos';
             }
             break;
- 
+
 
         case 'addCurso':
             $_POST = Validator::validateForm($_POST);
@@ -47,7 +47,6 @@ if (isset($_GET['action'])) {
                 isset($_POST['codigoCurso']) &&
                 isset($_POST['empleado'])
             ) {
-
                 if (
                     $curso->setNombre($_POST['nombre']) &&
                     $curso->setFechaInicio($_POST['fechaInicio']) &&
@@ -144,29 +143,35 @@ if (isset($_GET['action'])) {
             break;
 
         case 'obtenerFechasCurso':
-            try {
-                $result = $curso->obtenerFechasCurso();
-                echo json_encode($result);
-            } catch (Exception $e) {
+            if ($result['dataset'] = $curso->obtenerFechasCurso()) {
+                $result['status'] = 1;
+            } else {
                 // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                echo json_encode(['error' => 'Hubo un problema al obtener las fechas del curso: ' . $e->getMessage()]);
+                $result['error'] = 'Hubo un problema al obtener las fechas del curso: ';
             }
             break;
 
-            case 'getCantidadCursosUltimos12Meses':
-                try {
-                    $result = $curso->getCantidadCursosUltimos12Meses();
-                    echo json_encode($result);
-                } catch (Exception $e) {
+        case 'getCantidadCursosUltimos12Meses':
+            if ($result['dataset'] = $curso->getCantidadCursosUltimos12Meses()) {
+                $result['status'] = 1;
+            } else {
+                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                $result['error'] = 'Hubo un problema al obtener los cursos';
+            }
+            break;
+            case 'CursosPorEstado':
+                if ($result['dataset'] = $curso->CursosPorEstado()) {
+                    $result['status'] = 1;
+                } else {
                     // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                    echo json_encode(['error' => 'Hubo un problema al obtener los cursos' . $e->getMessage()]);
+                    $result['error'] = 'Hubo un problema al obtener los cursos';
                 }
                 break;
-
         default:
-            $result['message'] = 'Acción no disponible';
+            $result['error'] = 'Acción no disponible';
     }
-
+    // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
+    $result['exception'] = Database::getException();
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 }

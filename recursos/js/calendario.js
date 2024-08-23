@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    cargarFechas();
+
+    
     function generarCalendario(fechaActual) {
         const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         const [año, mes, dia] = fechaActual.split('-').map(Number);
@@ -71,41 +75,36 @@ $(document).ready(function () {
     }
 
     function cargarFechas() {
-        fetch('../../api/services/curso_services.php') // Asegúrate de que la URL sea correcta
+        fetch('../../api/services/curso_services.php?action=obtenerFechasCurso') // Asegúrate de que la URL sea correcta
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Red no está disponible.');
                 }
-                return response.text(); // Leer como texto para verificar el contenido
+                return response.json(); // Leer como JSON directamente
             })
-            .then(text => {
-                try {
-                    const data = JSON.parse(text); // Intentar parsear el texto como JSON
-                    if (data.fechaActual && data.fechaCursoMasCercano) {
-                        const fechaActual = data.fechaActual;
-                        const fechaCursoMasCercano = data.fechaCursoMasCercano;
+            .then(data => {
+                if (data.fechaActual && data.fechaCursoMasCercano) {
+                    const fechaActual = data.fechaActual;
+                    const fechaCursoMasCercano = data.fechaCursoMasCercano;
 
-                        // Generar el calendario con la fecha actual
-                        generarCalendario(fechaActual);
+                    // Generar el calendario con la fecha actual
+                    generarCalendario(fechaActual);
 
-                        // Marcar las fechas en el calendario
-                        marcarFechas(fechaActual, fechaCursoMasCercano);
+                    // Marcar las fechas en el calendario
+                    marcarFechas(fechaActual, fechaCursoMasCercano);
 
-                        // Calcular y mostrar los días restantes
-                        if (fechaCursoMasCercano) {
-                            const diasRestantes = calcularDiasRestantes(fechaCursoMasCercano);
-                            $('#mensaje-dias-restantes').text(`Faltan ${diasRestantes} días para el inicio del curso más cercano.`);
-                        }
-                    } else {
-                        $('#mensaje-dias-restantes').text('No hay cursos disponibles.');
+                    // Calcular y mostrar los días restantes
+                    if (fechaCursoMasCercano) {
+                        const diasRestantes = calcularDiasRestantes(fechaCursoMasCercano);
+                        $('#mensaje-dias-restantes').text(`Faltan ${diasRestantes} días para el inicio del curso más cercano.`);
                     }
-                } catch (e) {
-                    console.error('Error al parsear JSON:', e);
+                } else {
+                    $('#mensaje-dias-restantes').text('No hay cursos disponibles.');
                 }
             })
             .catch(error => console.error('Error al obtener las fechas:', error));
     }
 
     // Cargar las fechas al cargar la página
-    cargarFechas();
+ 
 });

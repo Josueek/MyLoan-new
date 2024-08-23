@@ -1,5 +1,5 @@
 <?php
-require_once ('../helpers/database.php');
+require_once('../helpers/database.php');
 
 class EspacioHandler
 {
@@ -40,7 +40,7 @@ class EspacioHandler
         LEFT JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
         LEFT JOIN tb_datos_empleados d ON e.id_empleado = d.id_datos_empleado
         WHERE e.id_empleado = ?';
-        
+
         $params = array($idempleado);
         $data = Database::getRows($sql, $params);
         if ($data) {
@@ -95,6 +95,23 @@ class EspacioHandler
                 WHERE id_espacio = ?';
         return Database::executeRow($sql, $params);
     }
+
+    public function EspaciosPorTipo()
+    {
+        // Definir la consulta SQL para obtener los nombres de espacios y su tipo, agrupados por tipo
+        $sql = '
+            SELECT tipo_espacio, 
+                   GROUP_CONCAT(nombre_espacio SEPARATOR ", ") AS nombres_espacios,
+                   COUNT(*) AS cantidad
+            FROM tb_espacios
+            GROUP BY tipo_espacio
+        ';
+        
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
+    
+
 
     //Eliminar datos de la tabla espacio
     public function deleteEspacio($idEspacio)
