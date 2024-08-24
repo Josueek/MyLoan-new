@@ -157,6 +157,15 @@ if (isset($_GET['action'])) {
             }
             break;
 
+            case 'EspaciosPorTipo':
+                if ($result['dataset'] = $espacio->EspaciosPorTipo()) {
+                    $result['status'] = 1;
+                } else {
+                    // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                    $result['error'] = 'Hubo un problema al obtener los usaarios con más prestamos';
+                }
+                break;
+
         case 'deleteEspacio':
             // Elimina un espacio por su ID 
             $data = json_decode(file_get_contents("php://input"), true);

@@ -29,20 +29,28 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-bodyG">
-                                <p>Vamos a poner las Graficas</p>
+                                <h4>Graficas generales</h4>
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <canvas id="lineChart"></canvas>
+                                        <canvas id="myLineChart" width="400" height="200"></canvas>
                                     </div>
                                     <div class="col-lg-6">
-                                        <canvas id="barChart"></canvas>
+                                        <canvas id="myBarChart"></canvas>
                                     </div>
                                     <div class="col-lg-6">
-                                        <canvas id="pieChart"></canvas>
+                                        <canvas id="myPieChart"></canvas>
                                     </div>
                                     <div class="col-lg-6">
-                                        <canvas id="doughnutChart"></canvas>
+                                        <canvas id="myDoughnutChart"></canvas>
                                     </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                                <div class="card-bodyG">
+                                <h4>Graficas personales</h4>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <canvas id="radarChart"></canvas>
                                     </div>
@@ -55,7 +63,7 @@
                                     <div class="col-lg-6">
                                         <canvas id="scatterChart"></canvas>
                                     </div>
-                                </div>
+                                 </div>
                             </div>
 
                         </div>
@@ -70,21 +78,11 @@
 
     <!-- Scripts -->
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
-    <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="../../controlador/utils/dashboard.js"></script>
     <script src="../../controlador/utils/session_utils.js"></script>
-    <script src="../../recursos/js/acciones.js"></script>
-    <script src="../../controlador/admin_cfp/header.js"></script>
-    <script src="../../controlador/admin_itr/empleado.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../../recursos/js/dashboard.js"></script>
+        <script src="../../controlador/admin_cfp/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../controlador/admin_itr/graficas.js"></script>
-
-
 </body>
 
 </html>

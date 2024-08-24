@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../../recursos/css/css_general/proyecciones.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
     <style>
         .card {
             margin-bottom: 20px;
@@ -44,20 +45,21 @@
                 <div class="row">
                     <!-- Primer Contenedor -->
                     <div class="col-lg-8">
+                          
+                        <button type="button" class="mb-3 d-flex btn justify-content-start" style="background-color: #0466F8; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
+                            <i class="bi bi-card-checklist"></i>
+                            Instructivo para analizar los datos 
+                        </button>
                         <div class="card">
+                            
                             <div class="card-bodyG">
-                                <button type="button" class="btn" style="background-color: #60BFB2; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
-                                    <i class="bi bi-card-checklist"></i>
-                                    Instructivo para analizar los datos 
-                                </button>
-                                <div class="col-lg-6 canvas-container">
+                              
+                                
+                                <div class="mb-4 col-lg-6 canvas-container">
                                     <canvas id="lineChart"></canvas>
                                 </div>
-                                <button type="button" class="btn" style="background-color: #60BFB2; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal">
-                                    <i class="bi bi-card-checklist"></i>
-                                    Instructivo para analizar los datos 
-                                </button>
-                                <div class="col-lg-6 canvas-container">
+                              
+                                <div class="mt-4 col-lg-6 canvas-container">
                                     <canvas id="pieChart"></canvas>
                                 </div>
                             </div>
@@ -65,7 +67,7 @@
                     </div>
                     
                     <!-- Segundo Contenedor -->
-                    <div class="col-lg-4">
+                    <div class="mt-5 col-lg-4">
                         <div class="card-container">
                             <!-- Contenedor de Tarjetas -->
                             <div class="row">
@@ -89,6 +91,7 @@
                                     </div>
                                 </div>
                                 <!-- Tarjeta 2 -->
+                                
                                 <div class="col-12">
                                     <div class="card custom-card h-100">
                                         <div class="card-body">
@@ -167,46 +170,10 @@
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../../controlador/admin_itr/proyecciones.js"></script>
         <script src="../../controlador/admin_itr/graficas.js"></script>
         
-        <script>
-            // Código para inicializar el gráfico de pastel
-            document.addEventListener('DOMContentLoaded', function() {
-                var ctxPie = document.getElementById('pieChart').getContext('2d');
-                var pieChart = new Chart(ctxPie, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                        datasets: [{
-                            label: 'My Pie Chart',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false
-                    }
-                });
-            });
-        </script>
-    </div>
+       
 </body>
 
 </html>
