@@ -1,21 +1,16 @@
 function previewImage(event) {
-    const imagePreview = document.getElementById('imagePreview');
-    const uploadText = document.getElementById('uploadText');
-    
-    const reader = new FileReader();
-    reader.onload = function() {
-        const imgElement = document.createElement('img');
-        imgElement.src = reader.result;
-        imgElement.style.width = '100%';
-        imgElement.style.height = '100%';
-        imgElement.style.borderRadius = '50%';
-        
-        // Clear previous content
-        imagePreview.innerHTML = '';
-        
-        // Add new image
-        imagePreview.appendChild(imgElement);
-    };
-    
-    reader.readAsDataURL(event.target.files[0]);
+    let file = event.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let output = document.getElementById('imagePreview');
+            output.style.backgroundImage = 'url(' + reader.result + ')';
+            output.style.backgroundSize = 'cover';
+            output.style.backgroundPosition = 'center';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        // Limpia la vista previa si no es una imagen
+        document.getElementById('imagePreview').style.backgroundImage = 'none';
+    }
 }

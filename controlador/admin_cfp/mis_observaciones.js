@@ -32,54 +32,65 @@ $(document).ready(function() {
             data: formData,
             contentType: false,  // Para enviar datos binarios (archivo)
             processData: false,  // Evitar que jQuery procese los datos
-            success: function(response) {
-                let res = JSON.parse(response);
-                if (res.status === 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Éxito!',
-                        text: res.message,
-                        confirmButtonText: 'Aceptar'
-                    }).then(() => {
-                        // Limpia el formulario si se agregó correctamente
-                        $('#fechaObservacion').val('');
-                        $('#observacion').val('');
-                        $('#tiempObservacion').val('');
-                        $('#tipoPrestamo').val('');
-                        $('#espacioObservar').val('');
-                        $('#cursoObservar').val('');
-                        $('#imagePreview').css('background-image', 'none');
-                    });
-                } else {
+            success: function(response, textStatus, jqXHR) {
+                try {
+                    // Verifica el tipo de contenido de la respuesta
+                    let contentType = jqXHR.getResponseHeader('Content-Type');
+                    if (contentType && contentType.includes('application/json')) {
+                        let res = JSON.parse(response);
+                        if (res.status === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Éxito!',
+                                text: res.message,
+                                confirmButtonText: 'Aceptar'
+                            }).then(() => {
+                                // Limpia el formulario si se agregó correctamente
+                                $('#fechaObservacion').val('');
+                                $('#observacion').val('');
+                                $('#tiempObservacion').val('');
+                                $('#tipoPrestamo').val('');
+                                $('#espacioObservar').val('');
+                                $('#cursoObservar').val('');
+                                $('#imagePreview').css('background-image', 'none');
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: res.message,
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    } else {
+                        console.error('La respuesta del servidor no es JSON:', response);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'La respuesta del servidor no es válida.',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                } catch (e) {
+                    console.error('Error al analizar JSON:', e);
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: res.message,
+                        text: 'La respuesta del servidor no es válida.',
                         confirmButtonText: 'Aceptar'
                     });
                 }
             },
-            error: function(xhr, status, error) {
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error en la solicitud:', textStatus, errorThrown);
+                console.error('Respuesta del servidor:', jqXHR.responseText);
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Ocurrió un error al agregar la observación.',
+                    text: 'Hubo un problema con la solicitud.',
                     confirmButtonText: 'Aceptar'
                 });
-                console.error(error);
             }
         });
     });
 });
-
-// Previsualizar imagen seleccionada
-function previewImage(event) {
-    let reader = new FileReader();
-    reader.onload = function() {
-        let output = document.getElementById('imagePreview');
-        output.style.backgroundImage = 'url(' + reader.result + ')';
-        output.style.backgroundSize = 'cover';
-        output.style.backgroundPosition = 'center';
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}

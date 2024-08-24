@@ -1,6 +1,7 @@
 <?php
 // mis_observaciones_service.php
-include_once '../data/db_connection.php';
+require_once('../helpers/database.php');
+
 
 function insertarObservacion($fechaObservacion, $observacion, $tipoObservacion, $tipoPrestamo, $espacioObservar, $cursoObservar, $fotoObservacion) {
     $conn = getConnection();

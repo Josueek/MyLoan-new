@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <!--  Inicio del menu lateral -->
+    <!--  Inicio del menu lateral -->drrrrrrrr
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
@@ -60,7 +60,7 @@
                                     <th scope="col">Solicitante</th>
                                     <th scope="col">Programa de fomración</th>
                                     <th scope="col">Curso</th>
-                                    <th scope="col">Observación</th>
+                                    <th sconpe="col">Observación</th>
                                     <th scope="col">Fecha solicitud</th>
                                     <th scope="col">Estado de prestamo</th>
                                     <th scope="col"></th>

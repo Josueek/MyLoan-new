@@ -1,29 +1,35 @@
 <?php
-include_once '../../api/services/mis_observacionesCFP_services.php';
+require_once('../helpers/database.php');
+
+include_once __DIR__ . '/../../services/mis_observacionesCFP_services.php';
+
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recoger los datos del formulario
     $fechaObservacion = $_POST['fechaObservacion'] ?? null;
     $observacion = $_POST['observacion'] ?? null;
-    $tipoObservacion = $_POST['tipoObservacion'] ?? null;
-    $tipoPrestamo = $_POST['tipoPrestamo'] ?? null;
+    $tipoObservacion = $_POST['+'] ?? null;
+    $tipoPrestamo = $_POST['tipoPrestamo'] ?? null;m
     $espacioObservar = $_POST['espacioObservar'] ?? null;
     $cursoObservar = $_POST['cursoObservar'] ?? null;
 
-    // Manejo de archivo de imagen
     $fotoObservacion = null;
     if (isset($_FILES['fotoObservacion']) && $_FILES['fotoObservacion']['size'] > 0) {
         $fotoObservacion = file_get_contents($_FILES['fotoObservacion']['tmp_name']);
     }
 
-    // Llamar al servicio para insertar la observación
-    $result = insertarObservacion($fechaObservacion, $observacion, $tipoObservacion, $tipoPrestamo, $espacioObservar, $cursoObservar, $fotoObservacion);
+    try {
+        $result = insertarObservacion($fechaObservacion, $observacion, $tipoObservacion, $tipoPrestamo, $espacioObservar, $cursoObservar, $fotoObservacion);
 
-    // Responder al cliente
-    if ($result) {
-        echo json_encode(['status' => 'success', 'message' => 'Observación agregada correctamente.']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Hubo un problema al agregar la observación.']);
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Observación agregada correctamente.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Hubo un problema al agregar la observación.']);
+        }
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
     }
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Método de solicitud no permitido.']);
 }
 ?>
