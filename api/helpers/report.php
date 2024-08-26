@@ -11,7 +11,7 @@ require_once('../../models/data/usuario_data.php');
 class Report extends FPDF
 {
     // Constante para definir la ruta de las vistas del sitio.
-    const CLIENT_URL = 'http://MyLoan-new/vistas/admin/';
+    const CLIENT_URL = 'http://MyLoan-new/vistas/admin/inicio.html';
     // Propiedad para guardar el título del reporte.
     private $title = null;
     // Propiedad para guardar el nombre del administrador.
@@ -25,13 +25,13 @@ class Report extends FPDF
     public function startReport($title)
     {
         session_start();
-        if (isset($_SESSION['idAdministrador'])) {
+        if (isset($_SESSION['idUsuario'])) {
             $this->title = $title;
             $this->setTitle('MyLoan Report', true);
             $this->setMargins(15, 15, 15);
             $this->addPage('p', 'letter');
             $this->aliasNbPages();
-            $this->adminName = $this->getAdminName($_SESSION['idAdministrador']);
+            $this->adminName = $this->getAdminName($_SESSION['idUsuario']);
         } else {
             header('location:' . self::CLIENT_URL);
             exit();
@@ -43,18 +43,20 @@ class Report extends FPDF
     *   Parámetros: $adminId (ID del administrador).
     *   Retorno: nombre del administrador.
     */
-    private function getAdminName($adminId)
+    private function getAdminName($userId)
     {
         $db = new Database;
-        $sql = 'SELECT CONCAT(nombre_empleado, " ", apellido_empleado) AS nombre_completo FROM tb_datos_empleados WHERE id_usuario = ?';
-        $params = array($adminId);
+        $sql = 'SELECT CONCAT(nombre_empleado, " ", apellido_empleado) AS nombre_completo 
+                FROM tb_datos_empleados 
+                WHERE id_usuario = ?';
+        $params = array($userId);
         if ($data = $db->getRow($sql, $params)) {
             return $data['nombre_completo'];
         } else {
             return 'Desconocido'; // Devuelve 'Desconocido' si no se encuentra el nombre
         }
     }
-
+    
     /*
     *   Método para codificar una cadena de alfabeto español a UTF-8.
     *   Parámetros: $string (cadena).

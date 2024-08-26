@@ -62,5 +62,21 @@ class EmpleadoHandler
         $params = array($this->correo, $this->telefono, $this->estado, $this->institucion, $this->cargo, $this->imagen, $this->contrasena, $this->id_usuario);
         return Database::executeRow($sql, $params);
     }
+
+    public function EmpleadosPorEspecialidad()
+{
+    // Definir la consulta SQL para obtener los empleados por especialidad
+    $sql = '
+        SELECT e.nombre_especialidad, de.nombre_empleado, de.apellido_empleado
+        FROM tb_especialidades e
+        JOIN tb_datos_empleados de ON e.id_especialidad = de.id_especialidad
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
+
+
 }
 ?>

@@ -162,6 +162,47 @@ public function getCantidadCursosUltimos12Meses()
     return $result;
 }
 
+//RESPORTES
+public function obtenerReporteCursos()
+{
+    // Definir la consulta SQL para obtener todos los cursos con el nombre del empleado
+    $sql = '
+        SELECT 
+            c.nombre_curso, 
+            c.fecha_inicio, 
+            c.fecha_fin, 
+            c.cantidad_personas, 
+            c.grupo, 
+            c.programa_formacion, 
+            c.codigo_curso, 
+            c.estado, 
+            e.nombre_empleado, 
+            e.apellido_empleado
+        FROM 
+            tb_cursos c
+        JOIN 
+            tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
+public function getEmpleadosConCursosActivosOFinalizados()
+{
+    // Definir la consulta SQL para obtener empleados con cursos activos o finalizados
+    $sql = '
+        SELECT de.nombre_empleado, de.apellido_empleado, c.nombre_curso, 
+               c.fecha_inicio, c.fecha_fin, c.estado
+        FROM tb_datos_empleados de
+        JOIN tb_cursos c ON de.id_datos_empleado = c.id_empleado
+        WHERE c.estado IN ("en curso", "finalizado")
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
 
 
 

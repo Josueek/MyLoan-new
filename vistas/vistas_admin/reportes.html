@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Proyecciones</title>
+    <title>Reportes</title>
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
@@ -34,13 +34,15 @@
 
                             <div class="d-flex align-items-center">
                                 <h4 class="mt-4 mb-3">Reportes generales</h4>
-                                <button type="button" class="btn ms-auto" style="background-color: #0466F8; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal1">
+                                <button type="button" class="btn ms-auto"
+                                    style="background-color: #0466F8; color: white;" data-bs-toggle="modal"
+                                    data-bs-target="#saveModal1">
                                     <i class="fa-solid fa-question"></i>
                                 </button>
                             </div>
-                            
+
                             <div class="row">
-                                
+
                                 <!-- Tarjeta 1 -->
                                 <div class="container ">
                                     <div class="row justify-content-center">
@@ -48,20 +50,20 @@
                                         <div class="col-md-3 mb-4">
                                             <div class="card custom-card h-100">
                                                 <div class="card-body">
-                                                    <i class="fa-solid fa-file-alt me-2 icon-custom"></i>
+                                                    <i class="fa-solid fa-users me-2 icon-custom"></i>
                                                     <div class="d-flex align-items-center">
 
                                                         <h5 class="card-title mb-0">
-                                                            Reporte de Préstamos por Usuario
+                                                            Reporte de los empleados por especialidad
                                                         </h5>
 
                                                     </div>
                                                     <p class="card-text">
-                                                        Genera un reporte de las ventas de estado entregado
-                                                        mensuales.
+                                                        Este reporte genera una lista de todos los empleados junto con
+                                                        el nombre de su especialidad correspondiente.
                                                     </p>
                                                     <button class="btn btn-custom"
-                                                        onclick="generarReporte1('ventasMensuales')">
+                                                        onclick="generarReporte1('empleadoEspecilidad')">
                                                         Generar Reporte
                                                     </button>
                                                 </div>
@@ -71,16 +73,17 @@
                                         <div class="col-md-3 mb-4">
                                             <div class="card custom-card h-100">
                                                 <div class="card-body">
-                                                    <i class="fa-solid fa-tag me-2 icon-custom"></i>
+                                                    <i class="fa-solid fa-list me-2 icon-custom"></i>
                                                     <div class="d-flex align-items-center">
                                                         <h5 class="card-title mb-0">
-                                                            Reporte de Observaciones por Tipos
+                                                            Reporte de cursos con detalles de empleados
                                                         </h5>
 
                                                     </div>
                                                     <p class="card-text">
-                                                        Genera un reporte de los productos que tienen
-                                                        existencias menores a 20.
+                                                        Este reporte proporciona una vista detallada de todos los cursos
+                                                        disponibles, incluyendo información sobre el empleado a cargo de
+                                                        cada curso.
                                                     </p>
                                                     <button class="btn btn-custom"
                                                         onclick="generarReporte2('historialPrecios')">
@@ -93,17 +96,17 @@
                                         <div class="col-md-3 mb-4">
                                             <div class="card custom-card h-100">
                                                 <div class="card-body">
-                                                    <i class="fa-solid fa-chart-line me-2 icon-custom"></i>
+                                                    <i class="fa-solid fa-user-check me-2 icon-custom"></i>
                                                     <div class="d-flex align-items-center">
 
                                                         <h5 class="card-title mb-0">
-                                                            Reporte de Detalles de Préstamos
+                                                            Reporte de empleados con Cursos activos o finalizados
                                                         </h5>
 
                                                     </div>
                                                     <p class="card-text">
-                                                        Genera un reporte con las proyecciones de ventas para
-                                                        el próximo mes.
+                                                        Este reporte lista todos los empleados que están actualmente
+                                                        involucrados en cursos.
                                                     </p>
                                                     <button class="btn btn-custom"
                                                         onclick="generarReporte3('proyeccionesVentas')">
@@ -116,16 +119,16 @@
                                         <div class="col-md-3 mb-4">
                                             <div class="card custom-card h-100">
                                                 <div class="card-body">
-                                                    <i class="fa-solid fa-box me-2 icon-custom"></i>
+                                                    <i class="fa-solid fa-building me-2 icon-custom"></i>
                                                     <div class="d-flex align-items-center">
 
                                                         <h5 class="card-title mb-0">
-                                                            Inventario de Productos
+                                                            Reporte de los detalles de los espacios
                                                         </h5>
 
                                                     </div>
                                                     <p class="card-text">
-                                                        Reporte de Empleados Activos y sus Cargos
+                                                        Proporciona información detallada sobre los espacios, incluyendo su capacidad, tipo, la especialidad asociada y otros detalles.
                                                     </p>
                                                     <button class="btn btn-custom"
                                                         onclick="generarReporte4('inventarioProductos')">
@@ -137,7 +140,9 @@
 
                                         <div class=" mt-4 mb-3 d-flex align-items-center">
                                             <h4 class="mt-4 mb-3">Reportes generales</h4>
-                                            <button type="button" class="btn ms-auto" style="background-color: #0466F8; color: white;" data-bs-toggle="modal" data-bs-target="#saveModal2">
+                                            <button type="button" class="btn ms-auto"
+                                                style="background-color: #0466F8; color: white;" data-bs-toggle="modal"
+                                                data-bs-target="#saveModal2">
                                                 <i class="fa-solid fa-question"></i>
                                             </button>
                                         </div>
@@ -146,7 +151,7 @@
                                         <div class="col-md-3 mb-4">
                                             <div class="card custom-card h-100">
                                                 <div class="card-body">
-                                                    <i class="fa-solid fa-users me-2 icon-custom"></i>
+                                                    <i class="fa-solid fa-calendar-day me-2 icon-custom"></i>
                                                     <div class="d-flex align-items-center">
 
                                                         <h5 class="card-title mb-0">
@@ -239,7 +244,8 @@
             </section>
         </div>
 
-        <div class="modal fade" id="saveModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal fade" id="saveModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -248,14 +254,15 @@
                     </div>
                     <div class="modal-body">
                         <div class="alert-warning">
-                            <h5>Estos reportes generan informacion general de los dtaos que hay en el sistema</h5>
+                            <h5>Estos reportes generan información general de los datos que hay en el sistema</h5>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="saveModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal fade" id="saveModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -264,9 +271,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="alert-warning">
-                            <h5>Estos reportes personales general datos que yo he solicititado en el sistema</h5>
+                            <h5>Estos reportes personales generan datos que yo he solicitado en el sistema</h5>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

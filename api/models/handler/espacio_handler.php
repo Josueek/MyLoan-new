@@ -144,4 +144,29 @@ class EspacioHandler
             return false;
         }
     }
+
+ /// reporte
+    public function obtenerDetalleEspacios()
+{
+    // Definir la consulta SQL para obtener el detalle de los espacios junto con el nombre de la especialidad y el nombre del empleado
+    $sql = '
+        SELECT 
+            e.nombre_espacio, 
+            e.capacidad_personas, 
+            e.tipo_espacio, 
+            esp.nombre_especialidad, 
+            de.nombre_empleado, 
+            de.apellido_empleado
+        FROM 
+            tb_espacios e
+        JOIN 
+            tb_especialidades esp ON e.id_especialidad = esp.id_especialidad
+        JOIN 
+            tb_datos_empleados de ON e.id_empleado = de.id_datos_empleado
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
 }
