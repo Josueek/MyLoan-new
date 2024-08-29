@@ -38,19 +38,23 @@
                             <div class="card-body">
                                 <div class="container mt-5">
                                     <div class="row mb-5">
-                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                        <div class="col-lg-2 mb-2 d-flex align-items-center">
                                             <button class="btn btn-transparent border-0 p-0">
                                                 <i class="fas fa-search me-2"></i>
                                             </button>
                                             <input id="buscarEmpleado" type="search" class="form-control"
                                                 placeholder="Buscar por nombre">
                                         </div>
-                                        <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                        <div class="col-lg-2 mb-2 d-flex align-items-center">
                                             <select id="filtroEstado" class="form-select" required>
                                                 <option value="">Filtrar por estado</option>
                                             </select>
                                         </div>
-
+                                        <div class="col-lg-2 mb-2 d-flex justify-content-end">
+                                            <button type="button"  class="btn btn-warning mx-lg-3" onclick="generarReportePorEstado()">
+                                                Generar Reporte
+                                            </button>
+                                        </div>
 
                                         <div class="col-lg-3 mb-3 d-flex justify-content-end">
                                             <button id="btnAgregarEspecialidad" type="button"
@@ -314,6 +318,8 @@
         <!-- Scrip que dudosamente sirven-->
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
+        <script src="../../controlador/admin_itr/reportes.js"></script>
+        <script src="../../controlador/admin_itr/empleado.js"></script>
 
 </body>
 

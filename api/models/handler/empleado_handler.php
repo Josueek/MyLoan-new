@@ -77,8 +77,22 @@ class EmpleadoHandler
 }
 
 
+public function EmpleadosPorEstado($estado)
+{
+    // Definir la consulta SQL para obtener los empleados por estado
+    $sql = '
+        SELECT e.nombre_especialidad, de.nombre_empleado, de.apellido_empleado
+        FROM tb_especialidades e
+        JOIN tb_datos_empleados de ON e.id_especialidad = de.id_especialidad
+        WHERE de.estado_empleado = :estado
+    ';
 
-
+    // Preparar la consulta y vincular el parámetro
+    $params = array(':estado' => $estado);
+    
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql, $params);
+}
 
 }
 ?>
