@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     cargarDatosTabla();
     cargarComboboxData();
 
     // Evento para la búsqueda
-    document.getElementById('buscarEspacio').addEventListener('input', function() {
+    document.getElementById('buscarEspacio').addEventListener('input', function () {
         buscarEspacio();
     });
 
     // Evento para el filtro
-    document.getElementById('filtrarEspecialidad').addEventListener('change', function() {
+    document.getElementById('filtrarEspecialidad').addEventListener('change', function () {
         buscarEspacio();
     });
 
@@ -19,19 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al obtener espacios:', error));
     }
 
-    document.getElementById('formAgregarEspacio').addEventListener('submit', function(event) {
+    document.getElementById('formAgregarEspacio').addEventListener('submit', function (event) {
         event.preventDefault();
         agregarEspacio();
     });
 
-    document.getElementById('imagenEspacio').addEventListener('change', function(event) {
+    document.getElementById('imagenEspacio').addEventListener('change', function (event) {
         const input = event.target;
         const preview = document.getElementById('previewImagenEspacio');
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
 
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
             };
@@ -43,14 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('editarImagenEspacio').addEventListener('change', function(event) {
+    document.getElementById('editarImagenEspacio').addEventListener('change', function (event) {
         const input = event.target;
         const preview = document.getElementById('previewImagenEspacioEditar');
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
 
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
             };
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error al obtener especialidades:', error));
 
         fetch(`../../api/services/espacios_services.php?action=getAllInstituciones`)
-            .then(response => response.json())  
+            .then(response => response.json())
             .then(data => llenarCombobox('institucionEspacio', data, 'id_institucion', 'nombre_institucion'))
             .catch(error => console.error('Error al obtener instituciones:', error));
     }
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const filtrar = document.getElementById('filtrarEspecialidad').value;
         cargarDatosTabla(buscar, filtrar);
     }
-    
+
     function mostrarDatosTabla(data) {
         const tbody = document.querySelector('table tbody');
         tbody.innerHTML = '';
@@ -127,13 +127,106 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button type="button" class="btn btn-danger btn-eliminar-espacio" data-id="${espacio.id_espacio}">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
+                        <button type="button" class="btn btn-info" onclick="abrirGrafico(${espacio.id_espacio})">
+                            <i class="fa-solid fa-chart-bar"></i>
+                        </button>
+                        
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
 
+
+            const abrirGrafico = async (id) => {
+                try {
+                    const response = await fetch('../../api/services/espacios_services.php?action=getAllEspecialidades&id=' + id);
+                    const DATA = await response.json();
+            
+                    if (DATA.status) {
+                        // Inicializa el modal de Bootstrap y luego lo muestra
+                        const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
+                        chartModal.show();
+            
+                        let estados = [];
+                        let cantidadPrestamos = [];
+            
+                        DATA.dataset.forEach(row => {
+                            estados.push(row.Estado);
+                            cantidadPrestamos.push(row.cantidad_prestamos);
+                        });
+            
+                        const chartContainer = document.getElementById('chartContainer');
+                        if (chartContainer) {
+                            chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
+                            barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
+                        } else {
+                            console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
+                        }
+                    } else {
+                        console.error('Datos incorrectos:', DATA.error);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            };
+        
+            // Función para generar un gráfico de barras.
+            const barGraph = (canvasId, xAxisLabels, yAxisData, legendLabel, chartTitle) => {
+                // Crear una instancia para generar el gráfico con los datos recibidos.
+                new Chart(document.getElementById(canvasId), {
+                    type: 'bar', // Tipo de gráfico
+                    data: {
+                        labels: xAxisLabels,
+                        datasets: [{
+                            label: legendLabel,
+                            data: yAxisData,
+                            backgroundColor: [
+                                '#0466F8', // Azul
+                                '#FCBE2D', // Amarillo
+                                '#0B7F4B', // Verde
+                                '#11015C', // Púrpura
+                                '#FF6F00'  // Naranja
+                            ], // Colores de fondo de las barras
+                            borderColor: [
+                                '#0466F8', // Azul
+                                '#FCBE2D', // Amarillo
+                                '#0B7F4B', // Verde
+                                '#11015C', // Púrpura
+                                '#FF6F00'  // Naranja
+                            ], // Colores del borde de las barras
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: chartTitle
+                            },
+                            legend: {
+                                display: true
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            window.abrirGrafico = abrirGrafico;
+
             document.querySelectorAll('.btn-descargar-inventario').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const inventario = this.getAttribute('data-inventario');
                     Swal.fire({
                         title: '¿Quieres descargar el inventario de este espacio?',
@@ -160,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             document.querySelectorAll('.btn-eliminar-espacio').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const idEspacio = this.getAttribute('data-id');
                     Swal.fire({
                         title: '¿Estas seguro que quieres eliminar este espacio?',
@@ -177,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             document.querySelectorAll('.btn-editar-espacio').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const idEspacio = this.getAttribute('data-id');
                     cargarEspacio(idEspacio);
                 });
@@ -226,22 +319,22 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'El espacio se ha agregado correctamente.', 'success').then(() => {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('AgregarEspacio'));
-                    modal.hide();
-                    cargarDatosTabla();
-                });
-            } else {
-                Swal.fire('Error!', data.message || 'Hubo un problema al agregar el espacio.', 'error');
-            }
-        })
-        .catch(error => {
-            Swal.fire('Error!', 'Hubo un problema al agregar el espacio.', 'error');
-            console.error('Error al agregar espacio:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'El espacio se ha agregado correctamente.', 'success').then(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('AgregarEspacio'));
+                        modal.hide();
+                        cargarDatosTabla();
+                    });
+                } else {
+                    Swal.fire('Error!', data.message || 'Hubo un problema al agregar el espacio.', 'error');
+                }
+            })
+            .catch(error => {
+                Swal.fire('Error!', 'Hubo un problema al agregar el espacio.', 'error');
+                console.error('Error al agregar espacio:', error);
+            });
     }
 
     function eliminarEspacio(idEspacio) {
@@ -252,20 +345,20 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ idEspacio: idEspacio })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'El espacio ha sido eliminado correctamente.', 'success').then(() => {
-                    cargarDatosTabla();
-                });
-            } else {
-                Swal.fire('Error!', data.message || 'Hubo un problema al eliminar el espacio.', 'error');
-            }
-        })
-        .catch(error => {
-            Swal.fire('Error!', 'Hubo un problema al eliminar el espacio.', 'error');
-            console.error('Error al eliminar espacio:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'El espacio ha sido eliminado correctamente.', 'success').then(() => {
+                        cargarDatosTabla();
+                    });
+                } else {
+                    Swal.fire('Error!', data.message || 'Hubo un problema al eliminar el espacio.', 'error');
+                }
+            })
+            .catch(error => {
+                Swal.fire('Error!', 'Hubo un problema al eliminar el espacio.', 'error');
+                console.error('Error al eliminar espacio:', error);
+            });
     }
 
     let originalNombreEspacio, originalCapacidadPersonas, originalTipoEspacio, originalEncargadoEspacio, originalEspecialidadEspacio, originalInstitucionEspacio;
@@ -285,49 +378,49 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ idEspacio: idEspacio })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status && data.dataset) {
-                const espacio = data.dataset;
-                document.getElementById('editarIdEspacio').value = idEspacio;
-                originalNombreEspacio = espacio.nombre_espacio;
-                originalCapacidadPersonas = espacio.capacidad_personas;
-                originalTipoEspacio = espacio.tipo_espacio;
-                originalEncargadoEspacio = espacio.id_empleado;
-                originalEspecialidadEspacio = espacio.id_especialidad;
-                originalInstitucionEspacio = espacio.id_institucion;
-    
-                document.getElementById('editarNombreEspacio').value = originalNombreEspacio;
-                document.getElementById('editarCapacidadPersonas').value = originalCapacidadPersonas;
-                document.getElementById('editarTipoEspacio').value = originalTipoEspacio;
-                document.getElementById('editarEncargadoEspacio').value = originalEncargadoEspacio;
-                document.getElementById('editarEspecialidadEspacio').value = originalEspecialidadEspacio;
-                document.getElementById('editarInstitucionEspacio').value = originalInstitucionEspacio;
-                document.getElementById('previewImagenEspacioEditar').src = `../../api/images/espacios/${espacio.foto_espacio}`;
-                document.getElementById('previewImagenEspacioEditar').style.display = 'block';
-    
-                const nuevoArchivoImagenLabel = document.createElement('label');
-                nuevoArchivoImagenLabel.textContent = espacio.foto_espacio;
-                nuevoArchivoImagenLabel.id = 'archivoImagenLabel';
-                document.getElementById('editarImagenEspacio').parentNode.appendChild(nuevoArchivoImagenLabel);
-    
-                const nuevoArchivoInventarioLabel = document.createElement('label');
-                nuevoArchivoInventarioLabel.textContent = espacio.inventario_doc;
-                nuevoArchivoInventarioLabel.id = 'archivoInventarioLabel';
-                document.getElementById('editarInventarioEspacio').parentNode.appendChild(nuevoArchivoInventarioLabel);
-    
-                fetchComboboxDataEditar(espacio.id_empleado, espacio.id_especialidad, espacio.id_institucion);
-    
-                Swal.fire('Cargado!', 'Los datos del espacio se han cargado correctamente.', 'success');
-                new bootstrap.Modal(document.getElementById('editarEspacio')).show();
-            } else {
+            .then(response => response.json())
+            .then(data => {
+                if (data.status && data.dataset) {
+                    const espacio = data.dataset;
+                    document.getElementById('editarIdEspacio').value = idEspacio;
+                    originalNombreEspacio = espacio.nombre_espacio;
+                    originalCapacidadPersonas = espacio.capacidad_personas;
+                    originalTipoEspacio = espacio.tipo_espacio;
+                    originalEncargadoEspacio = espacio.id_empleado;
+                    originalEspecialidadEspacio = espacio.id_especialidad;
+                    originalInstitucionEspacio = espacio.id_institucion;
+
+                    document.getElementById('editarNombreEspacio').value = originalNombreEspacio;
+                    document.getElementById('editarCapacidadPersonas').value = originalCapacidadPersonas;
+                    document.getElementById('editarTipoEspacio').value = originalTipoEspacio;
+                    document.getElementById('editarEncargadoEspacio').value = originalEncargadoEspacio;
+                    document.getElementById('editarEspecialidadEspacio').value = originalEspecialidadEspacio;
+                    document.getElementById('editarInstitucionEspacio').value = originalInstitucionEspacio;
+                    document.getElementById('previewImagenEspacioEditar').src = `../../api/images/espacios/${espacio.foto_espacio}`;
+                    document.getElementById('previewImagenEspacioEditar').style.display = 'block';
+
+                    const nuevoArchivoImagenLabel = document.createElement('label');
+                    nuevoArchivoImagenLabel.textContent = espacio.foto_espacio;
+                    nuevoArchivoImagenLabel.id = 'archivoImagenLabel';
+                    document.getElementById('editarImagenEspacio').parentNode.appendChild(nuevoArchivoImagenLabel);
+
+                    const nuevoArchivoInventarioLabel = document.createElement('label');
+                    nuevoArchivoInventarioLabel.textContent = espacio.inventario_doc;
+                    nuevoArchivoInventarioLabel.id = 'archivoInventarioLabel';
+                    document.getElementById('editarInventarioEspacio').parentNode.appendChild(nuevoArchivoInventarioLabel);
+
+                    fetchComboboxDataEditar(espacio.id_empleado, espacio.id_especialidad, espacio.id_institucion);
+
+                    Swal.fire('Cargado!', 'Los datos del espacio se han cargado correctamente.', 'success');
+                    new bootstrap.Modal(document.getElementById('editarEspacio')).show();
+                } else {
+                    Swal.fire('Error!', 'Hubo un problema al obtener los datos del espacio.', 'error');
+                }
+            })
+            .catch(error => {
                 Swal.fire('Error!', 'Hubo un problema al obtener los datos del espacio.', 'error');
-            }
-        })
-        .catch(error => {
-            Swal.fire('Error!', 'Hubo un problema al obtener los datos del espacio.', 'error');
-            console.error('Error al obtener espacio:', error);
-        });
+                console.error('Error al obtener espacio:', error);
+            });
     }
 
     function fetchComboboxDataEditar(selectedEmpleado, selectedEspecialidad, selectedInstitucion) {
@@ -380,29 +473,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const originalInstitucion = originalInstitucionEspacio;
         const originalImagen = document.getElementById('archivoImagenLabel').textContent;
         const originalInventario = document.getElementById('archivoInventarioLabel').textContent;
-    
-        if (nombreEspacio === originalNombre && 
-            capacidadPersonas === originalCapacidad && 
-            tipoEspacio === originalTipo && 
-            encargadoEspacio === originalEncargado && 
-            especialidadEspacio === originalEspecialidad && 
-            institucionEspacio === originalInstitucion && 
-            !imagenEspacio && 
+
+        if (nombreEspacio === originalNombre &&
+            capacidadPersonas === originalCapacidad &&
+            tipoEspacio === originalTipo &&
+            encargadoEspacio === originalEncargado &&
+            especialidadEspacio === originalEspecialidad &&
+            institucionEspacio === originalInstitucion &&
+            !imagenEspacio &&
             !inventarioEspacio) {
             Swal.fire('Error!', 'No se puede actualizar porque no has hecho ningún cambio.', 'error');
             return;
         }
-    
+
         if (!nombreEspacio || !capacidadPersonas || !tipoEspacio || !encargadoEspacio || !especialidadEspacio || !institucionEspacio) {
             Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
             return;
         }
-    
+
         if (isNaN(capacidadPersonas) || capacidadPersonas <= 0 || !Number.isInteger(parseFloat(capacidadPersonas))) {
             Swal.fire('Error!', 'Capacidad de Personas debe ser un número entero positivo.', 'error');
             return;
         }
-    
+
         const formData = new FormData();
         formData.append('idEspacio', idEspacio);
         formData.append('nombreEspacio', nombreEspacio);
@@ -411,42 +504,42 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('encargadoEspacio', encargadoEspacio);
         formData.append('especialidadEspacio', especialidadEspacio);
         formData.append('institucionEspacio', institucionEspacio);
-    
+
         if (imagenEspacio) {
             formData.append('imagenEspacio', imagenEspacio);
         } else {
             formData.append('imagenEspacio', originalImagen);
         }
-    
+
         if (inventarioEspacio) {
             formData.append('inventarioEspacio', inventarioEspacio);
         } else {
             formData.append('inventarioEspacio', originalInventario);
         }
-    
+
         fetch('../../api/services/espacios_services.php?action=updateEspacio', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Actualizado!', 'El espacio ha sido actualizado correctamente.', 'success').then(() => {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('editarEspacio'));
-                    modal.hide();
-                    cargarDatosTabla();
-                });
-            } else {
-                Swal.fire('Error!', data.message || 'Hubo un problema al actualizar el espacio.', 'error');
-            }
-        })
-        .catch(error => {
-            Swal.fire('Error!', 'Hubo un problema al actualizar el espacio.', 'error');
-            console.error('Error al actualizar espacio:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Actualizado!', 'El espacio ha sido actualizado correctamente.', 'success').then(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('editarEspacio'));
+                        modal.hide();
+                        cargarDatosTabla();
+                    });
+                } else {
+                    Swal.fire('Error!', data.message || 'Hubo un problema al actualizar el espacio.', 'error');
+                }
+            })
+            .catch(error => {
+                Swal.fire('Error!', 'Hubo un problema al actualizar el espacio.', 'error');
+                console.error('Error al actualizar espacio:', error);
+            });
     }
 
-    document.getElementById('formEditarEspacio').addEventListener('submit', function(event) {
+    document.getElementById('formEditarEspacio').addEventListener('submit', function (event) {
         event.preventDefault();
         editarEspacio();
     });
@@ -467,4 +560,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const backdrops = document.querySelectorAll('.modal-backdrop');
         backdrops.forEach(backdrop => backdrop.remove());
     });
+
+    
 });

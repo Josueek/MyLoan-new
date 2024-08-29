@@ -180,6 +180,21 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
+
+            
+        case 'programasFormacionPorEspacio':
+            // Obtiene un empleado por su ID.
+            if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                if ($result['dataset'] = $espacio->setId($_GET['id'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se pudieron obtener los datos del espacio';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+
         default:
             $result['message'] = 'Acción no disponible';
     }

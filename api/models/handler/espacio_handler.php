@@ -11,6 +11,16 @@ class EspacioHandler
      * la adición de un nuevo espacio, la obtención de un espacio por su ID, la actualización y la eliminación de espacios.
      * Utiliza una conexión a la base de datos a través de la clase Database.
      */
+    protected $id_empleado;
+    protected $nombre;
+    protected $capacidad;
+    protected $tipo;
+    protected $encargado;
+    protected $especialidad;
+    protected $institucion;
+    protected $imagen;
+    protected $inventario;
+    protected $idEspacio;
 
     //Obtener los datso de todos los espacios
     public function getAllEspacios($buscar = '', $filtrar = '')
@@ -176,6 +186,23 @@ class EspacioHandler
 
     // Ejecutar la consulta y retornar los resultados
     return Database::getRows($sql);
+}
+
+public function programasFormacionPorCurso($idEspacio)
+{
+    $sql = 'SELECT 
+    c.programa_formacion,
+    COUNT(dc.id_curso) AS cantidad_cursos
+FROM 
+    tb_cursos c
+LEFT JOIN 
+    tb_detalles_cursos dc ON c.id_curso = dc.id_curso AND dc.id_espacio = ?
+WHERE 
+    c.programa_formacion IN ("HTP", "EC", "FCAT") OR dc.id_curso IS NULL
+GROUP BY 
+    c.programa_formacion';
+    $params = array($idEspacio);
+    return Database::getRow($sql, $params);
 }
 
 }
