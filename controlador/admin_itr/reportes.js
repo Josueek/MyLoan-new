@@ -80,3 +80,18 @@ const generarReporteRegistroAdmin = () => {
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
+
+function generarReportePorEstado() {
+    // Obtener el estado seleccionado por el usuario
+    const estadoSeleccionado = document.getElementById('filtroEstado').value;
+
+    if (estadoSeleccionado) {
+        // Definir la ruta del reporte, incluyendo el estado como parámetro
+        const PATH = new URL(`${SERVER_URL}reportes/empleados_estado.php?estado=${estadoSeleccionado}`);
+        
+        // Abrir el reporte en una nueva pestaña
+        window.open(PATH.href);
+    } else {
+        alert('Por favor, seleccione un estado para generar el reporte.');
+    }
+}
