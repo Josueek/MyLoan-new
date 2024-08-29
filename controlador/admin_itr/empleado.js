@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button type="button" class="btn btn-warning" onclick="asignarEspecialidad(${empleado.id_datos_empleado}, '${empleado.nombre_empleado}')" data-bs-toggle="modal" data-bs-target="#asigEspecialidad">
                             <i class="fa-solid fa-award"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" onclick="abrirGrafico(${empleado.id_usuario})">
-                            <i class="fa-solid fa-award"></i>
-                        </button>
+                        <button type="button" class="btn btn-info" onclick="abrirGrafico(${empleado.id_usuario})">
+    <i class="fa-solid fa-chart-bar"></i>
+</button>
+
                     </td>
                 `;
                 tbody.appendChild(tr);
