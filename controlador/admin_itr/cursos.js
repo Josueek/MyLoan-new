@@ -1,24 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
+// Llama a la función para cargar los cursos al cargar la página
+document.addEventListener('DOMContentLoaded', cargarCursos);
+
+document.addEventListener('DOMContentLoaded', function () {
     cargarDatosTabla();
     cargarComboboxData();
 
     // Evento para la búsqueda
-    document.getElementById('buscarCurso').addEventListener('input', function() {
+    document.getElementById('buscarCurso').addEventListener('input', function () {
         buscarCurso();
     });
 
     // Evento para agregar curso
-    document.getElementById('formAgregarCurso').addEventListener('submit', function(event) {
+    document.getElementById('formAgregarCurso').addEventListener('submit', function (event) {
         event.preventDefault();
         agregarCurso();
     });
 
     // Evento para editar curso
-    document.getElementById('formEditarCurso').addEventListener('submit', function(event) {
+    document.getElementById('formEditarCurso').addEventListener('submit', function (event) {
         event.preventDefault();
         editarCurso();
     });
-
+    //Esta funcion sirve para mandar a cargar los datos de la tabal 
     function cargarDatosTabla(buscar = '') {
         fetch(`../../api/services/curso_services.php?action=getAllCursos&buscar=${buscar}`)
             .then(response => response.json())
@@ -82,14 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             document.querySelectorAll('.btn-editar-curso').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const idCurso = this.getAttribute('data-id');
                     cargarCurso(idCurso);
                 });
             });
 
             document.querySelectorAll('.btn-eliminar-curso').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const idCurso = this.getAttribute('data-id');
                     eliminarCurso(idCurso);
                 });
@@ -103,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tbody.appendChild(noRecordsRow);
         }
     }
-
+// Aqui se cargan los cursos 
     function cargarCurso(idCurso) {
         fetch(`../../api/services/curso_services.php?action=getCurso&id=${idCurso}`)
             .then(response => response.json())
@@ -188,21 +191,21 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'Curso actualizado correctamente.', 'success').then(() => {
-                    cargarDatosTabla();
-                    document.getElementById('editarCursoModal').querySelector('.btn-close').click();
-                });
-            } else {
-                Swal.fire('Error!', data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error al actualizar curso:', error);
-            Swal.fire('Error!', 'Hubo un problema al actualizar el curso.', 'error');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'Curso actualizado correctamente.', 'success').then(() => {
+                        cargarDatosTabla();
+                        document.getElementById('editarCursoModal').querySelector('.btn-close').click();
+                    });
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error al actualizar curso:', error);
+                Swal.fire('Error!', 'Hubo un problema al actualizar el curso.', 'error');
+            });
     }
 
     function agregarCurso() {
@@ -234,22 +237,22 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'Curso agregado correctamente.', 'success').then(() => {
-                    document.getElementById('formAgregarCurso').reset();
-                    cargarDatosTabla();
-                    document.getElementById('agregarCursoModal').querySelector('.btn-close').click();
-                });
-            } else {
-                Swal.fire('Error!', data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error al agregar curso:', error);
-            Swal.fire('Error!', 'Hubo un problema al agregar el curso.', 'error');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'Curso agregado correctamente.', 'success').then(() => {
+                        document.getElementById('formAgregarCurso').reset();
+                        cargarDatosTabla();
+                        document.getElementById('agregarCursoModal').querySelector('.btn-close').click();
+                    });
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error al agregar curso:', error);
+                Swal.fire('Error!', 'Hubo un problema al agregar el curso.', 'error');
+            });
     }
 
     function eliminarCurso(idCurso) {
@@ -271,20 +274,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify({ id: idCurso })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status) {
-                        Swal.fire('¡Eliminado!', 'El curso ha sido eliminado.', 'success');
-                        cargarDatosTabla();
-                    } else {
-                        Swal.fire('Error!', data.message, 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al eliminar curso:', error);
-                    Swal.fire('Error!', 'Hubo un problema al eliminar el curso.', 'error');
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status) {
+                            Swal.fire('¡Eliminado!', 'El curso ha sido eliminado.', 'success');
+                            cargarDatosTabla();
+                        } else {
+                            Swal.fire('Error!', data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al eliminar curso:', error);
+                        Swal.fire('Error!', 'Hubo un problema al eliminar el curso.', 'error');
+                    });
             }
         });
     }
 });
+
