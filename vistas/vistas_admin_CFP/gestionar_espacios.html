@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestionar espacios CFP</title>
+    <title>Gestionar espacios</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
@@ -17,8 +17,15 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <div class="dashboard">
-
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
         </div>
 
         <!--  aca empieza el header -->
@@ -51,43 +58,44 @@
                                             <option value="">Todos</option>
                                         </select>
                                     </div>
-                                
 
-                            <div class="col-lg-6 mb-3 d-flex justify-content-end">
-                                <button id="btnAgregarEspacio" type="button" class="btn btn-primary mx-1 btnestilo"
-                                    data-bs-toggle="modal" data-bs-target="#AgregarEspacio">Agregar espacio</button>
-                            </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover mt-3">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Número de laboratorio</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Capacidad de personas</th>
-                                            <th scope="col">Tipo de espacio</th>
-                                            <th scope="col">Encargado</th>
-                                            <th scope="col">Imagen</th>
-                                            <th scope="col">Especialidad</th>
-                                            <th scope="col">Institución</th>
-                                            <th scope="col">Inventario</th>
-                                            <th scope="col" style="width: 200px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- aca empiezan las filas de las tablas-->
-                                        <!-- Los datos se llenarán desde el archivo JavaScript -->
-                                    </tbody>
-                                </table>
+                                    <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                        <button id="btnAgregarEspacio" type="button"
+                                            class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
+                                            data-bs-target="#AgregarEspacio">Agregar espacio</button>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Número de laboratorio</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Capacidad de personas</th>
+                                                    <th scope="col">Tipo de espacio</th>
+                                                    <th scope="col">Encargado</th>
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Especialidad</th>
+                                                    <th scope="col">Institución</th>
+                                                    <th scope="col">Inventario</th>
+                                                    <th scope="col" style="width: 200px;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- aca empiezan las filas de las tablas-->
+                                                <!-- Los datos se llenarán desde el archivo JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    </div>
+        </div>
     </div>
 
     <!-- Modal para agregar espacio -->
@@ -241,25 +249,47 @@
         </div>
     </div>
 
+    <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="chartTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-center">Cantidad de cursos y su programa de formacion:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Contenedor para mostrar el gráfico -->
+                <div class="modal-body" id="chartContainer"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-    <!--Scrip que si funionan -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <!-- ESTE HACE QUE ABRA EL MODAL DE LA GRAFICA-->
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <!-- Scrip que si funionan -->
     <script src="../../recursos/js/app.min.js"></script>
-    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="../../controlador/utils/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
     <script src="../../controlador/utils/session_utils.js"></script>
     <script src="../../recursos/js/acciones.js"></script>
     <script src="../../controlador/admin_cfp/header.js"></script>
-    <script src="../../recursos/js/modales.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scrip que dudosamente sirven-->
     <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
     <script src="../../recursos/js/dashboard.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../recursos/js/modales.js"></script>
     <script src="../../controlador/admin_itr/gestionar_espacios.js"></script>
+
 </body>
 
 </html>

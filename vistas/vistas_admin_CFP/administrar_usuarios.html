@@ -4,26 +4,34 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestionar Empleados CFP</title>
+    <title>Gestionar Empleados</title>
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+   
 </head>
 
 <body>
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <div class="dashboard">
-
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
         </div>
         <!--Aca empieza el header-->
         <div class="body-wrapper">
             <div id="headerContainer" data-title="Gestionar Empleados"></div>
             <section class="container-fluid">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" >
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
@@ -278,10 +286,9 @@
 
         <!--Scrip que si funionan -->
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../recursos/js/sidebarmenu.js"></script>
         <script src="../../recursos/js/app.min.js"></script>
         <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
-        <script src="../../controlador/utils/dashboard.js"></script>
+        <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../controlador/utils/session_utils.js"></script>
         <script src="../../recursos/js/acciones.js"></script>
@@ -290,7 +297,6 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Scrip que dudosamente sirven-->
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
-        <script src="../../recursos/js/dashboard.js"></script>
 
 </body>
 

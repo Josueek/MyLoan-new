@@ -25,7 +25,16 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-       <div class="dashboard"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
  
         <!--  aca empieza el header -->
         <div class="body-wrapper">
@@ -43,7 +52,7 @@
                                 <!--  Row 1 -->
                                 <!-- tabla -->
                                 <!-- Inicio de la tabla de usuarios-->
-                                <table class="table table-hover" id="tabla-ejemplo">
+                                <table class="table table-hover">
  
                                     <!-- Buscador-->
                                     <div class="container mt-5">
@@ -81,6 +90,67 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     
+                                        <tr>
+                                            <th scope="row">10/04/2024</th>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#verObservaciones"
+                                                        data-bs-whatever="@mdo" id="btnVerDetalle">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+ 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">10/04/2024</th>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#verObservaciones"
+                                                        data-bs-whatever="@mdo" id="btnVerDetalle">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+ 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">10/04/2024</th>
+                                            <td>El espacio se encontraba sucio</td>
+                                            <td><img src="../../recursos/img/img_generales/image_80-removebg-preview.png"
+                                                    alt=""></td>
+                                            <td>Despues del curso</td>
+                                            <td>Despues del curso</td>
+                                            <td>Laboratorio d.s</td>
+                                            <td>Wilfredo Granados</td>
+                                            <td>
+                                                <div class="col-3 me-2 mt-2">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#verObservaciones"
+                                                        data-bs-whatever="@mdo" id="btnVerDetalle">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </button>
+ 
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-- Fin de la tabla de empleados -->
@@ -111,7 +181,6 @@
                     <!-- Scrip que dudosamente sirven-->
                     <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
                     <script src="../../recursos/js/dashboard.js"></script>
-                    <script src="../../controlador/admin_itr/mis_observaciones.js"></script>
 </body>
  
 </html>
