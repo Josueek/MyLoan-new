@@ -4,6 +4,7 @@ require_once('../helpers/database.php');
 class GestionarEmpleadoHandler
 {
     protected $id = null;
+    protected $id_usuario = null;
     protected $nombre = null;
     protected $apellidos = null;
     protected $telefono = null;
@@ -104,8 +105,8 @@ class GestionarEmpleadoHandler
     }
 
     public function searchEmployees($buscar = '', $estado = '')
-{
-    $sql = 'SELECT de.id_datos_empleado, de.nombre_empleado, de.apellido_empleado, de.telefono, de.estado_empleado, 
+    {
+        $sql = 'SELECT de.id_datos_empleado, de.nombre_empleado, de.apellido_empleado, de.telefono, de.estado_empleado, 
             u.correo_electronico, c.nombre_cargo AS cargo, e.nombre_especialidad AS especialidad
             FROM tb_datos_empleados de
             JOIN tb_usuarios u ON de.id_usuario = u.id_usuario
@@ -113,17 +114,17 @@ class GestionarEmpleadoHandler
             LEFT JOIN tb_especialidades e ON de.id_especialidad = e.id_especialidad
             WHERE de.nombre_empleado LIKE ?';
 
-    $params = ["%$buscar%"];
+        $params = ["%$buscar%"];
 
-    if ($estado) {
-        $sql .= ' AND de.estado_empleado = ?';
-        $params[] = $estado;
+        if ($estado) {
+            $sql .= ' AND de.estado_empleado = ?';
+            $params[] = $estado;
+        }
+
+        $sql .= ' ORDER BY de.id_datos_empleado';
+
+        return Database::getRows($sql, $params);
     }
-
-    $sql .= ' ORDER BY de.id_datos_empleado';
-
-    return Database::getRows($sql, $params);
-}
 
 
     public function createRow()
@@ -145,7 +146,7 @@ class GestionarEmpleadoHandler
 
     public function readAll()
     {
-        $sql = 'SELECT de.id_datos_empleado, de.nombre_empleado, de.apellido_empleado, de.telefono, de.estado_empleado, u.correo_electronico, c.nombre_cargo AS cargo, e.nombre_especialidad AS especialidad
+        $sql = 'SELECT u.id_usuario, de.id_datos_empleado, de.nombre_empleado, de.apellido_empleado, de.telefono, de.estado_empleado, u.correo_electronico, c.nombre_cargo AS cargo, e.nombre_especialidad AS especialidad
                 FROM tb_datos_empleados de
                 JOIN tb_usuarios u ON de.id_usuario = u.id_usuario
                 JOIN tb_cargos c ON u.id_cargo = c.id_cargo
@@ -164,6 +165,26 @@ class GestionarEmpleadoHandler
                 WHERE de.id_datos_empleado = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
+    }
+
+    public function prestamoPorEmpleado()
+    {
+        $sql = 'SELECT 
+    estado AS Estado,
+    COALESCE(COUNT(p.id_prestamo), 0) AS cantidad_prestamos
+FROM 
+    (SELECT "En Espera" AS estado 
+     UNION ALL 
+     SELECT "Aceptado" 
+     UNION ALL 
+     SELECT "Denegado") AS estados
+LEFT JOIN 
+    tb_prestamos p ON p.estado_prestamo = estados.estado
+    AND p.id_usuario = ?
+GROUP BY 
+    estados.estado;';
+        $params = array($this->id_usuario);
+        return Database::getRows($sql, $params);
     }
 
     public function assignEspecialidad($idEmpleado, $idEspecialidad)

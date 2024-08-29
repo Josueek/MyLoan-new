@@ -276,11 +276,32 @@
             </div>
         </div>
 
+        <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="chartTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center">Propuestas Institucionales
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i></button>
+                        </button>
+                    </div>
+                    <!-- Contenedor para mostrar el gráfico -->
+                    <div class="modal-body" id="myBarChart"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <!--Scrip que si funionan -->
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../../recursos/js/app.min.js"></script>
-        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="../../controlador/utils/dashboard.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../controlador/utils/session_utils.js"></script>

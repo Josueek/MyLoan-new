@@ -47,7 +47,20 @@ if (isset($_GET['action'])) {
             } else {
                 $result['message'] = 'Datos inválidos';
             }
-            break;
+            break; 
+
+            case 'prestamoPorEmpleadoGrafico':
+                // Obtiene un empleado por su ID.
+                if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                    if ($result['dataset'] = $empleado->getPrestamosById($_GET['id'])) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['message'] = 'No se pudieron obtener los datos del empleado';
+                    }
+                } else {
+                    $result['message'] = 'Datos inválidos';
+                }
+                break; 
 
         case 'updateEmpleado':
             // Actualiza el estado de un empleado.
