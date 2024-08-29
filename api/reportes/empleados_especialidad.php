@@ -21,6 +21,10 @@ $pdf->MultiCell(0, 10, utf8_decode('Este documento presenta un reporte detallado
 
 // Añadir un espacio antes de comenzar con los datos
 $pdf->Ln(20);
+// Se inicia el reporte con el encabezado del documento.
+$pdf->startReport('Reporte de empleados asignados por especialidad');
+// Se instancia el modelo UsuarioHandler para obtener los datos.
+$empleado = new EmpleadoHandler; 
 
 // Definir el ancho de la página en mm.
 $pageWidth = $pdf->GetPageWidth();
@@ -32,14 +36,17 @@ $empleado = new EmpleadoHandler;
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleados = $empleado->EmpleadosPorEspecialidad()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(143, 194, 187);
+    $pdf->setFillColor(252, 190, 45);
     // Se establece la fuente para los encabezados.
-    $pdf->setFont('Arial', 'B', 12);
+    $pdf->setFont('Arial', 'B', 10);
 
     // Imprimir los encabezados
     $pdf->Cell($columnWidths[0], 10, utf8_decode('Especialidad'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[1], 10, utf8_decode('Nombre del Empleado'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[2], 10, utf8_decode('Apellido del Empleado'), 1, 1, 'C', 1);
+    $pdf->Cell($columnWidths[0], 10, 'Especialidad', 1, 0, 'C', 1);
+    $pdf->Cell($columnWidths[1], 10, 'Nombre del empleado', 1, 0, 'C', 1);
+    $pdf->Cell($columnWidths[2], 10, 'Apellido del empleado', 1, 1, 'C', 1);
 
     // Se establece un color de relleno para los datos.
     $pdf->setFillColor(200, 231, 226);

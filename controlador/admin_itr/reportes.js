@@ -95,3 +95,13 @@ function generarReportePorEstado() {
         alert('Por favor, seleccione un estado para generar el reporte.');
     }
 }
+
+// Función para abrir y generar el reporte parametrizado
+const EquipoEspacio = (espacio) => {
+    // Definir la ruta del reporte y agregar el parámetro del espacio
+    const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php`);
+    PATH.searchParams.append('id_espacio', espacio);
+
+    // Abrir el reporte en una nueva pestaña
+    window.open(PATH.href);
+};
