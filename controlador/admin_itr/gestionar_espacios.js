@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const abrirGrafico = async (id) => {
                 try {
-                    const response = await fetch('../../api/services/espacios_services.php?action=programasFormacionPorCurso&id=' + id);
+                    const response = await fetch('../../api/services/espacios_services.php?action=programasFormacionPorEspacio&id_espacio=' + id);
                     const DATA = await response.json();
             
                     if (DATA.status) {
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const chartContainer = document.getElementById('chartContainer');
                         if (chartContainer) {
                             chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
-                            barGraph('myBarChart', programaFormacion, cantidadCursos, 'Cantidad de cursos', 'Cantidad de cursos por programa de formación');
+                            barGraph('myBarChart', programaFormacion, cantidadCursos, 'Cantidad de cursos');
                         } else {
                             console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
                         }

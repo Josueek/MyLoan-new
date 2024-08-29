@@ -18,8 +18,17 @@ class EspacioData extends EspacioHandler
 
     public function setIdEspacio($idEspacio)
     {
-        if (Validator::validateString($idEspacio)) {
+        if (Validator::validateNaturalNumber($idEspacio)) {
             $this->idEspacio = $idEspacio;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function setIdEmpleado($idEmpleado)
+    {
+        if (Validator::validateNaturalNumber($idEmpleado)) {
+            $this->idEmpleado = $idEmpleado;
             return true;
         } else {
             return false;

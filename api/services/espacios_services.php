@@ -1,7 +1,6 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/handler/espacio_handler.php');
 require_once('../models/data/espacio_data.php');
 
 if (isset($_GET['action'])) {
@@ -180,21 +179,14 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-            
             case 'programasFormacionPorEspacio':
-                // Obtiene un espacio por su ID     
-                $data = json_decode(file_get_contents("php://input"), true);
-                if (isset($data['idEspacio']) && Validator::validateNaturalNumber($data['idEspacio'])) {
-                    if ($result['dataset'] = $espacio->programasFormacionPorCurso($data['idEspacio'])) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['message'] = 'No se pudo obtener el espacio';
-                    }
+                if (isset($_GET['id_espacio']) && $espacio->setIdEspacio($_GET['id_espacio'])) {
+                    $result['dataset'] = $espacio->programasFormacionPorCurso();
+                    $result['status'] = 1;
                 } else {
-                    $result['message'] = 'Datos inválidos';
+                    $result['error'] = 'Espacio incorrecto';
                 }
                 break;
-
         default:
             $result['message'] = 'Acción no disponible';
     }
