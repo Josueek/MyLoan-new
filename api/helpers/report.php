@@ -1,8 +1,8 @@
 <?php
 // Se incluye la clase para generar archivos PDF.
-require_once('../../libraries/fpdf185/fpdf.php');
+require_once('../../api/libs/fpdf185/fpdf.php');
 // Se incluye la clase para manejar la base de datos.
-require_once('../../models/data/usuario_data.php');
+require_once('../models/data/usuario_data.php');
 
 /*
 *   Clase para definir las plantillas de los reportes del sitio.
@@ -11,7 +11,7 @@ require_once('../../models/data/usuario_data.php');
 class Report extends FPDF
 {
     // Constante para definir la ruta de las vistas del sitio.
-    const CLIENT_URL = 'http://MyLoan-new/vistas/admin/inicio.html';
+    const CLIENT_URL = 'http://localhost/MyLoan-new/vistas/vistas_admin/';
     // Propiedad para guardar el título del reporte.
     private $title = null;
     // Propiedad para guardar el nombre del administrador.
@@ -25,13 +25,13 @@ class Report extends FPDF
     public function startReport($title)
     {
         session_start();
-        if (isset($_SESSION['idUsuario'])) {
+        if (isset($_SESSION['id_usuario'])) {
             $this->title = $title;
             $this->setTitle('MyLoan Report', true);
             $this->setMargins(15, 15, 15);
             $this->addPage('p', 'letter');
             $this->aliasNbPages();
-            $this->adminName = $this->getAdminName($_SESSION['idUsuario']);
+            $this->adminName = $this->getAdminName($_SESSION['id_usuario']);
         } else {
             header('location:' . self::CLIENT_URL);
             exit();
@@ -78,7 +78,7 @@ class Report extends FPDF
         $this->rect(0, 0, $this->w, 30, 'F'); // Fondo del encabezado
 
         // Se establece el logo.
-        $this->image('../../images/logo.png', 15, 5, 20);
+        $this->image('../../recursos/img/logos/myloan_logo.png', 15, 5, 20);
         // Se ubica el título.
         $this->setY(15); // Ajustar la altura del título para que quede alineado con el logo
         $this->setFont('Arial', 'B', 15);

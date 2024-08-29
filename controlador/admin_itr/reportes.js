@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const generarReporte1 = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reportes/empleados_especilidad.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/empleados_especialidad.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -24,7 +24,7 @@ const generarReporte1 = () => {
 */
 const generarReporteBajasExistencias = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reports/admin/bajas_existencias.php`);
+    const PATH = new URL(`${SERVER_URL}reports/cliente.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -37,7 +37,7 @@ const generarReporteBajasExistencias = () => {
 
 const generarReporteProyeccion = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reports/admin/proyecciones_de_ventas.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/admin/proyecciones_de_ventas.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -50,7 +50,7 @@ const generarReporteProyeccion = () => {
 */
 const generarReporteInventario = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reports/admin/inventario.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/admin/inventario.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -63,7 +63,7 @@ const generarReporteInventario = () => {
 
 const generarReporteRegistroClientes = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reports/admin/clientes _registrados.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/admin/clientes _registrados.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -76,7 +76,7 @@ const generarReporteRegistroClientes = () => {
 */
 const generarReporteRegistroAdmin = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reports/admin/administradores.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/admin/administradores.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };

@@ -13,7 +13,7 @@ $empleado = new EmpleadoHandler;
 
 // Definir el ancho de la página en mm.
 $pageWidth = $pdf->GetPageWidth();
-$columnWidths = array($pageWidth * 0.30, $pageWidth * 0.30, $pageWidth * 0.30); // Ancho de las columnas en porcentaje de la página
+$columnWidths = array($pageWidth * 0.1, $pageWidth * 0.1, $pageWidth * 0.1); // Ancho de las columnas en porcentaje de la página
 
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleados = $empleado->EmpleadosPorEspecialidad()) {

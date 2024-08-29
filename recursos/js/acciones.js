@@ -65,7 +65,7 @@ document.getElementById('btnPrestamos').addEventListener('click', function (e) {
     }
 });
 
-//abrir el explorador de archivos en la parte de agregar espacio para suubir el documento
+/*abrir el explorador de archivos en la parte de agregar espacio para suubir el documento
 document.getElementById('btnDocumento').addEventListener('click', function () {
     document.getElementById('documentoInput').click();
 });
@@ -73,4 +73,5 @@ document.getElementById('btnDocumento').addEventListener('click', function () {
 document.getElementById('documentoInput').addEventListener('change', function () {
     var fileName = this.files[0].name;
     document.getElementById('inputdocumento').value = fileName;
-});    3696                                                                                     
+});    3696 
+*/                                                                                    
