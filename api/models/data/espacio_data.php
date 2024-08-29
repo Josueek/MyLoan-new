@@ -16,7 +16,7 @@ class EspacioData extends EspacioHandler
         }
     }
 
-    public function setId($idEspacio)
+    public function setIdEspacio($idEspacio)
     {
         if (Validator::validateString($idEspacio)) {
             $this->idEspacio = $idEspacio;

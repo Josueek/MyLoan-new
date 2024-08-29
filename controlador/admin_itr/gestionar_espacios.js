@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const abrirGrafico = async (id) => {
                 try {
-                    const response = await fetch('../../api/services/espacios_services.php?action=getAllEspecialidades&id=' + id);
+                    const response = await fetch('../../api/services/espacios_services.php?action=programasFormacionPorCurso&id=' + id);
                     const DATA = await response.json();
             
                     if (DATA.status) {
@@ -147,18 +147,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
                         chartModal.show();
             
-                        let estados = [];
-                        let cantidadPrestamos = [];
+                        let programaFormacion = [];
+                        let cantidadCursos = [];
             
                         DATA.dataset.forEach(row => {
-                            estados.push(row.Estado);
-                            cantidadPrestamos.push(row.cantidad_prestamos);
+                            programaFormacion.push(row.programa_formacion);
+                            cantidadCursos.push(row.cantidad_cursos);
                         });
             
                         const chartContainer = document.getElementById('chartContainer');
                         if (chartContainer) {
                             chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
-                            barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
+                            barGraph('myBarChart', programaFormacion, cantidadCursos, 'Cantidad de cursos', 'Cantidad de cursos por programa de formación');
                         } else {
                             console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
                         }
