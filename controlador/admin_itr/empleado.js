@@ -158,14 +158,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 scales: {
                     x: {
                         title: {
-                            display: true,
-                            text: 'Estados'
+                            display: true
                         }
                     },
                     y: {
                         title: {
-                            display: true,
-                            text: 'Cantidad de Préstamos'
+                            display: true
                         },
                         beginAtZero: true
                     }
