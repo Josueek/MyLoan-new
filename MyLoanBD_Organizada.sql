@@ -335,8 +335,8 @@ INSERT INTO `tb_prestamos` (`tipo_prestamo`, `estado_prestamo`, `fecha_prestamo`
 
 -- Tabla tb_usuarios
 INSERT INTO `tb_usuarios` (`correo_electronico`, `contraseña`, `id_cargo`, `id_institucion`) VALUES 
-('carlos@ejemplo.com', 'password123', 1, 1),
-('ana@ejemplo.com', 'password456', 2, 2),
+('brandon5@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 2, 1),
+('holahola@gmail.com', '$2y$10$bTfpqzvjvCmiL1F9AKUMpO2ahq7x9DSjvRIvwHVdXtZ3Duiut8BW.', 1, 2),
 ('luis@ejemplo.com', 'password789', 3, 1),
 ('maria@ejemplo.com', 'password101112', 4, 2),
 ('jose@ejemplo.com', 'password131415', 5, 1);
