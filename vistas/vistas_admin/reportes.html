@@ -62,7 +62,7 @@
                                                         Este reporte genera una lista de todos los empleados junto con
                                                         el nombre de su especialidad correspondiente.
                                                     </p>
-                                                    <button type="button" class="btn btn-warning" onclick="generarReporte1('empleadoEspecilidad')">
+                                                    <button type="button" class="btn btn-warning" onclick="generarReporte1()">
                                                         Generar Reporte
                                                     </button>
                                                 </div>
@@ -84,8 +84,7 @@
                                                         disponibles, incluyendo información sobre el empleado a cargo de
                                                         cada curso.
                                                     </p>
-                                                    <button class="btn btn-custom"
-                                                        onclick="generarReporte2('historialPrecios')">
+                                                    <button type="button" class="btn btn-warning" onclick="generarReporte2()">
                                                         Generar Reporte
                                                     </button>
                                                 </div>
@@ -138,6 +137,7 @@
                                         </div>
 
                                         <div class=" mt-4 mb-3 d-flex align-items-center">
+                                            <!-- Reportes generales -->
                                             <h4 class="mt-4 mb-3">Reportes generales</h4>
                                             <button type="button" class="btn ms-auto"
                                                 style="background-color: #0466F8; color: white;" data-bs-toggle="modal"
@@ -150,20 +150,20 @@
                                         <div class="col-md-3 mb-4">
                                             <div class="card custom-card h-100">
                                                 <div class="card-body">
+                                                    <!-- Reporte parametrisado para mostrar los clientes registrador por mes-->
                                                     <i class="fa-solid fa-calendar-day me-2 icon-custom"></i>
                                                     <div class="d-flex align-items-center">
 
                                                         <h5 class="card-title mb-0">
-                                                            Clientes Registrados por Mes
+                                                            Reporte de inventario de equipo en espacios
                                                         </h5>
 
                                                     </div>
                                                     <p class="card-text">
-                                                        Genera un reporte de clientes registrados por mes del
-                                                        año actual.
+                                                        Genera un reporte de inventario registrado para un espacio asignado
                                                     </p>
                                                     <button class="btn btn-custom"
-                                                        onclick="generarReporte5('clientesRegistradosMes')">
+                                                        onclick="EquipoEspacio('EquipoEspacio')">
                                                         Generar Reporte
                                                     </button>
                                                 </div>

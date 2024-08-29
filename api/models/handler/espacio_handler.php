@@ -197,4 +197,7 @@ class EspacioHandler
         $params = array($this->idEspacio);
         return Database::getRows($sql, $params);
     }
+
+    
+
 }

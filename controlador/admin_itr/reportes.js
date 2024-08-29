@@ -22,9 +22,9 @@ const generarReporte1 = () => {
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
-const generarReporteBajasExistencias = () => {
+const generarReporte2 = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reports/cliente.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/curso_empleados.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -35,9 +35,9 @@ const generarReporteBajasExistencias = () => {
 *   Retorno: ninguno.
 */
 
-const generarReporteProyeccion = () => {
+const generarReporte3 = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reportes/admin/proyecciones_de_ventas.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/empleado_curso_activo.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
@@ -48,9 +48,9 @@ const generarReporteProyeccion = () => {
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
-const generarReporteInventario = () => {
+const generarReporte4 = () => {
     // Se define la ruta del reporte basado en el tipo de reporte.
-    const PATH = new URL(`${SERVER_URL}reportes/admin/inventario.php`);
+    const PATH = new URL(`${SERVER_URL}reportes/detalle_espacio.php`);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };

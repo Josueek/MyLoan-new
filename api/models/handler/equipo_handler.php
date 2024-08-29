@@ -69,5 +69,24 @@ class EquipoHandler
         $params = array($idEquipo);
         return Database::executeRow($sql, $params);
     }
+    /**
+     * Filtro para imprimir los valores de equipo acorde el espacio
+     */
+    public function equipoEspacio($id_espacio)
+    {
+        $sql = 'SELECT 
+        eq.id_equipo,
+        eq.nombre,
+        eq.descripcion,
+        eq.cantidad
+        FROM 
+        tb_equipos eq
+        INNER JOIN 
+        tb_espacios esp ON eq.id_espacio = esp.id_espacio
+        WHERE 
+        esp.id_espacio = ?;';
+        $params = array($id_espacio);
+        return Database::executeRow($sql, $params);
+    }
 }
 ?>
