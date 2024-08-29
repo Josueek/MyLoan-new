@@ -49,11 +49,26 @@ if (isset($_GET['action'])) {
             }
             break;
 
+        case 'prestamoPorEmpleadoGrafico':
+            // Obtiene un empleado por su ID.
+            if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                if ($result['dataset'] = $empleado->getPrestamosById($_GET['id'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se pudieron obtener los datos del empleado';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+
         case 'updateEmpleado':
             // Actualiza el estado de un empleado.
             $_POST = json_decode(file_get_contents('php://input'), true);
-            if (isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
-                isset($_POST['estado']) && Validator::validateString($_POST['estado'])) {
+            if (
+                isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
+                isset($_POST['estado']) && Validator::validateString($_POST['estado'])
+            ) {
                 if ($empleado->setId($_POST['id']) && $empleado->setEstado($_POST['estado'])) {
                     if ($empleado->updateEmployee($_POST['id'], $_POST['estado'])) {
                         $result['status'] = 1;
@@ -94,7 +109,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'createEspecialidad':
-             // Crea una nueva especialidad.
+            // Crea una nueva especialidad.
             $_POST = json_decode(file_get_contents('php://input'), true);
             if (isset($_POST['nombre']) && Validator::validateString($_POST['nombre'])) {
                 if ($especialidad->setNombre($_POST['nombre'])) {
@@ -132,8 +147,10 @@ if (isset($_GET['action'])) {
         case 'updateEspecialidad':
             // Actualiza una especialidad existente.
             $_POST = json_decode(file_get_contents('php://input'), true);
-            if (isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
-                isset($_POST['nombre']) && Validator::validateAlphabetic($_POST['nombre'])) {
+            if (
+                isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
+                isset($_POST['nombre']) && Validator::validateAlphabetic($_POST['nombre'])
+            ) {
                 if ($especialidad->setId($_POST['id']) && $especialidad->setNombre($_POST['nombre'])) {
                     if ($especialidad->updateRow()) {
                         $result['status'] = 1;
@@ -214,8 +231,10 @@ if (isset($_GET['action'])) {
 
         case 'updateCargo':
             $_POST = json_decode(file_get_contents('php://input'), true);
-            if (isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
-                isset($_POST['nombre']) && Validator::validateAlphabetic($_POST['nombre'])) {
+            if (
+                isset($_POST['id']) && Validator::validateNaturalNumber($_POST['id']) &&
+                isset($_POST['nombre']) && Validator::validateAlphabetic($_POST['nombre'])
+            ) {
                 if ($cargo->setId($_POST['id']) && $cargo->setNombre($_POST['nombre'])) {
                     if ($cargo->updateRow()) {
                         $result['status'] = 1;
@@ -253,8 +272,10 @@ if (isset($_GET['action'])) {
         case 'assignEspecialidad':
             // Actualiza un cargo existente.
             $_POST = json_decode(file_get_contents('php://input'), true);
-            if (isset($_POST['idEmpleado']) && Validator::validateNaturalNumber($_POST['idEmpleado']) &&
-                isset($_POST['idEspecialidad']) && Validator::validateNaturalNumber($_POST['idEspecialidad'])) {
+            if (
+                isset($_POST['idEmpleado']) && Validator::validateNaturalNumber($_POST['idEmpleado']) &&
+                isset($_POST['idEspecialidad']) && Validator::validateNaturalNumber($_POST['idEspecialidad'])
+            ) {
                 if ($empleado->setId($_POST['idEmpleado']) && $especialidad->setId($_POST['idEspecialidad'])) {
                     if ($empleado->assignEspecialidad($_POST['idEmpleado'], $_POST['idEspecialidad'])) {
                         $result['status'] = 1;

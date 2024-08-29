@@ -8,6 +8,22 @@ document.addEventListener('DOMContentLoaded', function () {
     graficoCursosPorEstado()
     graficoEspaciosPorTipo();
 });
+
+// Método para llenar el select de estados de pedido
+const fillSelectEstadosReporte = (estadoActual) => {
+    const estados = ['Pendiente', 'Cancelado', 'Completado', 'Anulado'];
+    ESTADO_PEDIDO_GENERAL.innerHTML = '';
+    estados.forEach(estado => {
+        const option = document.createElement('option');
+        option.value = estado;
+        option.textContent = estado;
+        if (estado === estadoActual) {
+            option.selected = true;
+        }
+        ESTADO_PEDIDO_GENERAL.appendChild(option);
+    });
+};
+
 const graficoLinealCursos = async () => {
     try {
         // Petición para obtener los datos del gráfico.
@@ -248,6 +264,10 @@ const pieChart = (canvasId, labels, data) => {
         }
     });
 }
+
+
+
+
 
 const graficoEspaciosPorTipo = async () => {
     try {
