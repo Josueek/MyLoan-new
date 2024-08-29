@@ -80,3 +80,15 @@ const generarReporteRegistroAdmin = () => {
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 };
+
+/**
+ * Funcion para abrir y generar un reporte parametrizado
+ * Reporte generado por los empleados de cada mes en especifico
+ * Parametros: mes
+ */
+const EquipoEspacio = () =>{
+     // Se define la ruta del reporte basado en el tipo de reporte.
+     const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php`);
+     // Se abre el reporte en una nueva pestaña.
+     window.open(PATH.href);
+}
