@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de equipos</title>
+
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+
+</head>
+
+<body>
+
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="body-wrapper">
+            <div id="headerContainer" data-title="Inventario de equipos"></div>
+        
+            <!-- Aca termina la parte del menu y el header -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="container-fluid">
+                <div class="row">
+                    <!-- Tabla de equipos -->
+                    <div class="container mt-5">
+                        <div class="row mb-5">
+                            <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                <button class="btn btn-transparent border-0 p-0">
+                                    <i class="fas fa-search me-2"></i>
+                                </button>
+                                <!-- Barra de búsqueda -->
+                                <input id="buscarEquipo" type="search" class="form-control" placeholder="Buscar">
+                            </div>
+        
+                            <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                <select id="filtroCantidad" class="form-select">
+                                    <option value="mayor">Mayor a menor</option>
+                                    <option value="menor">Menor a mayor</option>
+                                </select>
+                            </div>
+        
+                            <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                <button id="btnAgregarEquipo" type="button" class="btn btn-primary mx-lg-3" data-bs-toggle="modal" data-bs-target="#agregarEquipoModal">Agregar equipo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre del equipo</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Espacio</th>
+                                <th scope="col">Institución</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaEquipos">
+                            <!-- Se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Modal para agregar equipo -->
+        <div class="modal fade" id="agregarEquipoModal" tabindex="-1" aria-labelledby="agregarEquipoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarEquipoModalLabel">Agregar Equipo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarEquipo">
+                            <div class="mb-3">
+                                <label for="nombreEquipo" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombreEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cantidadEquipo" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="cantidadEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="espacioEquipo" class="form-label">Espacio</label>
+                                <select id="espacioEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="institucionEquipo" class="form-label">Institución</label>
+                                <select id="institucionEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcionEquipo" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripcionEquipo" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal para editar equipo -->
+        <div class="modal fade" id="editarEquipoModal" tabindex="-1" aria-labelledby="editarEquipoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarEquipoModalLabel">Editar Equipo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarEquipo">
+                            <input type="hidden" id="editarIdEquipo">
+                            <div class="mb-3">
+                                <label for="editarNombreEquipo" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editarNombreEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarCantidadEquipo" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="editarCantidadEquipo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarEspacioEquipo" class="form-label">Espacio</label>
+                                <select id="editarEspacioEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarInstitucionEquipo" class="form-label">Institución</label>
+                                <select id="editarInstitucionEquipo" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarDescripcionEquipo" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="editarDescripcionEquipo" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!--Scrip que si funionan -->
+        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../../recursos/js/sidebarmenu.js"></script>
+        <script src="../../recursos/js/app.min.js"></script>
+        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
+        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+        <script src="../../recursos/js/acciones.js"></script>
+        <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/admin_itr/equipos.js"></script>
+        <script src="../../controlador/utils/session_utils.js"></script>}
+        
+
+        <!-- Scrip que dudosamente sirven-->
+        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+        <script src="../../recursos/js/dashboard.js"></script>
+</body>
+
+</html>

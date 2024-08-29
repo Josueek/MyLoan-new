@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crear curso CFP</title>
+    <title>Crear curso</title>
 
     <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
@@ -18,8 +18,15 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-        <div class="dashboard">
-
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
         </div>
 
         <!--  aca empieza el header -->
@@ -197,7 +204,7 @@
         <script src="../../recursos/js/sidebarmenu.js"></script>
         <script src="../../recursos/js/app.min.js"></script>
         <!--<script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>-->
-        <script src="../../controlador/utils/dashboard.js"> </script>
+        <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
         <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
         <script src="../../controlador/utils/session_utils.js"></script>
         <script src="../../recursos/js/acciones.js"></script>

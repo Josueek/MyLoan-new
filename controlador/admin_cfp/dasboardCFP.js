@@ -44,7 +44,7 @@ function generarMenuLateral() {
                             </li>
 
                             <li class="submenu-item d-flex align-items-center">
-                                <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
+                                <a href="../vistas_admin_CFP/gestionar_espacios.html" class="submenu-link">
                                     <span>
                                         <i class="ti ti-settings me-2"></i>
                                     </span>
@@ -52,7 +52,7 @@ function generarMenuLateral() {
                                 </a>
                             </li>
                             <li class="submenu-item  d-flex align-items-center">
-                                <a href="../vistas_admin/inventario_herramientas.html" class="submenu-link">
+                                <a href="../vistas_admin_CFPm /inventario_herramientas.html" class="submenu-link">
                                     <span>
                                         <i class="ti ti-tool me-2"></i>
                                     </span>
@@ -60,7 +60,7 @@ function generarMenuLateral() {
                                 </a>
                             </li>
                             <li class="submenu-item  d-flex align-items-center">
-                                <a href="../vistas_admin/inventario_equipos.html" class="submenu-link">
+                                <a href="../vistas_admin_CFP/inventario_equipos.html" class="submenu-link">
                                     <span>
                                         <i class="fas fa-desktop me-2"></i>
                                     </span>
@@ -87,7 +87,7 @@ function generarMenuLateral() {
                         </a>
                         <ul id="submenu9" class="submenu" style="display: none;">
                             <li class="submenu-item">
-                                <a href="../vistas_admin/crear_curso.html" class="submenu-link">
+                                <a href="../vistas_admin_CFP/crear_curso.html" class="submenu-link">
                                     <span>
                                         <i class="fa-solid fa-plus me-2"></i>
                                     </span>
@@ -95,7 +95,7 @@ function generarMenuLateral() {
                                 </a>
                             </li>
                             <li class="submenu-item">
-                                <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
+                                <a href="../vistas_admin_CFP/gestionar_espacios.html" class="submenu-link">
                                     <span>
                                         <i class="fa-solid fa-layer-group"></i>
                                     </span>
@@ -115,7 +115,7 @@ function generarMenuLateral() {
                         </a>
                         <ul id="submenu10" class="submenu" style="display: none;">
                             <li class="submenu-item ">
-                                <a href="../vistas_admin/crear_solicitud_prestamo.html" class="submenu-link">
+                                <a href="../vistas_admin_CFP/crear_solicitud_prestamo.html" class="submenu-link">
                                     <span>
                                         <i class="fa-solid fa-plus me-2"></i>
                                     </span>
