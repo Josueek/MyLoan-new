@@ -86,6 +86,15 @@ class EspacioHandler
         $params = array($idEspacio);
         return Database::getRow($sql, $params);
     }
+    //Obtener el espacio por medio del id obteniendo todos los datos completos
+    public function getEspacioByIdCompleto($idEspacio)
+    {
+        $sql = 'SELECT id_espacio, nombre_espacio, capacidad_personas, tipo_espacio, id_empleado, id_especialidad, id_institucion, inventario_doc, foto_espacio
+                FROM tb_espacios
+                WHERE id_espacio = ?';
+        $params = array($idEspacio);
+        return Database::getRow($sql, $params);
+    }
 
     //Actualizar datos del espacio
     public function updateEspacio($params)
