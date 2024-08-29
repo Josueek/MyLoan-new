@@ -11,6 +11,16 @@ class EspacioHandler
      * la adición de un nuevo espacio, la obtención de un espacio por su ID, la actualización y la eliminación de espacios.
      * Utiliza una conexión a la base de datos a través de la clase Database.
      */
+    protected $idEmpleado;
+    protected $nombre;
+    protected $capacidad;
+    protected $tipo;
+    protected $encargado;
+    protected $especialidad;
+    protected $institucion;
+    protected $imagen;
+    protected $inventario;
+    protected $idEspacio;
 
     //Obtener los datso de todos los espacios
     public function getAllEspacios($buscar = '', $filtrar = '')
@@ -31,7 +41,7 @@ class EspacioHandler
         }
     }
     //Obtener los datos de espacio que corresponden a un instructor
-    public function getAllEspaciosByIdUsuario($idempleado)
+    public function getAllEspaciosByIdUsuario()
     {
         $sql = 'SELECT e.id_espacio, e.nombre_espacio, e.capacidad_personas, e.tipo_espacio, e.inventario_doc, e.foto_espacio, 
         es.nombre_especialidad, i.nombre_institucion, e.id_empleado, d.nombre_empleado
@@ -40,9 +50,8 @@ class EspacioHandler
         LEFT JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
         LEFT JOIN tb_datos_empleados d ON e.id_empleado = d.id_datos_empleado
         WHERE e.id_empleado = ?';
-
-        $params = array($idempleado);
-        $data = Database::getRows($sql, $params);
+        $params = array($this->idEmpleado);
+        $data = Database::getRow($sql, $params);
         if ($data) {
             return array('status' => 1, 'dataset' => $data);
         } else {
@@ -86,6 +95,15 @@ class EspacioHandler
         $params = array($idEspacio);
         return Database::getRow($sql, $params);
     }
+    //Obtener el espacio por medio del id obteniendo todos los datos completos
+    public function getEspacioByIdCompleto($idEspacio)
+    {
+        $sql = 'SELECT id_espacio, nombre_espacio, capacidad_personas, tipo_espacio, id_empleado, id_especialidad, id_institucion, inventario_doc, foto_espacio
+                FROM tb_espacios
+                WHERE id_espacio = ?';
+        $params = array($idEspacio);
+        return Database::getRow($sql, $params);
+    }
 
     //Actualizar datos del espacio
     public function updateEspacio($params)
@@ -106,11 +124,11 @@ class EspacioHandler
             FROM tb_espacios
             GROUP BY tipo_espacio
         ';
-        
+
         // Ejecutar la consulta y retornar los resultados
         return Database::getRows($sql);
     }
-    
+
 
 
     //Eliminar datos de la tabla espacio
@@ -145,11 +163,11 @@ class EspacioHandler
         }
     }
 
- /// reporte
+    /// reporte
     public function obtenerDetalleEspacios()
-{
-    // Definir la consulta SQL para obtener el detalle de los espacios junto con el nombre de la especialidad y el nombre del empleado
-    $sql = '
+    {
+        // Definir la consulta SQL para obtener el detalle de los espacios junto con el nombre de la especialidad y el nombre del empleado
+        $sql = '
         SELECT 
             e.nombre_espacio, 
             e.capacidad_personas, 
@@ -165,8 +183,18 @@ class EspacioHandler
             tb_datos_empleados de ON e.id_empleado = de.id_datos_empleado
     ';
 
-    // Ejecutar la consulta y retornar los resultados
-    return Database::getRows($sql);
-}
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
 
+    public function programasFormacionPorCurso()
+    {
+        $sql = 'SELECT c.programa_formacion, COUNT(dc.id_curso) AS cantidad_cursos
+                    FROM tb_cursos c
+                    LEFT JOIN tb_detalles_cursos dc ON c.id_curso = dc.id_curso AND dc.id_espacio = ?
+                    WHERE c.programa_formacion IN ("HTP", "EC", "FCAT") OR dc.id_curso IS NULL
+                    GROUP BY c.programa_formacion';
+        $params = array($this->idEspacio);
+        return Database::getRows($sql, $params);
+    }
 }

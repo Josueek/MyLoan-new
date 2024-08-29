@@ -4,15 +4,7 @@ require_once ('../models/handler/espacio_handler.php');
 
 class EspacioData extends EspacioHandler
 {
-    private $id_empleado;
-    private $nombre;
-    private $capacidad;
-    private $tipo;
-    private $encargado;
-    private $especialidad;
-    private $institucion;
-    private $imagen;
-    private $inventario;
+    
 
     public function setNombre($nombre)
     {
@@ -23,6 +15,26 @@ class EspacioData extends EspacioHandler
             return false;
         }
     }
+
+    public function setIdEspacio($idEspacio)
+    {
+        if (Validator::validateNaturalNumber($idEspacio)) {
+            $this->idEspacio = $idEspacio;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function setIdEmpleado($idEmpleado)
+    {
+        if (Validator::validateNaturalNumber($idEmpleado)) {
+            $this->idEmpleado = $idEmpleado;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 
     public function setCapacidad($capacidad)
     {

@@ -30,8 +30,14 @@ class GestionarEmpleadoData extends GestionarEmpleadoHandler
         }
     }
 
-   
-
+    public function getPrestamosById($id_usuario)
+    {
+        if ($this->setIdUsuario($id_usuario)) {
+            return $this->prestamoPorEmpleado();
+        } else {
+            return null;
+        }
+    }
 
     public function updateEmployee($id, $estado)
     {

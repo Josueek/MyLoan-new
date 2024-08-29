@@ -1,13 +1,12 @@
 <?php
-require_once ('../helpers/database.php');
-require_once ('../helpers/validator.php');
-require_once ('../models/handler/espacio_handler.php');
-require_once ('../models/data/espacio_data.php');
+require_once('../helpers/database.php');
+require_once('../helpers/validator.php');
+require_once('../models/data/espacio_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
-    $espacio = new EspacioData();// Inicializa un objeto EspacioData para manejar operaciones de datos
-    $result = array('status' => 0, 'message' => null, 'dataset' => null);// Inicializa un array para almacenar el resultado de las operaciones
+    $espacio = new EspacioData(); // Inicializa un objeto EspacioData para manejar operaciones de datos
+    $result = array('status' => 0, 'message' => null, 'dataset' => null); // Inicializa un array para almacenar el resultado de las operaciones
 
     switch ($_GET['action']) {
         case 'getAllEspacios':
@@ -18,7 +17,7 @@ if (isset($_GET['action'])) {
             $result = $espacio->getAllEspacios($buscar, $filtrar);
             break;
 
-        // Obtiene todos los espacios correspondiente al id del usuario
+            // Obtiene todos los espacios correspondiente al id del usuario
         case 'getAllEspaciosByIdUsuario':
             // Obtiene un espacio por su ID     
             $data = json_decode(file_get_contents("php://input"), true);
@@ -157,14 +156,14 @@ if (isset($_GET['action'])) {
             }
             break;
 
-            case 'EspaciosPorTipo':
-                if ($result['dataset'] = $espacio->EspaciosPorTipo()) {
-                    $result['status'] = 1;
-                } else {
-                    // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                    $result['error'] = 'Hubo un problema al obtener los usaarios con más prestamos';
-                }
-                break;
+        case 'EspaciosPorTipo':
+            if ($result['dataset'] = $espacio->EspaciosPorTipo()) {
+                $result['status'] = 1;
+            } else {
+                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                $result['error'] = 'Hubo un problema al obtener los usaarios con más prestamos';
+            }
+            break;
 
         case 'deleteEspacio':
             // Elimina un espacio por su ID 
@@ -180,6 +179,14 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
+            case 'programasFormacionPorEspacio':
+                if (isset($_GET['id_espacio']) && $espacio->setIdEspacio($_GET['id_espacio'])) {
+                    $result['dataset'] = $espacio->programasFormacionPorCurso();
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Espacio incorrecto';
+                }
+                break;
         default:
             $result['message'] = 'Acción no disponible';
     }
@@ -187,4 +194,3 @@ if (isset($_GET['action'])) {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 }
-?>

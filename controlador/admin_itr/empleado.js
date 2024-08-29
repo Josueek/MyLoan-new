@@ -71,6 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button type="button" class="btn btn-warning" onclick="asignarEspecialidad(${empleado.id_datos_empleado}, '${empleado.nombre_empleado}')" data-bs-toggle="modal" data-bs-target="#asigEspecialidad">
                             <i class="fa-solid fa-award"></i>
                         </button>
+                        <button type="button" class="btn btn-info" onclick="abrirGrafico(${empleado.id_usuario})">
+    <i class="fa-solid fa-chart-bar"></i>
+</button>
+
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -81,6 +85,98 @@ document.addEventListener('DOMContentLoaded', function () {
             tbody.appendChild(tr);
         }
     }
+
+    const abrirGrafico = async (id) => {
+        try {
+            const response = await fetch('../../api/services/empleado_services.php?action=prestamoPorEmpleadoGrafico&id=' + id);
+            const DATA = await response.json();
+    
+            if (DATA.status) {
+                // Inicializa el modal de Bootstrap y luego lo muestra
+                const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
+                chartModal.show();
+    
+                let estados = [];
+                let cantidadPrestamos = [];
+    
+                DATA.dataset.forEach(row => {
+                    estados.push(row.Estado);
+                    cantidadPrestamos.push(row.cantidad_prestamos);
+                });
+    
+                const chartContainer = document.getElementById('chartContainer');
+                if (chartContainer) {
+                    chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
+                    barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
+                } else {
+                    console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
+                }
+            } else {
+                console.error('Datos incorrectos:', DATA.error);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    // Función para generar un gráfico de barras.
+    const barGraph = (canvasId, xAxisLabels, yAxisData, legendLabel, chartTitle) => {
+        // Crear una instancia para generar el gráfico con los datos recibidos.
+        new Chart(document.getElementById(canvasId), {
+            type: 'bar', // Tipo de gráfico
+            data: {
+                labels: xAxisLabels,
+                datasets: [{
+                    label: legendLabel,
+                    data: yAxisData,
+                    backgroundColor: [
+                        '#0466F8', // Azul
+                        '#FCBE2D', // Amarillo
+                        '#0B7F4B', // Verde
+                        '#11015C', // Púrpura
+                        '#FF6F00'  // Naranja
+                    ], // Colores de fondo de las barras
+                    borderColor: [
+                        '#0466F8', // Azul
+                        '#FCBE2D', // Amarillo
+                        '#0B7F4B', // Verde
+                        '#11015C', // Púrpura
+                        '#FF6F00'  // Naranja
+                    ], // Colores del borde de las barras
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: chartTitle
+                    },
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+
 
     function cargarEspecialidades() {
         fetch('../../api/services/empleado_services.php?action=getAllEspecialidades')
@@ -459,4 +555,5 @@ document.addEventListener('DOMContentLoaded', function () {
     window.eliminarEspecialidad = eliminarEspecialidad;
     window.eliminarCargo = eliminarCargo;
     window.asignarEspecialidad = asignarEspecialidad;
+    window.abrirGrafico = abrirGrafico;
 });

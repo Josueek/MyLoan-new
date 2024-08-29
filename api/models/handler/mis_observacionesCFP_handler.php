@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fechaObservacion = $_POST['fechaObservacion'] ?? null;
     $observacion = $_POST['observacion'] ?? null;
     $tipoObservacion = $_POST['+'] ?? null;
-    $tipoPrestamo = $_POST['tipoPrestamo'] ?? null;m
+    $tipoPrestamo = $_POST['tipoPrestamo'] ?? null;
     $espacioObservar = $_POST['espacioObservar'] ?? null;
     $cursoObservar = $_POST['cursoObservar'] ?? null;
 
