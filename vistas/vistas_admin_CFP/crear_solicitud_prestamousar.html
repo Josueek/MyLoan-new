@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear prestamos</title>
+
+    <!-- Icono de la pestaña -->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/inventario_herramienta.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+<body>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <section class="body-wrapper">
+            <div id="headerContainer" data-title="Crear uso del prestamo"></div>
+
+            <!-- Aca termina la parte del menu y el header -->
+            <br><br><br><br>
+            <section class="container-fluid" id="contenedor">
+                <div class="row">
+                    <h3><label class="form-label">Selecciona el tipo de prestamo a utilizar</label></h3>
+                    <div class="col-lg-3 mb-3 d-flex justify-content-start">
+                        <button id="btnagregarequipo" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-equipo">Equipo</button>
+                    </div>
+                    <div class="col-lg-3 mb-3 d-flex justify-content-start">
+                        <button id="btnagregarmaterial" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-material">Material</button>
+                    </div>
+                    <div class="col-lg-3 mb-3 d-flex justify-content-start">
+                        <button id="btnagregarherramienta" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-herramienta">Herramienta</button>
+                    </div>
+                </div>
+                <div id="modal-container"></div>
+                <br><br>
+                <div class="row">
+                    <h3><label class="form-label">Detalle de los artículos solicitados</label></h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detalleArticulos">
+                            <!-- Los datos de los artículos se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                    <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                        <button id="btnAgregar" type="button" class="btn btn-primary mx-lg-3">Agregar</button>
+                        <button id="btnCancelar" type="button" class="btn btn-primary mx-lg-3">Cancelar</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Scripts que funcionan -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="../../recursos/js/modales.js"></script>
+    <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
+    <script src="../../controlador/admin_cfp/header.js"></script>
+    <script src="../../controlador/utils/session_utils.js"></script>
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
+    <!-- Script para cargar datos del préstamo -->
+</body>
+</html>

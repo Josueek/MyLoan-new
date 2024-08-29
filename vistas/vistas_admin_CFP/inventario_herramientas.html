@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de herramientas</title>
+
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../../recursos/css/admin/admin_itr/usuarios_dashboard.css">
+
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
+
+</head>
+
+<body>
+
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+        <div class="sidebar" id="sidebar">
+            <div class="dashboard">
+                <!-- Contenedor para la navegación del menú -->
+                <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
+                    <ul id="sidebarnav">
+                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="body-wrapper">
+            <div id="headerContainer" data-title="Inventario de herramientas"></div>
+            <br><br><br><br>
+            <section class="container-fluid">                   
+                <div class="row">
+                    <div class="container mt-5">
+                        <div class="row mb-5">
+                            <div class="col-lg-3 mb-3 d-flex align-items-center">
+                                <button class="btn btn-transparent border-0 p-0">
+                                    <i class="fas fa-search me-2"></i>
+                                </button>
+                                <!-- Barra de búsqueda -->
+                                <input id="buscarHerramienta" type="search" class="form-control" placeholder="Buscar">
+                            </div>
+                            <div class="col-lg-3 mb-3">
+                                <!-- input para filtrar -->
+                                <select id="filtroInstitucion" class="form-select">
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                                
+                            </div>
+                            <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                <button id="btnAgregarherramienta" type="button" class="btn btn-primary mx-lg-3" data-bs-toggle="modal" data-bs-target="#agregarHerramientaModal">Agregar herramienta</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Codigo de herramienta</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">En stock</th>
+                                <th scope="col">Institución</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaHerramientas">
+                            <!-- Se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Modal para agregar herramienta -->
+        <div class="modal fade" id="agregarHerramientaModal" tabindex="-1" aria-labelledby="agregarHerramientaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarHerramientaModalLabel">Agregar Herramienta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAgregarHerramienta">
+                            <div class="mb-3">
+                                <label for="codigoHerramienta" class="form-label">Código</label>
+                                <input type="text" class="form-control" id="codigoHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombreHerramienta" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombreHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="stockHerramienta" class="form-label">En stock</label>
+                                <input type="number" class="form-control" id="stockHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="institucionHerramienta" class="form-label">Institución</label>
+                                <select id="institucionHerramienta" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcionHerramienta" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripcionHerramienta" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal para editar herramienta -->
+        <div class="modal fade" id="editarHerramientaModal" tabindex="-1" aria-labelledby="editarHerramientaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarHerramientaModalLabel">Editar Herramienta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditarHerramienta">
+                            <input type="hidden" id="editarIdHerramienta">
+                            <div class="mb-3">
+                                <label for="editarCodigoHerramienta" class="form-label">Código</label>
+                                <input type="text" class="form-control" id="editarCodigoHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarNombreHerramienta" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editarNombreHerramienta" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarStockHerramienta" class="form-label">En stock</label>
+                                <input type="number" class="form-control" id="editarStockHerramienta" required min="0" oninput="validateInput(this)">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarInstitucionHerramienta" class="form-label">Institución</label>
+                                <select id="editarInstitucionHerramienta" class="form-select" required>
+                                    <!-- Se cargarán dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editarDescripcionHerramienta" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="editarDescripcionHerramienta" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <!--Scrip que si funionan -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../recursos/js/sidebarmenu.js"></script>
+        <script src="../../recursos/js/app.min.js"></script>
+        <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="../../controlador/admin_cfp/dasboardCFP.js"></script>
+        <script src="../../recursos/js/validar.js"></script>
+        <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+        <script src="../../recursos/js/acciones.js"></script>
+        <script src="../../controlador/admin_cfp/header.js"></script>
+        <script src="../../controlador/utils/session_utils.js"></script>
+        <!-- Scrip que dudosamente sirven-->
+        <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+        <script src="../../recursos/js/dashboard.js"></script>
+        <script src="../../controlador/admin_itr/inventario_herramienta.js"></script>
+</body>
+
+</html>
