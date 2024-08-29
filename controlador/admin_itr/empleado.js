@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
             tbody.appendChild(tr);
         }
     }
-
     const abrirGrafico = async (id) => {
         try {
             const response = await fetch('../../api/services/empleado_services.php?action=prestamoPorEmpleadoGrafico&id=' + id);
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         
                 document.getElementById('chartContainer').innerHTML = '<canvas id="myBarChart"></canvas>';
-                barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Usuarios con más préstamos');
+                barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
             } else {
                 console.error('Datos incorrectos:', DATA.error);
             }
@@ -150,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     x: {
                         title: {
                             display: true,
-                            text: 'Usuarios'
+                            text: 'Estados'
                         }
                     },
                     y: {
@@ -547,4 +546,5 @@ document.addEventListener('DOMContentLoaded', function () {
     window.eliminarEspecialidad = eliminarEspecialidad;
     window.eliminarCargo = eliminarCargo;
     window.asignarEspecialidad = asignarEspecialidad;
+    window.abrirGrafico = abrirGrafico;
 });
