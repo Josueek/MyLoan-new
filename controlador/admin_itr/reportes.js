@@ -81,14 +81,12 @@ const generarReporteRegistroAdmin = () => {
     window.open(PATH.href);
 };
 
-/**
- * Funcion para abrir y generar un reporte parametrizado
- * Reporte generado por los empleados de cada mes en especifico
- * Parametros: mes
- */
-const EquipoEspacio = () =>{
-     // Se define la ruta del reporte basado en el tipo de reporte.
-     const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php`);
-     // Se abre el reporte en una nueva pestaña.
-     window.open(PATH.href);
-}
+// Función para abrir y generar el reporte parametrizado
+const EquipoEspacio = (espacio) => {
+    // Definir la ruta del reporte y agregar el parámetro del espacio
+    const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php`);
+    PATH.searchParams.append('id_espacio', espacio);
+
+    // Abrir el reporte en una nueva pestaña
+    window.open(PATH.href);
+};

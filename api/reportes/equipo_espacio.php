@@ -32,7 +32,7 @@ if ($dataEquipos = $equipo->equipoEspacio($id_espacio)) {
     $pdf->Cell($columnWidths[3], 10, 'Cantidad', 1, 1, 'C', 1);
 
     // Se establece un color de relleno para los datos.
-    $pdf->setFillColor(200, 231, 226);
+    $pdf->setFillColor(252, 190, 45);
     // Se establece la fuente para los datos.
     $pdf->setFont('Arial', '', 11);
 

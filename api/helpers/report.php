@@ -5,9 +5,9 @@ require_once('../../api/libs/fpdf185/fpdf.php');
 require_once('../models/data/usuario_data.php');
 
 /*
-*   Clase para definir las plantillas de los reportes del sitio.
-*   Para más información http://www.fpdf.org/
-*/
+ *   Clase para definir las plantillas de los reportes del sitio.
+ *   Para más información http://www.fpdf.org/
+ */
 class Report extends FPDF
 {
     // Constante para definir la ruta de las vistas del sitio.
@@ -18,10 +18,10 @@ class Report extends FPDF
     private $adminName = null;
 
     /*
-    *   Método para iniciar el reporte con el encabezado del documento.
-    *   Parámetros: $title (título del reporte).
-    *   Retorno: ninguno.
-    */
+     *   Método para iniciar el reporte con el encabezado del documento.
+     *   Parámetros: $title (título del reporte).
+     *   Retorno: ninguno.
+     */
     public function startReport($title)
     {
         session_start();
@@ -39,10 +39,10 @@ class Report extends FPDF
     }
 
     /*
-    *   Método para obtener el nombre del administrador en sesión.
-    *   Parámetros: $adminId (ID del administrador).
-    *   Retorno: nombre del administrador.
-    */
+     *   Método para obtener el nombre del administrador en sesión.
+     *   Parámetros: $adminId (ID del administrador).
+     *   Retorno: nombre del administrador.
+     */
     private function getAdminName($userId)
     {
         $db = new Database;
@@ -56,56 +56,56 @@ class Report extends FPDF
             return 'Desconocido'; // Devuelve 'Desconocido' si no se encuentra el nombre
         }
     }
-    
+
     /*
-    *   Método para codificar una cadena de alfabeto español a UTF-8.
-    *   Parámetros: $string (cadena).
-    *   Retorno: cadena convertida.
-    */
+     *   Método para codificar una cadena de alfabeto español a UTF-8.
+     *   Parámetros: $string (cadena).
+     *   Retorno: cadena convertida.
+     */
     public function encodeString($string)
     {
         return mb_convert_encoding($string, 'ISO-8859-1', 'utf-8');
     }
 
     /*
-    *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
-    *   Se llama automáticamente en el método addPage()
-    */
+     *   Se sobrescribe el método de la librería para establecer la plantilla del encabezado de los reportes.
+     *   Se llama automáticamente en el método addPage()
+     */
     public function header()
     {
         // Establecer color de fondo
-        $this->setFillColor(143, 194, 187); // Color de fondo en RGB
+        $this->setFillColor(252, 190, 45); // Color de fondo en RGB
         $this->rect(0, 0, $this->w, 30, 'F'); // Fondo del encabezado
 
         // Se establece el logo.
-        $this->image('../../recursos/img/logos/myloan_logo.png', 15, 5, 20);
+        $this->image('../../recursos/img/logos/myloan_logo.png', 15, 7, 25);
         // Se ubica el título.
-        $this->setY(15); // Ajustar la altura del título para que quede alineado con el logo
+        $this->setY(10); // Ajustar la altura del título para que quede alineado con el logo
         $this->setFont('Arial', 'B', 15);
         $this->setTextColor(255, 255, 255); // Color del texto
         $this->cell(0, 10, $this->encodeString($this->title), 0, 1, 'C');
 
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
-        $this->ln(15);
+        $this->ln(20);
     }
 
     /*
-    *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
-    *   Se llama automáticamente en el método output()
-    */
+     *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
+     *   Se llama automáticamente en el método output()
+     */
     public function footer()
     {
         // Establecer color de fondo
         $this->setY(-25);
-        $this->setFillColor(143, 194, 187); // Color de fondo en RGB
+        $this->setFillColor(255, 255, 255); // Color de fondo en RGB
         $this->rect(0, $this->h - 25, $this->w, 25, 'F'); // Fondo del pie de página
-        
+
         // Se establece la posición para la fecha y hora
         $this->setY($this->h - 20);
         $this->setFont('Arial', 'B', 8);
-        $this->setTextColor(255, 255, 255); // Color del texto
+        $this->setTextColor(0, 0, 0); // Color del texto
         $this->cell(0, 10, $this->encodeString('Fecha/Hora: ' . date('d-m-Y H:i:s')), 0, 1, 'C');
-        
+
         // Se establece la posición para el número de página
         $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
 

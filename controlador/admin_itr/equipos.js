@@ -1,25 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     cargarDatosTabla();
     cargarComboboxData();
 
     // Evento para la búsqueda
-    document.getElementById('buscarEquipo').addEventListener('input', function() {
+    document.getElementById('buscarEquipo').addEventListener('input', function () {
         buscarEquipo();
     });
 
     // Evento para el filtro
-    document.getElementById('filtroCantidad').addEventListener('change', function() {
+    document.getElementById('filtroCantidad').addEventListener('change', function () {
         buscarEquipo();
     });
 
     // Evento para agregar equipo
-    document.getElementById('formAgregarEquipo').addEventListener('submit', function(event) {
+    document.getElementById('formAgregarEquipo').addEventListener('submit', function (event) {
         event.preventDefault();
         agregarEquipo();
     });
 
+    // Evento para manejar el envío del formulario
+    document.getElementById('formReporteEspacios').addEventListener('submit', function (event) {
+        event.preventDefault();  // Evitar el comportamiento predeterminado del formulario
+        ReporteEquipo();  // Llamar a la función que valida y genera el reporte
+    });
+
     // Evento para editar equipo
-    document.getElementById('formEditarEquipo').addEventListener('submit', function(event) {
+    document.getElementById('formEditarEquipo').addEventListener('submit', function (event) {
         event.preventDefault();
         editarEquipo();
     });
@@ -45,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 llenarCombobox('espacioEquipo', data, 'id_espacio', 'nombre_espacio');
                 llenarCombobox('editarEspacioEquipo', data, 'id_espacio', 'nombre_espacio');
+
+                llenarCombobox('ReporteEspacioEquipo', data, 'id_espacio', 'nombre_espacio');
             })
             .catch(error => console.error('Error al obtener espacios:', error));
     }
@@ -96,14 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             document.querySelectorAll('.btn-editar-equipo').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const idEquipo = this.getAttribute('data-id');
                     cargarEquipo(idEquipo);
                 });
             });
 
             document.querySelectorAll('.btn-eliminar-equipo').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const idEquipo = this.getAttribute('data-id');
                     eliminarEquipo(idEquipo);
                 });
@@ -146,24 +154,42 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'Equipo agregado correctamente.', 'success').then(() => {
-                    document.getElementById('formAgregarEquipo').reset();
-                    $('#agregarEquipoModal').modal('hide'); // Cerrar el modal
-                    cargarDatosTabla();
-                });
-            } else {
-                Swal.fire('Error!', data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error al agregar equipo:', error);
-            Swal.fire('Error!', 'Hubo un problema al agregar el equipo.', 'error');
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'Equipo agregado correctamente.', 'success').then(() => {
+                        document.getElementById('formAgregarEquipo').reset();
+                        $('#agregarEquipoModal').modal('hide'); // Cerrar el modal
+                        cargarDatosTabla();
+                    });
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error al agregar equipo:', error);
+                Swal.fire('Error!', 'Hubo un problema al agregar el equipo.', 'error');
+            });
+    }
+    
+    // Función para manejar el reporte
+    function ReporteEquipo() {
+        // Obtener el valor seleccionado del combo box
+        const espacio = document.getElementById('ReporteEspacioEquipo').value;
+
+        // Verificar que se haya seleccionado un espacio
+        if (!espacio) {
+            Swal.fire('Error!', 'Por favor selecciona un espacio.', 'error');
+            return;
+        }
+
+        // Si se seleccionó un espacio, cerrar el modal y restablecer el formulario
+        Swal.fire('Éxito!', 'Generando reporte...', 'success').then(() => {
+            document.getElementById('formReporteEspacios').reset();  // Reiniciar el formulario
+            $('#ReporteEquipo').modal('hide');  // Cerrar el modal
+            EquipoEspacio(espacio);  // Llamar a la función para abrir el reporte
         });
     }
-
     function cargarEquipo(idEquipo) {
         fetch(`../../api/services/equipo_services.php?action=getEquipo&id=${idEquipo}`)
             .then(response => response.json())
@@ -217,21 +243,21 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                Swal.fire('Éxito!', 'Equipo actualizado correctamente.', 'success').then(() => {
-                    cargarDatosTabla();
-                    $('#editarEquipoModal').modal('hide'); // Cerrar el modal
-                });
-            } else {
-                Swal.fire('Error!', data.message, 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error al actualizar equipo:', error);
-            Swal.fire('Error!', 'Hubo un problema al actualizar el equipo.', 'error');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito!', 'Equipo actualizado correctamente.', 'success').then(() => {
+                        cargarDatosTabla();
+                        $('#editarEquipoModal').modal('hide'); // Cerrar el modal
+                    });
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error al actualizar equipo:', error);
+                Swal.fire('Error!', 'Hubo un problema al actualizar el equipo.', 'error');
+            });
     }
 
     function eliminarEquipo(idEquipo) {
@@ -253,19 +279,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify({ id: idEquipo })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status) {
-                        Swal.fire('¡Eliminado!', 'El equipo ha sido eliminado.', 'success');
-                        cargarDatosTabla();
-                    } else {
-                        Swal.fire('Error!', data.message, 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al eliminar equipo:', error);
-                    Swal.fire('Error!', 'Hubo un problema al eliminar el equipo.', 'error');
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status) {
+                            Swal.fire('¡Eliminado!', 'El equipo ha sido eliminado.', 'success');
+                            cargarDatosTabla();
+                        } else {
+                            Swal.fire('Error!', data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al eliminar equipo:', error);
+                        Swal.fire('Error!', 'Hubo un problema al eliminar el equipo.', 'error');
+                    });
             }
         });
     }
