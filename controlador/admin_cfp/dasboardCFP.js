@@ -35,7 +35,7 @@ function generarMenuLateral() {
 
                         <ul id="submenu" class="submenu">
                             <li class="submenu-item d-flex align-items-center">
-                                <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
+                                <a href="../vistas_admin_CFP/administrar_usuarios.html" class="submenu-link  w-100">
                                     <span>
                                         <i class="fa-solid fa-user me-2"></i>
                                     </span>
