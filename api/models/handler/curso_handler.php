@@ -1,17 +1,20 @@
 <?php
 
-require_once('../helpers/database.php');
-require_once('../helpers/validator.php');
+require_once ('../helpers/database.php'); // Incluye el archivo de conexión a la base de datos
+require_once ('../helpers/validator.php');
 
 class CursoHandler
 {
+
+    //Metodo que consulta los datos de la tabla de tb_Cursos y obtiene datos espscificos mediente
+    //UN filtro
     public function getAllCursos($buscar = '')
     {
         $sql = 'SELECT c.id_curso, c.nombre_curso, c.fecha_inicio, c.fecha_fin, c.cantidad_personas, c.grupo, c.programa_formacion, c.codigo_curso, c.id_empleado, e.nombre_empleado, c.estado
                 FROM tb_cursos c
                 LEFT JOIN tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
                 WHERE c.nombre_curso LIKE ?';
-        $params = ["%$buscar%"];
+        $params = ["%$buscar%"]; // Consulta SQL para obtener cursos con búsqueda
         $data = Database::getRows($sql, $params);
         if ($data) {
             return array('status' => 1, 'dataset' => $data);
@@ -20,12 +23,15 @@ class CursoHandler
         }
     }
 
+
+    //Metodo para obtener los datos de empleados
     public function getAllEmpleados()
     {
         $sql = 'SELECT id_datos_empleado, nombre_empleado FROM tb_datos_empleados';
         return Database::getRows($sql);
     }
 
+    //Metodo para agregar un nuevo curso
     public function addCurso($params)
     {
         $sql = 'INSERT INTO tb_cursos (nombre_curso, fecha_inicio, fecha_fin, cantidad_personas, grupo, programa_formacion, codigo_curso, id_empleado, estado) 
@@ -33,13 +39,26 @@ class CursoHandler
         return Database::executeRow($sql, $params);
     }
 
+
+    //Metodo para obtener los datos de un curso mediante el id
     public function getCursoById($idCurso)
     {
         $sql = 'SELECT * FROM tb_cursos WHERE id_curso = ?';
         $params = array($idCurso);
         return Database::getRow($sql, $params);
     }
+    //Metodo para obtener los programas de formacion
+    public function getPrograma(){
+        $sql = 'SELECT Programa_formacion FROM tb_cursos;';
+        return Database::getRows($sql);
+    }
+     //Metodo para obtener el estado de los cursos
+     public function getEstadoCurso(){
+        $sql = 'SELECT estado FROM tb_cursos;';
+        return Database::getRows($sql);
+    }
 
+    //Actualizar los datos d la tabla cursos 
     public function updateCurso($params)
     {
         $sql = 'UPDATE tb_cursos 
@@ -48,11 +67,143 @@ class CursoHandler
         return Database::executeRow($sql, $params);
     }
 
+    //Borrar datos de la tabla de cursos
     public function deleteCurso($idCurso)
     {
         $sql = 'DELETE FROM tb_cursos WHERE id_curso = ?';
         $params = array($idCurso);
         return Database::executeRow($sql, $params);
     }
+
+
+    public function obtenerFechasCurso()
+    {
+        $fechaActual = date('Y-m-d');
+        $sql = 'SELECT fecha_inicio 
+                FROM tb_cursos 
+                WHERE fecha_inicio >= CURDATE() 
+                ORDER BY fecha_inicio ASC 
+                LIMIT 1';
+        $result = Database::getRow($sql);
+        $fechaCursoMasCercano = $result ? $result['fecha_inicio'] : null;
+
+        return array('fechaActual' => $fechaActual, 'fechaCursoMasCercano' => $fechaCursoMasCercano);
+    }
+    public function CursosPorEstado()
+    {
+        // Definir la consulta SQL para obtener nombres de cursos agrupados por estado
+        $sql = '
+            SELECT estado, 
+                   GROUP_CONCAT(nombre_curso SEPARATOR ", ") AS nombres_cursos
+            FROM tb_cursos 
+            GROUP BY estado
+        ';
+    
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
+    
+
+public function CantidadCursosPorPrograma()
+{
+    // Definir la consulta SQL para obtener la cantidad de cursos por programa de formación FALTA EL SERVICES
+    $sql = '
+        SELECT programa_formacion, COUNT(*) AS cantidad_cursos
+        FROM tb_cursos
+        GROUP BY programa_formacion
+    ';
+
+    // Ejecutar la consulta y retornar los resultados FALTA EL SERVICES
+    return Database::getRows($sql);
 }
-?>
+
+public function getCantidadCursosUltimos12Meses()
+{
+    $sql = '
+        SELECT 
+            DATE_FORMAT(fecha_inicio, "%Y-%m") AS mes_anio, 
+            COUNT(*) AS cantidad_cursos
+        FROM 
+            tb_cursos
+        WHERE 
+            fecha_inicio >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+        GROUP BY 
+            DATE_FORMAT(fecha_inicio, "%Y-%m")
+        ORDER BY 
+            mes_anio
+        LIMIT 0, 12
+    ';
+    
+    // Ejecutar la consulta y obtener los resultados
+    $result = Database::getRows($sql);
+    
+    // Crear un array para los nombres de los meses en español FALTA EL SERVICES
+    $meses = array(
+        '01' => 'Enero',
+        '02' => 'Febrero',
+        '03' => 'Marzo',
+        '04' => 'Abril',
+        '05' => 'Mayo',
+        '06' => 'Junio',
+        '07' => 'Julio',
+        '08' => 'Agosto',
+        '09' => 'Septiembre',
+        '10' => 'Octubre',
+        '11' => 'Noviembre',
+        '12' => 'Diciembre'
+    );
+    
+    // Convertir los datos de mes_año a nombres de meses en español
+    foreach ($result as &$row) {
+        list($anio, $mes) = explode('-', $row['mes_anio']);
+        $row['mes_anio'] = $meses[$mes] . ' ' . $anio;
+    }
+    
+    return $result;
+}
+
+//RESPORTES
+public function obtenerReporteCursos()
+{
+    // Definir la consulta SQL para obtener todos los cursos con el nombre del empleado
+    $sql = '
+        SELECT 
+            c.nombre_curso, 
+            c.fecha_inicio, 
+            c.fecha_fin, 
+            c.cantidad_personas, 
+            c.grupo, 
+            c.programa_formacion, 
+            c.codigo_curso, 
+            c.estado, 
+            e.nombre_empleado, 
+            e.apellido_empleado
+        FROM 
+            tb_cursos c
+        JOIN 
+            tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
+public function getEmpleadosConCursosActivosOFinalizados()
+{
+    // Definir la consulta SQL para obtener empleados con cursos activos o finalizados
+    $sql = '
+        SELECT de.nombre_empleado, de.apellido_empleado, c.nombre_curso, 
+               c.fecha_inicio, c.fecha_fin, c.estado
+        FROM tb_datos_empleados de
+        JOIN tb_cursos c ON de.id_datos_empleado = c.id_empleado
+        WHERE c.estado IN ("en curso", "finalizado")
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
+
+
+
+
+};

@@ -15,6 +15,8 @@ class CursoData extends CursoHandler
     private $empleado;
     private $estado;
 
+    
+
     public function setId($id)
     {
         if (Validator::validateNaturalNumber($id)) {
@@ -135,6 +137,7 @@ class CursoData extends CursoHandler
     {
         return parent::getCursoById($idCurso);
     }
+    
 
     public function update()
     {
@@ -157,5 +160,7 @@ class CursoData extends CursoHandler
     {
         return parent::deleteCurso($idCurso);
     }
+
+    
 }
 ?>
