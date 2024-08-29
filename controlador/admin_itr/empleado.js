@@ -84,22 +84,32 @@ document.addEventListener('DOMContentLoaded', function () {
             tbody.appendChild(tr);
         }
     }
+
     const abrirGrafico = async (id) => {
         try {
             const response = await fetch('../../api/services/empleado_services.php?action=prestamoPorEmpleadoGrafico&id=' + id);
             const DATA = await response.json();
-        
+    
             if (DATA.status) {
+                // Inicializa el modal de Bootstrap y luego lo muestra
+                const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
+                chartModal.show();
+    
                 let estados = [];
                 let cantidadPrestamos = [];
-        
+    
                 DATA.dataset.forEach(row => {
                     estados.push(row.Estado);
                     cantidadPrestamos.push(row.cantidad_prestamos);
                 });
-        
-                document.getElementById('chartContainer').innerHTML = '<canvas id="myBarChart"></canvas>';
-                barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
+    
+                const chartContainer = document.getElementById('chartContainer');
+                if (chartContainer) {
+                    chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
+                    barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
+                } else {
+                    console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
+                }
             } else {
                 console.error('Datos incorrectos:', DATA.error);
             }
