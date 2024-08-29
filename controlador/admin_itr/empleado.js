@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     cargarEspecialidades();
     cargarCargos();
     cargarEstados();
-    abrirGrafico();
 
     document.getElementById('buscarEmpleado').addEventListener('input', buscarEmpleado);
     document.getElementById('filtroEstado').addEventListener('change', buscarEmpleado);
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <button type="button" class="btn btn-warning" onclick="asignarEspecialidad(${empleado.id_datos_empleado}, '${empleado.nombre_empleado}')" data-bs-toggle="modal" data-bs-target="#asigEspecialidad">
                             <i class="fa-solid fa-award"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" onclick="abrirGrafico(${empleado.id_usuario}) data-bs-toggle="modal" data-bs-target="#chartModal">
+                        <button type="button" class="btn btn-warning" onclick="abrirGrafico(${empleado.id_usuario})">
                             <i class="fa-solid fa-award"></i>
                         </button>
                     </td>
@@ -86,97 +85,88 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-   
-const abrirGrafico = async (id) => {
-    try {
-        // Petición para obtener los datos del gráfico.
-        const response = await fetch('../../api/services/empleado_services.php?action=getEmpleados');
-        const DATA = await response.json();
-
-        // Se comprueba si la respuesta es satisfactoria.
-        if (DATA.status) {
-            // Se declaran los arreglos para guardar los datos a graficar.
-            let estados = [];
-            let cantidadPrestamos = [];
-
-            // Se recorre el conjunto de registros fila por fila a través del objeto dataset.
-            DATA.dataset.forEach(row => {
-                // Se agregan los datos a los arreglos.
-                estados.push(row.Estado); // Cambiado de correo_electronico a nombre_empleado
-                cantidadPrestamos.push(row.cantidad_prestamos);
-            });
-            document.getElementById('chartContainer').innerHTML = '<canvas id="myBarChart"></canvas>';
-            // Llamada a la función para generar y mostrar un gráfico de barras.
-            barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Usuarios con más préstamos');
-        } else {
-            // En caso de error, se remueve el canvas.
-            const canvasElement = document.getElementById('myBarChart');
-            if (canvasElement) canvasElement.remove();
-            console.error('Datos incorrectos:', DATA.error);
+    const abrirGrafico = async (id) => {
+        try {
+            const response = await fetch('../../api/services/empleado_services.php?action=prestamoPorEmpleadoGrafico&id=' + id);
+            const DATA = await response.json();
+        
+            if (DATA.status) {
+                let estados = [];
+                let cantidadPrestamos = [];
+        
+                DATA.dataset.forEach(row => {
+                    estados.push(row.Estado);
+                    cantidadPrestamos.push(row.cantidad_prestamos);
+                });
+        
+                document.getElementById('chartContainer').innerHTML = '<canvas id="myBarChart"></canvas>';
+                barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Usuarios con más préstamos');
+            } else {
+                console.error('Datos incorrectos:', DATA.error);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
+    };
 
-// Función para generar un gráfico de barras.
-const barGraph = (canvasId, xAxisLabels, yAxisData, legendLabel, chartTitle) => {
-    // Crear una instancia para generar el gráfico con los datos recibidos.
-    new Chart(document.getElementById(canvasId), {
-        type: 'bar', // Tipo de gráfico
-        data: {
-            labels: xAxisLabels,
-            datasets: [{
-                label: legendLabel,
-                data: yAxisData,
-                backgroundColor: [
-                    '#0466F8', // Azul
-                    '#FCBE2D', // Amarillo
-                    '#0B7F4B', // Verde
-                    '#11015C', // Púrpura
-                    '#FF6F00'  // Naranja
-                ], // Colores de fondo de las barras
-                borderColor: [
-                    '#0466F8', // Azul
-                    '#FCBE2D', // Amarillo
-                    '#0B7F4B', // Verde
-                    '#11015C', // Púrpura
-                    '#FF6F00'  // Naranja
-                ], // Colores del borde de las barras
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: chartTitle
-                },
-                legend: {
-                    display: true
-                }
+    // Función para generar un gráfico de barras.
+    const barGraph = (canvasId, xAxisLabels, yAxisData, legendLabel, chartTitle) => {
+        // Crear una instancia para generar el gráfico con los datos recibidos.
+        new Chart(document.getElementById(canvasId), {
+            type: 'bar', // Tipo de gráfico
+            data: {
+                labels: xAxisLabels,
+                datasets: [{
+                    label: legendLabel,
+                    data: yAxisData,
+                    backgroundColor: [
+                        '#0466F8', // Azul
+                        '#FCBE2D', // Amarillo
+                        '#0B7F4B', // Verde
+                        '#11015C', // Púrpura
+                        '#FF6F00'  // Naranja
+                    ], // Colores de fondo de las barras
+                    borderColor: [
+                        '#0466F8', // Azul
+                        '#FCBE2D', // Amarillo
+                        '#0B7F4B', // Verde
+                        '#11015C', // Púrpura
+                        '#FF6F00'  // Naranja
+                    ], // Colores del borde de las barras
+                    borderWidth: 1
+                }]
             },
-            scales: {
-                x: {
+            options: {
+                plugins: {
                     title: {
                         display: true,
-                        text: 'Usuarios'
+                        text: chartTitle
+                    },
+                    legend: {
+                        display: true
                     }
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Cantidad de Préstamos'
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Usuarios'
+                        }
                     },
-                    beginAtZero: true
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Préstamos'
+                        },
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-}
+        });
+    }
 
 
-    
+
 
 
 

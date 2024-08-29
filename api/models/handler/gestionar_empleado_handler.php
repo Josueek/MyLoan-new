@@ -24,6 +24,15 @@ class GestionarEmpleadoHandler
         }
     }
 
+    public function setIdUsuario($id_usuario)
+    {
+        if (Validator::validateNaturalNumber($id_usuario)) {
+            $this->id_usuario = $id_usuario;
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function setNombre($nombre)
     {
         if (Validator::validateAlphabetic($nombre)) {
@@ -170,19 +179,10 @@ class GestionarEmpleadoHandler
     public function prestamoPorEmpleado()
     {
         $sql = 'SELECT 
-    estado AS Estado,
-    COALESCE(COUNT(p.id_prestamo), 0) AS cantidad_prestamos
-FROM 
-    (SELECT "En Espera" AS estado 
-     UNION ALL 
-     SELECT "Aceptado" 
-     UNION ALL 
-     SELECT "Denegado") AS estados
-LEFT JOIN 
-    tb_prestamos p ON p.estado_prestamo = estados.estado
-    AND p.id_usuario = ?
-GROUP BY 
-    estados.estado;';
+        estado AS Estado, COALESCE(COUNT(p.id_prestamo), 0) AS cantidad_prestamos
+        FROM  (SELECT "En Espera" AS estado UNION ALL SELECT "Aceptado" UNION ALL SELECT "Denegado") AS estados
+        LEFT JOIN tb_prestamos p ON p.estado_prestamo = estados.estado AND p.id_usuario = ?
+        GROUP BY estados.estado;';
         $params = array($this->id_usuario);
         return Database::getRows($sql, $params);
     }
