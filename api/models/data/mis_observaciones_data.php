@@ -12,10 +12,20 @@ class MisObservacionesData extends MisObservacionesHandler
     private $observacion;
     private $fotoObservacion;
     private $tipoObservacion;
-    private $tipoPrestamo;
+    private $tipoPrestamo;  
     private $idEspacio;
     private $idPrestamo;
     private $idUsuario;
+
+    public function validateTipoObservacion($tipo) {
+        $valid_values = ['valor1', 'valor2', 'valor3']; // Reemplaza con los valores válidos de tu ENUM
+        return in_array($tipo, $valid_values);
+    }
+
+    public function validateTipoPrestamo($tipo) {
+        $valid_values = ['valorA', 'valorB', 'valorC']; // Reemplaza con los valores válidos de tu ENUM
+        return in_array($tipo, $valid_values);
+    }
 
     // Métodos setter con validación
     public function setId($id)
