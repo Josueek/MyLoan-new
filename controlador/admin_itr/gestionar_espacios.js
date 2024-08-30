@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
                     if (DATA.status) {
                         // Inicializa el modal de Bootstrap y luego lo muestra
-                        const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
+                        const chartModal = new bootstrap.Modal(document.getElementById('chartModal1'));
                         chartModal.show();
             
                         // Variables para almacenar los datos para el gráfico
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
             
                         // Verificar si el contenedor del gráfico existe y crear el gráfico
-                        const chartContainer = document.getElementById('chartContainer');
+                        const chartContainer = document.getElementById('chartContainer1');
                         if (chartContainer) {
                             chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
                             barGraph('myBarChart', tipoObservacion, numeroObservaciones, 'Número de Observaciones');
