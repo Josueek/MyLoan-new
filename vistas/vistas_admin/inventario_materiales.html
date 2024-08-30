@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="stylesheet" href="/recursos/css/admin/admin_itr/inventario_herramienta.css">
-
 </head>
 
 <body>
@@ -56,6 +53,12 @@
                                     <option value="asc">Ascendente</option>
                                     <option value="desc">Descendente</option>
                                 </select>
+
+                                <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-warning mx-lg-3" onclick="generarReporte()">
+                                        Generar Reporte
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="col-lg-3 mb-3 d-flex justify-content-end">
@@ -148,15 +151,14 @@
 </html> <!--Scrip que si funionan -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../recursos/js/sidebarmenu.js"></script>
-<script src="../../recursos/js/app.min.js"></script>
-<script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
 <script src="../../controlador/utils/dashboard.js"></script>
 <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
 <script src="../../recursos/js/acciones.js"></script>
 <script src="../../controlador/utils/session_utils.js"></script>
 <script src="../../controlador/admin_cfp/header.js"></script>
 <script src="../../controlador/admin_itr/material.js"></script>
+<script src="../../controlador/utils/components.js"></script>
+<script src="../../controlador/admin_itr/reportes.js"></script>
 
 <!-- Scrip que dudosamente sirven-->
 <script src="../../api/libs/simplebar/dist/simplebar.js"></script>

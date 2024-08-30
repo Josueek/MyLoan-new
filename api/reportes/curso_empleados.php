@@ -64,7 +64,7 @@ if ($dataCursos = $curso->obtenerReporteCursos()) {
 
         // Detalles del curso con ajuste manual de ancho y alto
         $pdf->SetFont('Arial', '', 12);
-
+ 
         // Se imprime cada fila del detalle del curso centrado
         $pdf->Cell($columnWidths[0], $rowHeight, utf8_decode('Nombre del Curso'), 1, 0, 'L'); // Centrando los datos de la columna Campos
         $pdf->Cell($columnWidths[1], $rowHeight, utf8_decode($rowCurso['nombre_curso']), 1, 1, 'C');

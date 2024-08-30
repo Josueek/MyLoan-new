@@ -94,5 +94,13 @@ public function EmpleadosPorEstado($estado)
     return Database::getRows($sql, $params);
 }
 
+public function getMaterials($orden)
+    {
+        // Definir la consulta SQL para obtener los materiales con el orden dinámico
+        $sql = 'SELECT nombre, descripcion, cantidad FROM tb_materiales ORDER BY cantidad ' . $orden;
+
+        // Ejecutar la consulta SQL y retornar los resultados
+        return Database::getRows($sql);
+    }
 }
 ?>
