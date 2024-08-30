@@ -6,11 +6,12 @@ require_once('../models/handler/material_handler.php');
 
 // Instanciar la clase para crear el reporte
 $pdf = new Report();
-$pdf->AddPage(); // Añadir una página al iniciar el reporte
+ 
 
 // Establecer márgenes de 15 mm a cada lado
 $pdf->SetMargins(15, 15, 15);
 $pdf->SetAutoPageBreak(true, 15); // Establecer un margen inferior de 15 mm
+$pdf->startReport('Reporte sobre inventario de materiales');
 
 // Obtener el valor del parámetro de orden
 $orden = isset($_GET['orden']) ? $_GET['orden'] : 'asc';

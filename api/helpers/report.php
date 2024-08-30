@@ -77,12 +77,15 @@ class Report extends FPDF
         $this->setFillColor(252, 190, 45); // Color de fondo en RGB
         $this->rect(0, 0, $this->w, 30, 'F'); // Fondo del encabezado
 
+        //Establecemos una imagen de fondo
+        $this->Image('../../recursos/img/img_generales/marcaAguaReporte.png', 0, 0, $this->w, $this->h, '', '', '', 0, '', '', '', 0.1);
+
         // Se establece el logo.
         $this->image('../../recursos/img/logos/myloan_logo.png', 15, 7, 25);
         // Se ubica el título.
         $this->setY(10); // Ajustar la altura del título para que quede alineado con el logo
         $this->setFont('Arial', 'B', 15);
-        $this->setTextColor(255, 255, 255); // Color del texto
+        $this->setTextColor(0, 0, 0); // Color del texto
         $this->cell(0, 10, $this->encodeString($this->title), 0, 1, 'C');
 
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
