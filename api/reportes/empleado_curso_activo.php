@@ -6,15 +6,15 @@ require_once('../models/handler/curso_handler.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
-$pdf->AddPage(); // Añadir una página al iniciar el reporte
-
+ 
 // Añadir la primera página para el texto explicativo y el logo
-$pdf->SetFont('Arial', 'B', 16);
+$pdf->SetFont('Arial', 'B', 14);
 
+// Se inicia el reporte con el encabezado del documento.
+$pdf->startReport('Reporte cursos activos o finalizados según empleados');
 // Texto explicativo
-$pdf->Cell(0, 10, utf8_decode('Reporte de Empleados con Cursos Activos o Finalizados'), 0, 1, 'C');
 $pdf->Ln(10);
-$pdf->SetFont('Arial', '', 12);
+$pdf->SetFont('Arial', '', 11);
 
 // Establecer el texto en UTF-8
 $pdf->MultiCell(0, 10, utf8_decode('Este documento presenta un reporte detallado de los empleados que están inscritos en cursos activos o finalizados. La tabla muestra el nombre y apellido del empleado, el nombre del curso, las fechas de inicio y fin del curso, y el estado actual del curso. Por favor, consulte la tabla para obtener los detalles completos de cada empleado y su curso.'));
@@ -28,8 +28,8 @@ $columnWidths = array(
     $pageWidth * 0.12, // Ancho para la columna de nombre
     $pageWidth * 0.12, // Ancho para la columna de apellido
     $pageWidth * 0.24, // Ancho para la columna de curso
-    $pageWidth * 0.12, // Ancho para la columna de fecha inicio
-    $pageWidth * 0.12, // Ancho para la columna de fecha fin
+    $pageWidth * 0.13, // Ancho para la columna de fecha inicio
+    $pageWidth * 0.13, // Ancho para la columna de fecha fin
     $pageWidth * 0.12  // Ancho para la columna de estado
 );
 
@@ -39,7 +39,7 @@ $empleado = new CursoHandler;
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleados = $empleado->getEmpleadosConCursosActivosOFinalizados()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(143, 194, 187);
+    $pdf->setFillColor(252, 195, 45);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 12);
 
@@ -47,8 +47,8 @@ if ($dataEmpleados = $empleado->getEmpleadosConCursosActivosOFinalizados()) {
     $pdf->Cell($columnWidths[0], 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[1], 10, utf8_decode('Apellido'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[2], 10, utf8_decode('Curso'), 1, 0, 'C', 1);
-    $pdf->Cell($columnWidths[3], 10, utf8_decode('Fecha Inicio'), 1, 0, 'C', 1);
-    $pdf->Cell($columnWidths[4], 10, utf8_decode('Fecha Fin'), 1, 0, 'C', 1);
+    $pdf->Cell($columnWidths[3], 10, utf8_decode('Inicio'), 1, 0, 'C', 1);
+    $pdf->Cell($columnWidths[4], 10, utf8_decode('Finalización'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[5], 10, utf8_decode('Estado'), 1, 1, 'C', 1);
 
     // Se establece la fuente para los datos.
