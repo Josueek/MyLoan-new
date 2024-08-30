@@ -203,6 +203,106 @@ public function getEmpleadosConCursosActivosOFinalizados()
     return Database::getRows($sql);
 }
 
+public function CursosUltimosMeses() {
+    // Consulta para obtener la cantidad de cursos de los últimos 5 meses
+    $sql = "
+        SELECT
+            DATE_FORMAT(c.fecha_inicio, '%M %Y') AS mes,
+            COUNT(*) AS cantidad_cursos
+        FROM
+            tb_cursos c
+        WHERE
+            c.fecha_inicio >= DATE_FORMAT(CURRENT_DATE - INTERVAL 5 MONTH, '%Y-%m-01')
+        GROUP BY
+            DATE_FORMAT(c.fecha_inicio, '%Y-%m')
+        ORDER BY
+            c.fecha_inicio ASC;
+    ";
+
+    $cursos = Database::getRows($sql);
+
+    if (count($cursos) > 0) {
+        $incrementos = [];
+        // Calcular los incrementos entre meses y los porcentajes de incremento
+        for ($i = 1; $i < count($cursos); $i++) {
+            $incremento = $cursos[$i]['cantidad_cursos'] - $cursos[$i - 1]['cantidad_cursos'];
+            $porcentaje_incremento = ($cursos[$i - 1]['cantidad_cursos'] != 0) ? ($incremento / $cursos[$i - 1]['cantidad_cursos']) * 100 : 0;
+            $incrementos[] = [
+                'mes' => $cursos[$i]['mes'],
+                'cantidad_cursos' => $cursos[$i]['cantidad_cursos'],
+                'incremento' => $incremento,
+                'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+            ];
+        }
+        return $incrementos;
+    } else {
+        return [];
+    }
+}
+
+
+public function cursosUltimosMesesConProyeccion() {
+    // Consulta para obtener la cantidad de cursos de los últimos 5 meses
+    $sql = "
+        SELECT
+            DATE_FORMAT(c.fecha_inicio, '%M %Y') AS mes,
+            COUNT(*) AS cantidad_cursos
+        FROM
+            tb_cursos c
+        WHERE
+            c.fecha_inicio >= DATE_FORMAT(CURRENT_DATE - INTERVAL 5 MONTH, '%Y-%m-01')
+        GROUP BY
+            DATE_FORMAT(c.fecha_inicio, '%Y-%m')
+        ORDER BY
+            c.fecha_inicio ASC;
+    ";
+
+    $cursos = Database::getRows($sql);
+
+    if (count($cursos) > 0) {
+        $incrementos = [];
+        $total_porcentaje_incremento = 0;
+
+        // Calcular los incrementos entre meses y los porcentajes de incremento
+        for ($i = 1; $i < count($cursos); $i++) {
+            $incremento = $cursos[$i]['cantidad_cursos'] - $cursos[$i - 1]['cantidad_cursos'];
+            $porcentaje_incremento = ($cursos[$i - 1]['cantidad_cursos'] != 0) ? ($incremento / $cursos[$i - 1]['cantidad_cursos']) * 100 : 0;
+            $incrementos[] = [
+                'mes' => $cursos[$i]['mes'],
+                'cantidad_cursos' => $cursos[$i]['cantidad_cursos'],
+                'incremento' => $incremento,
+                'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+            ];
+            $total_porcentaje_incremento += $porcentaje_incremento;
+        }
+
+        // Calcular el promedio del incremento porcentual mensual
+        $promedio_porcentaje_incremento = $total_porcentaje_incremento / 4; // Dividir entre 4 ya que tenemos 5 meses y 4 incrementos
+
+        // Proyectar la cantidad de cursos para el sexto mes usando el promedio del porcentaje de incremento
+        $cursos_mes_pasado = $cursos[count($cursos) - 1]['cantidad_cursos'];
+        $proyeccion_incremento = ($promedio_porcentaje_incremento / 100) * $cursos_mes_pasado;
+        $proyeccion_sexto_mes = $cursos_mes_pasado + $proyeccion_incremento;
+
+        // Obtener el nombre del mes siguiente al último mes registrado
+        $ultimo_mes = date('Y-m', strtotime(end($cursos)['mes']));
+        $mes_siguiente = date('F Y', strtotime($ultimo_mes . ' +1 month'));
+
+        // Formatear los datos de proyección
+        $incrementos[] = [
+            'mes' => $mes_siguiente,
+            'cantidad_cursos' => round($proyeccion_sexto_mes),
+            'incremento' => round($proyeccion_incremento),
+            'porcentaje_incremento' => number_format($promedio_porcentaje_incremento, 2)
+        ];
+
+        return $incrementos;
+    } else {
+        return [];
+    }
+}
+
+
 
 
 

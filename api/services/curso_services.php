@@ -167,6 +167,22 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Hubo un problema al obtener los cursos';
                 }
                 break;
+                case 'cursosUltimosMesesConProyeccion':
+                    if ($result['dataset'] = $curso->cursosUltimosMesesConProyeccion()) {
+                        $result['status'] = 1;
+                    } else {
+                        // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                        $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
+                    }
+                    break;
+                    case 'CursosUltimosMeses':
+                        if ($result['dataset'] = $curso->CursosUltimosMeses()) {
+                            $result['status'] = 1;
+                        } else {
+                            // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                            $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
+                        }
+                        break;
         default:
             $result['error'] = 'Acción no disponible';
     }
