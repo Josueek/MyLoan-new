@@ -22,6 +22,15 @@ $material = new MaterialHandler();
 $pageWidth = $pdf->GetPageWidth() - 30; // 30 mm = 15 mm de margen a cada lado
 $columnWidths = array($pageWidth * 0.33, $pageWidth * 0.33, $pageWidth * 0.34); // Ancho de columnas distribuidas uniformemente
 
+// Calcular el ancho total de la tabla
+$tableWidth = array_sum($columnWidths);
+
+// Calcular el punto de inicio X para centrar la tabla
+$startX = ($pageWidth - $tableWidth) / 2 + 15; // +15 para tener en cuenta el margen izquierdo
+
+// Establecer el punto de inicio X
+$pdf->SetX($startX);
+
 // Verificar si existen registros para mostrar, de lo contrario imprimir un mensaje
 if ($dataMateriales = $material->getMaterials($orden)) {
     // Establecer un color de relleno para los encabezados
@@ -30,7 +39,7 @@ if ($dataMateriales = $material->getMaterials($orden)) {
 
     // Imprimir los encabezados
     $pdf->Cell($columnWidths[0], 10, 'Nombre', 1, 0, 'C', 1);
-    $pdf->Cell($columnWidths[1], 10, 'Descripción', 1, 0, 'C', 1);
+    $pdf->Cell($columnWidths[1], 10, 'Descripcion', 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[2], 10, 'Cantidad', 1, 1, 'C', 1);
 
     // Establecer un color de relleno para los datos
@@ -39,12 +48,14 @@ if ($dataMateriales = $material->getMaterials($orden)) {
 
     // Recorrer los registros fila por fila
     foreach ($dataMateriales as $rowMaterial) {
+        $pdf->SetX($startX); // Asegurarse de que cada fila comience desde el punto de inicio X
         $pdf->Cell($columnWidths[0], 10, utf8_decode($rowMaterial['nombre']), 1, 0, 'L');
         $pdf->Cell($columnWidths[1], 10, utf8_decode($rowMaterial['descripcion']), 1, 0, 'L');
         $pdf->Cell($columnWidths[2], 10, $rowMaterial['cantidad'], 1, 1, 'C');
     }
 } else {
-    $pdf->Cell(0, 10, utf8_decode('No hay materiales para mostrar'), 1, 1, 'C');
+    $pdf->SetX($startX); // Asegurarse de que el mensaje de "No hay materiales para mostrar" esté centrado
+    $pdf->Cell($tableWidth, 10, utf8_decode('No hay materiales para mostrar'), 1, 1, 'C');
 }
 
 // Llamar implícitamente al método footer() y enviar el documento al navegador web
