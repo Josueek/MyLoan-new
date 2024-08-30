@@ -179,14 +179,22 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-            case 'programasFormacionPorEspacio':
-                if (isset($_GET['id_espacio']) && $espacio->setIdEspacio($_GET['id_espacio'])) {
-                    $result['dataset'] = $espacio->programasFormacionPorCurso();
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'Espacio incorrecto';
-                }
-                break;
+        case 'programasFormacionPorEspacio':
+            if (isset($_GET['id_espacio']) && $espacio->setIdEspacio($_GET['id_espacio'])) {
+                $result['dataset'] = $espacio->programasFormacionPorCurso();
+                $result['status'] = 1;
+            } else {
+                $result['error'] = 'Espacio incorrecto';
+            }
+            break;
+        case 'tipoObservacionesPorEspacio':
+            if (isset($_GET['id_espacio']) && $espacio->setIdEspacio($_GET['id_espacio'])) {
+                $result['dataset'] = $espacio->tipoObservacionesPorEspacio();
+                $result['status'] = 1;
+            } else {
+                $result['error'] = 'Espacio incorrecto';
+            }
+            break;
         default:
             $result['message'] = 'Acción no disponible';
     }

@@ -120,18 +120,20 @@ document.addEventListener('DOMContentLoaded', function () {
                             <i class="fa-solid fa-download"></i>
                         </button>
                     </td>
-                    <td class="d-flex justify-content-around">
-                        <button type="button" class="btn btn-success btn-editar-espacio" data-id="${espacio.id_espacio}" data-bs-toggle="modal" data-bs-target="#editarEspacio">
-                            <i class="fa-solid fa-pencil"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-eliminar-espacio" data-id="${espacio.id_espacio}">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                        <button type="button" class="btn btn-info" onclick="abrirGrafico(${espacio.id_espacio})">
-                            <i class="fa-solid fa-chart-bar"></i>
-                        </button>
-                        
-                    </td>
+                        <td class="d-flex justify-content-around">
+                            <button type="button" class="btn btn-success btn-editar-espacio me-2" data-id="${espacio.id_espacio}" data-bs-toggle="modal" data-bs-target="#editarEspacio">
+                                <i class="fa-solid fa-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-eliminar-espacio me-2" data-id="${espacio.id_espacio}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <button type="button" class="btn btn-info me-2" onclick="abrirGrafico(${espacio.id_espacio})">
+                                <i class="fa-solid fa-chart-bar"></i>
+                            </button>
+                            <button type="button" class="btn btn-info" onclick="abrirGraficoTipoObservaciones(${espacio.id_espacio})">
+                                <i class="fa-solid fa-chart-bar"></i>
+                            </button>
+                        </td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -141,20 +143,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 try {
                     const response = await fetch('../../api/services/espacios_services.php?action=programasFormacionPorEspacio&id_espacio=' + id);
                     const DATA = await response.json();
-            
+
                     if (DATA.status) {
                         // Inicializa el modal de Bootstrap y luego lo muestra
                         const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
                         chartModal.show();
-            
+
                         let programaFormacion = [];
                         let cantidadCursos = [];
-            
+
                         DATA.dataset.forEach(row => {
                             programaFormacion.push(row.programa_formacion);
                             cantidadCursos.push(row.cantidad_cursos);
                         });
-            
+
                         const chartContainer = document.getElementById('chartContainer');
                         if (chartContainer) {
                             chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
@@ -169,7 +171,42 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.error('Error fetching data:', error);
                 }
             };
-        
+
+            const abrirGraficoTipoObservaciones = async (id) => {
+                try {
+                    const response = await fetch('../../api/services/espacios_services.php?action=tipoObservacionesPorEspacio&id_espacio=' + id);
+                    const DATA = await response.json();
+            
+                    if (DATA.status) {
+                        // Inicializa el modal de Bootstrap y luego lo muestra
+                        const chartModal = new bootstrap.Modal(document.getElementById('chartModal'));
+                        chartModal.show();
+            
+                        // Variables para almacenar los datos para el gráfico
+                        let tipoObservacion = [];
+                        let numeroObservaciones = [];
+            
+                        // Procesar los datos recibidos de la API
+                        DATA.dataset.forEach(row => {
+                            tipoObservacion.push(row.Tipo_Observacion); // Ajusta esto según la estructura de los datos devueltos
+                            numeroObservaciones.push(row.Numero_de_Observaciones); // Ajusta esto según la estructura de los datos devueltos
+                        });
+            
+                        // Verificar si el contenedor del gráfico existe y crear el gráfico
+                        const chartContainer = document.getElementById('chartContainer');
+                        if (chartContainer) {
+                            chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
+                            barGraph('myBarChart', tipoObservacion, numeroObservaciones, 'Número de Observaciones');
+                        } else {
+                            console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
+                        }
+                    } else {
+                        console.error('Datos incorrectos:', DATA.error);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            };
             // Función para generar un gráfico de barras.
             const barGraph = (canvasId, xAxisLabels, yAxisData, legendLabel, chartTitle) => {
                 // Crear una instancia para generar el gráfico con los datos recibidos.
@@ -224,6 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
             window.abrirGrafico = abrirGrafico;
+            window.abrirGraficoTipoObservaciones = abrirGraficoTipoObservaciones;
 
             document.querySelectorAll('.btn-descargar-inventario').forEach(button => {
                 button.addEventListener('click', function () {
@@ -561,5 +599,5 @@ document.addEventListener('DOMContentLoaded', function () {
         backdrops.forEach(backdrop => backdrop.remove());
     });
 
-    
+
 });
