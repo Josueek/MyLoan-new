@@ -74,6 +74,8 @@ class EquipoHandler
      */
     public function equipoEspacio($id_espacio)
     {
+        // Definir la consulta SQL para obtener los empleados por estado
+
         $sql = 'SELECT 
         eq.id_equipo,
         eq.nombre,
@@ -84,9 +86,15 @@ class EquipoHandler
         INNER JOIN 
         tb_espacios esp ON eq.id_espacio = esp.id_espacio
         WHERE 
-        esp.id_espacio = ?;';
-        $params = array($id_espacio);
-        return Database::executeRow($sql, $params);
+        esp.id_espacio = :id_espacio';
+
+
+        // Preparar la consulta y vincular el parámetro
+        $params = array(':id_espacio' => $id_espacio);
+
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql, $params);
     }
+
 }
 ?>

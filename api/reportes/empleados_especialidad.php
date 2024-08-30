@@ -8,6 +8,10 @@ require_once('../models/handler/empleado_handler.php');
 $pdf = new Report;
 $pdf->AddPage(); // Añadir una página al iniciar el reporte
 
+// Establecer márgenes de 15 mm a cada lado
+$pdf->SetMargins(15, 15, 15);
+$pdf->SetAutoPageBreak(true, 15); // Establecer un margen inferior de 15 mm
+
 // Añadir la primera página para el texto explicativo y el logo
 $pdf->SetFont('Arial', 'B', 16);
 
@@ -23,15 +27,15 @@ $pdf->MultiCell(0, 10, utf8_decode('Este documento presenta un reporte detallado
 $pdf->Ln(20);
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Reporte de empleados asignados por especialidad');
-// Se instancia el modelo UsuarioHandler para obtener los datos.
-$empleado = new EmpleadoHandler; 
-
-// Definir el ancho de la página en mm.
-$pageWidth = $pdf->GetPageWidth();
-$columnWidths = array($pageWidth * 0.30, $pageWidth * 0.30, $pageWidth * 0.30); // Ancho de las columnas en porcentaje de la página
 
 // Se instancia el modelo EmpleadoHandler para obtener los datos.
-$empleado = new EmpleadoHandler; 
+$empleado = new EmpleadoHandler;
+
+// Definir el ancho de la página en mm menos los márgenes de 15 mm a cada lado
+$pageWidth = $pdf->GetPageWidth() - 30; // 30 mm = 15 mm de margen a cada lado
+
+// Ajustar el ancho de las columnas
+$columnWidths = array($pageWidth * 0.33, $pageWidth * 0.33, $pageWidth * 0.33); // Ancho de columnas igual distribuidas
 
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleados = $empleado->EmpleadosPorEspecialidad()) {
@@ -44,9 +48,6 @@ if ($dataEmpleados = $empleado->EmpleadosPorEspecialidad()) {
     $pdf->Cell($columnWidths[0], 10, utf8_decode('Especialidad'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[1], 10, utf8_decode('Nombre del Empleado'), 1, 0, 'C', 1);
     $pdf->Cell($columnWidths[2], 10, utf8_decode('Apellido del Empleado'), 1, 1, 'C', 1);
-    $pdf->Cell($columnWidths[0], 10, 'Especialidad', 1, 0, 'C', 1);
-    $pdf->Cell($columnWidths[1], 10, 'Nombre del empleado', 1, 0, 'C', 1);
-    $pdf->Cell($columnWidths[2], 10, 'Apellido del empleado', 1, 1, 'C', 1);
 
     // Se establece un color de relleno para los datos.
     $pdf->setFillColor(200, 231, 226);
@@ -56,9 +57,9 @@ if ($dataEmpleados = $empleado->EmpleadosPorEspecialidad()) {
     // Se recorren los registros fila por fila.
     foreach ($dataEmpleados as $rowEmpleado) {
         // Se imprimen las celdas con los datos de empleados.
-        $pdf->Cell($columnWidths[0], 10, utf8_decode($rowEmpleado['nombre_especialidad']), 1, 0, 'L');
-        $pdf->Cell($columnWidths[1], 10, utf8_decode($rowEmpleado['nombre_empleado']), 1, 0, 'L');
-        $pdf->Cell($columnWidths[2], 10, utf8_decode($rowEmpleado['apellido_empleado']), 1, 1, 'L');
+        $pdf->Cell($columnWidths[0], 10, utf8_decode($rowEmpleado['nombre_especialidad']), 1, 0, 'C ');
+        $pdf->Cell($columnWidths[1], 10, utf8_decode($rowEmpleado['nombre_empleado']), 1, 0, 'C');
+        $pdf->Cell($columnWidths[2], 10, utf8_decode($rowEmpleado['apellido_empleado']), 1, 1, 'C');
     }
 } else {
     $pdf->Cell(0, 10, utf8_decode('No hay empleados para mostrar en esta especialidad'), 1, 1, 'C');

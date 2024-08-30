@@ -116,7 +116,7 @@ public function CantidadCursosPorPrograma()
     // Ejecutar la consulta y retornar los resultados FALTA EL SERVICES
     return Database::getRows($sql);
 }
-
+ 
 public function getCantidadCursosUltimos12Meses()
 {
     $sql = '

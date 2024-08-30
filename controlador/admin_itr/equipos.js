@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Evento para manejar el envío del formulario
     document.getElementById('formReporteEspacios').addEventListener('submit', function (event) {
         event.preventDefault();  // Evitar el comportamiento predeterminado del formulario
-        ReporteEquipo();  // Llamar a la función que valida y genera el reporte
+        generarReporteEquipos();  // Llamar a la función que valida y genera el reporte
     });
+
+ 
 
     // Evento para editar equipo
     document.getElementById('formEditarEquipo').addEventListener('submit', function (event) {
@@ -171,25 +173,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 Swal.fire('Error!', 'Hubo un problema al agregar el equipo.', 'error');
             });
     }
-    
-    // Función para manejar el reporte
-    function ReporteEquipo() {
-        // Obtener el valor seleccionado del combo box
-        const espacio = document.getElementById('ReporteEspacioEquipo').value;
 
-        // Verificar que se haya seleccionado un espacio
-        if (!espacio) {
-            Swal.fire('Error!', 'Por favor selecciona un espacio.', 'error');
-            return;
+    /**
+     * Funcion para generar reporte sobre los equipos  registrados en cada espacio
+     */
+    const generarReporteEquipos = () => {
+        // Obtener el estado seleccionado por el usuario
+        const estadoSeleccionado = document.getElementById('ReporteEspacioEquipo').value;
+
+        if (estadoSeleccionado) {
+            // Definir la ruta del reporte, incluyendo el estado como parámetro
+            const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?estado=${estadoSeleccionado}`);
+
+            // Abrir el reporte en una nueva pestaña
+            window.open(PATH.href);
+        } else {
+            alert('Por favor, seleccione un espacio para generar el reporte.');
         }
+    };
 
-        // Si se seleccionó un espacio, cerrar el modal y restablecer el formulario
-        Swal.fire('Éxito!', 'Generando reporte...', 'success').then(() => {
-            document.getElementById('formReporteEspacios').reset();  // Reiniciar el formulario
-            $('#ReporteEquipo').modal('hide');  // Cerrar el modal
-            EquipoEspacio(espacio);  // Llamar a la función para abrir el reporte
-        });
-    }
+
     function cargarEquipo(idEquipo) {
         fetch(`../../api/services/equipo_services.php?action=getEquipo&id=${idEquipo}`)
             .then(response => response.json())
