@@ -44,16 +44,23 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-        case 'getInventarioPorTipoInventario':
-            // Verificar si el parámetro 'tipo' está presente y es válido
-            if (!$material->setTipoInventario($_POST['id'])) {
-                $result['error'] = $material->getDataError();
-            } elseif ($result['dataset'] = $material->getInventarioPorTipoInventario()) {
-                $result['status'] = 1;
-            } else {
-                $result['message'] = 'No se pudieron obtener los datos del inventario';
-            }
-            break;
+            case 'getInventarioPorTipoInventario':
+                // Verificar si el parámetro 'tipo' está presente y es válido
+                if (isset($_POST['tipo']) && !empty($_POST['tipo'])) {
+                    $tipo = $_POST['tipo'];
+            
+                    // Establecer el tipo de inventario
+                    if (!$material->setTipoInventario($tipo)) {
+                        $result['error'] = $material->getDataError();
+                    } elseif ($result['dataset'] = $material->getInventarioPorTipoInventario()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['message'] = 'No se pudieron obtener los datos del inventario';
+                    }
+                } else {
+                    $result['message'] = 'Datos inválidos';
+                }
+                break;
         case 'updateMaterial':
             $_POST = Validator::validateForm($_POST);
             if (

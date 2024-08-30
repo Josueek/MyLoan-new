@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     graficoCursosPorEstado();
     graficoEspaciosPorTipo();
     fillSelectTipoDeInventario();
+    graficoInventarioPorTipoI();
 });
-
 // Método para llenar el select de estados de pedido
 const fillSelectTipoDeInventario = (tipo_inventarioActual) => {
     const tipo = ['Herramientas', 'Materiales', 'Equipos'];
@@ -24,42 +24,53 @@ const fillSelectTipoDeInventario = (tipo_inventarioActual) => {
         TIPO_INVENTARIO_SELECT.appendChild(option);
     });
 };
+
 // Función para obtener el tipo de inventario seleccionado
 const getSelectedTipoInventario = () => {
     return TIPO_INVENTARIO_SELECT.value;
 };
+
 const graficoInventarioPorTipoI = async () => {
     try {
         // Obtener el tipo de inventario seleccionado
         const tipoInventario = getSelectedTipoInventario();
+        console.log(tipoInventario);
         // Construir la URL con el tipo de inventario como parámetro
         const url = `../../api/services/material_services.php?action=getInventarioPorTipoInventario&tipo=${encodeURIComponent(tipoInventario)}`;
         // Petición para obtener los datos del gráfico.
         const response = await fetch(url);
+        console.log(response);
         const DATA = await response.json();
         // Se comprueba si la respuesta es satisfactoria.
         if (DATA.status) {
             // Se declaran los arreglos para guardar los datos a graficar.
-            let mes = [];
-            let cantidad = [];
+            let nombres = [];
+            let totalStock = [];
+            let enUsoStock = [];
+
             // Se recorre el conjunto de registros fila por fila a través del objeto row.
             DATA.dataset.forEach(row => {
                 // Se agregan los datos a los arreglos.
-                mes.push(row.mes_anio);
-                cantidad.push(row.cantidad_cursos);
+                nombres.push(row.nombre);
+                totalStock.push(row.total_stock);
+                enUsoStock.push(row.en_uso_del_stock || 0); // Asignar 0 si en_uso_del_stock es NULL
             });
-            // Llamada a la función para generar y mostrar un gráfico lineal.
-            barGraph('myLineChart', mes, cantidad, 'Cantidad de cursos', 'Cantidad de cursos en los últimos 12 meses');
+
+            // Llamada a la función para generar y mostrar un gráfico de barras.
+            barGraph('graficaInventario', nombres, totalStock, 'Total de Stock', 'Total de stock por item');
+            // Opcionalmente, puedes generar otro gráfico para 'enUsoStock' si es necesario.
+            // barGraph('myLineChartEnUso', nombres, enUsoStock, 'Stock en Uso', 'Stock en uso por item');
         } else {
             // En caso de error, se remueve el canvas.
-            const canvasElement = document.getElementById('myLineChart');
+            const canvasElement = document.getElementById('graficaInventario');
             if (canvasElement) canvasElement.remove();
-            console.error('Datos incorrectos:', DATA.error);
+            console.error('Datos incorrectos:',DATA, DATA.error);
         }
     } catch (error) {
         console.log('Error fetching data:', error);
     }
 }
+
 // Llamar a la función de gráfico cada vez que el valor del combobox cambie
 TIPO_INVENTARIO_SELECT.addEventListener('change', graficoInventarioPorTipoI);
 
