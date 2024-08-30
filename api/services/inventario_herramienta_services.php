@@ -22,11 +22,13 @@ if (isset($_GET['action'])) {
 
         case 'addHerramienta':
             $_POST = Validator::validateForm($_POST);
-            if ($herramienta->setCodigo($_POST['codigo']) &&
+            if (
+                $herramienta->setCodigo($_POST['codigo']) &&
                 $herramienta->setNombre($_POST['nombre']) &&
                 $herramienta->setStock($_POST['stock']) &&
                 $herramienta->setInstitucion($_POST['institucion']) &&
-                $herramienta->setDescripcion($_POST['descripcion'])) {
+                $herramienta->setDescripcion($_POST['descripcion'])
+            ) {
                 if ($herramienta->create()) {
                     $result['status'] = 1;
                     $result['message'] = 'Herramienta agregada correctamente';
@@ -52,11 +54,13 @@ if (isset($_GET['action'])) {
 
         case 'updateHerramienta':
             $_POST = Validator::validateForm($_POST);
-            if ($herramienta->setCodigo($_POST['codigo']) &&
+            if (
+                $herramienta->setCodigo($_POST['codigo']) &&
                 $herramienta->setNombre($_POST['nombre']) &&
                 $herramienta->setStock($_POST['stock']) &&
                 $herramienta->setInstitucion($_POST['institucion']) &&
-                $herramienta->setDescripcion($_POST['descripcion'])) {
+                $herramienta->setDescripcion($_POST['descripcion'])
+            ) {
                 if ($herramienta->update()) {
                     $result['status'] = 1;
                     $result['message'] = 'Herramienta actualizada correctamente';
@@ -86,15 +90,17 @@ if (isset($_GET['action'])) {
             $data = json_decode(file_get_contents('php://input'), true);
 
             // Validar los datos recibidos
-            if (!empty($data['fechaSolicitud']) &&
+            if (
+                !empty($data['fechaSolicitud']) &&
                 !empty($data['programaFormacion']) &&
                 !empty($data['usuarioSolicitante']) &&
                 !empty($data['curso']) &&
-                isset($data['articulos']) && is_array($data['articulos'])) {
+                isset($data['articulos']) && is_array($data['articulos'])
+            ) {
 
                 // Iniciar una transacción
                 Database::getConnection()->beginTransaction();
-                
+
                 try {
                     // Insertar datos en la tabla de préstamos
                     $sql = "INSERT INTO tb_prestamos (fecha_solicitud, programa_formacion, estado_prestamo, observacion, id_curso, id_usuario) 
@@ -155,4 +161,3 @@ if (isset($_GET['action'])) {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 }
-?>

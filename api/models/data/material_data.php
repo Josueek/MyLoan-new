@@ -4,11 +4,7 @@ require_once('../models/handler/material_handler.php');
 
 class MaterialData extends MaterialHandler
 {
-    private $id;
-    private $nombre;
-    private $descripcion;
-    private $cantidad;
-
+    private $data_error = null;
     public function setId($id)
     {
         if (Validator::validateNaturalNumber($id)) {
@@ -31,8 +27,18 @@ class MaterialData extends MaterialHandler
 
     public function setDescripcion($descripcion)
     {
-        if (Validator::validateString($descripcion, null, 300)) {
+        if (Validator::validateString($descripcion)) {
             $this->descripcion = $descripcion;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setTipoInventario($tipo)
+    {
+        if (Validator::validateString($tipo)) {
+            $this->tipoInventario = $tipo;
             return true;
         } else {
             return false;
@@ -79,5 +85,10 @@ class MaterialData extends MaterialHandler
     {
         return parent::deleteMaterial($id);
     }
+
+    // Método adicional de error
+    public function getDataError()
+    {
+        return $this->data_error;
+    }
 }
-?>

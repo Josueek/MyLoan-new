@@ -121,53 +121,56 @@ const generateColorPalette = (numColors) => {
     return palette;
 }
 
-// Función para crear un gráfico de barras usando Chart.js
-const barGraph = (canvas, xAxis, yAxis, legend, title) => {
-    const colors = generateColorPalette(xAxis.length);
-
-    new Chart(document.getElementById(canvas), {
-        type: 'bar',
+// Función para generar un gráfico de barras.
+const barGraph = (canvasId, xAxisLabels, yAxisData, legendLabel, chartTitle) => {
+    // Crear una instancia para generar el gráfico con los datos recibidos.
+    new Chart(document.getElementById(canvasId), {
+        type: 'bar', // Tipo de gráfico
         data: {
-            labels: xAxis,
+            labels: xAxisLabels,
             datasets: [{
-                label: legend,
-                data: yAxis,
-                backgroundColor: colors
+                label: legendLabel,
+                data: yAxisData,
+                backgroundColor: [
+                    '#0466F8', // Azul
+                    '#FCBE2D', // Amarillo
+                    '#0B7F4B', // Verde
+                    '#11015C', // Púrpura
+                    '#FF6F00'  // Naranja
+                ], // Colores de fondo de las barras
+                borderColor: [
+                    '#0466F8', // Azul
+                    '#FCBE2D', // Amarillo
+                    '#0B7F4B', // Verde
+                    '#11015C', // Púrpura
+                    '#FF6F00'  // Naranja
+                ], // Colores del borde de las barras
+                borderWidth: 1
             }]
         },
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: title
+                    text: chartTitle
                 },
                 legend: {
-                    display: false
+                    display: true
                 }
-            }
-        }
-    });
-}
-
-// Función para crear un gráfico de pastel usando Chart.js
-const pieGraph = (canvas, legends, values, title) => {
-    const numColors = values.length;
-    const colors = generateColorPalette(numColors);
-
-    new Chart(document.getElementById(canvas), {
-        type: 'pie',
-        data: {
-            labels: legends,
-            datasets: [{
-                data: values,
-                backgroundColor: colors
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Usuarios'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Préstamos'
+                    },
+                    beginAtZero: true
                 }
             }
         }

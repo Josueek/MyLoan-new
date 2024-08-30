@@ -48,9 +48,20 @@
                             <br>
                             <br>
                             <br>
-                                <div class="card-bodyG">
-                                <h4>Graficas personales</h4>
+                            <div class="card-bodyG">
+                                <h4>Grafico de inventario por tipo de inventario.</h4>
                                 <div class="row">
+                                    <!-- Sección de selección de inventario y gráfica -->
+                                    <div class="col-lg-6">
+                                        <label for="tipoInventario">Selecciona el tipo de inventario:</label>
+                                        <select id="tipoInventario" name="tipoInventario" class="form-select"
+                                            onchange="actualizarGrafica()">
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <canvas id="graficaInventario"></canvas>
+                                    </div>
+                                    <!-- Gráficas adicionales -->
                                     <div class="col-lg-6">
                                         <canvas id="radarChart"></canvas>
                                     </div>
@@ -70,18 +81,21 @@
                     </div>
                 </div>
 
+            </section>
         </div>
-
-        </section>
-    </div>
     </div>
 
-    <!-- Scripts -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <!-- ESTE HACE QUE ABRA EL MODAL DE LA GRAFICA-->
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
     <script src="../../controlador/utils/dashboard.js"></script>
     <script src="../../controlador/utils/session_utils.js"></script>
-        <script src="../../controlador/admin_cfp/header.js"></script>
+    <script src="../../controlador/admin_cfp/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../controlador/utils/components.js"></script>
     <script src="../../controlador/admin_itr/graficas.js"></script>
 </body>
 

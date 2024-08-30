@@ -1,7 +1,6 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/handler/material_handler.php');
 require_once('../models/data/material_data.php');
 
 if (isset($_GET['action'])) {
@@ -18,9 +17,11 @@ if (isset($_GET['action'])) {
 
         case 'addMaterial':
             $_POST = Validator::validateForm($_POST);
-            if ($material->setNombre($_POST['nombre']) &&
+            if (
+                $material->setNombre($_POST['nombre']) &&
                 $material->setDescripcion($_POST['descripcion']) &&
-                $material->setCantidad($_POST['cantidad'])) {
+                $material->setCantidad($_POST['cantidad'])
+            ) {
                 if ($material->create()) {
                     $result['status'] = 1;
                     $result['message'] = 'Material agregado correctamente';
@@ -43,13 +44,24 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-
+        case 'getInventarioPorTipoInventario':
+            // Verificar si el parámetro 'tipo' está presente y es válido
+            if (!$material->setTipoInventario($_POST['id'])) {
+                $result['error'] = $material->getDataError();
+            } elseif ($result['dataset'] = $material->getInventarioPorTipoInventario()) {
+                $result['status'] = 1;
+            } else {
+                $result['message'] = 'No se pudieron obtener los datos del inventario';
+            }
+            break;
         case 'updateMaterial':
             $_POST = Validator::validateForm($_POST);
-            if ($material->setId($_POST['id']) &&
+            if (
+                $material->setId($_POST['id']) &&
                 $material->setNombre($_POST['nombre']) &&
                 $material->setDescripcion($_POST['descripcion']) &&
-                $material->setCantidad($_POST['cantidad'])) {
+                $material->setCantidad($_POST['cantidad'])
+            ) {
                 if ($material->update()) {
                     $result['status'] = 1;
                     $result['message'] = 'Material actualizado correctamente';
@@ -82,4 +94,3 @@ if (isset($_GET['action'])) {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 }
-?>
