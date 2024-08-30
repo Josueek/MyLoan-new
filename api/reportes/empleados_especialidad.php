@@ -16,7 +16,7 @@ $pdf->SetAutoPageBreak(true, 15); // Establecer un margen inferior de 15 mm
 $pdf->SetFont('Arial', 'B', 16);
 
 // Texto explicativo
-$pdf->Cell(0, 10, utf8_decode('Reporte de Empleados por Especialidad'), 0, 1, 'C');
+$pdf->Cell(0, 10, utf8_decode('Reporte de empleados por especialidad'), 0, 1, 'C');
 $pdf->Ln(10);
 $pdf->SetFont('Arial', '', 12);
 
