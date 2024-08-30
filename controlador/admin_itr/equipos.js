@@ -175,22 +175,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Funcion para generar reporte sobre los equipos  registrados en cada espacio
+     * Generar el reporte parmetrizado
      */
     const generarReporteEquipos = () => {
-        // Obtener el estado seleccionado por el usuario
-        const estadoSeleccionado = document.getElementById('ReporteEspacioEquipo').value;
-
-        if (estadoSeleccionado) {
-            // Definir la ruta del reporte, incluyendo el estado como parámetro
-            const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?estado=${estadoSeleccionado}`);
+        // Obtener el id del espacio seleccionado por el usuario
+        const idEspacioSeleccionado = document.getElementById('ReporteEspacioEquipo').value;
+    console.log('ID desde equipos:' + idEspacioSeleccionado)
+        if (idEspacioSeleccionado) {
+            // Definir la ruta del reporte, incluyendo el id del espacio como parámetro
+            const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?id_espacio=${idEspacioSeleccionado}`);
+            
 
             // Abrir el reporte en una nueva pestaña
-            window.open(PATH.href);
+           // window.open(PATH.href);
         } else {
             alert('Por favor, seleccione un espacio para generar el reporte.');
         }
     };
+    
 
 
     function cargarEquipo(idEquipo) {
