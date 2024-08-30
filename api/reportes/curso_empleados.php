@@ -30,7 +30,7 @@ if ($dataCursos = $curso->obtenerReporteCursos()) {
     foreach ($dataCursos as $rowCurso) {
         // Añadir una nueva página para cada curso
         $pdf->AddPage();
-
+        $pdf->setFillColor(252, 190, 45);
         // Se establece la fuente para los encabezados de la tabla.
         $pdf->SetFont('Arial', 'B', 12);
 

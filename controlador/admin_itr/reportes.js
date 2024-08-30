@@ -117,3 +117,18 @@ const EquipoEspacio = () => {
     // Abrir el reporte en una nueva pestaña
     window.open(PATH.href);
 };
+
+function generarReportePorEstado() {
+    // Obtener el estado seleccionado por el usuario
+    const estadoSeleccionado = document.getElementById('ReporteEspacioEquipo').value;
+
+    if (estadoSeleccionado) {
+        // Definir la ruta del reporte, incluyendo el estado como parámetro
+        const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?estado=${estadoSeleccionado}`);
+
+        // Abrir el reporte en una nueva pestaña
+        window.open(PATH.href);
+    } else {
+        alert('Por favor, seleccione un estado para generar el reporte.');
+    }
+}
