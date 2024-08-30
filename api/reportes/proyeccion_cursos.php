@@ -6,11 +6,17 @@ require_once('../models/handler/curso_handler.php');
 
 // Instanciar la clase para crear el reporte
 $pdf = new Report();
-$pdf->AddPage(); // Añadir una página al iniciar el reporte
 
 // Establecer márgenes de 15 mm a cada lado
 $pdf->SetMargins(15, 15, 15);
 $pdf->SetAutoPageBreak(true, 15); // Establecer un margen inferior de 15 mm
+
+//Titulo del reporte
+$pdf->startReport('Reporte proyectivo sobre cursos');
+
+$pdf->Ln(10);
+$pdf->SetFont('Arial', '', 12);
+$pdf->MultiCell(0, 10, utf8_decode('Genera un reporte proyectivo que muestra datos relevantes para pder pryectar la cantidad de préstamos para el mes siguiente. mensuales'));
 
 // Instanciar el modelo CursoHandler para obtener los datos
 $curso = new CursoHandler();
