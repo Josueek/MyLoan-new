@@ -139,3 +139,21 @@ function generarReporte() {
     // Abrir el reporte en una nueva pestaña
     window.open(PATH, '_blank');
 }
+
+function generarReportePorInstitucion() {
+    const institucionSeleccionada = document.getElementById('filtroInstitucion').value;
+
+    if (!institucionSeleccionada) {
+        alert('Por favor, selecciona una institución para generar el reporte.');
+        return;
+    }
+
+    // Construir la URL del reporte
+    const PATH = `${SERVER_URL}reportes/inventario_herramienta.php?institucion=${encodeURIComponent(institucionSeleccionada)}`;
+
+    // Mostrar la URL en la consola para depuración
+    console.log('Generando reporte en:', PATH);
+
+    // Abrir el reporte en una nueva pestaña
+    window.open(PATH, '_blank');
+}
