@@ -37,7 +37,7 @@ class MaterialData extends MaterialHandler
 
     public function setTipoInventario($tipo)
     {
-        if (Validator::validateString($tipo)) {
+        if (Validator::validateAlphabetic($tipo)) {
             $this->tipoInventario = $tipo;
             return true;
         } else {

@@ -44,9 +44,7 @@ class MaterialHandler
                     SUM(en_uso) AS en_uso_del_stock
                 FROM tb_inventario_herramienta
                 GROUP BY nombre_herramienta
-    
                 UNION ALL
-    
                 SELECT
                     "Materiales" AS tipo_inventario,
                     nombre,
@@ -54,9 +52,7 @@ class MaterialHandler
                     NULL AS en_uso_del_stock
                 FROM tb_materiales
                 GROUP BY nombre
-    
                 UNION ALL
-    
                 SELECT
                     "Equipos" AS tipo_inventario,
                     nombre,
@@ -67,7 +63,7 @@ class MaterialHandler
             ) AS inventario
             WHERE tipo_inventario = ?';
         $params = array($this-> tipoInventario);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     
 

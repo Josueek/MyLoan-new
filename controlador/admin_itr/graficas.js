@@ -35,11 +35,9 @@ const graficoInventarioPorTipoI = async () => {
         // Obtener el tipo de inventario seleccionado
         const tipoInventario = getSelectedTipoInventario();
         console.log(tipoInventario);
-        // Construir la URL con el tipo de inventario como parámetro
-        const url = `../../api/services/material_services.php?action=getInventarioPorTipoInventario&tipo=${encodeURIComponent(tipoInventario)}`;
         // Petición para obtener los datos del gráfico.
-        const response = await fetch(url);
-        console.log(response);
+        const response = await fetch(`../../api/services/material_services.php?action=getInventarioPorTipoInventario&tipo=${encodeURIComponent(tipoInventario)}`);
+        //console.log(response);
         const DATA = await response.json();
         // Se comprueba si la respuesta es satisfactoria.
         if (DATA.status) {
@@ -64,7 +62,7 @@ const graficoInventarioPorTipoI = async () => {
             // En caso de error, se remueve el canvas.
             const canvasElement = document.getElementById('graficaInventario');
             if (canvasElement) canvasElement.remove();
-            console.error('Datos incorrectos:',DATA, DATA.error);
+            console.error('Datos incorrectos:', DATA.error);
         }
     } catch (error) {
         console.log('Error fetching data:', error);
