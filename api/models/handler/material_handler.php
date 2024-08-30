@@ -68,6 +68,13 @@ class MaterialHandler
     // Ejecutar la consulta y retornar los resultados
     return Database::getRows($sql);
 }
+public function getMaterials($orden = 'asc') {
+    // Definir la consulta SQL para obtener los materiales
+    $sql = 'SELECT nombre, descripcion, cantidad FROM tb_materiales ORDER BY cantidad ' . strtoupper($orden);
 
+    // Preparar la consulta y ejecutar
+    $params = array(); // Agrega parámetros si es necesario
+    return Database::getRows($sql, $params);
+}
 }
 ?>

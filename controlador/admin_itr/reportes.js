@@ -88,7 +88,7 @@ function generarReportePorEstado() {
     if (estadoSeleccionado) {
         // Definir la ruta del reporte, incluyendo el estado como parámetro
         const PATH = new URL(`${SERVER_URL}reportes/empleados_estado.php?estado=${estadoSeleccionado}`);
-
+        
         // Abrir el reporte en una nueva pestaña
         window.open(PATH.href);
     } else {
@@ -97,38 +97,33 @@ function generarReportePorEstado() {
 }
 
 // Función para abrir y generar el reporte parametrizado
-const EquipoEspacio = () => {
-    // Obtener el valor seleccionado del combo box
-    const espacio = document.getElementById('ReporteEspacioEquipo').value;
-
-    // Verificar si el valor es válido
-    if (!espacio) {
-        console.error('Por favor selecciona un espacio.');
-        return;
-    }
-
+const EquipoEspacio = (espacio) => {
     // Definir la ruta del reporte y agregar el parámetro del espacio
     const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php`);
     PATH.searchParams.append('id_espacio', espacio);
-
-    // Verificar el valor en la consola para depuración
-    console.log('ID Espacio seleccionado:', espacio);
 
     // Abrir el reporte en una nueva pestaña
     window.open(PATH.href);
 };
 
-function generarReportePorEstado() {
-    // Obtener el estado seleccionado por el usuario
-    const estadoSeleccionado = document.getElementById('ReporteEspacioEquipo').value;
+const generarReporteEspacios = () => {
+    // Obtener el valor seleccionado del dropdown
+    const especialidadId = document.getElementById('filtrarEspecialidad').value;
+    // Definir la ruta del reporte con el parámetro de la especialidad
+    const PATH = new URL(`${SERVER_URL}reportes/espacio_especialidad.php?especialidadId=${especialidadId}`);
+    // Abrir el reporte en una nueva pestaña
+    window.open(PATH.href);
+};
 
-    if (estadoSeleccionado) {
-        // Definir la ruta del reporte, incluyendo el estado como parámetro
-        const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?estado=${estadoSeleccionado}`);
+function generarReporte() {
+    const ordenSeleccionado = document.getElementById('filtrarCantidad').value;
 
-        // Abrir el reporte en una nueva pestaña
-        window.open(PATH.href);
-    } else {
-        alert('Por favor, seleccione un estado para generar el reporte.');
-    }
+    // Construir la URL del reporte
+    const PATH = `${SERVER_URL}reportes/inventario_materiales.php?orden=${encodeURIComponent(ordenSeleccionado)}`;
+    
+    // Mostrar la URL en la consola para depuración
+    console.log('Generando reporte en:', PATH);
+    
+    // Abrir el reporte en una nueva pestaña
+    window.open(PATH, '_blank');
 }
