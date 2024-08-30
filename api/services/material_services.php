@@ -32,7 +32,6 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-
         case 'getMaterial':
             if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
                 if ($result['dataset'] = $material->getMaterialById($_GET['id'])) {
@@ -46,34 +45,34 @@ if (isset($_GET['action'])) {
             break;
         case 'getInventarioPorTipoInventario':
             // Depuración: Imprimir los datos recibidos
-            error_log('Datos recibidos: ' . print_r($_POST, true));
+            //error_log('Datos recibidos: ' . print_r($_POST, true));
             // Verificar si el parámetro 'tipo' está presente y es válido
-            if (isset($_POST['tipo']) && !empty($_POST['tipo'])) {
-                $tipo = $_POST['tipo'];
+            if (isset($_GET['tipo']) && !empty($_GET['tipo'])) {
+                $tipo = $_GET['tipo'];
                 // Depuración: Imprimir el tipo de inventario recibido
-                error_log('Tipo de inventario recibido: ' . $tipo);
+                //('Tipo de inventario recibido: ' . $tipo);
                 // Establecer el tipo de inventario
                 if (!$material->setTipoInventario($tipo)) {
                     // Depuración: Imprimir el error al establecer el tipo de inventario
-                    error_log('Error al establecer el tipo de inventario: ' . $material->getDataError());
+                    //error_log('Error al establecer el tipo de inventario: ' . $material->getDataError());
                     $result['error'] = $material->getDataError();
                 } elseif ($result['dataset'] = $material->getInventarioPorTipoInventario()) {
                     // Depuración: Imprimir los datos del inventario obtenidos
-                    error_log('Datos del inventario obtenidos: ' . print_r($result['dataset'], true));
+                    //error_log('Datos del inventario obtenidos: ' . print_r($result['dataset'], true));
                     $result['status'] = 1;
                 } else {
                     // Depuración: Mensaje cuando no se pueden obtener los datos del inventario
-                    error_log('No se pudieron obtener los datos del inventario');
+                    //error_log('No se pudieron obtener los datos del inventario');
                     $result['message'] = 'No se pudieron obtener los datos del inventario';
                 }
             } else {
                 // Depuración: Mensaje cuando los datos son inválidos
-                error_log('Datos inválidos.');
+                //error_log('Datos inválidos.');
                 $result['message'] = 'Datos inválidos.';
             }
             // Enviar la respuesta en formato JSON
             header('Content-Type: application/json');
-            echo json_encode($result);
+            //echo json_encode($result);
             break;
         case 'updateMaterial':
             $_POST = Validator::validateForm($_POST);

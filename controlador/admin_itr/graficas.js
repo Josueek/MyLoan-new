@@ -53,7 +53,7 @@ const graficoInventarioPorTipoI = async () => {
                 totalStock.push(row.total_stock);
                 enUsoStock.push(row.en_uso_del_stock || 0); // Asignar 0 si en_uso_del_stock es NULL
             });
-
+            document.getElementById('chartContainerInventario').innerHTML = '<canvas id="graficaInventario"></canvas>';
             // Llamada a la función para generar y mostrar un gráfico de barras.
             barGraph('graficaInventario', nombres, totalStock, 'Total de Stock', 'Total de stock por item');
             // Opcionalmente, puedes generar otro gráfico para 'enUsoStock' si es necesario.
@@ -62,7 +62,7 @@ const graficoInventarioPorTipoI = async () => {
             // En caso de error, se remueve el canvas.
             const canvasElement = document.getElementById('graficaInventario');
             if (canvasElement) canvasElement.remove();
-            console.error('Datos incorrectos:', DATA.error);
+            console.error('Datos incorrectos:',DATA.error);
         }
     } catch (error) {
         console.log('Error fetching data:', error);
