@@ -76,14 +76,14 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <h5 class="card-title mb-0">
-                                                    Reporte de Préstamos por Usuario
+                                                    Reporte de proyección de cursos.
                                                 </h5>
                                             </div>
                                             <p class="card-text">
-                                                Genera un reporte de las ventas de estado entregado
+                                                Genera un reporte proyectivo que muestra datos relevantes para poder proyectar la cantidad de cursos para el mes siguiente.
                                                 mensuales.
                                             </p>
-                                            <button class="btn btn-custom" onclick="generarReporte1('ventasMensuales')">
+                                            <button class="btn btn-custom" onclick="generarReporte1('ReporteCurso')">
                                                 Generar Reporte
                                             </button>
                                         </div>
@@ -96,14 +96,14 @@
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <h5 class="card-title mb-0">
-                                                    Reporte de Préstamos por Usuario
+                                                    Reporte de proyección de préstamos.
                                                 </h5>
                                             </div>
                                             <p class="card-text">
-                                                Genera un reporte de las ventas de estado entregado
+                                                Genera un reporte proyectivo que muestra datos relevantes para pder pryectar la cantidad de préstamos para el mes siguiente.
                                                 mensuales.
                                             </p>
-                                            <button class="btn btn-custom" onclick="generarReporte1('ventasMensuales')">
+                                            <button class="btn btn-custom" onclick="generarReporte2('ReportePrestamo')">
                                                 Generar Reporte
                                             </button>
                                         </div>
@@ -129,6 +129,8 @@
                             <h5>Esta gráfica funciona cuando ya se cuentan con mínimo 5 meses de ventas mensuales.</h5>
                         </div>
                         <h5>¿Cómo Funciona el Método Incremental?</h5>
+                        <br>
+                        <br>
                         <ol>
                             <li><strong>Proyección Inicial:</strong>
                                 <p>Establece una proyección base. Comienza con una proyección financiera o de negocio inicial, como una proyección de ventas, ingresos, gastos, o cualquier otra métrica clave.</p>
@@ -157,6 +159,8 @@
 
         <!-- Scripts -->
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../controlador/admin_itr/proyecciones.js"></script>
+        <script src="../../controlador/utils/components.js"></script>
         <script src="../../controlador/utils/dashboard.js"></script>
         <script src="../../controlador/utils/session_utils.js"></script>
         <script src="../../recursos/js/acciones.js"></script>
@@ -165,7 +169,8 @@
         <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
         <script src="../../recursos/js/dashboard.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="../../controlador/admin_itr/proyecciones.js"></script>
+      
+
 
         
        
