@@ -5,12 +5,10 @@ require_once('../helpers/report.php');
 // Se incluye la clase para la transferencia y acceso a datos.
 require_once('../models/handler/equipo_handler.php');
 
-// Obtener el parámetro id_espacio de la solicitud
 $id_espacio = isset($_GET['id_espacio']) ? $_GET['id_espacio'] : 0;
 
 // Verificar si el id_espacio es válido
 if (empty($id_espacio) || !is_numeric($id_espacio)) {
-    // Manejo de errores si el parámetro no es válido
     die('Parámetro id_espacio no válido.');
 }
 
@@ -19,7 +17,6 @@ $pdf = new Report;
 
 // Establecer márgenes globales (15 mm a cada lado).
 $pdf->SetMargins(15, 15, 15);
-$pdf->AddPage(); // Añadir una página
 
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Equipo registrado en espacios');
@@ -61,7 +58,7 @@ if (is_array($dataEquipos) && count($dataEquipos) > 0) {
     // Se recorren los registros fila por fila con el nuevo ancho de columnas.
     foreach ($dataEquipos as $rowEquipo) {
         // Asegurar que cada fila se mantenga centrada aplicando el margen izquierdo
-        $pdf->SetX($pdf->GetX() + $marginLeft); 
+        $pdf->SetX($pdf->GetX() + $marginLeft);
         $pdf->Cell($columnWidths[0], 10, utf8_decode($rowEquipo['id_equipo']), 1, 0, 'C');
         $pdf->Cell($columnWidths[1], 10, utf8_decode($rowEquipo['nombre']), 1, 0, 'C');
         $pdf->Cell($columnWidths[2], 10, utf8_decode($rowEquipo['descripcion']), 1, 0, 'C');

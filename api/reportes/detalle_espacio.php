@@ -58,7 +58,7 @@ if ($dataEspacios = $espacio->obtenerDetalleEspacios()) {
         $pdf->setFillColor(252, 195, 45); // Color para los encabezados
 
         $pdf->Cell($columnWidths[0], $rowHeight, utf8_decode('Campo'), 1, 0, 'C', 1);
-        $pdf->Cell($columnWidths[1], $rowHeight, utf8_decode('Valor'), 1, 1, 'C', 1);
+        $pdf->Cell($columnWidths[1], $rowHeight, utf8_decode('Datos'), 1, 1, 'C', 1);
 
         // Detalles del espacio con ajuste manual de ancho y alto
         $pdf->SetFont('Arial', '', 11);

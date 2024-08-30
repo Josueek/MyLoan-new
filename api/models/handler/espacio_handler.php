@@ -197,18 +197,36 @@ class EspacioHandler
         $params = array($this->idEspacio);
         return Database::getRows($sql, $params);
     }
+    
+    public function tipoObservacionesPorEspacio(){
+        $sql = 'SELECT 
+    tipos.tipo_observacion AS Tipo_Observacion,
+    COALESCE(COUNT(o.id_obsevacion), 0) AS Numero_de_Observaciones
+    FROM 
+        (SELECT "Previa" AS tipo_observacion 
+        UNION ALL 
+        SELECT "Durante" 
+        UNION ALL 
+        SELECT "Despues" 
+        UNION ALL 
+        SELECT "Fuera") AS tipos
+    LEFT JOIN tb_observaciones o ON o.tipo_observacion = tipos.tipo_observacion
+    AND o.id_espacio = ?
+    GROUP BY tipos.tipo_observacion;';
+        $params = array($this->idEspacio);
+        return Database::getRows($sql, $params);
+    }
 
     public function EspaciosPorEspecialidad()
-{
-    // Definir la consulta SQL para obtener los espacios por especialidad
-    $sql = '
+    {
+        // Definir la consulta SQL para obtener los espacios por especialidad
+        $sql = '
         SELECT es.nombre_especialidad, e.nombre_espacio, e.capacidad_personas, e.tipo_espacio
         FROM tb_especialidades es
         JOIN tb_espacios e ON es.id_especialidad = e.id_especialidad
     ';
 
-    // Ejecutar la consulta y retornar los resultados
-    return Database::getRows($sql);
-}
-
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
 }

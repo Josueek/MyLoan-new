@@ -41,4 +41,6 @@ class prestamos_handler
         $params = array($this->id_prestamo);
         return Database::getRow($sql, $params);
     }
+
+   
 };

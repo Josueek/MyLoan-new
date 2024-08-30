@@ -5,6 +5,13 @@ require_once('../helpers/validator.php');
 
 class MaterialHandler
 {
+    protected $id;
+    protected $nombre;
+    protected $descripcion;
+    protected $cantidad;
+    protected $tipoInventario;
+
+
     public function getAllMateriales($buscar = '', $filtrar = '')
     {
         $order = '';
@@ -25,6 +32,40 @@ class MaterialHandler
             return array('status' => 0, 'message' => 'No se encontraron registros');
         }
     }
+
+    public function getInventarioPorTipoInventario()
+    {
+        $sql = ' SELECT * 
+            FROM (
+                SELECT
+                    "Herramientas" AS tipo_inventario,
+                    nombre_herramienta AS nombre,
+                    SUM(stock) AS total_stock,
+                    SUM(en_uso) AS en_uso_del_stock
+                FROM tb_inventario_herramienta
+                GROUP BY nombre_herramienta
+                UNION ALL
+                SELECT
+                    "Materiales" AS tipo_inventario,
+                    nombre,
+                    SUM(cantidad) AS total_stock,
+                    NULL AS en_uso_del_stock
+                FROM tb_materiales
+                GROUP BY nombre
+                UNION ALL
+                SELECT
+                    "Equipos" AS tipo_inventario,
+                    nombre,
+                    SUM(cantidad) AS total_stock,
+                    NULL AS en_uso_del_stock
+                FROM tb_equipos
+                GROUP BY nombre
+            ) AS inventario
+            WHERE tipo_inventario = ?';
+        $params = array($this-> tipoInventario);
+        return Database::getRows($sql, $params);
+    }
+    
 
     public function addMaterial($params)
     {
