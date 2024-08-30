@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 Swal.fire('Error!', 'Hubo un problema al agregar el equipo.', 'error');
             });
     }
-    
+
     // Función para manejar el reporte
     function ReporteEquipo() {
         // Obtener el valor seleccionado del combo box
@@ -188,8 +188,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('formReporteEspacios').reset();  // Reiniciar el formulario
             $('#ReporteEquipo').modal('hide');  // Cerrar el modal
             EquipoEspacio(espacio);  // Llamar a la función para abrir el reporte
+            console.log("id del espacio seleccionado: " + espacio)
         });
     }
+    
     function cargarEquipo(idEquipo) {
         fetch(`../../api/services/equipo_services.php?action=getEquipo&id=${idEquipo}`)
             .then(response => response.json())

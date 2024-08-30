@@ -88,7 +88,7 @@ function generarReportePorEstado() {
     if (estadoSeleccionado) {
         // Definir la ruta del reporte, incluyendo el estado como parámetro
         const PATH = new URL(`${SERVER_URL}reportes/empleados_estado.php?estado=${estadoSeleccionado}`);
-        
+
         // Abrir el reporte en una nueva pestaña
         window.open(PATH.href);
     } else {
@@ -97,10 +97,22 @@ function generarReportePorEstado() {
 }
 
 // Función para abrir y generar el reporte parametrizado
-const EquipoEspacio = (espacio) => {
+const EquipoEspacio = () => {
+    // Obtener el valor seleccionado del combo box
+    const espacio = document.getElementById('ReporteEspacioEquipo').value;
+
+    // Verificar si el valor es válido
+    if (!espacio) {
+        console.error('Por favor selecciona un espacio.');
+        return;
+    }
+
     // Definir la ruta del reporte y agregar el parámetro del espacio
     const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php`);
     PATH.searchParams.append('id_espacio', espacio);
+
+    // Verificar el valor en la consola para depuración
+    console.log('ID Espacio seleccionado:', espacio);
 
     // Abrir el reporte en una nueva pestaña
     window.open(PATH.href);
