@@ -41,7 +41,7 @@ const graficoBarrasCursos = async () => {
 
 const graficoPrestamos = async () => {
     try {
-        const response = await fetch('../../api/services/prestamo_services.php?action=prestamosUltimosMesesConProyeccion');
+        const response = await fetch('../../api/services/curso_services.php?action=prestamosUltimosMesesConProyeccion');
         const DATA = await response.json();
 
         if (DATA.status) {
@@ -92,16 +92,16 @@ const barGraphCursos = (canvasId, labels, cantidad, incremento, porcentajeIncrem
                 {
                     label: 'Incremento',
                     data: incremento,
-                    backgroundColor: '#FCBE2D',
-                    borderColor: '#FCBE2D',
+                    backgroundColor: '#0B7F4B',
+                    borderColor: '#0B7F4B',
                     borderWidth: 1,
                 },
                 {
                     label: 'Porcentaje de Incremento (%)',
                     data: porcentajeIncremento,
                     type: 'line',
-                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
-                    borderColor: '#11015C',
+                    backgroundColor: '#FCBE2D',
+                    borderColor: '#FCBE2D',
                     borderWidth: 2,
                     yAxisID: 'y1'
                 }
@@ -166,23 +166,23 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
                 {
                     label: 'Cantidad de Préstamos',
                     data: cantidad,
-                    backgroundColor: '#0466F8',
-                    borderColor: '#0466F8',
+                    backgroundColor: '#FCBE2D',
+                    borderColor: '#FCBE2D',
                     borderWidth: 1,
                 },
                 {
                     label: 'Incremento',
                     data: incremento,
-                    backgroundColor: '#FCBE2D',
-                    borderColor: '#FCBE2D',
+                    backgroundColor: '#0B7F4B',
+                    borderColor: '#0B7F4B',
                     borderWidth: 1,
                 },
                 {
                     label: 'Porcentaje de Incremento (%)',
                     data: porcentajeIncremento,
                     type: 'line',
-                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
-                    borderColor: '#11015C',
+                    backgroundColor: '#0466F8',
+                    borderColor: '#0466F8',
                     borderWidth: 2,
                     yAxisID: 'y1'
                 }
