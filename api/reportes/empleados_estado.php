@@ -14,6 +14,17 @@ if ($estado == '') {
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
+
+// Añadir una página antes de cualquier otra operación
+$pdf->AddPage();
+
+// Configurar el ancho y alto de la página
+$pageWidth = $pdf->GetPageWidth();
+$pageHeight = $pdf->GetPageHeight();
+
+// Añadir imagen de fondo en la página actual
+$pdf->Image('C:/xampp/htdocs/MyLoan-new/api/images/categorias/Fondo de reportes.png', 0, 0, $pageWidth, $pageHeight, 'PNG', '', '', true, 300, '', false, false, 0, 'C', false, false);
+
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Empleados por Estado');
 
@@ -24,7 +35,6 @@ $empleado = new EmpleadoHandler;
 $dataEmpleados = $empleado->EmpleadosPorEstado($estado);
 
 // Definir el ancho de la página en mm.
-$pageWidth = $pdf->GetPageWidth();
 $columnWidths = array($pageWidth * 0.30, $pageWidth * 0.30, $pageWidth * 0.30); // Ancho de las columnas en porcentaje de la página
 
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.

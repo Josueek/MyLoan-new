@@ -1,14 +1,9 @@
 
-// Método del evento para cuando el documento ha cargado.
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('yourButtonId').addEventListener('click', function() {
+        generarReportePorEstado();
+    });
 });
-/*
-*   Función para abrir un reporte automático de productos por categoría.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
-
 
 
 const generarReporte1 = () => {
@@ -102,15 +97,14 @@ const EquipoEspacio = () => {
     // Abrir el reporte en una nueva pestaña
     window.open(PATH.href);
 };
-
 function generarReportePorEstado() {
     // Obtener el estado seleccionado por el usuario
-    const estadoSeleccionado = document.getElementById('ReporteEspacioEquipo').value;
+    const estadoSeleccionado = document.getElementById('filtroEstado').value;
 
     if (estadoSeleccionado) {
         // Definir la ruta del reporte, incluyendo el estado como parámetro
-        const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?estado=${estadoSeleccionado}`);
-
+        const PATH = new URL(`${SERVER_URL}reportes/empleados_estado.php?estado=${estadoSeleccionado}`);
+        
         // Abrir el reporte en una nueva pestaña
         window.open(PATH.href);
     } else {
