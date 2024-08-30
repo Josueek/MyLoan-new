@@ -13,7 +13,9 @@ $espacio = new EspacioHandler;
 
 // Definir el ancho de la página en mm.
 $pageWidth = $pdf->GetPageWidth();
-$columnWidths = array($pageWidth * 0.30, $pageWidth * 0.30, $pageWidth * 0.20, $pageWidth * 0.20); // Ancho de las columnas en porcentaje de la página
+$margin = 10; // Margen en mm
+$availableWidth = $pageWidth - (2 * $margin); // Ancho disponible para la tabla
+$columnWidths = array($availableWidth * 0.30, $availableWidth * 0.30, $availableWidth * 0.20, $availableWidth * 0.20); // Ancho de las columnas en porcentaje del ancho disponible
 
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEspacios = $espacio->EspaciosPorEspecialidad()) {
@@ -47,3 +49,4 @@ if ($dataEspacios = $espacio->EspaciosPorEspecialidad()) {
 
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
 $pdf->output('I', 'espacios_por_especialidad.pdf');
+?>

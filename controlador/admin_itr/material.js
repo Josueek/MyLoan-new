@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('filtrarCantidad').addEventListener('change', function() {
             buscarMaterial();
         });
-
+        
         // Evento para agregar material
         document.getElementById('formAgregarMaterial').addEventListener('submit', function(event) {
             event.preventDefault();

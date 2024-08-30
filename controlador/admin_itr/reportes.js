@@ -114,3 +114,16 @@ const generarReporteEspacios = () => {
     // Abrir el reporte en una nueva pestaña
     window.open(PATH.href);
 };
+
+function generarReporte() {
+    const ordenSeleccionado = document.getElementById('filtrarCantidad').value;
+
+    // Construir la URL del reporte
+    const PATH = `${SERVER_URL}reportes/inventario_materiales.php?orden=${encodeURIComponent(ordenSeleccionado)}`;
+    
+    // Mostrar la URL en la consola para depuración
+    console.log('Generando reporte en:', PATH);
+    
+    // Abrir el reporte en una nueva pestaña
+    window.open(PATH, '_blank');
+}
