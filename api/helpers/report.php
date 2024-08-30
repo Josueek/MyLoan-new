@@ -27,7 +27,7 @@ class Report extends FPDF
         session_start();
         if (isset($_SESSION['id_usuario'])) {
             $this->title = $title;
-            $this->setTitle('MyLoan Report', true);
+            $this->setTitle('My Loan - Reporte', true);
             $this->setMargins(15, 15, 15);
             $this->addPage('p', 'letter');
             $this->aliasNbPages();

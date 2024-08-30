@@ -51,15 +51,15 @@
                                             <!-- Aquí puedes agregar las opciones de especialidad dinámicamente desde la base de datos -->
                                         </select>
                                     </div>
-                                    <div  class="col-lg-6 mb-3 d-flex justify-content-end">
-                                        <button type="button" class="btn btn-warning" onclick="generarReporteEspacios()">
+                                    <!-- Boton para generar reporte sobre espacios -->
+                                    <div class="col-lg-3 mb-3 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-warning"
+                                            onclick="generarReporteEspacios()">
                                             Generar Reporte
                                         </button>
                                     </div>
-
-                                    
-
-                                    <div class="col-lg-6 mb-3 d-flex justify-content-end">
+                                    <!-- Boton para agregar un espacio-->
+                                    <div class="col-lg-3 mb-3 d-flex justify-content-end">
                                         <button id="btnAgregarEspacio" type="button"
                                             class="btn btn-primary mx-1 btnestilo" data-bs-toggle="modal"
                                             data-bs-target="#AgregarEspacio">Agregar espacio</button>
@@ -273,7 +273,7 @@
     <!-- ESTE HACE QUE ABRA EL MODAL DE LA GRAFICA-->
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Scrip que si funionan -->
-   <!-- <script src="../../recursos/js/app.min.js"></script>-->
+    <!-- <script src="../../recursos/js/app.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../controlador/utils/dashboard.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
