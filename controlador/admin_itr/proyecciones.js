@@ -234,5 +234,25 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
                 }
             }
         }
+
+
+        
     });
+
+
 }
+    
+const generarReporte1 = () => {
+    // Se define la ruta del reporte basado en el tipo de reporte.
+    const PATH = new URL(`${SERVER_URL}reportes/proyeccion_cursos.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+};
+
+
+const generarReporte2 = () => {
+    // Se define la ruta del reporte basado en el tipo de reporte.
+    const PATH = new URL(`${SERVER_URL}reportes/proyeccion_prestamos.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+};
