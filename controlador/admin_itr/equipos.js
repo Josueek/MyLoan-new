@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('ID desde equipos:' + idEspacioSeleccionado)
         if (idEspacioSeleccionado) {
             // Definir la ruta del reporte, incluyendo el id del espacio como parámetro
-            const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?id_espacio=${idEspacioSeleccionado}`);
+            const PATH = new URL(`${SERVER_URL}reportes/equipo_espacio.php?id_espacio=${idEspacioSeleccionado}`, target="_blank");
             
 
             // Abrir el reporte en una nueva pestaña

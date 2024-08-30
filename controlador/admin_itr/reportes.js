@@ -116,9 +116,9 @@ const generarReporteEspacios = () => {
     // Obtener el valor seleccionado del dropdown
     const especialidadId = document.getElementById('filtrarEspecialidad').value;
     // Definir la ruta del reporte con el parámetro de la especialidad
-    const PATH = new URL(`${SERVER_URL}reportes/espacio_especialidad.php?especialidadId=${especialidadId}`);
+    const PATH = new URL(`${SERVER_URL}reportes/espacio_especialidad.php?especialidadId=${especialidadId}`, target="_blank");
     // Abrir el reporte en una nueva pestaña
-    window.open(PATH.href);
+    window.open(PATH.href, '_blanck');
 };
 
 function generarReporte() {
