@@ -198,6 +198,17 @@ class EspacioHandler
         return Database::getRows($sql, $params);
     }
 
-    
+    public function EspaciosPorEspecialidad()
+{
+    // Definir la consulta SQL para obtener los espacios por especialidad
+    $sql = '
+        SELECT es.nombre_especialidad, e.nombre_espacio, e.capacidad_personas, e.tipo_espacio
+        FROM tb_especialidades es
+        JOIN tb_espacios e ON es.id_especialidad = e.id_especialidad
+    ';
+
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql);
+}
 
 }

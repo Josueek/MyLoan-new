@@ -44,14 +44,20 @@
                                         <input type="search" id="buscarEspacio" class="form-control"
                                             placeholder="Buscar">
                                     </div>
-
                                     <div class="col-lg-3 mb-3 d-flex align-items-center">
                                         <!-- input para filtrar -->
                                         <select id="filtrarEspecialidad" class="form-select" required>
                                             <option value="">Todos</option>
+                                            <!-- Aquí puedes agregar las opciones de especialidad dinámicamente desde la base de datos -->
                                         </select>
                                     </div>
+                                    <div  class="col-lg-6 mb-3 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-warning" onclick="generarReporteEspacios()">
+                                            Generar Reporte
+                                        </button>
+                                    </div>
 
+                                    
 
                                     <div class="col-lg-6 mb-3 d-flex justify-content-end">
                                         <button id="btnAgregarEspacio" type="button"
@@ -278,10 +284,11 @@
     <!-- Scrip que dudosamente sirven-->
     <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
     <script src="../../recursos/js/dashboard.js"></script>
-    <script src="../../recursos/js/sidebarmenu.js"></script>
     <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
     <script src="../../recursos/js/modales.js"></script>
     <script src="../../controlador/admin_itr/gestionar_espacios.js"></script>
+    <script src="../../controlador/utils/components.js"></script>
+    <script src="../../controlador/admin_itr/reportes.js"></script>
 
 </body>
 
