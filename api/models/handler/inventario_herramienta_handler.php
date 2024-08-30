@@ -55,5 +55,23 @@ class InventarioHerramientaHandler
         $params = array($codigoHerramienta);
         return Database::executeRow($sql, $params);
     }
+    
+    public function HerramientasPorInstitucion($institucion)
+{
+    // Definir la consulta SQL para obtener las herramientas por institución
+    $sql = '
+        SELECT h.codigo_herramienta, h.nombre_herramienta, h.descripcion, h.stock, h.en_uso
+        FROM tb_inventario_herramienta  h
+        JOIN tb_instituciones  i ON h.id_institucion = i.id_institucion
+        WHERE i.id_institucion = :institucion
+    ';
+
+    // Preparar la consulta y vincular el parámetro
+    $params = array(':institucion' => $institucion);
+    
+    // Ejecutar la consulta y retornar los resultados
+    return Database::getRows($sql, $params);
+}
+
 }
 ?>
