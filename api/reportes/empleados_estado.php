@@ -40,7 +40,7 @@ if ($dataEmpleados) {
     $pdf->Cell($columnWidths[2], 10, 'Apellido del empleado', 1, 1, 'C', 1);
 
     // Se establece un color de relleno para los datos.
-    $pdf->setFillColor(200, 231, 226);
+    $pdf->setFillColor(143, 194, 187);
     // Se establece la fuente para los datos.
     $pdf->setFont('Arial', '', 11);
 
