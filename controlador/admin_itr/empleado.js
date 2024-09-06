@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const chartContainer = document.getElementById('chartContainer');
                 if (chartContainer) {
                     chartContainer.innerHTML = '<canvas id="myBarChart"></canvas>';
-                    barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de Préstamos', 'Prestamos del Usuario');
+                    barGraph('myBarChart', estados, cantidadPrestamos, 'Cantidad de préstamos', 'Prestamos del usuario');
                 } else {
                     console.error('No se pudo encontrar el contenedor del gráfico con id "chartContainer"');
                 }

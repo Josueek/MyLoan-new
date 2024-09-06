@@ -180,7 +180,7 @@ const graficoUsuariosConMasPrestamos = async () => {
             });
 
             // Llamada a la función para generar y mostrar un gráfico de barras.
-            barGraph('myBarChart', usuarios, cantidadPrestamos, 'Cantidad de Préstamos', 'Usuarios con más préstamos');
+            barGraph('myBarChart', usuarios, cantidadPrestamos, 'Cantidad de préstamos', 'Usuarios con más préstamos');
         } else {
             // En caso de error, se remueve el canvas.
             const canvasElement = document.getElementById('myBarChart');

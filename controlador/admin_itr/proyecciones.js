@@ -83,7 +83,7 @@ const barGraphCursos = (canvasId, labels, cantidad, incremento, porcentajeIncrem
             labels: labels,
             datasets: [
                 {
-                    label: 'Cantidad de Cursos',
+                    label: 'Cantidad de cursos',
                     data: cantidad,
                     backgroundColor: '#0466F8',
                     borderColor: '#0466F8',
@@ -97,7 +97,7 @@ const barGraphCursos = (canvasId, labels, cantidad, incremento, porcentajeIncrem
                     borderWidth: 1,
                 },
                 {
-                    label: 'Porcentaje de Incremento (%)',
+                    label: 'Porcentaje de incremento (%)',
                     data: porcentajeIncremento,
                     type: 'line',
                     backgroundColor: '#FCBE2D',
@@ -117,7 +117,7 @@ const barGraphCursos = (canvasId, labels, cantidad, incremento, porcentajeIncrem
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Cantidad de Cursos e Incremento'
+                        text: 'Cantidad de cursos e incremento'
                     }
                 },
                 y1: {
@@ -125,7 +125,7 @@ const barGraphCursos = (canvasId, labels, cantidad, incremento, porcentajeIncrem
                     position: 'right',
                     title: {
                         display: true,
-                        text: 'Porcentaje de Incremento (%)'
+                        text: 'Porcentaje de incremento (%)'
                     },
                     ticks: {
                         callback: function(value) {
@@ -137,7 +137,7 @@ const barGraphCursos = (canvasId, labels, cantidad, incremento, porcentajeIncrem
             plugins: {
                 title: {
                     display: true,
-                    text: 'Cantidad de Cursos, Incremento y Porcentaje de Incremento'
+                    text: 'Cantidad de cursos, incremento y porcentaje de incremento'
                 },
                 tooltip: {
                     callbacks: {
@@ -164,7 +164,7 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
             labels: labels,
             datasets: [
                 {
-                    label: 'Cantidad de Préstamos',
+                    label: 'Cantidad de préstamos',
                     data: cantidad,
                     backgroundColor: '#FCBE2D',
                     borderColor: '#FCBE2D',
@@ -178,7 +178,7 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
                     borderWidth: 1,
                 },
                 {
-                    label: 'Porcentaje de Incremento (%)',
+                    label: 'Porcentaje de incremento (%)',
                     data: porcentajeIncremento,
                     type: 'line',
                     backgroundColor: '#0466F8',
@@ -198,7 +198,7 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Cantidad de Préstamos e Incremento'
+                        text: 'Cantidad de préstamos e incremento'
                     }
                 },
                 y1: {
@@ -206,7 +206,7 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
                     position: 'right',
                     title: {
                         display: true,
-                        text: 'Porcentaje de Incremento (%)'
+                        text: 'Porcentaje de incremento (%)'
                     },
                     ticks: {
                         callback: function(value) {
@@ -218,7 +218,7 @@ const barGraphPrestamos = (canvasId, labels, cantidad, incremento, porcentajeInc
             plugins: {
                 title: {
                     display: true,
-                    text: 'Cantidad de Préstamos, Incremento y Porcentaje de Incremento'
+                    text: 'Cantidad de préstamos, incremento y porcentaje de incremento'
                 },
                 tooltip: {
                     callbacks: {
