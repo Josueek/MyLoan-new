@@ -53,7 +53,7 @@ CREATE TABLE `tb_cargos` (
 CREATE TABLE `tb_cursos` (
   `id_curso` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_curso` varchar(255) NOT NULL,
-  `fecha_inicio` date NOT NULL,
+  `fecha_inicio` date NOT NULL, 
   `fecha_fin` date DEFAULT NULL,
   `cantidad_personas` int(11) NOT NULL,
   `grupo` varchar(100) DEFAULT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE `tb_especialidades` (
   PRIMARY KEY (`id_especialidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `tb_instituciones` (
+CREATE TABLE `s1` (
   `id_institucion` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_institucion` varchar(120) NOT NULL,
   PRIMARY KEY (`id_institucion`)
