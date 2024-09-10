@@ -140,7 +140,7 @@ CREATE TABLE `tb_instructores` (
   PRIMARY KEY (`id_instructor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `tb_inventario_herramienta` (
+/*CREATE TABLE `tb_inventario_herramienta` (
   `codigo_herramienta` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_herramienta` varchar(100) NOT NULL,
   `descripcion` varchar(300) DEFAULT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE `tb_inventario_herramienta` (
   `id_institucion` int(11) NOT NULL,
   PRIMARY KEY (`codigo_herramienta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+*/
 CREATE TABLE `tb_materiales` (
   `id_material` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
