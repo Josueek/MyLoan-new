@@ -75,7 +75,7 @@ $(document).ready(function () {
     }
 
     function cargarFechas() {
-        fetch('../../api/services/curso_services.php?action=obtenerFechasCurso') // Asegúrate de que la URL sea correcta
+        fetch('../../api/services/cursosfechas_services.php?action=obtenerFechasCurso') // Asegúrate de que la URL sea correcta
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Red no está disponible.');
