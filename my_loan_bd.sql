@@ -66,7 +66,8 @@ CREATE TABLE `tb_cursos` (
   `id_empleado` int(11) NOT NULL,
   `estado` enum('pendiente','denegado','en curso','finalizado') NOT NULL DEFAULT 'pendiente',
   `id_especialidad` int(11) DEFAULT NULL, -- Alterado Tomar en cuenta este valor
-  PRIMARY KEY (`id_curso`)
+  PRIMARY KEY (`id_curso`),
+  CONSTRAINT chk_cantidad_p CHECK (`cantidad_personas` >= 1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_datos_empleados`
@@ -105,7 +106,8 @@ CREATE TABLE `tb_detalle_prestamos` (
   `id_equipo` int(11) DEFAULT NULL,
   `id_material` int(11) DEFAULT NULL,
   `codigo_herramienta` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_detalle_prestamo`)
+  PRIMARY KEY (`id_detalle_prestamo`),
+  CONSTRAINT chk_cantidad_inventario_equipo CHECK (`cantidad` >= 1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_equipos`
@@ -117,7 +119,8 @@ CREATE TABLE `tb_equipos` (
   `cantidad` int(11) NOT NULL,
   `id_espacio` int(11) NOT NULL,
   `id_institucion` int(11) NOT NULL,
-  PRIMARY KEY (`id_equipo`)
+  PRIMARY KEY (`id_equipo`),
+  CONSTRAINT chk_cantidad_equipos CHECK (`cantidad` >= 1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_espacios`
@@ -172,7 +175,9 @@ CREATE TABLE `tb_inventario_herramienta` (
   `stock` int(11) NOT NULL,
   `en_uso` int(11) DEFAULT 0,
   `id_institucion` int(11) NOT NULL,
-  PRIMARY KEY (`codigo_herramienta`)
+  PRIMARY KEY (`codigo_herramienta`),
+  CONSTRAINT chk_stock CHECK (`stock` >= 1),
+  CONSTRAINT chk_en_uso CHECK (`en_uso` >= 1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_materiales`
@@ -182,7 +187,8 @@ CREATE TABLE `tb_materiales` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(300) DEFAULT NULL,
   `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`id_material`)
+  PRIMARY KEY (`id_material`),
+  CONSTRAINT chk_cantidad_material CHECK (`cantidad` >= 1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_observaciones`
