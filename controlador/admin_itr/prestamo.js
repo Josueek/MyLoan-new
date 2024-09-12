@@ -1,3 +1,7 @@
+document.getElementById("btnSiguiente").addEventListener("click", function() {
+    window.location.href = "http://localhost/MyLoan-new/vistas/vistas_admin/crear_solicitud_prestamousar.html";
+});
+
 function cargarCursos() {
     fetch('../../api/services/prestamo_services.php?action=getAllCursos')
         .then(response => response.json())

@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cantidadPersonas = document.getElementById('cantidadPersonas').value;
         const grupo = document.getElementById('grupo').value;
         const programaFormacion = document.getElementById('programaFormacion').value;
-        const codigoCurso = document.getElementById('codigoCurso').value;
+        const codigoCurso = document.getElementById ('codigoCurso').value;
         const empleado = document.getElementById('empleadoCurso').value;
 
         if (!nombre || !fechaInicio || !fechaFin || !cantidadPersonas || !grupo || !programaFormacion || !codigoCurso || !empleado) {
