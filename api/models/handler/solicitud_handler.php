@@ -35,6 +35,47 @@ class SolicitudHandler
             return array('status' => 0, 'message' => 'No se encontraron registros');
         }
     }
+    /**
+     * Obtiene los prestamos realizados por medio del id 
+     * Prestamos de ITR
+     */
+    public function getAllSolicitudITR()
+    {
+        $sql = 'SELECT p.id_prestamo, p.fecha_solicitud, p.programa_formacion, p.estado_prestamo, p.observacion, p.id_curso, p.id_usuario, 
+       c.nombre_curso, e.nombre_empleado
+    FROM tb_prestamos p
+    LEFT JOIN tb_cursos c ON p.id_curso = c.id_curso
+    LEFT JOIN tb_datos_empleados e ON p.id_usuario = e.id_datos_empleado
+    WHERE p.id_usuario IN (
+    SELECT u.id_usuario
+    FROM tb_usuarios u
+    WHERE u.id_institucion = 1);';
+        $data = Database::getRows($sql);
+        if ($data) {
+            return array('status' => 1, 'dataset' => $data);
+        } else {
+            return array('status' => 0, 'message' => 'No se encontraron registros');
+        }
+    }
+
+    public function getAllSolicitudCFP()
+    {
+        $sql = 'SELECT p.id_prestamo, p.fecha_solicitud, p.programa_formacion, p.estado_prestamo, p.observacion, p.id_curso, p.id_usuario, 
+       c.nombre_curso, e.nombre_empleado
+    FROM tb_prestamos p
+    LEFT JOIN tb_cursos c ON p.id_curso = c.id_curso
+    LEFT JOIN tb_datos_empleados e ON p.id_usuario = e.id_datos_empleado
+    WHERE p.id_usuario IN (
+    SELECT u.id_usuario
+    FROM tb_usuarios u
+    WHERE u.id_institucion = 2);';
+        $data = Database::getRows($sql);
+        if ($data) {
+            return array('status' => 1, 'dataset' => $data);
+        } else {
+            return array('status' => 0, 'message' => 'No se encontraron registros');
+        }
+    }
 
     /**
      * Obtiene el detalle de una solicitud de préstamo por su ID.
@@ -69,7 +110,7 @@ class SolicitudHandler
     }
 
 
-    
+
 
     /**
      * Método para agregar una nueva solicitud de préstamo.

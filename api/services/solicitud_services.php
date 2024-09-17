@@ -18,21 +18,38 @@ if (isset($_GET['action'])) {
             $result = $solicitud->getAllSolicitudes($buscar, $curso, $programa);
             break;
 
+        /**
+         * Solicitudes de ITR
+         */
+        case 'getAllSolicitudITR':
+            $result = $solicitud->getAllSolicitudITR();
+            break;
+        /**
+         * Solicitudes de CFP
+         */
+        case 'getAllSolicitudCFP':
+            $result = $solicitud->getAllSolicitudCFP();
+            break;
+
         case 'addSolicitud':
             $_POST = Validator::validateForm($_POST);
-            if (isset($_POST['fechaSolicitud']) &&
+            if (
+                isset($_POST['fechaSolicitud']) &&
                 isset($_POST['programaFormacion']) &&
                 isset($_POST['estadoPrestamo']) &&
                 isset($_POST['observacion']) &&
                 isset($_POST['idCurso']) &&
-                isset($_POST['idUsuario'])) {
+                isset($_POST['idUsuario'])
+            ) {
 
-                if ($solicitud->setFechaSolicitud($_POST['fechaSolicitud']) &&
+                if (
+                    $solicitud->setFechaSolicitud($_POST['fechaSolicitud']) &&
                     $solicitud->setProgramaFormacion($_POST['programaFormacion']) &&
                     $solicitud->setEstadoPrestamo($_POST['estadoPrestamo']) &&
                     $solicitud->setObservacion($_POST['observacion']) &&
                     $solicitud->setIdCurso($_POST['idCurso']) &&
-                    $solicitud->setIdUsuario($_POST['idUsuario'])) {
+                    $solicitud->setIdUsuario($_POST['idUsuario'])
+                ) {
 
                     if ($solicitud->create()) {
                         $result['status'] = 1;
@@ -62,21 +79,25 @@ if (isset($_GET['action'])) {
 
         case 'updateSolicitud':
             $_POST = Validator::validateForm($_POST);
-            if (isset($_POST['id']) &&
+            if (
+                isset($_POST['id']) &&
                 isset($_POST['fechaSolicitud']) &&
                 isset($_POST['programaFormacion']) &&
                 isset($_POST['estadoPrestamo']) &&
                 isset($_POST['observacion']) &&
                 isset($_POST['idCurso']) &&
-                isset($_POST['idUsuario'])) {
+                isset($_POST['idUsuario'])
+            ) {
 
-                if ($solicitud->setId($_POST['id']) &&
+                if (
+                    $solicitud->setId($_POST['id']) &&
                     $solicitud->setFechaSolicitud($_POST['fechaSolicitud']) &&
                     $solicitud->setProgramaFormacion($_POST['programaFormacion']) &&
                     $solicitud->setEstadoPrestamo($_POST['estadoPrestamo']) &&
                     $solicitud->setObservacion($_POST['observacion']) &&
                     $solicitud->setIdCurso($_POST['idCurso']) &&
-                    $solicitud->setIdUsuario($_POST['idUsuario'])) {
+                    $solicitud->setIdUsuario($_POST['idUsuario'])
+                ) {
 
                     if ($solicitud->update()) {
                         $result['status'] = 1;
