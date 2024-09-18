@@ -1,5 +1,6 @@
+
 document.getElementById("btnSiguiente").addEventListener("click", function() {
-    window.location.href = "http://localhost/MyLoan-new/vistas/vistas_admin/crear_solicitud_prestamousar.html";
+    window.location.href = "http://localhost/MyLoan-new/vistas/_/crear_solicitud_prestamousar.html";
 });
 
 function cargarCursos() {
@@ -17,6 +18,3 @@ function cargarCursos() {
         })
         .catch(error => console.error('Error al obtener cursos:', error));
 }
-
-// Llama a la función para cargar los cursos al cargar la página
-document.addEventListener('DOMContentLoaded', cargarCursos);
