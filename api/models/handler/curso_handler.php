@@ -47,6 +47,38 @@ class CursoHandler
         $params = array($idCurso);
         return Database::getRow($sql, $params);
     }
+    //Metodo para obtener los datos de un curso mediante el id
+    public function getCursoByIdCompleto($idCurso)
+    {
+        $sql = 'SELECT 
+    c.id_curso,
+    c.nombre_curso,
+    c.fecha_inicio,
+    c.fecha_fin,
+    c.cantidad_personas,
+    c.grupo,
+    c.programa_formacion,
+    c.codigo_curso,
+    c.estado,
+    e.nombre_especialidad,
+    d.nombre_empleado,
+    d.apellido_empleado,
+    d.telefono,
+    d.estado_empleado,
+    d.foto_empleado
+FROM 
+    tb_cursos c
+LEFT JOIN 
+    tb_datos_empleados d ON c.id_empleado = d.id_datos_empleado
+LEFT JOIN 
+    tb_especialidades e ON c.id_especialidad = e.id_especialidad
+WHERE 
+    c.id_curso = ?;';
+        $params = array($idCurso);
+        return Database::getRow($sql, $params);
+    }
+
+
     //Metodo para obtener los programas de formacion
     public function getPrograma()
     {

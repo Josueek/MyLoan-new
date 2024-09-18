@@ -79,7 +79,22 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $curso->getCursoById($_GET['id'])) {
                     $result['status'] = 1;
                 } else {
-                    $result['message'] = 'No s  e pudieron obtener los datos del curso';
+                    $result['message'] = 'No se obtuvo los datos del curso';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+
+        /**
+         * Obtener los datos completos del curso
+         */
+        case 'getCursoCompleto':
+            if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                if ($result['dataset'] = $curso->getCursoByIdCompleto($_GET['id'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se obtuvo los datos del curso';
                 }
             } else {
                 $result['message'] = 'Datos inválidos';
