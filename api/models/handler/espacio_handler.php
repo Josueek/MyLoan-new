@@ -119,9 +119,25 @@ class EspacioHandler
     //Obtener el espacio por medio del id obteniendo todos los datos completos
     public function getEspacioByIdCompleto($idEspacio)
     {
-        $sql = 'SELECT id_espacio, nombre_espacio, capacidad_personas, tipo_espacio, id_empleado, id_especialidad, id_institucion, inventario_doc, foto_espacio
-                FROM tb_espacios
-                WHERE id_espacio = ?';
+        $sql = 'SELECT 
+    e.id_espacio,
+    e.nombre_espacio,
+    e.capacidad_personas,
+    e.tipo_espacio,
+    e.inventario_doc,
+    e.foto_espacio,
+    es.nombre_especialidad,
+    i.nombre_institucion,
+    de.nombre_empleado,
+    de.apellido_empleado,
+    de.telefono,
+    de.estado_empleado,
+    de.foto_empleado
+FROM tb_espacios e
+JOIN tb_especialidades es ON e.id_especialidad = es.id_especialidad
+JOIN tb_datos_empleados de ON e.id_empleado = de.id_datos_empleado
+JOIN tb_instituciones i ON e.id_institucion = i.id_institucion
+WHERE e.id_espacio = ?;';
         $params = array($idEspacio);
         return Database::getRow($sql, $params);
     }

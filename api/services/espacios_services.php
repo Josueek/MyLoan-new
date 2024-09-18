@@ -133,6 +133,22 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
+        /**
+         * obtener los datos del espacio completo
+         */
+        case 'getEspacioByIdCodmpleto':
+            // Obtiene un espacio por su ID     
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (isset($data['idEspacio']) && Validator::validateNaturalNumber($data['idEspacio'])) {
+                if ($result['dataset'] = $espacio->getEspacioByIdCompleto($data['idEspacio'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se pudo obtener el espacio';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
         case 'updateEspacio':
             // Actualiza un espacio existente   
             $_POST = Validator::validateForm($_POST);
