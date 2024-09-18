@@ -90,3 +90,9 @@ function seleccionarUsuario(nombre) {
     const usuarioPrestamos = document.getElementById('usuarioPrestamos');
     usuarioPrestamos.value = nombre;
 }
+
+function AgregarPrestamo(){
+    const fechaEntrega = document.getElementById('fechaEntrega').value;
+    const programaformacion = document.getElementById('programaformacion').value;
+    const usuarioPrestamos = document.getElementById('usuarioPrestamos').value;
+}

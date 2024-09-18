@@ -7,5 +7,4 @@ class CursoHandler {
         return Database::getRows($sql);
     }
 }
-
 ?>
