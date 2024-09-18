@@ -18,19 +18,43 @@ if (isset($_GET['action'])) {
             break;
 
             // Obtiene todos los espacios correspondiente al id del usuario
-        case 'getAllEspaciosByIdUsuario':
-            // Obtiene un espacio por su ID     
-            $data = json_decode(file_get_contents("php://input"), true);
-            if (isset($data['idempleado']) && Validator::validateNaturalNumber($data['idempleado'])) {
-                if ($result['dataset'] = $espacio->getAllEspaciosByIdUsuario($data['idempleado'])) {
-                    $result['status'] = 1;
+            case 'getAllEspaciosByIdUsuario':
+                // Obtiene un espacio por su ID     
+                $data = json_decode(file_get_contents("php://input"), true);
+                
+                // Verifica que el idempleado esté presente y sea un número natural válido
+                if (isset($data['idempleado']) && Validator::validateNaturalNumber($data['idempleado'])) {
+                    // Obtiene los espacios asignados para el empleado
+                    $espacios = $espacio->getAllEspaciosByIdUsuario($data['idempleado']);
+                    
+                    // Agrega un log para verificar la respuesta de la función
+                    error_log("Respuesta de getAllEspaciosByIdUsuario: " . print_r($espacios, true));
+                    
+                    // Verifica si se obtuvieron datos
+                    if ($espacios !== false) {
+                        // Si hay datos, devuelve el estado 1 y el dataset
+                        if (!empty($espacios)) {
+                            $result['status'] = 1;
+                            $result['dataset'] = $espacios;
+                        } else {
+                            // Si no hay datos, devuelve un mensaje indicando que no se encontraron registros
+                            $result['status'] = 1;
+                            $result['dataset'] = [];
+                            $result['message'] = 'No se encontraron registros';
+                        }
+                    } else {
+                        // Si no se pudo obtener los datos, devuelve un mensaje de error
+                        $result['status'] = 0;
+                        $result['message'] = 'No se pudo obtener el espacio';
+                    }
                 } else {
-                    $result['message'] = 'No se pudo obtener el espacio';
+                    // Si el idempleado no es válido, devuelve un mensaje de error
+                    $result['status'] = 0;
+                    $result['message'] = 'Datos inválidos';
                 }
-            } else {
-                $result['message'] = 'Datos inválidos';
-            }
-            break;
+                break;
+            
+            
 
         case 'getAllEmpleados':
             // Obtiene todos los empleados asociados a los espacios
