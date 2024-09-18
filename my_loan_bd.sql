@@ -421,7 +421,7 @@ ALTER TABLE `tb_especialidades` ADD UNIQUE (`nombre_especialidad`);
 --
 --
 INSERT INTO `tb_cargos` (`id_cargo`, `nombre_cargo`) VALUES
-(1, 'Administrador'), (2, 'Instructor'), (3, 'Asistente');
+(1, 'Administrador'), (2, 'Asistente'), (3, 'Instructor');
 
 INSERT INTO `tb_especialidades` (`id_especialidad`, `nombre_especialidad`) VALUES
 (1, 'D. Software'), (2, 'Electrónica'), (3, 'Automotriz'), (4, 'Diseño gráfico'), (5, 'Arquitectura'), (6, 'Electromecánica');

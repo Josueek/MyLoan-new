@@ -79,7 +79,7 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $curso->getCursoById($_GET['id'])) {
                     $result['status'] = 1;
                 } else {
-                    $result['message'] = 'No se pudieron obtener los datos del curso';
+                    $result['message'] = 'No s  e pudieron obtener los datos del curso';
                 }
             } else {
                 $result['message'] = 'Datos inválidos';
@@ -159,38 +159,38 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'Hubo un problema al obtener los cursos';
             }
             break;
-            case 'CursosPorEstado':
-                if ($result['dataset'] = $curso->CursosPorEstado()) {
-                    $result['status'] = 1;
-                } else {
-                    // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                    $result['error'] = 'Hubo un problema al obtener los cursos';
-                }
-                break;
-                case 'cursosUltimosMesesConProyeccion':
-                    if ($result['dataset'] = $curso->cursosUltimosMesesConProyeccion()) {
-                        $result['status'] = 1;
-                    } else {
-                        // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                        $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
-                    }
-                    break;
-                    case 'CursosUltimosMeses':
-                        if ($result['dataset'] = $curso->CursosUltimosMeses()) {
-                            $result['status'] = 1;
-                        } else {
-                            // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                            $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
-                        }
-                        break;
-                        case 'prestamosUltimosMesesConProyeccion':
-                            if ($result['dataset'] = $curso->prestamosUltimosMesesConProyeccion()) {
-                                $result['status'] = 1;
-                            } else {
-                                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
-                                $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
-                            }
-                            break;
+        case 'CursosPorEstado':
+            if ($result['dataset'] = $curso->CursosPorEstado()) {
+                $result['status'] = 1;
+            } else {
+                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                $result['error'] = 'Hubo un problema al obtener los cursos';
+            }
+            break;
+        case 'cursosUltimosMesesConProyeccion':
+            if ($result['dataset'] = $curso->cursosUltimosMesesConProyeccion()) {
+                $result['status'] = 1;
+            } else {
+                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
+            }
+            break;
+        case 'CursosUltimosMeses':
+            if ($result['dataset'] = $curso->CursosUltimosMeses()) {
+                $result['status'] = 1;
+            } else {
+                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
+            }
+            break;
+        case 'prestamosUltimosMesesConProyeccion':
+            if ($result['dataset'] = $curso->prestamosUltimosMesesConProyeccion()) {
+                $result['status'] = 1;
+            } else {
+                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                $result['error'] = 'Hubo un problema al obtener los datos de la proyeccion';
+            }
+            break;
         default:
             $result['error'] = 'Acción no disponible';
     }

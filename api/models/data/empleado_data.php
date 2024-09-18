@@ -190,7 +190,7 @@ class EmpleadoData extends EmpleadoHandler
                 INNER JOIN tb_usuarios u ON de.id_usuario = u.id_usuario
                 INNER JOIN tb_instituciones i ON u.id_institucion = i.id_institucion
                 INNER JOIN tb_cargos c ON u.id_cargo = c.id_cargo
-                INNER JOIN tb_especialidades er ON de.id_especialidad = er.id_especialidad
+                LEFT JOIN tb_especialidades er ON de.id_especialidad = er.id_especialidad
                 WHERE de.id_usuario = ?';
         $params = array($this->id_usuario);
         return Database::getRow($sql, $params);
