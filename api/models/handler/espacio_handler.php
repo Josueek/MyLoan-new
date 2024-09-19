@@ -95,24 +95,9 @@ class EspacioHandler
 
     public function getEspacioById($idEspacio)
     {
-        $sql = 'SELECT 
-        e.id_espacio, 
-        e.nombre_espacio, 
-        e.capacidad_personas, 
-        e.tipo_espacio, 
-        d.nombre_empleado, 
-        s.nombre_especialidad, 
-        c.nombre_curso
-    FROM 
-        tb_espacios e
-    INNER JOIN 
-        tb_datos_empleados d ON e.id_empleado = d.id_datos_empleado
-    INNER JOIN 
-        tb_especialidades s ON e.id_especialidad = s.id_especialidad
-    INNER JOIN 
-        tb_cursos c ON e.id_institucion = c.id_curso
-    WHERE 
-        e.id_espacio = ?';
+        $sql = 'SELECT id_espacio, nombre_espacio, capacidad_personas, tipo_espacio, id_empleado, id_especialidad, id_institucion, inventario_doc, foto_espacio
+                FROM tb_espacios
+                WHERE id_espacio = ?';
         $params = array($idEspacio);
         return Database::getRow($sql, $params);
     }
