@@ -21,7 +21,8 @@ if (isset($_GET['action'])) {
                 $material->setNombre($_POST['nombre']) &&
                 $material->setDescripcion($_POST['descripcion']) &&
                 $material->setCantidad($_POST['cantidad'])
-            ) {
+            ) 
+            {
                 if ($material->create()) {
                     $result['status'] = 1;
                     $result['message'] = 'Material agregado correctamente';
@@ -106,7 +107,6 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
-
         default:
             $result['message'] = 'Acción no disponible';
     }

@@ -42,5 +42,10 @@ class prestamos_handler
         return Database::getRow($sql, $params);
     }
 
-   
+    public function addPrestamo()
+    {
+        $sql = 'INSERT INTO tb_prestamo (fecha_solicitud, programa_formacion, estado_prestamo,
+        observacion, id_curso, id_usuario) VALUES (?,?,?,?,?,?)';
+        return Database::executeRow($sql, $params);
+    }
 };

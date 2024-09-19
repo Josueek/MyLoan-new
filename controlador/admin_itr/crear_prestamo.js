@@ -95,4 +95,22 @@ function AgregarPrestamo(){
     const fechaEntrega = document.getElementById('fechaEntrega').value;
     const programaformacion = document.getElementById('programaformacion').value;
     const usuarioPrestamos = document.getElementById('usuarioPrestamos').value;
+    const institucion = document.getElementById('institucion').value;
+    const descripcion = document.getElementById('descripcion').value;
+
+  //Validaciones
+  if(!fechaEntrega || !programaformacion || !usuarioPrestamos || !institucion || !descripcion){
+    Swal.fire('Error!', 'Todos los campos son obligatorios', 'Error');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('fechaEntrega', fechaEntrega);
+  formData.append('programaformacion', programaformacion);
+  formData.append('usuarioPrestamos', usuarioPrestamos);
+  formData.append('institucion', institucion);
+  formData.append('descripcion', descripcion);
+  
+  fetch('')
+  
 }
