@@ -105,36 +105,7 @@ function generarMenuLateral() {
                         </ul>
                     </li>
 
-
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
-                            <span>
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                            </span>
-                            <span class="hide-menu">Mis préstamos</span>
-                        </a>
-                        <ul id="submenu10" class="submenu" style="display: none;">
-                            <li class="submenu-item ">
-                                <a href="../vistas_admin/crear_solicitud_prestamo.html" class="submenu-link">
-                                    <span>
-                                        <i class="fa-solid fa-plus me-2"></i>
-                                    </span>
-                                    <span class="hide-menu">Crear solicitud</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="../vistas_admin/gestionar_solicitudes.html"
-                            aria-expanded="false">
-                            <span>
-                                <i class="ti ti-cards"></i>
-                            </span>
-                            <span class="hide-menu">Gestionar solicitudes</span>
-                        </a>
-                    </li>
+                    
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
                             <span>
