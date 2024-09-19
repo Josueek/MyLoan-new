@@ -1,7 +1,7 @@
 <?php
 
-require_once ('../helpers/database.php'); // Incluye el archivo de conexión a la base de datos
-require_once ('../helpers/validator.php');
+require_once('../helpers/database.php'); // Incluye el archivo de conexión a la base de datos
+require_once('../helpers/validator.php');
 
 class CursoHandler
 {
@@ -47,13 +47,78 @@ class CursoHandler
         $params = array($idCurso);
         return Database::getRow($sql, $params);
     }
+    
+    //Metodo para obtener los datos de un curso mediante el id
+    public function getCursoByIdCompleto($idCurso)
+    {
+        $sql = 'SELECT 
+    c.id_curso,
+    c.nombre_curso,
+    c.fecha_inicio,
+    c.fecha_fin,
+    c.cantidad_personas,
+    c.grupo,
+    c.programa_formacion,
+    c.codigo_curso,
+    c.estado,
+    e.nombre_especialidad,
+    d.nombre_empleado,
+    d.apellido_empleado,
+    d.telefono,
+    d.estado_empleado,
+    d.foto_empleado
+FROM 
+    tb_cursos c
+LEFT JOIN 
+    tb_datos_empleados d ON c.id_empleado = d.id_datos_empleado
+LEFT JOIN 
+    tb_especialidades e ON c.id_especialidad = e.id_especialidad
+WHERE 
+    c.id_curso = ?;';
+        $params = array($idCurso);
+        return Database::getRow($sql, $params);
+    }
+
+    public function getCursoByIdEmpleado($idempleado)
+    {
+        $sql = 'SELECT 
+    c.id_curso,
+    c.nombre_curso,
+    c.fecha_inicio,
+    c.fecha_fin,
+    c.cantidad_personas,
+    c.grupo,
+    c.programa_formacion,
+    c.codigo_curso,
+    c.estado,
+    e.id_datos_empleado,
+    e.nombre_empleado,
+    e.apellido_empleado,
+    e.telefono,
+    e.estado_empleado,
+    es.nombre_especialidad AS especialidad_curso,
+    e.foto_empleado,
+    es2.nombre_especialidad AS especialidad_empleado
+FROM tb_cursos c
+JOIN tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
+LEFT JOIN tb_especialidades es ON c.id_especialidad = es.id_especialidad
+LEFT JOIN tb_especialidades es2 ON e.id_especialidad = es2.id_especialidad
+WHERE c.id_empleado = ?;';
+
+        $params = array($idempleado);
+        return Database::getRow($sql, $params);
+    }
+
+
     //Metodo para obtener los programas de formacion
-    public function getPrograma(){
+    public function getPrograma()
+    {
         $sql = 'SELECT Programa_formacion FROM tb_cursos;';
         return Database::getRows($sql);
     }
-     //Metodo para obtener el estado de los cursos
-     public function getEstadoCurso(){
+    //Metodo para obtener el estado de los cursos
+    public function getEstadoCurso()
+    {
         $sql = 'SELECT estado FROM tb_cursos;';
         return Database::getRows($sql);
     }
@@ -98,28 +163,28 @@ class CursoHandler
             FROM tb_cursos 
             GROUP BY estado
         ';
-    
+
         // Ejecutar la consulta y retornar los resultados
         return Database::getRows($sql);
     }
-    
 
-public function CantidadCursosPorPrograma()
-{
-    // Definir la consulta SQL para obtener la cantidad de cursos por programa de formación FALTA EL SERVICES
-    $sql = '
+
+    public function CantidadCursosPorPrograma()
+    {
+        // Definir la consulta SQL para obtener la cantidad de cursos por programa de formación FALTA EL SERVICES
+        $sql = '
         SELECT programa_formacion, COUNT(*) AS cantidad_cursos
         FROM tb_cursos
         GROUP BY programa_formacion
     ';
 
-    // Ejecutar la consulta y retornar los resultados FALTA EL SERVICES
-    return Database::getRows($sql);
-}
- 
-public function getCantidadCursosUltimos12Meses()
-{
-    $sql = '
+        // Ejecutar la consulta y retornar los resultados FALTA EL SERVICES
+        return Database::getRows($sql);
+    }
+
+    public function getCantidadCursosUltimos12Meses()
+    {
+        $sql = '
         SELECT 
             DATE_FORMAT(fecha_inicio, "%Y-%m") AS mes_anio, 
             COUNT(*) AS cantidad_cursos
@@ -133,40 +198,40 @@ public function getCantidadCursosUltimos12Meses()
             mes_anio
         LIMIT 0, 12
     ';
-    
-    // Ejecutar la consulta y obtener los resultados
-    $result = Database::getRows($sql);
-    
-    // Crear un array para los nombres de los meses en español FALTA EL SERVICES
-    $meses = array(
-        '01' => 'Enero',
-        '02' => 'Febrero',
-        '03' => 'Marzo',
-        '04' => 'Abril',
-        '05' => 'Mayo',
-        '06' => 'Junio',
-        '07' => 'Julio',
-        '08' => 'Agosto',
-        '09' => 'Septiembre',
-        '10' => 'Octubre',
-        '11' => 'Noviembre',
-        '12' => 'Diciembre'
-    );
-    
-    // Convertir los datos de mes_año a nombres de meses en español
-    foreach ($result as &$row) {
-        list($anio, $mes) = explode('-', $row['mes_anio']);
-        $row['mes_anio'] = $meses[$mes] . ' ' . $anio;
-    }
-    
-    return $result;
-}
 
-//RESPORTES
-public function obtenerReporteCursos()
-{
-    // Definir la consulta SQL para obtener todos los cursos con el nombre del empleado
-    $sql = '
+        // Ejecutar la consulta y obtener los resultados
+        $result = Database::getRows($sql);
+
+        // Crear un array para los nombres de los meses en español FALTA EL SERVICES
+        $meses = array(
+            '01' => 'Enero',
+            '02' => 'Febrero',
+            '03' => 'Marzo',
+            '04' => 'Abril',
+            '05' => 'Mayo',
+            '06' => 'Junio',
+            '07' => 'Julio',
+            '08' => 'Agosto',
+            '09' => 'Septiembre',
+            '10' => 'Octubre',
+            '11' => 'Noviembre',
+            '12' => 'Diciembre'
+        );
+
+        // Convertir los datos de mes_año a nombres de meses en español
+        foreach ($result as &$row) {
+            list($anio, $mes) = explode('-', $row['mes_anio']);
+            $row['mes_anio'] = $meses[$mes] . ' ' . $anio;
+        }
+
+        return $result;
+    }
+
+    //RESPORTES
+    public function obtenerReporteCursos()
+    {
+        // Definir la consulta SQL para obtener todos los cursos con el nombre del empleado
+        $sql = '
         SELECT 
             c.nombre_curso, 
             c.fecha_inicio, 
@@ -184,14 +249,14 @@ public function obtenerReporteCursos()
             tb_datos_empleados e ON c.id_empleado = e.id_datos_empleado
     ';
 
-    // Ejecutar la consulta y retornar los resultados
-    return Database::getRows($sql);
-}
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
 
-public function getEmpleadosConCursosActivosOFinalizados()
-{
-    // Definir la consulta SQL para obtener empleados con cursos activos o finalizados
-    $sql = '
+    public function getEmpleadosConCursosActivosOFinalizados()
+    {
+        // Definir la consulta SQL para obtener empleados con cursos activos o finalizados
+        $sql = '
         SELECT de.nombre_empleado, de.apellido_empleado, c.nombre_curso, 
                c.fecha_inicio, c.fecha_fin, c.estado
         FROM tb_datos_empleados de
@@ -199,13 +264,14 @@ public function getEmpleadosConCursosActivosOFinalizados()
         WHERE c.estado IN ("en curso", "finalizado")
     ';
 
-    // Ejecutar la consulta y retornar los resultados
-    return Database::getRows($sql);
-}
+        // Ejecutar la consulta y retornar los resultados
+        return Database::getRows($sql);
+    }
 
-public function CursosUltimosMeses() {
-    // Consulta para obtener la cantidad de cursos de los últimos 5 meses
-    $sql = "
+    public function CursosUltimosMeses()
+    {
+        // Consulta para obtener la cantidad de cursos de los últimos 5 meses
+        $sql = "
         SELECT
             DATE_FORMAT(c.fecha_inicio, '%M %Y') AS mes,
             COUNT(*) AS cantidad_cursos
@@ -219,31 +285,32 @@ public function CursosUltimosMeses() {
             c.fecha_inicio ASC;
     ";
 
-    $cursos = Database::getRows($sql);
+        $cursos = Database::getRows($sql);
 
-    if (count($cursos) > 0) {
-        $incrementos = [];
-        // Calcular los incrementos entre meses y los porcentajes de incremento
-        for ($i = 1; $i < count($cursos); $i++) {
-            $incremento = $cursos[$i]['cantidad_cursos'] - $cursos[$i - 1]['cantidad_cursos'];
-            $porcentaje_incremento = ($cursos[$i - 1]['cantidad_cursos'] != 0) ? ($incremento / $cursos[$i - 1]['cantidad_cursos']) * 100 : 0;
-            $incrementos[] = [
-                'mes' => $cursos[$i]['mes'],
-                'cantidad_cursos' => $cursos[$i]['cantidad_cursos'],
-                'incremento' => $incremento,
-                'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
-            ];
+        if (count($cursos) > 0) {
+            $incrementos = [];
+            // Calcular los incrementos entre meses y los porcentajes de incremento
+            for ($i = 1; $i < count($cursos); $i++) {
+                $incremento = $cursos[$i]['cantidad_cursos'] - $cursos[$i - 1]['cantidad_cursos'];
+                $porcentaje_incremento = ($cursos[$i - 1]['cantidad_cursos'] != 0) ? ($incremento / $cursos[$i - 1]['cantidad_cursos']) * 100 : 0;
+                $incrementos[] = [
+                    'mes' => $cursos[$i]['mes'],
+                    'cantidad_cursos' => $cursos[$i]['cantidad_cursos'],
+                    'incremento' => $incremento,
+                    'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+                ];
+            }
+            return $incrementos;
+        } else {
+            return [];
         }
-        return $incrementos;
-    } else {
-        return [];
     }
-}
 
 
-public function cursosUltimosMesesConProyeccion() {
-    // Consulta para obtener la cantidad de cursos de los últimos 5 meses
-    $sql = "
+    public function cursosUltimosMesesConProyeccion()
+    {
+        // Consulta para obtener la cantidad de cursos de los últimos 5 meses
+        $sql = "
         SELECT
             DATE_FORMAT(c.fecha_inicio, '%M %Y') AS mes,
             COUNT(*) AS cantidad_cursos
@@ -257,54 +324,55 @@ public function cursosUltimosMesesConProyeccion() {
             c.fecha_inicio ASC;
     ";
 
-    $cursos = Database::getRows($sql);
+        $cursos = Database::getRows($sql);
 
-    if (count($cursos) > 0) {
-        $incrementos = [];
-        $total_porcentaje_incremento = 0;
+        if (count($cursos) > 0) {
+            $incrementos = [];
+            $total_porcentaje_incremento = 0;
 
-        // Calcular los incrementos entre meses y los porcentajes de incremento
-        for ($i = 1; $i < count($cursos); $i++) {
-            $incremento = $cursos[$i]['cantidad_cursos'] - $cursos[$i - 1]['cantidad_cursos'];
-            $porcentaje_incremento = ($cursos[$i - 1]['cantidad_cursos'] != 0) ? ($incremento / $cursos[$i - 1]['cantidad_cursos']) * 100 : 0;
+            // Calcular los incrementos entre meses y los porcentajes de incremento
+            for ($i = 1; $i < count($cursos); $i++) {
+                $incremento = $cursos[$i]['cantidad_cursos'] - $cursos[$i - 1]['cantidad_cursos'];
+                $porcentaje_incremento = ($cursos[$i - 1]['cantidad_cursos'] != 0) ? ($incremento / $cursos[$i - 1]['cantidad_cursos']) * 100 : 0;
+                $incrementos[] = [
+                    'mes' => $cursos[$i]['mes'],
+                    'cantidad_cursos' => $cursos[$i]['cantidad_cursos'],
+                    'incremento' => $incremento,
+                    'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+                ];
+                $total_porcentaje_incremento += $porcentaje_incremento;
+            }
+
+            // Calcular el promedio del incremento porcentual mensual
+            $promedio_porcentaje_incremento = $total_porcentaje_incremento / 4; // Dividir entre 4 ya que tenemos 5 meses y 4 incrementos
+
+            // Proyectar la cantidad de cursos para el sexto mes usando el promedio del porcentaje de incremento
+            $cursos_mes_pasado = $cursos[count($cursos) - 1]['cantidad_cursos'];
+            $proyeccion_incremento = ($promedio_porcentaje_incremento / 100) * $cursos_mes_pasado;
+            $proyeccion_sexto_mes = $cursos_mes_pasado + $proyeccion_incremento;
+
+            // Obtener el nombre del mes siguiente al último mes registrado
+            $ultimo_mes = date('Y-m', strtotime(end($cursos)['mes']));
+            $mes_siguiente = date('F Y', strtotime($ultimo_mes . ' +1 month'));
+
+            // Formatear los datos de proyección
             $incrementos[] = [
-                'mes' => $cursos[$i]['mes'],
-                'cantidad_cursos' => $cursos[$i]['cantidad_cursos'],
-                'incremento' => $incremento,
-                'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+                'mes' => $mes_siguiente,
+                'cantidad_cursos' => round($proyeccion_sexto_mes),
+                'incremento' => round($proyeccion_incremento),
+                'porcentaje_incremento' => number_format($promedio_porcentaje_incremento, 2)
             ];
-            $total_porcentaje_incremento += $porcentaje_incremento;
+
+            return $incrementos;
+        } else {
+            return [];
         }
-
-        // Calcular el promedio del incremento porcentual mensual
-        $promedio_porcentaje_incremento = $total_porcentaje_incremento / 4; // Dividir entre 4 ya que tenemos 5 meses y 4 incrementos
-
-        // Proyectar la cantidad de cursos para el sexto mes usando el promedio del porcentaje de incremento
-        $cursos_mes_pasado = $cursos[count($cursos) - 1]['cantidad_cursos'];
-        $proyeccion_incremento = ($promedio_porcentaje_incremento / 100) * $cursos_mes_pasado;
-        $proyeccion_sexto_mes = $cursos_mes_pasado + $proyeccion_incremento;
-
-        // Obtener el nombre del mes siguiente al último mes registrado
-        $ultimo_mes = date('Y-m', strtotime(end($cursos)['mes']));
-        $mes_siguiente = date('F Y', strtotime($ultimo_mes . ' +1 month'));
-
-        // Formatear los datos de proyección
-        $incrementos[] = [
-            'mes' => $mes_siguiente,
-            'cantidad_cursos' => round($proyeccion_sexto_mes),
-            'incremento' => round($proyeccion_incremento),
-            'porcentaje_incremento' => number_format($promedio_porcentaje_incremento, 2)
-        ];
-
-        return $incrementos;
-    } else {
-        return [];
     }
-}
 
-public function prestamosUltimosMesesConProyeccion() {
-    // Consulta para obtener la cantidad de préstamos de los últimos 5 meses
-    $sql = "
+    public function prestamosUltimosMesesConProyeccion()
+    {
+        // Consulta para obtener la cantidad de préstamos de los últimos 5 meses
+        $sql = "
         SELECT
             DATE_FORMAT(p.fecha_prestamo, '%M %Y') AS mes,
             COUNT(*) AS cantidad_prestamos
@@ -318,54 +386,55 @@ public function prestamosUltimosMesesConProyeccion() {
             p.fecha_prestamo ASC;
     ";
 
-    $prestamos = Database::getRows($sql);
+        $prestamos = Database::getRows($sql);
 
-    if (count($prestamos) > 0) {
-        $incrementos = [];
-        $total_porcentaje_incremento = 0;
+        if (count($prestamos) > 0) {
+            $incrementos = [];
+            $total_porcentaje_incremento = 0;
 
-        // Calcular los incrementos entre meses y los porcentajes de incremento
-        for ($i = 1; $i < count($prestamos); $i++) {
-            $incremento = $prestamos[$i]['cantidad_prestamos'] - $prestamos[$i - 1]['cantidad_prestamos'];
-            $porcentaje_incremento = ($prestamos[$i - 1]['cantidad_prestamos'] != 0) ? ($incremento / $prestamos[$i - 1]['cantidad_prestamos']) * 100 : 0;
+            // Calcular los incrementos entre meses y los porcentajes de incremento
+            for ($i = 1; $i < count($prestamos); $i++) {
+                $incremento = $prestamos[$i]['cantidad_prestamos'] - $prestamos[$i - 1]['cantidad_prestamos'];
+                $porcentaje_incremento = ($prestamos[$i - 1]['cantidad_prestamos'] != 0) ? ($incremento / $prestamos[$i - 1]['cantidad_prestamos']) * 100 : 0;
+                $incrementos[] = [
+                    'mes' => $prestamos[$i]['mes'],
+                    'cantidad_prestamos' => $prestamos[$i]['cantidad_prestamos'],
+                    'incremento' => $incremento,
+                    'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+                ];
+                $total_porcentaje_incremento += $porcentaje_incremento;
+            }
+
+            // Calcular el promedio del incremento porcentual mensual
+            $promedio_porcentaje_incremento = $total_porcentaje_incremento / 4; // Dividir entre 4 ya que tenemos 5 meses y 4 incrementos
+
+            // Proyectar la cantidad de préstamos para el sexto mes usando el promedio del porcentaje de incremento
+            $prestamos_mes_pasado = $prestamos[count($prestamos) - 1]['cantidad_prestamos'];
+            $proyeccion_incremento = ($promedio_porcentaje_incremento / 100) * $prestamos_mes_pasado;
+            $proyeccion_sexto_mes = $prestamos_mes_pasado + $proyeccion_incremento;
+
+            // Obtener el nombre del mes siguiente al último mes registrado
+            $ultimo_mes = date('Y-m', strtotime(end($prestamos)['mes']));
+            $mes_siguiente = date('F Y', strtotime($ultimo_mes . ' +1 month'));
+
+            // Formatear los datos de proyección
             $incrementos[] = [
-                'mes' => $prestamos[$i]['mes'],
-                'cantidad_prestamos' => $prestamos[$i]['cantidad_prestamos'],
-                'incremento' => $incremento,
-                'porcentaje_incremento' => number_format($porcentaje_incremento, 2)
+                'mes' => $mes_siguiente,
+                'cantidad_prestamos' => round($proyeccion_sexto_mes),
+                'incremento' => round($proyeccion_incremento),
+                'porcentaje_incremento' => number_format($promedio_porcentaje_incremento, 2)
             ];
-            $total_porcentaje_incremento += $porcentaje_incremento;
+
+            return $incrementos;
+        } else {
+            return [];
         }
-
-        // Calcular el promedio del incremento porcentual mensual
-        $promedio_porcentaje_incremento = $total_porcentaje_incremento / 4; // Dividir entre 4 ya que tenemos 5 meses y 4 incrementos
-
-        // Proyectar la cantidad de préstamos para el sexto mes usando el promedio del porcentaje de incremento
-        $prestamos_mes_pasado = $prestamos[count($prestamos) - 1]['cantidad_prestamos'];
-        $proyeccion_incremento = ($promedio_porcentaje_incremento / 100) * $prestamos_mes_pasado;
-        $proyeccion_sexto_mes = $prestamos_mes_pasado + $proyeccion_incremento;
-
-        // Obtener el nombre del mes siguiente al último mes registrado
-        $ultimo_mes = date('Y-m', strtotime(end($prestamos)['mes']));
-        $mes_siguiente = date('F Y', strtotime($ultimo_mes . ' +1 month'));
-
-        // Formatear los datos de proyección
-        $incrementos[] = [
-            'mes' => $mes_siguiente,
-            'cantidad_prestamos' => round($proyeccion_sexto_mes),
-            'incremento' => round($proyeccion_incremento),
-            'porcentaje_incremento' => number_format($promedio_porcentaje_incremento, 2)
-        ];
-
-        return $incrementos;
-    } else {
-        return [];
     }
+
+
+
+
+
+
 }
-
-
-
-
-
-
-};
+;

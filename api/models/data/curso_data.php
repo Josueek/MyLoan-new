@@ -138,6 +138,18 @@ class CursoData extends CursoHandler
         return parent::getCursoById($idCurso);
     }
     
+    public function getCursoByIdCompleto($idCurso)
+    {
+        return parent::getCursoByIdCompleto($idCurso);
+    }
+    /**
+     * Summary of getCursoByIdEmpleado
+     * @param mixed $idempleado
+     * @return mixed
+     */
+    public function getCursoByIdEmpleado($idempleado){
+        return parent::getCursoByIdEmpleado($idempleado);
+    }
 
     public function update()
     {
