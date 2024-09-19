@@ -100,6 +100,20 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
+        /**
+         * Obtner el curso del empleado asignado
+         */
+        case 'getCursoByIdEmpleado':
+            if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                if ($result['dataset'] = $curso->getCursoByIdEmpleado($_GET['id'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se obtuvo los datos del curso';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
 
         case 'updateCurso':
             $_POST = Validator::validateForm($_POST);
