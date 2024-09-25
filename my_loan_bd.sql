@@ -432,14 +432,22 @@ INSERT INTO `tb_instituciones` (`id_institucion`, `nombre_institucion`) VALUES
 INSERT INTO `tb_usuarios` (`id_usuario`, `correo_electronico`, `contraseña`, `id_cargo`, `id_institucion`) VALUES
 (1, 'brandon5@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 1, 1),
 (2, 'Josue@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 2, 1),
-(3, 'Dylan@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 1, 2);
+(3, 'Dylan@gmail.com', '$2y$10$1PGNCOYcgfyH.74ZwrDuKulmmD/zDJw.dJdU7A91iauHkboQfsIBS', 1, 2),
+(4, 'AdminITR@gmail.com', '$2y$10$puamTjJQ8PnWP8h5cJBxJO0u0ExVkK0CD1oZGvrNN3GeUeQGqBth6', 1, 1),
+(5, 'AdminCFP@gmail.com', '$2y$10$puamTjJQ8PnWP8h5cJBxJO0u0ExVkK0CD1oZGvrNN3GeUeQGqBth6', 1, 2),
+(6, 'ProfeITR@gmail.com', '$2y$10$puamTjJQ8PnWP8h5cJBxJO0u0ExVkK0CD1oZGvrNN3GeUeQGqBth6', 3, 1),
+(7, 'ProfeCFP@gmail.com', '$2y$10$puamTjJQ8PnWP8h5cJBxJO0u0ExVkK0CD1oZGvrNN3GeUeQGqBth6', 3, 2);
 
 -- Tabla tb_datos_empleados
 INSERT INTO `tb_datos_empleados` (`nombre_empleado`, `apellido_empleado`, `telefono`, `estado_empleado`, `foto_empleado`, `id_usuario`, `id_especialidad`) VALUES 
 ('Brandon', 'Daniel', '555-1234', 'Activo', 'carlos.jpg', 1, 1),
 ('Josue', 'Martínez', '555-5678', 'Activo', 'ana.jpg', 2, 2),
-('Dylan', 'González', '555-9876', 'Inactivo', 'luis.jpg', 3, 3);
- 
+('Dylan', 'González', '555-9876', 'Inactivo', 'luis.jpg', 3, 3); 
+('Admin', 'ITR', '7850-4422', 'Activo', '66ec2f2eaf417.jpg', 4, NULL),
+('Admin', 'CFP', '7850-4422', 'Activo', '666af903096c4.jpg', 5, NULL),
+('Profe', 'ITR', '7850-4422', 'Activo', '666af903096c4.jpg', 6, 2),
+('Profe', 'CFP', '7850-4422', 'Activo', '666af903096c4.jpg', 7, 3);
+
  -- Tabla tb_cursos
 INSERT INTO `tb_cursos` (`nombre_curso`, `fecha_inicio`, `fecha_fin`, `cantidad_personas`, `grupo`, `programa_formacion`, `codigo_curso`, `id_empleado`, `estado`, `id_especialidad`) VALUES 
 ('Curso de Python', '2024-09-01', '2024-12-01', 25, 'Grupo A', 'HTP', 'PY2024', 1, 'en curso', 1),
