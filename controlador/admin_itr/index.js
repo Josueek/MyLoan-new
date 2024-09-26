@@ -29,14 +29,13 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
             text: 'Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente.'
         });
     }
-  });
-  
-  document.getElementById('togglePassword').addEventListener('click', () => {
+});
+
+document.getElementById('togglePassword').addEventListener('click', () => {
     const passwordInput = document.getElementById('inputPassword');
     const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordInput.setAttribute('type', type);
     const icon = document.querySelector('#togglePassword i');
     icon.classList.toggle('fa-eye');
     icon.classList.toggle('fa-eye-slash');
-  });
-  
+});
