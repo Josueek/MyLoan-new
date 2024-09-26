@@ -238,7 +238,11 @@ CREATE TABLE `tb_prestamos` (
 CREATE TABLE `tb_usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,          
   `correo_electronico` varchar(255) NOT NULL,             
-  `contraseña` varchar(300) NOT NULL,                   
+  `contraseña` varchar(300) NOT NULL,
+  `intentos_fallidos` INT UNSIGNED DEFAULT 0 not null,
+  `bloqueo_hasta` DATETIME NULL,
+  `fecha_registro` DATE DEFAULT (now()),
+  `fecha_ultimo_cambio_clave` DATETIME NULL DEFAULT NULL,                  
   `id_cargo` int(11) NOT NULL,                           
   `id_institucion` int(11) NOT NULL,                     
   PRIMARY KEY (`id_usuario`),                           
@@ -442,7 +446,7 @@ INSERT INTO `tb_usuarios` (`id_usuario`, `correo_electronico`, `contraseña`, `i
 INSERT INTO `tb_datos_empleados` (`nombre_empleado`, `apellido_empleado`, `telefono`, `estado_empleado`, `foto_empleado`, `id_usuario`, `id_especialidad`) VALUES 
 ('Brandon', 'Daniel', '555-1234', 'Activo', 'carlos.jpg', 1, 1),
 ('Josue', 'Martínez', '555-5678', 'Activo', 'ana.jpg', 2, 2),
-('Dylan', 'González', '555-9876', 'Inactivo', 'luis.jpg', 3, 3); 
+('Dylan', 'González', '555-9876', 'Inactivo', 'luis.jpg', 3, 3),
 ('Admin', 'ITR', '7850-4422', 'Activo', '66ec2f2eaf417.jpg', 4, NULL),
 ('Admin', 'CFP', '7850-4422', 'Activo', '666af903096c4.jpg', 5, NULL),
 ('Profe', 'ITR', '7850-4422', 'Activo', '666af903096c4.jpg', 6, 2),

@@ -36,3 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 });
+document.getElementById('togglePassword').addEventListener('click', () => {
+    const passwordInput = document.getElementById('inputPassword');
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    const icon = document.querySelector('#togglePassword i');
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+});
