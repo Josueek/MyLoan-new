@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => mostrarDatosTabla(data))
             .catch(error => console.error('Error al obtener observaciones:', error));
     }
+    
 
     function buscarObservacion() {
         const buscar = document.getElementById('search-input').value;
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function mostrarDatosTabla(data) {
         const tbody = document.querySelector('table tbody');
         tbody.innerHTML = '';
-
+    
         if (data.status && data.dataset.length > 0) {
             data.dataset.forEach(observacion => {
                 const tr = document.createElement('tr');
@@ -57,16 +58,16 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             const noRecordsRow = document.createElement('tr');
             const noRecordsCell = document.createElement('td');
-            noRecordsCell.colSpan = 9; // Ajuste para incluir la nueva columna
+            noRecordsCell.colSpan = 9; // Ajusta según el número de columnas
             noRecordsCell.textContent = 'No se encontraron registros';
             noRecordsRow.appendChild(noRecordsCell);
             tbody.appendChild(noRecordsRow);
         }
-
+    
         // Reasignar eventos para los botones después de agregar el contenido dinámicamente
         gestionarModales();
     }
-
+    
     function cargarOpciones() {
         fetch(`../../api/services/mis_observaciones_services.php?action=getOpciones`)
             .then(response => response.json())
