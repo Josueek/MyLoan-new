@@ -16,23 +16,23 @@ class MisObservacionesHandler
      */
     public function getAllObservaciones($buscar = '', $tipo = '')
     {
-        $sql = 'SELECT o.id_observacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, 
-                       o.tipo_prestamo, e.nombre_espacio, p.id_prestamo, u.nombre_empleado 
-                FROM tb_observaciones o
-                LEFT JOIN tb_espacios e ON o.id_espacio = e.id_espacio
-                LEFT JOIN tb_prestamos p ON o.id_prestamo = p.id_prestamo
-                LEFT JOIN tb_datos_empleados u ON o.id_usuario = u.id_datos_empleado
-                WHERE (o.observacion LIKE ? OR ? = "")
-                AND (o.tipo_observacion = ? OR ? = "")';
+        $sql = 'SELECT o.id_obsevacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, o.tipo_prestamo, e.nombre_espacio, d.nombre_empleado 
+                FROM tb_observaciones o 
+                JOIN tb_espacios e ON o.id_espacio = e.id_espacio 
+                JOIN tb_datos_empleados d ON o.id_usuario = d.id_usuario
+                WHERE (o.observacion LIKE ? OR ? = "") 
+                AND (o.tipo_observacion = ? OR ? = "");';
+    
         $params = ["%$buscar%", $buscar, $tipo, $tipo];
         $data = Database::getRows($sql, $params);
+    
         if ($data) {
             return array('status' => 1, 'dataset' => $data);
         } else {
             return array('status' => 0, 'message' => 'No se encontraron registros');
         }
     }
-
+    
     /**
      * Método para obtener una observación por su ID.
      * @param int $idObservacion El ID de la observación.
@@ -40,7 +40,7 @@ class MisObservacionesHandler
      */
     public function getObservacionById($idObservacion)
     {
-        $sql = 'SELECT * FROM tb_observaciones WHERE id_observacion = ?';
+        $sql = 'SELECT * FROM tb_observaciones WHERE id_obsevacion = ?';
         $params = array($idObservacion);
         return Database::getRow($sql, $params);
     }
@@ -68,7 +68,7 @@ class MisObservacionesHandler
         $sql = 'UPDATE tb_observaciones 
                 SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, 
                 tipo_prestamo = ?, id_espacio = ?, id_prestamo = ?, id_usuario = ? 
-                WHERE id_observacion = ?';
+                WHERE id_obsevacion = ?';
         return Database::executeRow($sql, $params);
     }
 
@@ -79,10 +79,11 @@ class MisObservacionesHandler
      */
     public function deleteObservacion($idObservacion)
     {
-        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?';
+        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?'; // Asegúrate de que el campo sea correcto
         $params = array($idObservacion);
         return Database::executeRow($sql, $params);
     }
+    
 
     /**
      * Método para obtener las opciones necesarias para el formulario de observaciones.
