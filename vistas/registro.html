@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="es">
 
@@ -45,6 +47,16 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="mb-4">
+                                        <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" id="inputConfirmPassword"
+                                                name="confirmarContrasena" placeholder="Confirma tu contraseña" required>
+                                            <button type="button" class="btn btn-outline" id="toggleConfirmPassword">
+                                                <i class="far fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                     <div class="mb-5">
                                         <label for="inputCargo" class="form-label">Cargo</label>
                                         <select class="form-select" id="inputCargo" name="cargo"
@@ -75,7 +87,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center mb-4">
                                         <a href="index.html" class="btn-custom-regresar">Regresar</a>
-                                        <button type="submit" class="btn-custom">Continuar</button>
+                                       <button type="submit" id="submitBtn" class="btn-custom">Continuar</button>
                                     </div>
                                 </form>
                             </div>
@@ -89,5 +101,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../controlador/admin_itr/registro.js"></script>
 </body>
+
 
 </html>
