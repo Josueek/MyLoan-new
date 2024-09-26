@@ -19,8 +19,7 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
 
-        <div
-            class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
                     <div class="col-md-8 col-lg-6 col-xxl-3">
@@ -29,13 +28,16 @@
                                 <a class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="../recursos/img/logos/myloan_logo.png" width="180" alt="">
                                 </a>
-                                <p id="infologin" class="text-center">Por favor ingrese el código de verificación que se le envió a
+                                <p id="infologin" class="text-center">Por favor ingrese el código de verificación que se
+                                    le envió a
                                     su correo electrónico.
                                 </p>
                                 <form>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Código de verificación</label>
-                                        <input type="text" class="form-control" id="inputCodigo" placeholder="Ingresa el código de verificación">
+                                        <label for="exampleInputEmail1" class="form-label">Código de
+                                            verificación</label>
+                                        <input type="text" class="form-control" id="inputCodigo"
+                                            placeholder="Ingresa el código de verificación">
                                     </div>
 
                                     <div class="boton-continuar">
@@ -48,7 +50,8 @@
                 </div>
             </div>
         </div>
-        <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Importar jQuery desde un CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="../controlador/admin_itr/codigo_verificacion.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
