@@ -43,6 +43,27 @@ class Validator
         return self::$search_error;
     }
 
+
+    public static function validateSessionTime()
+    {
+        //Tiempo en segundos para dar vida a la sesión.
+        $inactivo = 300; //Tiempo en segundos 5 min
+
+        //Calculamos tiempo de vida inactivo.
+        $vida_session = time() - $_SESSION['tiempo'];
+
+        //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+        if ($vida_session > $inactivo) {
+            //Destruimos sesión.
+            session_destroy();
+            return false;
+        } else { // si no ha caducado la sesion, actualizamos
+            $_SESSION['tiempo'] = time();
+            return true;
+        }
+    }
+
+
     /*
     *   Método para sanear todos los campos de un formulario (quitar los espacios en blanco al principio y al final).
     *   Parámetros: $fields (arreglo con los campos del formulario).
