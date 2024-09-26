@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function mostrarDatosTabla(data) {
-        const tbody = document.querySelector('table tbody');
+        const tbody = document.querySelector('tabla-ejemplo');
         tbody.innerHTML = '';
 
         if (data.status && data.dataset.length > 0) {
