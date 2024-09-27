@@ -4,34 +4,45 @@
         window.location.href = '../../vistas/vistas_admin/crear_solicitud_prestamousar.html';
     });
 
-function cargarComboboxCursos() {
-    fetch(`../../api/services/prestamo_services.php?action=getAllCursos`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 1 && data.dataset.length > 0) {
-                llenarCombobox('institucion', data.dataset, 'id_curso', 'nombre_curso');
-            } else {
-                console.error('No se encontraron cursos');
-            }
-        })
-        .catch(error => console.error('Error al obtener cursos:', error));
-}
 
-function llenarCombobox(elementId, data, valueField, textField, addTodos = false) {
-    const select = document.getElementById(elementId);
-    select.innerHTML = addTodos ? '<option value="">Todos</option>' : '<option selected>Seleccionar</option>';
+    function cargarComboboxCursos() {
+        fetch(`../../api/services/prestamo_services.php?action=getAllCursos`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Datos recibidos:", data); // Verifica si los datos llegan correctamente
+                if (data.status === 1 && Array.isArray(data.dataset) && data.dataset.length > 0) {
+                    console.log("Cargando cursos en el combobox..."); // Mensaje de depuración
+                    llenarCombobox('institucion', data.dataset, 'id_curso', 'nombre_curso');
+                } else {
+                    console.error('No se encontraron cursos o los datos no están en el formato esperado');
+                }
+            })
+            .catch(error => console.error('Error al obtener cursos:', error));
+    }
     
-    // Recorrer los datos y llenar el select
-    data.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item[valueField];
-        option.textContent = item[textField];
-        select.appendChild(option);
+    function llenarCombobox(elementId, data, valueField, textField, addTodos = false) {
+        const select = document.getElementById(elementId);
+        if (!select) {
+            console.error(`El elemento con ID '${elementId}' no fue encontrado.`);
+            return;
+        }
+        select.innerHTML = addTodos ? '<option value="">Todos</option>' : '<option selected>Seleccionar</option>';
+    
+        // Recorrer los datos y llenar el select
+        data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item[valueField];
+            option.textContent = item[textField];
+            select.appendChild(option);
+        });
+    }
+    
+    // Llamar a la función cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', function () {
+        cargarComboboxCursos();
     });
-}
+    
 
-// Llamar a la función para cargar los cursos al cargar la página
-cargarComboboxCursos();
 
 document.addEventListener('DOMContentLoaded', function () {
     // Guardar los datos del préstamo en localStorage al hacer clic en "Siguiente"
