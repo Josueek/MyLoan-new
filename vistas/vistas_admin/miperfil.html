@@ -21,7 +21,7 @@
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Menu lateral -->
-       <div class="dashboard"></div>
+        <div class="dashboard"></div>
 
         <div class="body-wrapper">
             <header class="app-header">
@@ -55,47 +55,77 @@
                                 <form id="profile-form" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <div class="col-md-3 text-center">
-                                            <img src="../../recursos/img/profile/default.png" alt="Profile Picture" class="rounded-circle" width="150" id="profilePicture">
-                                            <input type="file" class="form-control mt-2" id="inputImage" name="inputImage">
+                                            <img src="../../recursos/img/profile/default.png" alt="Profile Picture"
+                                                class="rounded-circle" width="150" id="profilePicture">
+                                            <input type="file" class="form-control mt-2" id="inputImage"
+                                                name="inputImage">
                                         </div>
                                         <div class="col-md-9">
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputNombre" class="form-label">Nombre</label>
-                                                    <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Ingresa el nombre" disabled>
+                                                    <input type="text" class="form-control" id="inputNombre"
+                                                        name="inputNombre" placeholder="Ingresa el nombre" disabled>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputApellido" class="form-label">Apellido</label>
-                                                    <input type="text" class="form-control" id="inputApellido" name="inputApellido" placeholder="Ingresa el apellido" disabled>
+                                                    <input type="text" class="form-control" id="inputApellido"
+                                                        name="inputApellido" placeholder="Ingresa el apellido" disabled>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputEmail" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Ingresa tu correo">
+                                                    <input type="email" class="form-control" id="inputEmail"
+                                                        name="inputEmail" placeholder="Ingresa tu correo">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputTelefono" class="form-label">Teléfono</label>
-                                                    <input type="text" class="form-control" id="inputTelefono" name="inputTelefono" placeholder="Ingresa tu número telefónico">
+                                                    <input type="text" class="form-control" id="inputTelefono"
+                                                        name="inputTelefono" placeholder="Ingresa tu número telefónico">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputEstado" class="form-label">Estado</label>
-                                                    <input type="text" class="form-control" id="inputEstado" name="inputEstado" disabled>
+                                                    <input type="text" class="form-control" id="inputEstado"
+                                                        name="inputEstado" disabled>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputInstitucion" class="form-label">Institución</label>
-                                                    <input type="text" class="form-control" id="inputInstitucion" name="inputInstitucion" disabled>
+                                                    <input type="text" class="form-control" id="inputInstitucion"
+                                                        name="inputInstitucion" disabled>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputCargo" class="form-label">Cargo</label>
-                                                    <input type="text" class="form-control" id="inputCargo" name="inputCargo" disabled>
+                                                    <input type="text" class="form-control" id="inputCargo"
+                                                        name="inputCargo" disabled>
                                                 </div>
+                                                <!--Campos para contraseña-->
                                                 <div class="col-md-6 mb-3">
                                                     <label for="inputClave" class="form-label">Clave</label>
-                                                    <input type="password" class="form-control" id="inputClave" name="inputClave" placeholder="Ingresa una contraseña" autocomplete="new-password">
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" id="inputClave"
+                                                            name="inputClave" placeholder="Ingresa una contraseña"
+                                                            autocomplete="new-password">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            id="toggleClave">
+                                                            <i class="far fa-eye"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
+
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="inputConfirmarClave" class="form-label">Confirmar Clave</label>
-                                                    <input type="password" class="form-control" id="inputConfirmarClave" name="inputConfirmarClave" placeholder="Confirma tu contraseña" autocomplete="new-password">
+                                                    <label for="inputConfirmarClave" class="form-label">Confirmar
+                                                        Clave</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control"
+                                                            id="inputConfirmarClave" name="inputConfirmarClave"
+                                                            placeholder="Confirma tu contraseña"
+                                                            autocomplete="new-password">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            id="toggleConfirmarClave">
+                                                            <i class="far fa-eye"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -104,13 +134,13 @@
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
                                     </div>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <script src="../../controlador/utils/dashboard.js"></script>

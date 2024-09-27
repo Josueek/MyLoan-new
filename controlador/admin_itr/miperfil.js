@@ -2,7 +2,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Verifica el estado de la sesión.
     const sessionCheck = await fetch('../../api/services/sesion_status.php');
     const sessionData = await sessionCheck.json();
+    //Id de los campos de clave
+    const claveInput = document.getElementById('inputClave');
+    const confirmarClaveInput = document.getElementById('inputConfirmarClave');
+    const toggleClaveBtn = document.getElementById('toggleClave');
+    const toggleConfirmarClaveBtn = document.getElementById('toggleConfirmarClave');
 
+    // Función para mostrar/ocultar clave
+    toggleClaveBtn.addEventListener('click', () => {
+        const type = claveInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        claveInput.setAttribute('type', type);
+
+        const icon = toggleClaveBtn.querySelector('i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+    });
+
+    // Función para mostrar/ocultar confirmar clave
+    toggleConfirmarClaveBtn.addEventListener('click', () => {
+        const type = confirmarClaveInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmarClaveInput.setAttribute('type', type);
+
+        const icon = toggleConfirmarClaveBtn.querySelector('i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+    });
+    
     // Si no hay una sesión activa, redirige al usuario a la página de inicio de sesión.
     if (!sessionData.status) {
         window.location.href = '../../vistas/index.html';
@@ -103,4 +128,12 @@ document.getElementById('profile-form').addEventListener('submit', async (event)
             text: data.error,
         });
     }
+
+    document.getElementById('toggleConfirmar').addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        const icon = document.querySelector('#toggleConfirmar i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+    });
 });

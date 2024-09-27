@@ -2,21 +2,52 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('inputPassword');
     const confirmPasswordInput = document.getElementById('inputConfirmPassword');
     const submitBtn = document.getElementById('submitBtn');
+    const passwordInfo = document.getElementById('passwordInfo');
 
+    // Validación de formato de contraseña
+    function validarFormatoContrasena(password) {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])(?!.*\s).{8,72}$/;
+        return regex.test(password);
+    }
+
+    // Mostrar las reglas cuando el campo tenga foco
+    passwordInput.addEventListener('focus', () => {
+        passwordInfo.style.display = 'block';
+    });
+
+    // Ocultar las reglas cuando el campo pierda el foco
+    passwordInput.addEventListener('blur', () => {
+        passwordInfo.style.display = 'none';
+    });
+
+    // Validar el formato y la confirmación de la contraseña cuando se haga clic en el botón de enviar
     submitBtn.addEventListener('click', (e) => {
         e.preventDefault(); // Evitar el envío del formulario de inmediato
 
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        // Validar formato de la contraseña
+        if (!validarFormatoContrasena(password)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La contraseña no cumple con los requisitos. Asegúrate de que tenga entre 8 y 72 caracteres, con al menos una letra mayúscula, una minúscula, un número y un carácter especial.'
+            });
+            return; // Salir si la contraseña no cumple con los requisitos
+        }
+
         // Validar que las contraseñas coincidan
-        if (passwordInput.value !== confirmPasswordInput.value) {
+        if (password !== confirmPassword) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'Las contraseñas no coinciden.'
             });
-            return; // Salir de la función
+            return; // Salir si las contraseñas no coinciden
         }
 
-        // Solo se ejecuta si las contraseñas coinciden
+        // Solo se ejecuta si la contraseña es válida y las contraseñas coinciden
         const formData = new FormData(document.getElementById('registroForm'));
 
         fetch('../api/services/registro_services.php?action=signUp', {
