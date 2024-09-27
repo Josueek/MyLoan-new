@@ -6,62 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inicio</title>
 
-    <!--Icono de la pestaña-->
     <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
-
     <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
-
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
     <link rel="stylesheet" href="../../recursos/css/css_general/barralaterla.css">
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- Codigo del clima -->
     <link rel="stylesheet" href="../../recursos/css/css_general/calendario.css">
     <link rel="stylesheet" href="../../recursos/css/css_general/clima.css">
 
+    <style>
+        .container-fluid {
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                margin-bottom: 20px;
+            }
+
+            .table-responsive {
+                overflow-x: auto; /* Permite desplazamiento horizontal en tablas pequeñas */
+            }
+
+            #calendar-header {
+                font-size: 1.5rem; /* Ajusta el tamaño del encabezado del calendario */
+            }
+
+            #calendar-body td {
+                padding: 10px; /* Espaciado para celdas del calendario */
+                font-size: 0.9rem; /* Tamaño de fuente para móviles */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-title {
+                font-size: 1.25rem; /* Ajusta el tamaño del título para móviles */
+            }
+
+            .weather-card {
+                text-align: center;
+            }
+
+            .search-form {
+                margin-bottom: 15px; /* Espaciado en el formulario de búsqueda */
+            }
+
+            #calendar-container {
+                overflow-x: auto; /* Permite desplazamiento horizontal en el contenedor del calendario */
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!--  Inicio del menu lateral -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
 
-
-
-
-        <!-- Botón de hamburguesa -->
         <div class="hamburger-menu" id="hamburger-menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
 
-        <!-- Sidebar Menu -->
         <div class="sidebar" id="sidebar">
             <div class="dashboard">
-                <!-- Contenedor para la navegación del menú -->
                 <nav class="sidebar-nav scroll-sidebar overflow-auto h-100" data-simplebar="">
                     <ul id="sidebarnav">
-                            <!-- Aquí se generarán dinámicamente los elementos del menú -->
+                        <!-- Aquí se generarán dinámicamente los elementos del menú -->
                     </ul>
                 </nav>
             </div>
         </div>
-        
-        <!--  aca empieza el header -->
-        <div class="body-wrapper">
 
+        <div class="body-wrapper">
             <div id="headerContainer" data-title="Inicio"></div>
-            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
             <div class="container-fluid">
 
-                <!-- tabla -->
-                <!-- Inicio de la tabla de usuarios-->
                 <table class="table table-hover">
                     <div class="mb-4">
-                        <h5 class="card-title fw-semibold">Solicitudes de prestamo recibidas</h5>
+                        <h5 class="card-title fw-semibold">Solicitudes de préstamo recibidas</h5>
                     </div>
                     <thead>
                         <tr>
@@ -78,17 +101,13 @@
                         <!-- Contenido dinámico cargado con JavaScript -->
                     </tbody>
                 </table>
-                <!-- Fin de la tabla de empleados -->
-                <!-- fin tabla -->
+
                 <div class="row">
-                    <!-- calendario -->
-                    <div class="col-lg-8 d-flex align-items-stretch">
+                    <div class="col-lg-8 d-flex align-items-stretch mb-3">
                         <div class="card w-100">
                             <div class="card-body p-4">
                                 <h5 class="card-title fw-semibold mb-4">Calendario</h5>
-                                <div id="mensaje-dias-restantes" class="mb-4">
-                                    <!-- Aquí se mostrará el mensaje de días restantes -->
-                                </div>
+                                <div id="mensaje-dias-restantes" class="mb-4"></div>
                                 <div class="table-responsive">
                                     <div class="container" id="calendar-container">
                                         <div id="calendar-header" class="text-center mb-3"></div>
@@ -114,22 +133,17 @@
                                         </div>
                                     </div>
                                 </div>
-                    
-                                <!-- Sección de la leyenda -->
                                 <div class="legend mt-4">
                                     <ul class="list-unstyled">
                                         <li><span style="background-color: #ADD8E6; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc;"></span> Fecha actual</li>
-                                        <li><span style="background-color: #FCBE2D; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc;"></span> Inico del curso más próximo</li>
+                                        <li><span style="background-color: #FCBE2D; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc;"></span> Inicio del curso más próximo</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    <!-- fin de calendario -->
-                    <!-- clima -->
-                    <div class="col-lg-4 d-flex align-items-stretch">
+
+                    <div class="col-lg-4 d-flex align-items-stretch mb-3">
                         <div class="card w-100">
                             <div class="card-body p-4">
                                 <div class="mb-4">
@@ -145,15 +159,15 @@
                                         </form>
                                     </div>
                                     <div class="weather-card" id="card">
-                                        <div class="city" id="city">El salvador, sv</div>
+                                        <div class="city" id="city">El Salvador, SV</div>
                                         <div class="date" id="date">11/04/2024</div>
                                         <div class="temperature">
                                             <img src="../../recursos/img/img_generales/temp-mid.png" class="temp-img"
                                                 id="temp-img" />
-                                            <div class="temp" id="temp">30c</div>
+                                            <div class="temp" id="temp">30°C</div>
                                         </div>
-                                        <div class="weather" id="weather">muy nuboso</div>
-                                        <div class="range" id="range">27c / 31c</div>
+                                        <div class="weather" id="weather">Muy nuboso</div>
+                                        <div class="range" id="range">27°C / 31°C</div>
                                     </div>
                                 </main>
                             </div>
@@ -163,26 +177,16 @@
             </div>
         </div>
     </div>
-    <!-- jQuery -->
+
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
-
-
-
-    <!-- Bootstrap y sus dependencias -->
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Otros scripts que dependen de jQuery -->
-    <!--<script src="../../recursos/js/app.min.js"></script>-->
     <script src="../../controlador/utils/dashboard.js"></script>
-
-    <!-- Scripts adicionales -->
     <script src="../../controlador/admin_cfp/header.js"></script>
     <script src="../../recursos/js/acciones.js"></script>
     <script src="../../controlador/utils/session_utils.js"></script>
     <script src="../../recursos/js/calendario.js"></script>
     <script src="../../recursos/js/clima.js"></script>
     <script src="../../recursos/js/munu-burguer.js"></script>
-
     <script src="../../recursos/js/dashboard.js"></script>
     <script src="../../controlador/admin_itr/tabla_prestamos.js"></script>
 
