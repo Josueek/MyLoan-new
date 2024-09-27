@@ -1,5 +1,5 @@
-// Primero verificar si ya hay una sesión activa al cargar la página
 document.addEventListener('DOMContentLoaded', async () => {
+    // Primero verificar si ya hay una sesión activa al cargar la página
     try {
         const response = await fetch('../api/services/sesion_status.php');
         const data = await response.json();
@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error al verificar la sesión:', error);
     }
-});
 
-document.addEventListener('DOMContentLoaded', function () {
+    // Código para la validación de contraseñas
     const passwordInput = document.getElementById('inputPassword');
     const confirmPasswordInput = document.getElementById('inputConfirmPassword');
     const submitBtn = document.getElementById('submitBtn');
     const passwordInfo = document.getElementById('passwordInfo');
+    const passwordError = document.getElementById('passwordError'); // Error message element
 
     // Validación de formato de contraseña
     function validarFormatoContrasena(password) {
@@ -69,32 +69,32 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: 'Registro completado. Redirigiendo...'
-                    }).then(() => {
-                        window.location.href = 'registro_continuacion.html';
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: data.error
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: 'Registro completado. Redirigiendo...'
+                }).then(() => {
+                    window.location.href = 'registro_continuacion.html';
+                });
+            } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Ocurrió un problema durante el registro'
+                    text: data.error
                 });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un problema durante el registro'
             });
+        });
     });
 
     // Función para mostrar/ocultar contraseñas
@@ -112,5 +112,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const icon = document.querySelector('#toggleConfirmPassword i');
         icon.classList.toggle('fa-eye');
         icon.classList.toggle('fa-eye-slash');
+    });
+
+    // Verificar longitud de la contraseña para el mensaje de requerimiento
+    passwordInput.addEventListener('input', () => {
+        if (passwordInput.value.length < 8) {
+            passwordError.style.display = 'block';
+        } else {
+            passwordError.style.display = 'none';
+        }
     });
 });
