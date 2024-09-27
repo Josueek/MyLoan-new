@@ -133,9 +133,34 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
+        function eliminarObservacion(idObservacion) {
+            console.log("Eliminando observación con ID:", idObservacion); // Verifica que el ID se envía correctamente
+            
+            fetch(`../../api/services/mis_observaciones_services.php?action=deleteObservacion`, {
+                method: 'POST', // Usando POST
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: idObservacion })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Respuesta del servidor:", data); // Verifica la respuesta del servidor
+                if (data.status) {
+                    Swal.fire('Eliminado', data.message, 'success');
+                    cargarDatosTabla(); // Recarga la tabla tras eliminar
+                } else {
+                    Swal.fire('Error', data.message, 'error');
+                }
+            })
+            .catch(error => console.error('Error al eliminar la observación:', error));
+        }
+        
+
         document.querySelectorAll('button.eliminar-observacion').forEach(button => {
             button.addEventListener('click', function () {
                 const idObservacion = this.getAttribute('data-id');
+                console.log("ID de observación a eliminar:", idObservacion); // Verifica que el ID es el correcto
                 Swal.fire({
                     title: '¿Estás seguro que quieres eliminar la observación?',
                     icon: 'warning',
@@ -144,11 +169,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        eliminarObservacion(idObservacion);
+                        eliminarObservacion(idObservacion); // Llama la función de eliminación
                     }
                 });
             });
         });
+        
     }
 
     function cargarDetalleObservacion(idObservacion, imagenObservacion) {
@@ -285,28 +311,6 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error al actualizar la observación:', error));
     }
-
-    function eliminarObservacion(idObservacion) {
-        console.log('ID a eliminar:', idObservacion);  // Verifica que el ID sea correcto
     
-        fetch(`../../api/services/mis_observaciones_services.php?action=deleteObservacion`, {
-            method: 'POST', // Cambiado de DELETE a POST
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: idObservacion }) // Enviando el ID en el cuerpo como JSON
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Verifica que recibes la respuesta correcta del servidor
     
-            if (data.status) {
-                Swal.fire('Eliminado', data.message, 'success');
-                cargarDatosTabla(); // Actualiza la tabla después de eliminar
-            } else {
-                Swal.fire('Error', data.message, 'error');
-            }
-        })
-        .catch(error => console.error('Error al eliminar la observación:', error));
-    }
 });

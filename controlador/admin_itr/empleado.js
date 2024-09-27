@@ -174,10 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
-
-
-
     function cargarEspecialidades() {
         fetch('../../api/services/empleado_services.php?action=getAllEspecialidades')
             .then(response => response.json())
