@@ -2,11 +2,23 @@
 require_once ('../models/data/usuario_data.php');
 require_once ('../models/data/empleado_data.php');
 
+session_start(); // Iniciar la sesión o recuperar la existente
+
+$result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null);
+
+// Verificar si ya hay una sesión activa
+if (isset($_SESSION['id_usuario'])) {
+    // Si ya hay una sesión, retornar un estado indicando que ya está logueado
+    $result['status'] = 2; // Indica que hay sesión activa
+    $result['message'] = 'Sesión activa, redirigir a inicio';
+    header('Content-type: application/json; charset=utf-8');
+    print(json_encode($result));
+    exit();
+}
+
 if (isset($_GET['action'])) {
-    session_start();
     $usuario = new UsuarioData;
     $empleado = new EmpleadoData;
-    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null);
 
     switch ($_GET['action']) {
         case 'login':
@@ -35,6 +47,7 @@ if (isset($_GET['action'])) {
                         if ($data['status']) {
                             // Verifica el estado del usuario
                             if ($empleado->checkStatus($data['id_usuario'])) {
+                                // Iniciar sesión
                                 $_SESSION['id_usuario'] = $data['id_usuario'];
                                 $_SESSION['correo_electronico'] = $data['correo_electronico'];
                                 
@@ -88,8 +101,7 @@ if (isset($_GET['action'])) {
     }
     $result['exception'] = Database::getException();
     header('Content-type: application/json; charset=utf-8');
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }
-
