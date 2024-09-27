@@ -287,19 +287,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function eliminarObservacion(idObservacion) {
+        console.log('ID a eliminar:', idObservacion);  // Verifica que el ID sea correcto
+    
         fetch(`../../api/services/mis_observaciones_services.php?action=deleteObservacion`, {
-            method: 'DELETE',
-            body: JSON.stringify({ id: idObservacion })
+            method: 'POST', // Cambiado de DELETE a POST
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: idObservacion }) // Enviando el ID en el cuerpo como JSON
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status) {
-                    Swal.fire('Eliminado', data.message, 'success');
-                    cargarDatosTabla();
-                } else {
-                    Swal.fire('Error', data.message, 'error');
-                }
-            })
-            .catch(error => console.error('Error al eliminar la observación:', error));
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Verifica que recibes la respuesta correcta del servidor
+    
+            if (data.status) {
+                Swal.fire('Eliminado', data.message, 'success');
+                cargarDatosTabla(); // Actualiza la tabla después de eliminar
+            } else {
+                Swal.fire('Error', data.message, 'error');
+            }
+        })
+        .catch(error => console.error('Error al eliminar la observación:', error));
     }
 });

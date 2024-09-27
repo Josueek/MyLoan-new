@@ -115,20 +115,28 @@ if (isset($_GET['action'])) {
             }
             break;
 
-        case 'deleteObservacion':
-            $data = json_decode(file_get_contents("php://input"), true);
-            if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
-                if ($observacion->delete($data['id'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Observación eliminada correctamente';
+            case 'deleteObservacion':
+                // Decodificar el cuerpo JSON recibido
+                $data = json_decode(file_get_contents("php://input"), true);
+            
+                // Depuración: imprime los datos recibidos en los logs del servidor
+                error_log("Datos recibidos en DELETE: " . json_encode($data));
+            
+                // Verificar si el ID está presente y si es un número natural
+                if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
+                    // Llamar al método para eliminar la observación con el ID recibido
+                    if ($observacion->deleteObservacion($data['id'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Observación eliminada correctamente';
+                    } else {
+                        $result['message'] = 'No se pudo eliminar la observación';
+                    }
                 } else {
-                    $result['message'] = 'No se pudo eliminar la observación';
+                    $result['message'] = 'Datos inválidos';
                 }
-            } else {
-                $result['message'] = 'Datos inválidos';
-            }
-            break;
-
+            
+                break;
+    
         case 'getOpciones':
             $result = $observacion->getOpciones();
             break;
