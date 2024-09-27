@@ -13,7 +13,7 @@ if (isset($_GET['action'])) {
         case 'getAllCursos':
             $result = array('status' => 1, 'dataset' => $curso->getAllCursos());
             break;
-
+            
         case 'addPrestamo':
             $_POST = Validator::validateForm($_POST); // Validar el formulario correctamente
             if (
