@@ -114,17 +114,14 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos incompletos';
             }
             break;
-
             case 'deleteObservacion':
-                // Decodificar el cuerpo JSON recibido
+                // Obtén los datos enviados en el cuerpo de la petición
                 $data = json_decode(file_get_contents("php://input"), true);
             
-                // Depuración: imprime los datos recibidos en los logs del servidor
-                error_log("Datos recibidos en DELETE: " . json_encode($data));
+                // Imprime los datos recibidos en los logs para depurar
+                error_log("Datos recibidos para eliminar: " . json_encode($data));
             
-                // Verificar si el ID está presente y si es un número natural
                 if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
-                    // Llamar al método para eliminar la observación con el ID recibido
                     if ($observacion->deleteObservacion($data['id'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Observación eliminada correctamente';
@@ -134,8 +131,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['message'] = 'Datos inválidos';
                 }
-            
                 break;
+            
+            
     
         case 'getOpciones':
             $result = $observacion->getOpciones();

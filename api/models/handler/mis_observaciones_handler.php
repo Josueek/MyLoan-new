@@ -79,11 +79,11 @@ class MisObservacionesHandler
      */
     public function deleteObservacion($idObservacion)
     {
-        // Asegúrate de que la columna en la tabla se llama 'id_obsevacion' y no 'id_observacion'
-        $sql = 'DELETE FROM tb_observaciones WHERE id_obsevacion = ?';
+        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?'; // Asegúrate de que el nombre de la columna es correcto
         $params = array($idObservacion);
         return Database::executeRow($sql, $params);
     }
+    
     
 
     /**
