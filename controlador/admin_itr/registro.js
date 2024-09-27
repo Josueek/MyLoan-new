@@ -1,3 +1,18 @@
+// Primero verificar si ya hay una sesión activa al cargar la página
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('../api/services/sesion_status.php');
+        const data = await response.json();
+        
+        if (data.status === 1) {
+            // Si hay una sesión activa, redirigir automáticamente
+            window.location.href = '../vistas/vistas_admin/inicio.html';
+        }
+    } catch (error) {
+        console.error('Error al verificar la sesión:', error);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('inputPassword');
     const confirmPasswordInput = document.getElementById('inputConfirmPassword');
