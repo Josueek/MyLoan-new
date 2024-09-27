@@ -38,6 +38,7 @@
 
                                     <div class="boton-continuar">
                                         <a id="btn-enviar-codigo" class="btn-custom">Enviar código</a>
+                                        
                                     </div>
                                 </form>
                             </div>
@@ -46,10 +47,20 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+        <script type="text/javascript">
+            (function(){
+               emailjs.init("Uu6zKJAjpSzO3lbnM"); // Inicializa EmailJS con tu clave pública
+            })();
+         </script>
         <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
         <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../controlador/admin_itr/recuperar_contra.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 </body>
 

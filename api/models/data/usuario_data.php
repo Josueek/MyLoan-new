@@ -28,6 +28,19 @@ class UsuarioData extends UsuarioHandler
         }
     }
 
+    // Método para verificar si el correo existe en la base de datos.
+    public function checkEmail() {
+        // SQL para verificar si el correo ya está registrado en la tabla 'usuarios'.
+        $sql = "SELECT id_usuario FROM tb_usuarios WHERE correo_electronico = ?";
+        $params = array($this->correo);  // Utiliza el correo almacenado en la propiedad $correo.
+        
+        // Ejecuta la consulta y devuelve el resultado.
+        $data = Database::getRow($sql, $params);
+        
+        // Si se encuentra un resultado, devuelve true. De lo contrario, false.
+        return ($data) ? true : false;
+    }
+
     public function checkCredentials()
     {
         $sql = 'SELECT id_usuario, correo_electronico, contraseña, fecha_registro, fecha_ultimo_cambio_clave
