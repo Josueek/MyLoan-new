@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Documentación</title>
+
+    <!--Icono de la pestaña-->
+    <link rel="icon" href="../../recursos/img/logos/myloan_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../recursos/css/css_general/usuarios_dashboard.css">
+    <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Codigo del clima -->
+    <link rel="stylesheet" href="../../recursos/css/css_general/observaciones_generales.css">
+
+</head>
+
+<body>
+    <!--  Inicio del menu lateral -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Menu lateral -->
+        <div class="dashboard"></div>
+
+        <!--  aca empieza el header -->
+        <div class="body-wrapper">
+            <div id="headerContainer" data-title="Manuales"></div>
+            <!--  Aca termina la parte del menu y el header -->
+
+            <!--  Aca termina la parte del menu y el header -->
+
+            <div class="container-fluid" id="miCuadro">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
+                            <div class="container-fluid">
+                                <div class="col-md-6 text-center">
+                                    <h3>Manual de Técnico</h3>
+                                    <a href="../../api/images/manuales/Manual Técnico  - MYLOAN.pdf" download="Manual Tecnico - MyLoan.pdf">
+                                        <img src="../../recursos/img/pdf_icon.png" alt="Descargar Manual de Técnico"
+                                            style="width: 100px;" />
+                                        <p>Descargar Manual Técnico</p>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <h3>Manual de usuario</h3>
+                                    <a href="../../api/images/manuales/Manual de Usuario Web - MYLOAN .pdf" download="Manual Usuario - MyLoan.pdf">
+                                        <img src="../../recursos/img/pdf_icon.png" alt="Descargar Manual Técnico"
+                                            style="width: 100px;" />
+                                        <p>Descargar Manual de usuario</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Scrip que si funionan -->
+    <script src="../../recursos/js/modales.js"></script>
+    <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../recursos/js/sidebarmenu.js"></script>
+    <script src="../../recursos/js/app.min.js"></script>
+    <script src="../../api/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../../controlador/utils/dashboard.js"></script>
+    <!-- El archivo acciones son para acciones generales que tiene todo el sistema-->
+    <script src="../../recursos/js/acciones.js"></script>
+    <script src="../../controlador/admin_cfp/header.js"></script>
+    <script src="../../controlador/utils/session_utils.js"></script>
+
+    <!-- Scrip que dudosamente sirven-->
+    <script src="../../api/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../../recursos/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../controlador/utils/inactividad.js"></script>
+</body>
+
+</html>

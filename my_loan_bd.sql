@@ -244,14 +244,14 @@ CREATE TABLE `tb_usuarios` (
   `fecha_registro` DATE DEFAULT (now()),
   `fecha_ultimo_cambio_clave` DATETIME NULL DEFAULT NULL,                  
   `id_cargo` int(11) NOT NULL,                           
-  `id_institucion` int(11) NOT NULL,                     
+  `id_institucion` int(11) NOT NULL,
+  `codigo_verificacion` INT(11) DEFAULT NULL,                
   PRIMARY KEY (`id_usuario`),                           
   UNIQUE KEY `correo_electronico` (`correo_electronico`), 
   KEY `fk_usuario_cargo` (`id_cargo`),                    -- Índice para la relación con la tabla `tb_cargos`
   KEY `fk_usuario_institucion` (`id_institucion`)         -- Índice para la relación con la tabla `tb_instituciones`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_GENERAL_CI;
 
-alter table 'tb_usuarios' add `codigo_verificacion` int(11) DEFAULT NULL;
 
 --
 -- Relaciones entre tablas
