@@ -16,14 +16,6 @@ function generarHeader(titulo, userData) {
             </ul>
             <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                    <!-- esta es la campana de notificaciones-->
-                    <li class="nav-item">
-                        <!-- Moviendo la campana a la derecha usando ml-auto -->
-                        <a href="" target="_blank" class="nav-link nav-icon-hover ml-auto">
-                            <i class="fa-regular fa-bell"></i>
-                            <div class="notification bg-primary rounded-circle"></div>
-                        </a>
-                    </li>
                     <li class="nav-item dropdown">
                         <!-- foto de perfil -->
                         <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
@@ -41,15 +33,10 @@ function generarHeader(titulo, userData) {
                                     <i class="fa-regular fa-user"></i>
                                     <p class="mb-0 fs-3">Mi perfil</p>
                                 </a>
-                                <a href="javascript:void(0)"
+                                  <a href="documentacion.html"
                                     class="d-flex align-items-center gap-2 dropdown-item">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <p class="mb-0 fs-3">Mi cuenta</p>
-                                </a>
-                                <a href="javascript:void(0)"
-                                    class="d-flex align-items-center gap-2 dropdown-item">
-                                    <i class="fa-solid fa-list"></i>
-                                    <p class="mb-0 fs-3">Mis tareas</p>
+                                   <i class="fa-regular fa-file"></i>
+                                    <p class="mb-0 fs-3">Documentación</p>
                                 </a>
                                 <!-- Link para cerrar sesión-->
                                 <a href="../../api/services/cerrar_sesion.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Cerrar sesión</a>
@@ -71,7 +58,7 @@ function generarHeader(titulo, userData) {
     `;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var titulo = document.getElementById("headerContainer").getAttribute("data-title");
 
     fetch('../../api/services/header_services.php')
@@ -85,11 +72,11 @@ document.addEventListener("DOMContentLoaded", function() {
             var sidebarCollapse = document.getElementById("sidebarCollapse");
             var sidebar = document.querySelector('.left-sidebar');
 
-            headerCollapse.addEventListener('click', function() {
+            headerCollapse.addEventListener('click', function () {
                 sidebar.classList.toggle('show');
             });
 
-            sidebarCollapse.addEventListener('click', function() {
+            sidebarCollapse.addEventListener('click', function () {
                 sidebar.classList.remove('show');
             });
         })
