@@ -251,6 +251,8 @@ CREATE TABLE `tb_usuarios` (
   KEY `fk_usuario_institucion` (`id_institucion`)         -- Índice para la relación con la tabla `tb_instituciones`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_GENERAL_CI;
 
+alter table 'tb_usuarios' add `codigo_verificacion` int(11) DEFAULT NULL;
+
 --
 -- Relaciones entre tablas
 --
