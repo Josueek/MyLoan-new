@@ -37,12 +37,9 @@
         });
     }
     
-    // Llamar a la función cuando el DOM esté listo
     document.addEventListener('DOMContentLoaded', function () {
         cargarComboboxCursos();
     });
-    
-
 
 document.addEventListener('DOMContentLoaded', function () {
     // Guardar los datos del préstamo en localStorage al hacer clic en "Siguiente"
