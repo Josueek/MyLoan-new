@@ -12,18 +12,20 @@ class MisObservacionesHandler
      * Método para obtener todas las observaciones.
      * @param string $buscar El término de búsqueda para filtrar las observaciones.
      * @param string $tipo El tipo de observación para filtrar las observaciones.
+     * @param string $tipoPrestamo El tipo de préstamo para filtrar las observaciones.
      * @return array El resultado de la consulta con el estado y los datos.
      */
-    public function getAllObservaciones($buscar = '', $tipo = '')
+    public function getAllObservaciones($buscar = '', $tipo = '', $tipoPrestamo = '')
     {
         $sql = 'SELECT o.id_obsevacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, o.tipo_prestamo, e.nombre_espacio, d.nombre_empleado 
                 FROM tb_observaciones o 
                 JOIN tb_espacios e ON o.id_espacio = e.id_espacio 
                 JOIN tb_datos_empleados d ON o.id_usuario = d.id_usuario
                 WHERE (o.observacion LIKE ? OR ? = "") 
-                AND (o.tipo_observacion = ? OR ? = "");';
+                AND (o.tipo_observacion = ? OR ? = "")
+                AND (o.tipo_prestamo = ? OR ? = "");';
     
-        $params = ["%$buscar%", $buscar, $tipo, $tipo];
+        $params = ["%$buscar%", $buscar, $tipo, $tipo, $tipoPrestamo, $tipoPrestamo];
         $data = Database::getRows($sql, $params);
     
         if ($data) {
@@ -52,9 +54,8 @@ class MisObservacionesHandler
      */
     public function addObservacion($params)
     {
-        $sql = 'INSERT INTO tb_observaciones (fecha_observacion, observacion, foto_observacion, tipo_observacion, 
-                tipo_prestamo, id_espacio, id_prestamo, id_usuario) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO tb_observaciones (fecha_observacion, observacion, foto_observacion, tipo_observacion, tipo_prestamo, id_espacio, id_usuario) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)';
         return Database::executeRow($sql, $params);
     }
 
@@ -66,8 +67,7 @@ class MisObservacionesHandler
     public function updateObservacion($params)
     {
         $sql = 'UPDATE tb_observaciones 
-                SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, 
-                tipo_prestamo = ?, id_espacio = ?, id_prestamo = ?, id_usuario = ? 
+                SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, tipo_prestamo = ?, id_espacio = ?, id_usuario = ? 
                 WHERE id_obsevacion = ?';
         return Database::executeRow($sql, $params);
     }
@@ -79,13 +79,11 @@ class MisObservacionesHandler
      */
     public function deleteObservacion($idObservacion)
     {
-        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?'; // Asegúrate de que el nombre de la columna es correcto
+        $sql = 'DELETE FROM tb_observaciones WHERE id_observacion = ?'; 
         $params = array($idObservacion);
         return Database::executeRow($sql, $params);
     }
     
-    
-
     /**
      * Método para obtener las opciones necesarias para el formulario de observaciones.
      * @return array Las opciones para los select del formulario.
@@ -102,9 +100,6 @@ class MisObservacionesHandler
 
         $sqlEspacios = 'SELECT id_espacio AS id, nombre_espacio AS nombre FROM tb_espacios';
         $result['espacios'] = Database::getRows($sqlEspacios);
-
-        $sqlPrestamos = 'SELECT id_prestamo AS id, id_prestamo AS nombre FROM tb_prestamos';
-        $result['prestamos'] = Database::getRows($sqlPrestamos);
 
         $sqlEmpleados = 'SELECT id_datos_empleado AS id, nombre_empleado AS nombre FROM tb_datos_empleados';
         $result['empleados'] = Database::getRows($sqlEmpleados);

@@ -45,7 +45,6 @@ if (isset($_GET['action'])) {
                 isset($_POST['tipo_observacion']) &&
                 isset($_POST['tipo_prestamo']) &&
                 isset($_POST['id_espacio']) &&
-                isset($_POST['id_prestamo']) &&
                 isset($_POST['id_usuario'])) {
 
                 if ($observacion->setFechaObservacion($_POST['fecha_observacion']) &&
@@ -54,7 +53,6 @@ if (isset($_GET['action'])) {
                     $observacion->setTipoObservacion($_POST['tipo_observacion']) &&
                     $observacion->setTipoPrestamo($_POST['tipo_prestamo']) &&
                     $observacion->setIdEspacio($_POST['id_espacio']) &&
-                    $observacion->setIdPrestamo($_POST['id_prestamo']) &&
                     $observacion->setIdUsuario($_POST['id_usuario'])) {
 
                     if ($observacion->create()) {
@@ -88,7 +86,6 @@ if (isset($_GET['action'])) {
                 isset($_POST['tipo_observacion']) &&
                 isset($_POST['tipo_prestamo']) &&
                 isset($_POST['id_espacio']) &&
-                isset($_POST['id_prestamo']) &&
                 isset($_POST['id_usuario'])) {
 
                 if ($observacion->setId($_POST['id']) &&
@@ -98,7 +95,6 @@ if (isset($_GET['action'])) {
                     $observacion->setTipoObservacion($_POST['tipo_observacion']) &&
                     $observacion->setTipoPrestamo($_POST['tipo_prestamo']) &&
                     $observacion->setIdEspacio($_POST['id_espacio']) &&
-                    $observacion->setIdPrestamo($_POST['id_prestamo']) &&
                     $observacion->setIdUsuario($_POST['id_usuario'])) {
 
                     if ($observacion->update()) {
@@ -114,27 +110,26 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos incompletos';
             }
             break;
-            case 'deleteObservacion':
-                // Obtén los datos enviados en el cuerpo de la petición
-                $data = json_decode(file_get_contents("php://input"), true);
-            
-                // Imprime los datos recibidos en los logs para depurar
-                error_log("Datos recibidos para eliminar: " . json_encode($data));
-            
-                if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
-                    if ($observacion->deleteObservacion($data['id'])) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Observación eliminada correctamente';
-                    } else {
-                        $result['message'] = 'No se pudo eliminar la observación';
-                    }
+
+        case 'deleteObservacion':
+            // Obtén los datos enviados en el cuerpo de la petición
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            // Imprime los datos recibidos en los logs para depurar
+            error_log("Datos recibidos para eliminar: " . json_encode($data));
+
+            if (isset($data['id']) && Validator::validateNaturalNumber($data['id'])) {
+                if ($observacion->deleteObservacion($data['id'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Observación eliminada correctamente';
                 } else {
-                    $result['message'] = 'Datos inválidos';
+                    $result['message'] = 'No se pudo eliminar la observación';
                 }
-                break;
-            
-            
-    
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+
         case 'getOpciones':
             $result = $observacion->getOpciones();
             break;

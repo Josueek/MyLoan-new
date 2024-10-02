@@ -14,10 +14,7 @@ class MisObservacionesData extends MisObservacionesHandler
     private $tipoObservacion;
     private $tipoPrestamo;  
     private $idEspacio;
-    private $idPrestamo;
     private $idUsuario;
-
-  
 
     // Métodos setter con validación
     public function setId($id)
@@ -90,16 +87,6 @@ class MisObservacionesData extends MisObservacionesHandler
         }
     }
 
-    public function setIdPrestamo($idPrestamo)
-    {
-        if (Validator::validateNaturalNumber($idPrestamo)) {
-            $this->idPrestamo = $idPrestamo;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function setIdUsuario($idUsuario)
     {
         if (Validator::validateNaturalNumber($idUsuario)) {
@@ -120,7 +107,6 @@ class MisObservacionesData extends MisObservacionesHandler
             $this->tipoObservacion,
             $this->tipoPrestamo,
             $this->idEspacio,
-            $this->idPrestamo,
             $this->idUsuario
         );
         return $this->addObservacion($params);
@@ -140,7 +126,6 @@ class MisObservacionesData extends MisObservacionesHandler
             $this->tipoObservacion,
             $this->tipoPrestamo,
             $this->idEspacio,
-            $this->idPrestamo,
             $this->idUsuario,
             $this->id
         );

@@ -14,6 +14,36 @@
     <!-- Codigo del clima -->
     <link rel="stylesheet" href="../../recursos/css/css_general/observaciones_generales.css">
 
+    <style>
+        .manual-container {
+            display: flex;
+            justify-content: center;
+            /* Centra el contenido horizontalmente */
+        }
+
+        .manual {
+            text-align: center;
+            /* Asegura que el texto esté centrado */
+            margin: 0 20px;
+            /* Espacio entre los manuales */
+        }
+
+        .manual img {
+            width: 200px;
+            /* Establece un tamaño fijo para las imágenes */
+            height: auto;
+            /* Mantiene la proporción de las imágenes */
+            margin-bottom: 10px;
+            /* Espacio entre la imagen y el texto */
+        }
+
+        .imgTec {
+            width: 150;
+            /* Establece un tamaño fijo para las imágenes */
+            height: auto;
+            /* Mantiene la proporción de las imágenes */
+        }
+    </style>
 </head>
 
 <body>
@@ -28,27 +58,27 @@
             <div id="headerContainer" data-title="Manuales"></div>
             <!--  Aca termina la parte del menu y el header -->
 
-            <!--  Aca termina la parte del menu y el header -->
-
             <div class="container-fluid" id="miCuadro">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
-                            <div class="container-fluid">
-                                <div class="col-md-6 text-center">
+                            <div class="container-fluid manual-container">
+                                <div class="manual">
                                     <h3>Manual de Técnico</h3>
-                                    <a href="../../api/images/manuales/Manual Técnico  - MYLOAN.pdf" download="Manual Tecnico - MyLoan.pdf">
-                                        <img src="../../recursos/img/pdf_icon.png" alt="Descargar Manual de Técnico"
-                                            style="width: 100px;" />
+                                    <a href="../../api/images/manuales/Manual Técnico  - MYLOAN.pdf"
+                                        download="Manual Tecnico - MyLoan.pdf">
+                                        <img src="../../api/images/manuales/ManualTecnico.jpg"
+                                            alt="Descargar Manual de Técnico" class="imgTec" style="width: 170px;"/>
                                         <p>Descargar Manual Técnico</p>
                                     </a>
                                 </div>
-                                <div class="col-md-6 text-center">
+                                <div class="manual">
                                     <h3>Manual de usuario</h3>
-                                    <a href="../../api/images/manuales/Manual de Usuario Web - MYLOAN .pdf" download="Manual Usuario - MyLoan.pdf">
-                                        <img src="../../recursos/img/pdf_icon.png" alt="Descargar Manual Técnico"
-                                            style="width: 100px;" />
+                                    <a href="../../api/images/manuales/Manual de Usuario Web - MYLOAN .pdf"
+                                        download="Manual Usuario - MyLoan.pdf">
+                                        <img src="../../api/images/manuales/Manualusuario.jpg"
+                                            alt="Descargar Manual de usuario" />
                                         <p>Descargar Manual de usuario</p>
                                     </a>
                                 </div>

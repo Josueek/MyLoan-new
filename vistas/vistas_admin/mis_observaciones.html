@@ -23,7 +23,7 @@
         <div class="dashboard"></div>
         <!--  aca empieza el header -->
         <div class="body-wrapper">
-            <div id="headerContainer" data-title="Mis observaciones"></div>
+            <div id="headerContainer" data-title="Observaciones Generales"></div>
             <!--  Aca termina la parte del menu y el header -->
             <br>
             <!-- A partir de aca se empieza a cambiar el codigo, cuerpo de la pagina-->
@@ -67,12 +67,7 @@
                                             <option value="">Selecciona un espacio</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="prestamoObservar" class="form-label">Préstamo a observar:</label>
-                                        <select id="prestamoObservar" class="form-select" required>
-                                            <option value="">Selecciona un préstamo</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="col-md-6">
                                         <label for="empleadoObservar" class="form-label">Quien realiza la observación:</label>
                                         <select id="empleadoObservar" class="form-select" required>
@@ -94,7 +89,7 @@
                     </div>
                 </div>
 
-                <<!-- Modal para editar observación -->
+            <!-- Modal para editar observación -->
 <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -128,12 +123,6 @@
                         <label for="editarEspacioObservar" class="form-label">Espacio a observar:</label>
                         <select id="editarEspacioObservar" class="form-select" required>
                             <option value="">Selecciona un espacio</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="editarPrestamoObservar" class="form-label">Préstamo a observar:</label>
-                        <select id="editarPrestamoObservar" class="form-select" required>
-                            <option value="">Selecciona un préstamo</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -194,7 +183,6 @@
                             <th scope="col">Tipo de observación</th>
                             <th scope="col">Tipo de préstamo a observar</th>
                             <th scope="col">Espacio a observar</th>
-                            <th scope="col">Préstamo a observar</th>
                             <th scope="col">Empleado que realizo la observación</th>
                             <th scope="col">Acciones</th>
                         </tr>

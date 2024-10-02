@@ -136,31 +136,24 @@ function generarMenuLateral() {
                     </li>
                     
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
-                            <span>
-                                <i class="fa-solid fa-eye"></i>
-                            </span>
-                            <span class="hide-menu">Observaciones</span>
-                        </a>
-                        <ul id="submenu7" class="submenu" style="display: none;">
-                            <li class="submenu-item ">
-                                <a href="../vistas_admin/observaciones_generales.html" class="submenu-link">
-                                    <span>
-                                        <i class="far fa-eye-slash me-2"></i>
-                                    </span>
-                                    <span class="hide-menu">Observaciones generales</span>
-                                </a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
-                                    <span>
-                                        <i class="far fa-eye me-2"></i>
-                                    </span>
-                                    <span class="hide-menu">Mis observaciones</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+    <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
+        <span>
+            <i class="fa-solid fa-eye"></i>
+        </span>
+        <span class="hide-menu">Observaciones</span>
+    </a>
+    <ul id="submenu7" class="submenu" style="display: none;">
+        <li class="submenu-item ">
+            <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
+                <span>
+                    <i class="far fa-eye-slash me-2"></i>
+                </span>
+                <span class="hide-menu">Observaciones generales</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
 
                       <li class="sidebar-item">
                         <a href="../vistas_admin/graficas.html"  class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnGrafica">
