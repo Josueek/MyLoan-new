@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch('../api/services/sesion_status.php');
         const data = await response.json();
         
-        if (data.status === 1) {
+        if (data.status === 2) {
             // Si hay una sesión activa, redirigir automáticamente
-            window.location.href = '../vistas/vistas_admin/inicio.html';
+            window.location.href = '../vistas/vistas_admin/registro_continuacion.html';
         }
     } catch (error) {
         console.error('Error al verificar la sesión:', error);
