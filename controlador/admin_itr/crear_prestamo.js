@@ -6,7 +6,7 @@
 
 
     function cargarComboboxCursos() {
-        fetch(`../../api/services/prestamo_services.php?action=getAllCursos`)
+        fetch(`../../api/services/cargar_curso_services.php?action=getAllCursos`)
             .then(response => response.json())
             .then(data => {
                 console.log("Datos recibidos:", data); // Verifica si los datos llegan correctamente
@@ -135,25 +135,40 @@ function seleccionarUsuario(nombre) {
 }
 
 function AgregarPrestamo(){
-    const fechaEntrega = document.getElementById('fechaEntrega').value;
-    const programaformacion = document.getElementById('programaformacion').value;
-    const usuarioPrestamos = document.getElementById('usuarioPrestamos').value;
-    const institucion = document.getElementById('institucion').value;
-    const descripcion = document.getElementById('descripcion').value;
 
-  //Validaciones
-  if(!fechaEntrega || !programaformacion || !usuarioPrestamos || !institucion || !descripcion){
-    Swal.fire('Error!', 'Todos los campos son obligatorios', 'Error');
-    return;
-  }
+    const fecha_solicitud = document.getElementById('fechaEntrega').value;
+    const programa_formacion = document.getElementById('programaformacion').value;
+    const observacion = document.getElementById('descripcion').value;
+    const id_curso = document.getElementById('institucion').value;
+    const id_usuario = document.getElementById('usuarioPrestamos').value;
 
-  const formData = new FormData();
-  formData.append('fechaEntrega', fechaEntrega);
-  formData.append('programaformacion', programaformacion);
-  formData.append('usuarioPrestamos', usuarioPrestamos);
-  formData.append('institucion', institucion);
-  formData.append('descripcion', descripcion);
-  
-  fetch('')
-  
+    if(!fecha_solicitud || !programa_formacion || !observacion || !id_curso || !id_prestamo){
+        Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
+        return;
+    }
+
+   const formData = new formData();
+   FormData.append('fecha_solicitud', fecha_solicitud);
+   FormData.append('programa_formacion', programa_formacion);
+   FormData.append('observacion', observacion);
+   FormData.append('id_curso', id_curso);
+   FormData.append('id_usuario', id_usario);
+
+  fetch('../../api/services/prestamos_services.php?action=addPrestamo',{
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  -then(data => {
+    if(data.status){
+        Swal.fire('Exito', 'Material agregado correctamente.', 'succes')
+        document.getElementById('formAgregarMaterial').reset();
+        document.getElementById('agregar')
+    }
+  })
+  .catch(error => {
+    console.error('Error al agregar herramienta:', error);
+    Swal.fire('Error!', 'Hubo un problema al agregar la herramienta.', 'error');
+  })
+
 }
