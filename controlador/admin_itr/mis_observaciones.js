@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${observacion.nombre_empleado}</td>
                     <td>
                         <button type="button" class="btn btn-primary editar-observacion" data-id="${observacion.id_observacion}" data-imagen="${observacion.foto_observacion}">Editar</button>
-                        <button type="button" class="btn btn-danger eliminar-observacion" data-id="${observacion.id_observacion}">Eliminar</button>
+      <button type="button" class="btn btn-danger eliminar-observacion" data-id="${observacion.id_observacion}">Eliminar</button> <!-- Aquí debe estar el data-id -->
                     </td>
                 `;
                 tbody.appendChild(tr);
@@ -77,12 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     const tipoObservacionSelect = document.getElementById('tipoObservacion');
                     const tipoPrestamoSelect = document.getElementById('tipoPrestamo');
                     const espacioSelect = document.getElementById('espacioObservar');
-                    const prestamoSelect = document.getElementById('prestamoObservar');
                     const empleadoSelect = document.getElementById('empleadoObservar');
                     const editarTipoObservacionSelect = document.getElementById('editarTipoObservacion');
                     const editarTipoPrestamoSelect = document.getElementById('editarTipoPrestamo');
                     const editarEspacioSelect = document.getElementById('editarEspacioObservar');
-                    const editarPrestamoSelect = document.getElementById('editarPrestamoObservar');
                     const editarEmpleadoSelect = document.getElementById('editarEmpleadoObservar');
     
                     // Valida que cada select existe antes de intentar acceder a él
@@ -107,12 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     }
     
-                    if (prestamoSelect) {
-                        prestamoSelect.innerHTML = '<option value="">Selecciona un préstamo</option>';
-                        data.dataset.prestamos.forEach(option => {
-                            prestamoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
-                        });
-                    }
+                
     
                     if (empleadoSelect) {
                         empleadoSelect.innerHTML = '<option value="">Selecciona un empleado</option>';
@@ -143,12 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     }
     
-                    if (editarPrestamoSelect) {
-                        editarPrestamoSelect.innerHTML = '<option value="">Selecciona un préstamo</option>';
-                        data.dataset.prestamos.forEach(option => {
-                            editarPrestamoSelect.innerHTML += `<option value="${option.id}">${option.nombre}</option>`;
-                        });
-                    }
+                   
     
                     if (editarEmpleadoSelect) {
                         editarEmpleadoSelect.innerHTML = '<option value="">Selecciona un empleado</option>';
@@ -173,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
          // Aquí está la función para eliminar observaciones
     function eliminarObservacion(idObservacion) {
-        console.log("Eliminando observación con ID:", idObservacion); // Verifica que el ID se envía correctamente
         
         fetch(`../../api/services/mis_observaciones_services.php?action=deleteObservacion`, {
             method: 'POST',
@@ -184,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Respuesta del servidor:", data);
             if (data.status) {
                 Swal.fire('Eliminado', data.message, 'success');
                 cargarDatosTabla(); // Recarga la tabla tras eliminar
@@ -199,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('button.eliminar-observacion').forEach(button => {
         button.addEventListener('click', function () {
             const idObservacion = this.getAttribute('data-id'); // Verifica que el ID es el correcto
-            console.log("ID de observación a eliminar:", idObservacion);
             Swal.fire({
                 title: '¿Estás seguro que quieres eliminar la observación?',
                 icon: 'warning',
@@ -215,9 +200,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 }
 
-    // Función para cargar detalles de la observación
+// Función para cargar detalles de la observación
 function cargarDetalleObservacion(idObservacion, imagenObservacion) {
-    console.log("Cargando detalles de la observación con ID:", idObservacion); // Verifica que el ID se recibe correctamente
     fetch(`../../api/services/mis_observaciones_services.php?action=getObservacion&id=${idObservacion}`)
         .then(response => response.json())
         .then(data => {
@@ -228,21 +212,29 @@ function cargarDetalleObservacion(idObservacion, imagenObservacion) {
                 document.getElementById('editarTipoPrestamo').value = data.dataset.tipo_prestamo;
                 document.getElementById('editarEspacioObservar').value = data.dataset.id_espacio;
                 document.getElementById('editarEmpleadoObservar').value = data.dataset.id_usuario;
+
+                // Guardar la imagen actual en un atributo de datos del botón de guardar
+                document.getElementById('editarGuardarObservacion').setAttribute('data-imagen', imagenObservacion);
+
+                // Mostrar el nombre de la imagen actual en una etiqueta
+                const labelArchivo = document.querySelector('label[for="editarInputFile"]');
+                labelArchivo.textContent = imagenObservacion ? `Imagen actual: ${imagenObservacion}` : 'Sin archivo seleccionado';
+
+                // Limpiar el campo de archivo (por si acaso se había seleccionado algo antes)
                 document.getElementById('editarInputFile').value = '';
 
-                // Guardamos la imagen actual en un atributo de datos del modal
-                document.getElementById('editarGuardarObservacion').setAttribute('data-imagen', imagenObservacion);
-                
                 const myModal = new bootstrap.Modal(document.getElementById('editarModal'));
                 myModal.show();
 
-                document.getElementById('editarGuardarObservacion').setAttribute('data-id', idObservacion); // Asegúrate de que se configura correctamente
+                // Asignar el id de la observación al botón de guardar
+                document.getElementById('editarGuardarObservacion').setAttribute('data-id', idObservacion);
             } else {
                 Swal.fire('Error', 'No se pudieron obtener los detalles de la observación', 'error');
             }
         })
         .catch(error => console.error('Error al obtener detalles de la observación:', error));
 }
+
 
     function guardarObservacion() {
         const idObservacion = document.getElementById('guardarObservacion') ? document.getElementById('guardarObservacion').getAttribute('data-id') : null;
@@ -317,34 +309,37 @@ function cargarDetalleObservacion(idObservacion, imagenObservacion) {
         const tipoObservacion = document.getElementById('editarTipoObservacion').value;
         const tipoPrestamo = document.getElementById('editarTipoPrestamo').value;
         const idEspacio = document.getElementById('editarEspacioObservar').value;
-        const idPrestamo = document.getElementById('editarPrestamoObservar').value;
         const idUsuario = document.getElementById('editarEmpleadoObservar').value;
+    
+        // Obtener el archivo seleccionado y la imagen actual
         const inputFile = document.getElementById('editarInputFile').files[0];
-
         const imagenActual = document.getElementById('editarGuardarObservacion').getAttribute('data-imagen');
-
-        if (!fechaObservacion || !observacion || !tipoObservacion || !tipoPrestamo || !idEspacio || !idPrestamo || !idUsuario) {
+    
+        // Verificar que todos los campos requeridos están llenos
+        if (!fechaObservacion || !observacion || !tipoObservacion || !tipoPrestamo || !idEspacio || !idUsuario) {
             Swal.fire('Error', 'Por favor, completa todos los campos requeridos.', 'error');
             return;
         }
-
+    
         const formData = new FormData();
         formData.append('fecha_observacion', fechaObservacion);
         formData.append('observacion', observacion);
         formData.append('tipo_observacion', tipoObservacion);
         formData.append('tipo_prestamo', tipoPrestamo);
         formData.append('id_espacio', idEspacio);
-        formData.append('id_prestamo', idPrestamo);
         formData.append('id_usuario', idUsuario);
-
+    
+        // Verificar si el usuario seleccionó un nuevo archivo de imagen
         if (inputFile) {
             formData.append('foto_observacion', inputFile);
         } else {
-            formData.append('foto_observacion', imagenActual);
+            formData.append('foto_observacion', imagenActual); // Enviar la imagen actual si no se seleccionó una nueva
         }
-
+    
+        // Enviar el ID de la observación
         formData.append('id', idObservacion);
-
+    
+        // Hacer la petición fetch para actualizar los datos
         fetch(`../../api/services/mis_observaciones_services.php?action=updateObservacion`, {
             method: 'POST',
             body: formData
@@ -353,9 +348,9 @@ function cargarDetalleObservacion(idObservacion, imagenObservacion) {
             .then(data => {
                 if (data.status) {
                     Swal.fire('Éxito', data.message, 'success');
-                    cargarDatosTabla();
+                    cargarDatosTabla(); // Refrescar la tabla de observaciones
                     const myModal = bootstrap.Modal.getInstance(document.getElementById('editarModal'));
-                    myModal.hide();
+                    myModal.hide(); // Ocultar el modal de edición
                 } else {
                     Swal.fire('Error', data.message, 'error');
                 }

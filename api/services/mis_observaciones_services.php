@@ -69,47 +69,56 @@ if (isset($_GET['action'])) {
             }
             break;
 
-        case 'updateObservacion':
-            $_POST = Validator::validateForm($_POST);
-            $fotoObservacion = $_POST['current_image'] ?? '';
-            if (isset($_FILES['foto_observacion'])) {
-                if ($observacion->saveImage($_FILES['foto_observacion'])) {
-                    $fotoObservacion = Validator::getFilename();
-                } else {
-                    $result['message'] = Validator::getFileError();
-                    break;
-                }
-            }
-            if (isset($_POST['id']) &&
-                isset($_POST['fecha_observacion']) &&
-                isset($_POST['observacion']) &&
-                isset($_POST['tipo_observacion']) &&
-                isset($_POST['tipo_prestamo']) &&
-                isset($_POST['id_espacio']) &&
-                isset($_POST['id_usuario'])) {
-
-                if ($observacion->setId($_POST['id']) &&
-                    $observacion->setFechaObservacion($_POST['fecha_observacion']) &&
-                    $observacion->setObservacion($_POST['observacion']) &&
-                    $observacion->setFotoObservacion($fotoObservacion) &&
-                    $observacion->setTipoObservacion($_POST['tipo_observacion']) &&
-                    $observacion->setTipoPrestamo($_POST['tipo_prestamo']) &&
-                    $observacion->setIdEspacio($_POST['id_espacio']) &&
-                    $observacion->setIdUsuario($_POST['id_usuario'])) {
-
-                    if ($observacion->update()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Observación actualizada correctamente';
+            case 'updateObservacion':
+                $_POST = Validator::validateForm($_POST);
+                
+                // Obtener la imagen actual
+                $fotoObservacion = $_POST['current_image'] ?? '';
+            
+                // Si se subió una nueva imagen, reemplazamos la imagen actual
+                if (isset($_FILES['foto_observacion']) && $_FILES['foto_observacion']['size'] > 0) {
+                    if ($observacion->saveImage($_FILES['foto_observacion'])) {
+                        $fotoObservacion = Validator::getFilename();
                     } else {
-                        $result['message'] = 'No se pudo actualizar la observación';
+                        $result['message'] = Validator::getFileError();
+                        break;
+                    }
+                }
+            
+                // Comprobamos que los demás campos requeridos están presentes
+                if (isset($_POST['id']) &&
+                    isset($_POST['fecha_observacion']) &&
+                    isset($_POST['observacion']) &&
+                    isset($_POST['tipo_observacion']) &&
+                    isset($_POST['tipo_prestamo']) &&
+                    isset($_POST['id_espacio']) &&
+                    isset($_POST['id_usuario'])) {
+            
+                    // Asignar valores a los campos de la observación
+                    if ($observacion->setId($_POST['id']) &&
+                        $observacion->setFechaObservacion($_POST['fecha_observacion']) &&
+                        $observacion->setObservacion($_POST['observacion']) &&
+                        $observacion->setFotoObservacion($fotoObservacion) &&
+                        $observacion->setTipoObservacion($_POST['tipo_observacion']) &&
+                        $observacion->setTipoPrestamo($_POST['tipo_prestamo']) &&
+                        $observacion->setIdEspacio($_POST['id_espacio']) &&
+                        $observacion->setIdUsuario($_POST['id_usuario'])) {
+            
+                        // Actualizar la observación
+                        if ($observacion->update()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Observación actualizada correctamente';
+                        } else {
+                            $result['message'] = 'No se pudo actualizar la observación';
+                        }
+                    } else {
+                        $result['message'] = 'Datos inválidos';
                     }
                 } else {
-                    $result['message'] = 'Datos inválidos';
+                    $result['message'] = 'Datos incompletos';
                 }
-            } else {
-                $result['message'] = 'Datos incompletos';
-            }
-            break;
+                break;
+            
 
         case 'deleteObservacion':
             // Obtén los datos enviados en el cuerpo de la petición

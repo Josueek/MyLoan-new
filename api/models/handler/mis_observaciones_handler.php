@@ -17,7 +17,7 @@ class MisObservacionesHandler
      */
     public function getAllObservaciones($buscar = '', $tipo = '', $tipoPrestamo = '')
     {
-        $sql = 'SELECT o.id_obsevacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, o.tipo_prestamo, e.nombre_espacio, d.nombre_empleado 
+        $sql = 'SELECT o.id_observacion, o.fecha_observacion, o.observacion, o.foto_observacion, o.tipo_observacion, o.tipo_prestamo, e.nombre_espacio, d.nombre_empleado 
                 FROM tb_observaciones o 
                 JOIN tb_espacios e ON o.id_espacio = e.id_espacio 
                 JOIN tb_datos_empleados d ON o.id_usuario = d.id_usuario
@@ -42,7 +42,7 @@ class MisObservacionesHandler
      */
     public function getObservacionById($idObservacion)
     {
-        $sql = 'SELECT * FROM tb_observaciones WHERE id_obsevacion = ?';
+        $sql = 'SELECT * FROM tb_observaciones WHERE id_observacion = ?';
         $params = array($idObservacion);
         return Database::getRow($sql, $params);
     }
@@ -68,7 +68,7 @@ class MisObservacionesHandler
     {
         $sql = 'UPDATE tb_observaciones 
                 SET fecha_observacion = ?, observacion = ?, foto_observacion = ?, tipo_observacion = ?, tipo_prestamo = ?, id_espacio = ?, id_usuario = ? 
-                WHERE id_obsevacion = ?';
+                WHERE id_observacion = ?';
         return Database::executeRow($sql, $params);
     }
 
