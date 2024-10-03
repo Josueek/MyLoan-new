@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function resetTimer() {
         clearTimeout(timeout);
         // Iniciar un nuevo temporizador de 5 segundos (5000 milisegundos)
-        timeout = setTimeout(logout, 300000); // 5 segundos
+        timeout = setTimeout(logout, 3000000); // 5 segundos
     }
 
     function logout() {
