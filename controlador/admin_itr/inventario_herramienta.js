@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
             data.dataset.forEach(herramienta => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${herramienta.codigo_herramienta  || 'No se encontraron datos'}</td>
-                    <td>${herramienta.nombre_herramienta || 'No se encontraron datos'}</td>
-                    <td>${herramienta.stock || 'No se encontraron datos'}</td>
-                    <td>${herramienta.nombre_institucion || 'No se encontraron datos'}</td>
-                    <td>${herramienta.descripcion || 'No se encontraron datos'}</td>
+                    <td>${herramienta.codigo_herramienta}</td>
+                    <td>${herramienta.nombre_herramienta}</td>
+                    <td>${herramienta.stock}</td>
+                    <td>${herramienta.nombre_institucion}</td>
+                    <td>${herramienta.descripcion}</td>
                     <td>
                         <button type="button" class="btn btn-success btn-editar-herramienta" data-codigo="${herramienta.codigo_herramienta}" data-bs-toggle="modal" data-bs-target="#editarHerramientaModal">
                             <i class="fa-solid fa-pencil"></i>

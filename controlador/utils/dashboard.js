@@ -32,7 +32,6 @@ function generarMenuLateral() {
                             </span>
                             <span class="hide-menu">Administrar</span>
                         </a>
-
                         <ul id="submenu" class="submenu">
                             <li class="submenu-item d-flex align-items-center">
                                 <a href="../vistas_admin/administrar_usuarios.html" class="submenu-link  w-100">
@@ -42,7 +41,6 @@ function generarMenuLateral() {
                                     <span class="hide-menu">Usuarios</span>
                                 </a>
                             </li>
-
                             <li class="submenu-item d-flex align-items-center">
                                 <a href="../vistas_admin/gestionar_espacios.html" class="submenu-link">
                                     <span>
@@ -77,7 +75,6 @@ function generarMenuLateral() {
                             </li>
                         </ul>
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnCursos">
                             <span>
@@ -104,7 +101,6 @@ function generarMenuLateral() {
                             </li>
                         </ul>
                     </li>
-
                      <li class="sidebar-item">
                         <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnPrestamos">
                             <span>
@@ -123,8 +119,6 @@ function generarMenuLateral() {
                             </li>
                         </ul>
                     </li>
-
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="../vistas_admin/gestionar_solicitudes.html"
                             aria-expanded="false">
@@ -134,16 +128,15 @@ function generarMenuLateral() {
                             <span class="hide-menu">Gestionar solicitudes</span>
                         </a>
                     </li>
-                    
                     <li class="sidebar-item">
     <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnobser">
         <span>
             <i class="fa-solid fa-eye"></i>
-        </span>
+            </span>
         <span class="hide-menu">Observaciones</span>
-    </a>
-    <ul id="submenu7" class="submenu" style="display: none;">
-        <li class="submenu-item ">
+         </a>
+       <ul id="submenu7" class="submenu" style="display: none;">
+          <li class="submenu-item ">
             <a href="../vistas_admin/mis_observaciones.html" class="submenu-link">
                 <span>
                     <i class="far fa-eye-slash me-2"></i>
@@ -153,8 +146,6 @@ function generarMenuLateral() {
         </li>
     </ul>
 </li>
-
-
                       <li class="sidebar-item">
                         <a href="../vistas_admin/graficas.html"  class="sidebar-link" href="javascript:void(0)" aria-expanded="false" id="btnGrafica">
                             <span>
