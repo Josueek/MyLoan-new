@@ -2,7 +2,7 @@
     document.getElementById('btnSiguiente').addEventListener('click', function() {
         event.preventDefault();
         AgregarPrestamo();
-        
+        // Redirigir a la nueva página
     });
 
 
@@ -95,7 +95,7 @@ function AgregarPrestamo(){
     const id_curso = document.getElementById('institucion').value;
     const id_usuario = document.getElementById('usuarioPrestamos').value;
 
-    if(!fecha_solicitud || !programa_formacion || !observacion || !id_curso || !id_prestamo){
+    if(!fecha_solicitud || !programa_formacion || !observacion || !id_curso || !id_usuario){
         Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
         return;
     }

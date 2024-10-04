@@ -36,20 +36,20 @@ document.addEventListener('DOMContentLoaded', function () {
             data.dataset.forEach(prestamo => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <th scope="row">${prestamo.id_prestamo}</th>
-                    <td>${prestamo.nombre_empleado}</td>
-                    <td>${prestamo.programa_formacion}</td>
-                    <td>${prestamo.observacion}</td>
-                    <td>${prestamo.nombre_curso}</td>
-                    <td>${prestamo.fecha_solicitud}</td>
-                    <td>${prestamo.estado_prestamo}</td>
+                    <th scope="row">${prestamo.id_prestamo || 'No se encontraron datos'}</th>
+                    <td>${prestamo.nombre_empleado || 'No se encontraron datos'}</td>
+                    <td>${prestamo.programa_formacion || 'No se encontraron datos'}</td>
+                    <td>${prestamo.observacion || 'No se encontraron datos'}</td>
+                    <td>${prestamo.nombre_curso || 'No se encontraron datos'}</td>
+                    <td>${prestamo.fecha_solicitud || 'No se encontraron datos'}</td>
+                    <td>${prestamo.estado_prestamo || 'No se encontraron datos'}</td>
                 `;
                 tbody.appendChild(tr);
             });
         } else {
             const noRecordsRow = document.createElement('tr');
             const noRecordsCell = document.createElement('td');
-            noRecordsCell.colSpan = 8; // Ajuste para incluir la nueva columna
+            noRecordsCell.colSpan = 7; // Ajusta el número de columnas en la tabla
             noRecordsCell.textContent = 'No se encontraron registros';
             noRecordsRow.appendChild(noRecordsCell);
             tbody.appendChild(noRecordsRow);
@@ -160,10 +160,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${detalle.unidad}</td>
                     <td>${detalle.descripcion}</td>
                     <td>${detalle.id_prestamo}</td>
-                    <td>${detalle.nombre_espacio || 'N/A'}</td>
-                    <td>${detalle.nombre_equipo || 'N/A'}</td>
-                    <td>${detalle.nombre_material || 'N/A'}</td>
-                    <td>${detalle.nombre_herramienta || 'N/A'}</td>
+                    <td>${detalle.nombre_espacio || 'No se encontraron datos'}</td>
+                    <td>${detalle.nombre_equipo || 'No se encontraron datos'}</td>
+                    <td>${detalle.nombre_material || 'No se encontraron datos'}</td>
+                    <td>${detalle.nombre_herramienta || 'No se encontraron datos'}</td>
                 `;
                 tbody.appendChild(tr);
             });

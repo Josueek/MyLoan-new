@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
             data.dataset.forEach(prestamo => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <th scope="row">${prestamo.id_prestamo}</th>
-                    <td>${prestamo.nombre_empleado}</td>
-                    <td>${prestamo.programa_formacion}</td>
-                    <td>${prestamo.observacion}</td>
-                    <td>${prestamo.nombre_curso}</td>
-                    <td>${prestamo.fecha_solicitud}</td>
-                    <td>${prestamo.estado_prestamo}</td>
+                    <th scope="row">${prestamo.id_prestamo || 'No se encontraron datos'}</th>
+                    <td>${prestamo.nombre_empleado || 'No se encontraron datos'}</td>
+                    <td>${prestamo.programa_formacion || 'No se encontraron datos'}</td>
+                    <td>${prestamo.observacion || 'No se encontraron datos'}</td>
+                    <td>${prestamo.nombre_curso || 'No se encontraron datos'}</td>
+                    <td>${prestamo.fecha_solicitud || 'No se encontraron datos'}</td>
+                    <td>${prestamo.estado_prestamo || 'No se encontraron datos'}</td>
                     <td>
                         <div class="col-3 me-2 mt-2">
                             <button type="button" class="btn btn-primary ver-solicitud" data-id="${prestamo.id_prestamo}" data-estado="${prestamo.estado_prestamo}">

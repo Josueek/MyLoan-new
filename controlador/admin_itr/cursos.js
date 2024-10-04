@@ -60,15 +60,15 @@ document.addEventListener('DOMContentLoaded', function() {
             data.dataset.forEach(curso => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${curso.nombre_curso}</td>
-                    <td>${curso.fecha_inicio}</td>
-                    <td>${curso.fecha_fin}</td>
-                    <td>${curso.cantidad_personas}</td>
-                    <td>${curso.grupo}</td>
-                    <td>${curso.programa_formacion}</td>
-                    <td>${curso.codigo_curso}</td>
-                    <td>${curso.nombre_empleado}</td>
-                    <td>${curso.estado}</td>
+                    <td>${curso.nombre_curso || 'No se encontraron datos'}</td>
+                    <td>${curso.fecha_inicio || 'No se encontraron datos'}</td>
+                    <td>${curso.fecha_fin || 'No se encontraron datos'}</td>
+                    <td>${curso.cantidad_personas || 'No se encontraron datos'}</td>
+                    <td>${curso.grupo || 'No se encontraron datos'}</td>
+                    <td>${curso.programa_formacion || 'No se encontraron datos'}</td>
+                    <td>${curso.codigo_curso || 'No se encontraron datos'}</td>
+                    <td>${curso.nombre_empleado || 'No se encontraron datos'}</td>
+                    <td>${curso.estado || 'No se encontraron datos'}</td>
                     <td>
                         <button type="button" class="btn btn-success btn-editar-curso" data-id="${curso.id_curso}" data-bs-toggle="modal" data-bs-target="#editarCursoModal">
                             <i class="fa-solid fa-pencil"></i>
