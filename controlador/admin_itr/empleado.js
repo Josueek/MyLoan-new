@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Swal.fire('Error!', data.message, 'error');
                 }
             })
-            .catch(error => console.error('Error al agregar especialidad:', error));
+            .catch(error => console.error('Error al agregar especialsssidad:', error));
     }
 
     function cargarEspecialidad(id) {

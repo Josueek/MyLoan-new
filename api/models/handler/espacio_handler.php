@@ -224,7 +224,7 @@ WHERE e.id_espacio = ?;';
     {
         $sql = 'SELECT 
     tipos.tipo_observacion AS Tipo_Observacion,
-    COALESCE(COUNT(o.id_obsevacion), 0) AS Numero_de_Observaciones
+    COALESCE(COUNT(o.id_observacion), 0) AS Numero_de_Observaciones
     FROM 
         (SELECT "Previa" AS tipo_observacion 
         UNION ALL 

@@ -114,10 +114,12 @@ if (isset($_GET['action'])) {
             if (isset($_POST['nombre']) && Validator::validateString($_POST['nombre'])) {
                 if ($especialidad->setNombre($_POST['nombre'])) {
                     if ($especialidad->createRow()) {
+
+                        $result['status'] = 0;
+                        $result['message'] = 'No se pudo crear la especialidad';
+                    } else {
                         $result['status'] = 1;
                         $result['message'] = 'Especialidad creada correctamente';
-                    } else {
-                        $result['message'] = 'No se pudo crear la especialidad';
                     }
                 } else {
                     $result['message'] = 'Datos inválidos';
@@ -200,10 +202,10 @@ if (isset($_GET['action'])) {
             if (isset($_POST['nombre']) && Validator::validateString($_POST['nombre'])) {
                 if ($cargo->setNombre($_POST['nombre'])) {
                     if ($cargo->createRow()) {
+                        $result['message'] = 'No se pudo agregar el cargo.';
+                    } else {
                         $result['status'] = 1;
                         $result['message'] = 'Cargo agregado correctamente.';
-                    } else {
-                        $result['message'] = 'No se pudo agregar el cargo.';
                     }
                 } else {
                     $result['message'] = 'Nombre de cargo no válido.';

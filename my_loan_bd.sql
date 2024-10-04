@@ -194,7 +194,7 @@ CREATE TABLE `tb_materiales` (
 -- Estructura de tabla para la tabla `tb_observaciones`
 --
 CREATE TABLE `tb_observaciones` (
-  `id_obsevacion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_observacion` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_observacion` date NOT NULL,
   `observacion` varchar(40) NOT NULL,
   `foto_observacion` varchar(255) DEFAULT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE `tb_observaciones` (
   `id_espacio` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `id_prestamo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_obsevacion`)
+  PRIMARY KEY (`id_observacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_periodo_prestamos`

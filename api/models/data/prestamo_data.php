@@ -1,4 +1,4 @@
-<?phpr
+<?php
 require_once('../helpers/validator.php');
 require_once('../models/handler/prestamo_handler.php');
 
