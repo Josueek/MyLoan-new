@@ -1,7 +1,8 @@
     // Añadir evento click al botón
     document.getElementById('btnSiguiente').addEventListener('click', function() {
+        event.preventDefault();
+        AgregarPrestamo();
         // Redirigir a la nueva página
-        window.location.href = '../../vistas/vistas_admin/crear_solicitud_prestamousar.html';
     });
 
 
@@ -40,54 +41,6 @@
     document.addEventListener('DOMContentLoaded', function () {
         cargarComboboxCursos();
     });
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Guardar los datos del préstamo en localStorage al hacer clic en "Siguiente"
-    document.getElementById('btnAgregarequipo').addEventListener('click', function () {
-        // Obtener los datos del préstamo
-        const fechaSolicitud = document.getElementById('fechaEntrega').value;
-        const programaFormacion = document.getElementById('programaformacion').value;
-        const usuarioSolicitante = document.getElementById('usuarioPrestamos').value;
-        const curso = document.getElementById('institucion').value;
-        const observacion = document.getElementById('descripcion').value;
-
-        // Validar que todos los campos estén llenos
-        if (!fechaSolicitud || programaFormacion === "0" || !usuarioSolicitante || curso === "0" || !observacion) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos incompletos',
-                text: 'Por favor, completa todos los campos antes de continuar.',
-            });
-            return;
-        }
-
-        // Crear un objeto de préstamo
-        const prestamo = {
-            fechaSolicitud,
-            programaFormacion,
-            usuarioSolicitante,
-            curso,
-            observacion,
-            articulos: [] // Inicialmente vacío, se llenará en la segunda página
-        };
-
-        // Guardar el préstamo en localStorage
-        localStorage.setItem('prestamo', JSON.stringify(prestamo));
-
-        // Redirigir a la segunda página
-        window.location.href = 'crear_solicitud_prestamousar.html';
-    });
-
-    // Inicializar datepicker
-    $('#fechaEntrega').datepicker({
-        format: 'mm/dd/yyyy',
-        autoclose: true,
-        todayHighlight: true
-    });
-
-    // Cargar empleados
-    cargarEmpleados();
-});
 
 function cargarEmpleados() {
     fetch('../../api/services/empleado_services.php?action=getEmpleados')
@@ -142,7 +95,7 @@ function AgregarPrestamo(){
     const id_curso = document.getElementById('institucion').value;
     const id_usuario = document.getElementById('usuarioPrestamos').value;
 
-    if(!fecha_solicitud || !programa_formacion || !observacion || !id_curso || !id_prestamo){
+    if(!fecha_solicitud || !programa_formacion || !observacion || !id_curso || !id_usuario){
         Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
         return;
     }

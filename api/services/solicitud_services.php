@@ -17,7 +17,6 @@ if (isset($_GET['action'])) {
             $programa = isset($_GET['programa']) ? $_GET['programa'] : '';
             $result = $solicitud->getAllSolicitudes($buscar, $curso, $programa);
             break;
-
         /**
          * Solicitudes de ITR
          */

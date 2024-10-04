@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
             data.dataset.forEach(observacion => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${observacion.fecha_observacion}</td>
-                    <td>${observacion.observacion}</td>
-                    <td><img src="../../api/images/observaciones/${observacion.foto_observacion}" width="100px" height="100px"></td>
-                    <td>${observacion.tipo_observacion}</td>
-                    <td>${observacion.tipo_prestamo}</td>
-                    <td>${observacion.nombre_espacio}</td>
-                    <td>${observacion.nombre_empleado}</td>
+                    <td>${observacion.fecha_observacion  || 'No se encontraron datos'}</td>
+                    <td>${observacion.observacion || 'No se encontraron datos'}</td>
+                    <td><img src="../../api/images/observaciones/${observacion.foto_observacion || 'No se encontraron datos'}" width="100px" height="100px"></td>
+                    <td>${observacion.tipo_observacion || 'No se encontraron datos'}</td>
+                    <td>${observacion.tipo_prestamo || 'No se encontraron datos'}</td>
+                    <td>${observacion.nombre_espacio || 'No se encontraron datos'}</td>
+                    <td>${observacion.nombre_empleado || 'No se encontraron datos'}</td>
                     <td>
                         <button type="button" class="btn btn-primary editar-observacion" data-id="${observacion.id_observacion}" data-imagen="${observacion.foto_observacion}">Editar</button>
       <button type="button" class="btn btn-danger eliminar-observacion" data-id="${observacion.id_observacion}">Eliminar</button> <!-- Aquí debe estar el data-id -->

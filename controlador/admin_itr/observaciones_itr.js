@@ -28,14 +28,14 @@ $(document).ready(function () {
         $('#tablaObservaciones tbody').empty();
         observaciones.forEach(function (observacion) {
             let fila = `<tr>
-                            <td>${observacion.id_observacion}</td>
-                            <td>${observacion.fecha_observacion}</td>
-                            <td>${observacion.observacion}</td>
-                            <td>${observacion.tipo_observacion}</td>
-                            <td>${observacion.tipo_prestamo}</td>
-                            <td>${observacion.id_espacio}</td>
-                            <td>${observacion.id_usuario}</td>
-                            <td>${observacion.id_prestamo}</td>
+                            <td>${observacion.id_observacion || 'No se encontraron datos'}</td>
+                            <td>${observacion.fecha_observacion || 'No se encontraron datos'}</td>
+                            <td>${observacion.observacion || 'No se encontraron datos'}</td>
+                            <td>${observacion.tipo_observacion || 'No se encontraron datos'}</td>
+                            <td>${observacion.tipo_prestamo || 'No se encontraron datos'}</td>
+                            <td>${observacion.id_espacio || 'No se encontraron datos'}</td>
+                            <td>${observacion.id_usuario || 'No se encontraron datos'}</td>
+                            <td>${observacion.id_prestamo || 'No se encontraron datos'}</td>
                             <td>
                                 <button class="btn btn-info btn-sm btnEditar" data-id="${observacion.id_observacion}">Editar</button>
                                 <button class="btn btn-danger btn-sm btnEliminar" data-id="${observacion.id_observacion}">Eliminar</button>
