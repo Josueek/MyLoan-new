@@ -91,25 +91,41 @@ class MisObservacionesHandler
     public function getOpciones()
     {
         $result = array();
-
-        $sqlTiposObservacion = 'SELECT DISTINCT tipo_observacion AS id, tipo_observacion AS nombre FROM tb_observaciones';
-        $result['tiposObservacion'] = Database::getRows($sqlTiposObservacion);
-
+    
+        // Obtener los valores del ENUM directamente desde la base de datos
+        $sqlTiposObservacion = 'SHOW COLUMNS FROM tb_observaciones LIKE "tipo_observacion"';
+        $enumRow = Database::getRow($sqlTiposObservacion);
+        
+        if ($enumRow) {
+            // Extraer los valores del ENUM
+            preg_match("/^enum\(\'(.*)\'\)$/", $enumRow['Type'], $matches);
+            $enumValues = explode("','", $matches[1]);
+    
+            // Mapear los valores del ENUM para crear el formato adecuado
+            $result['tiposObservacion'] = array_map(function($value) {
+                return array('id' => $value, 'nombre' => $value);
+            }, $enumValues);
+        } else {
+            $result['tiposObservacion'] = [];
+        }
+    
+        // Para los tipos de préstamo y otras tablas
         $sqlTiposPrestamo = 'SELECT DISTINCT tipo_prestamo AS id, tipo_prestamo AS nombre FROM tb_observaciones';
         $result['tiposPrestamo'] = Database::getRows($sqlTiposPrestamo);
-
+    
         $sqlEspacios = 'SELECT id_espacio AS id, nombre_espacio AS nombre FROM tb_espacios';
         $result['espacios'] = Database::getRows($sqlEspacios);
-
+    
         $sqlEmpleados = 'SELECT id_datos_empleado AS id, nombre_empleado AS nombre FROM tb_datos_empleados';
         $result['empleados'] = Database::getRows($sqlEmpleados);
-
+    
         if ($result) {
             return array('status' => 1, 'dataset' => $result);
         } else {
             return array('status' => 0, 'message' => 'No se encontraron opciones');
         }
     }
+    
 
     /**
      * Método para guardar una imagen.

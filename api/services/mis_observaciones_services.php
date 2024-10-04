@@ -70,12 +70,13 @@ if (isset($_GET['action'])) {
             break;
 
             case 'updateObservacion':
+                // Validar los datos de entrada
                 $_POST = Validator::validateForm($_POST);
-                
-                // Obtener la imagen actual
-                $fotoObservacion = $_POST['current_image'] ?? '';
             
-                // Si se subió una nueva imagen, reemplazamos la imagen actual
+                // Obtener la imagen actual desde el formulario o desde el POST
+                $fotoObservacion = $_POST['foto_observacion'] ?? '';
+            
+                // Si se subió una nueva imagen, reemplazar la imagen actual
                 if (isset($_FILES['foto_observacion']) && $_FILES['foto_observacion']['size'] > 0) {
                     if ($observacion->saveImage($_FILES['foto_observacion'])) {
                         $fotoObservacion = Validator::getFilename();
@@ -83,8 +84,8 @@ if (isset($_GET['action'])) {
                         $result['message'] = Validator::getFileError();
                         break;
                     }
-                }
-            
+                } 
+                
                 // Comprobamos que los demás campos requeridos están presentes
                 if (isset($_POST['id']) &&
                     isset($_POST['fecha_observacion']) &&
@@ -98,7 +99,7 @@ if (isset($_GET['action'])) {
                     if ($observacion->setId($_POST['id']) &&
                         $observacion->setFechaObservacion($_POST['fecha_observacion']) &&
                         $observacion->setObservacion($_POST['observacion']) &&
-                        $observacion->setFotoObservacion($fotoObservacion) &&
+                        $observacion->setFotoObservacion($fotoObservacion) && // Aquí se establece la imagen actual o nueva
                         $observacion->setTipoObservacion($_POST['tipo_observacion']) &&
                         $observacion->setTipoPrestamo($_POST['tipo_prestamo']) &&
                         $observacion->setIdEspacio($_POST['id_espacio']) &&
@@ -118,6 +119,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Datos incompletos';
                 }
                 break;
+            
             
 
         case 'deleteObservacion':

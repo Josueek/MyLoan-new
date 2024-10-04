@@ -19,6 +19,47 @@ document.addEventListener('DOMContentLoaded', function () {
         actualizarObservacion();
     });
 
+        const inputImage = document.getElementById('editarInputFile');
+        const imagePreviewContainer = document.getElementById('editarImagePreview');
+    
+        // Evento que se activa cuando se selecciona un archivo
+        inputImage.addEventListener('change', function(event) {
+            // Verificar si se seleccionó un archivo
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+    
+                // Leer el archivo y mostrarlo en la vista previa
+                reader.onload = function(e) {
+                    // Crear una nueva imagen
+                    const imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    imgElement.alt = 'Vista previa';
+                    imgElement.style.maxWidth = '100%'; // Ajustar al contenedor
+                    imgElement.style.height = 'auto';
+    
+                    // Limpiar el contenedor antes de añadir la nueva imagen
+                    imagePreviewContainer.innerHTML = ''; 
+                    imagePreviewContainer.appendChild(imgElement); // Añadir la nueva imagen
+                };
+    
+                // Leer el archivo como Data URL
+                reader.readAsDataURL(file);
+            } else {
+                // Limpiar la vista previa si no hay archivo
+                imagePreviewContainer.innerHTML = ''; 
+            }
+        });
+    
+        // Limpiar la vista previa al abrir el modal
+        const myModal = new bootstrap.Modal(document.getElementById('editarModal'));
+    
+        document.getElementById('editarModal').addEventListener('show.bs.modal', function () {
+            inputImage.value = ''; // Resetear el input
+            imagePreviewContainer.innerHTML = ''; // Limpiar la vista previa
+        });
+    
+
     function cargarDatosTabla(buscar = '', tipo = '') {
         fetch(`../../api/services/mis_observaciones_services.php?action=getAllObservaciones&buscar=${buscar}&tipo=${tipo}`)
             .then(response => response.json())
@@ -41,13 +82,13 @@ document.addEventListener('DOMContentLoaded', function () {
             data.dataset.forEach(observacion => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${observacion.fecha_observacion  || 'No se encontraron datos'}</td>
-                    <td>${observacion.observacion || 'No se encontraron datos'}</td>
-                    <td><img src="../../api/images/observaciones/${observacion.foto_observacion || 'No se encontraron datos'}" width="100px" height="100px"></td>
-                    <td>${observacion.tipo_observacion || 'No se encontraron datos'}</td>
-                    <td>${observacion.tipo_prestamo || 'No se encontraron datos'}</td>
-                    <td>${observacion.nombre_espacio || 'No se encontraron datos'}</td>
-                    <td>${observacion.nombre_empleado || 'No se encontraron datos'}</td>
+                    <td>${observacion.fecha_observacion}</td>
+                    <td>${observacion.observacion}</td>
+                    <td><img src="../../api/images/observaciones/${observacion.foto_observacion}" width="100px" height="100px"></td>
+                    <td>${observacion.tipo_observacion}</td>
+                    <td>${observacion.tipo_prestamo}</td>
+                    <td>${observacion.nombre_espacio}</td>
+                    <td>${observacion.nombre_empleado}</td>
                     <td>
                         <button type="button" class="btn btn-primary editar-observacion" data-id="${observacion.id_observacion}" data-imagen="${observacion.foto_observacion}">Editar</button>
       <button type="button" class="btn btn-danger eliminar-observacion" data-id="${observacion.id_observacion}">Eliminar</button> <!-- Aquí debe estar el data-id -->
@@ -223,6 +264,16 @@ function cargarDetalleObservacion(idObservacion, imagenObservacion) {
                 // Limpiar el campo de archivo (por si acaso se había seleccionado algo antes)
                 document.getElementById('editarInputFile').value = '';
 
+                // Cargar y mostrar la imagen actual
+                const currentImage = document.getElementById('currentImage');
+                if (imagenObservacion) {
+                    const urlImagenActual = `../../api/images/observaciones/${imagenObservacion}`;
+                    currentImage.src = urlImagenActual; // Establecer la URL de la imagen
+                    currentImage.style.display = 'block'; // Hacer visible la imagen
+                } else {
+                    currentImage.style.display = 'none'; // Ocultar la imagen si no hay
+                }
+
                 const myModal = new bootstrap.Modal(document.getElementById('editarModal'));
                 myModal.show();
 
@@ -234,6 +285,7 @@ function cargarDetalleObservacion(idObservacion, imagenObservacion) {
         })
         .catch(error => console.error('Error al obtener detalles de la observación:', error));
 }
+
 
 
     function guardarObservacion() {
@@ -360,3 +412,63 @@ function cargarDetalleObservacion(idObservacion, imagenObservacion) {
     
     
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el elemento de entrada de archivo y el contenedor de vista previa
+    const inputFile = document.getElementById('inputFile');
+    const imagePreview = document.getElementById('imagePreview');
+
+    // Agregar un listener para el evento 'change' del input de archivo
+    inputFile.addEventListener('change', function (event) {
+        // Limpiar la vista previa anterior
+        imagePreview.innerHTML = '';
+
+        // Obtener el archivo de imagen
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            
+            // Definir la función que se ejecuta cuando la lectura de la imagen se completa
+            reader.onload = function (e) {
+                // Crear un elemento de imagen y establecer su fuente
+                const img = document.createElement('img');
+                img.src = e.target.result; // URL de la imagen
+                img.alt = 'Vista previa de la imagen';
+                img.style.maxWidth = '100%'; // Asegúrate de que la imagen no exceda el ancho del contenedor
+                img.style.height = 'auto'; // Mantener la relación de aspecto
+
+                // Agregar la imagen al contenedor de vista previa
+                imagePreview.appendChild(img);
+            };
+
+            // Leer el archivo como una URL de datos
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Escuchar el cambio en el campo de entrada de archivo para editar
+    document.getElementById('editarInputFile').addEventListener('change', function (event) {
+        const file = event.target.files[0]; // Obtener el archivo seleccionado
+        const previewContainer = document.getElementById('editarImagePreview'); // Contenedor de vista previa
+        const currentImage = document.getElementById('currentImage'); // Imagen actual
+
+        // Limpiar la vista previa de la imagen actual
+        if (currentImage) {
+            currentImage.style.display = 'none'; // Ocultar la imagen actual
+        }
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewContainer.innerHTML = `<img src="${e.target.result}" alt="Vista previa" style="max-width: 100%; height: auto;">`;
+            };
+            reader.readAsDataURL(file); // Leer el archivo seleccionado
+        } else {
+            previewContainer.innerHTML = ''; // Limpiar la vista previa si no hay archivo
+        }
+    });
+});
+
+
