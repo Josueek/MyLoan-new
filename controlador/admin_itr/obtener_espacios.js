@@ -13,7 +13,7 @@ function cargarEspacios() {
                     selectEspacio.appendChild(option);
                 });
             } else {
-                console.error('No se encontraron datos.');
+                console.error('N/A.');
             }
         })
         .catch(error => console.error('Error al obtener espacios:', error));

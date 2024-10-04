@@ -57,13 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
             empleados.forEach(empleado => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${empleado.nombre_empleado || 'No se encontraron datos'}</td>
-                    <td>${empleado.apellido_empleado || 'No se encontraron datos'}</td>
-                    <td>${empleado.telefono || 'No se encontraron datos'}</td>
-                    <td>${empleado.estado_empleado || 'No se encontraron datos'}</td>
-                    <td>${empleado.correo_electronico || 'No se encontraron datos'}</td>
-                    <td>${empleado.cargo || 'No se encontraron datos'}</td>
-                    <td>${empleado.especialidad || 'No se encontraron datos'}</td>
+                    <td>${empleado.nombre_empleado || 'N/A'}</td>
+                    <td>${empleado.apellido_empleado || 'N/A'}</td>
+                    <td>${empleado.telefono || 'N/A'}</td>
+                    <td>${empleado.estado_empleado || 'N/A'}</td>
+                    <td>${empleado.correo_electronico || 'N/A'}</td>
+                    <td>${empleado.cargo || 'N/A'}</td>
+                    <td>${empleado.especialidad || 'N/A'}</td>
                     <td>
                         <button type="button" class="btn btn-success" onclick="cargarEmpleado(${empleado.id_datos_empleado})" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal">
                             <i class="fa-solid fa-pencil"></i>

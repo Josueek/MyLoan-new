@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
             data.dataset.forEach(material => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${material.nombre || 'No se encontraron datos'}</td>
-                    <td>${material.cantidad || 'No se encontraron datos'}</td>
-                    <td>${material.descripcion || 'No se encontraron datos'}</td>
+                    <td>${material.nombre || 'N/A'}</td>
+                    <td>${material.cantidad || 'N/A'}</td>
+                    <td>${material.descripcion || 'N/A'}</td>
                     <td>
                         <button type="button" class="btn btn-success btn-editar-material" data-id="${material.id_material}" data-bs-toggle="modal" data-bs-target="#editarMaterialModal">
                             <i class="fa-solid fa-pencil"></i>

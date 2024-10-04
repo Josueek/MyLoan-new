@@ -107,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function () {
             data.dataset.forEach(espacio => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <th scope="row">${espacio.id_espacio || 'No se encontraron datos'}</th>
-                    <td>${espacio.nombre_espacio || 'No se encontraron datos'}</td>
-                    <td>${espacio.capacidad_personas || 'No se encontraron datos'}</td>
-                    <td>${espacio.tipo_espacio || 'No se encontraron datos'}</td>
-                    <td>${espacio.nombre_empleado || 'No se encontraron datos'}</td>
-                    <td>${espacio.foto_espacio ? `<img src="../../api/images/espacios/${espacio.foto_espacio}" alt="Foto del espacio" width="50" height="50">` : '' || 'No se encontraron datos'}</td>
-                    <td>${espacio.nombre_especialidad || 'No se encontraron datos'}</td>
-                    <td>${espacio.nombre_institucion || 'No se encontraron datos'}</td>
+                    <th scope="row">${espacio.id_espacio || 'N/A'}</th>
+                    <td>${espacio.nombre_espacio || 'N/A'}</td>
+                    <td>${espacio.capacidad_personas || 'N/A'}</td>
+                    <td>${espacio.tipo_espacio || 'N/A'}</td>
+                    <td>${espacio.nombre_empleado || 'N/A'}</td>
+                    <td>${espacio.foto_espacio ? `<img src="../../api/images/espacios/${espacio.foto_espacio}" alt="Foto del espacio" width="50" height="50">` : '' || 'N/A'}</td>
+                    <td>${espacio.nombre_especialidad || 'N/A'}</td>
+                    <td>${espacio.nombre_institucion || 'N/A'}</td>
                     <td class="text-center">
                         <button type="button" class="btn btn-primary btn-descargar-inventario" data-inventario="${espacio.inventario_doc}">
                             <i class="fa-solid fa-download"></i>

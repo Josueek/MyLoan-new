@@ -88,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
             data.dataset.forEach(equipo => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${equipo.nombre || 'No se encontraron datos'}</td>
-                    <td>${equipo.cantidad || 'No se encontraron datos'}</td>
-                    <td>${equipo.nombre_espacio || 'No se encontraron datos'}</td>
-                    <td>${equipo.nombre_institucion || 'No se encontraron datos'}</td>
-                    <td>${equipo.descripcion || 'No se encontraron datos' }</td>
+                    <td>${equipo.nombre || 'N/A'}</td>
+                    <td>${equipo.cantidad || 'N/A'}</td>
+                    <td>${equipo.nombre_espacio || 'N/A'}</td>
+                    <td>${equipo.nombre_institucion || 'N/A'}</td>
+                    <td>${equipo.descripcion || 'N/A' }</td>
                     <td>
                         <button type="button" class="btn btn-success btn-editar-equipo" data-id="${equipo.id_equipo}" data-bs-toggle="modal" data-bs-target="#editarEquipoModal">
                             <i class="fa-solid fa-pencil"></i>

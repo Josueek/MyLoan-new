@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
         prestamo.articulos.forEach((articulo, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${articulo.cantidad || 'No se encontraron datos'}</td>
-                <td>${articulo.unidad || 'No se encontraron datos'}</td>
-                <td>${articulo.descripcion || 'No se encontraron datos'}</td>
-                <td>${articulo.articulo || 'No se encontraron datos'}</td>
+                <td>${articulo.cantidad || 'N/A'}</td>
+                <td>${articulo.unidad || 'N/A'}</td>
+                <td>${articulo.descripcion || 'N/A'}</td>
+                <td>${articulo.articulo || 'N/A'}</td>
                 <td>
                     <button class="btn btn-danger" onclick="eliminarArticulo(${index})">Eliminar</button>
                 </td>
