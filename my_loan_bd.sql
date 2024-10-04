@@ -177,7 +177,7 @@ CREATE TABLE `tb_inventario_herramienta` (
   `id_institucion` int(11) NOT NULL,
   PRIMARY KEY (`codigo_herramienta`),
   CONSTRAINT chk_stock CHECK (`stock` >= 1),
-  CONSTRAINT chk_en_uso CHECK (`en_uso` >= 1)
+  CONSTRAINT chk_en_uso CHECK (`en_uso` >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Estructura de tabla para la tabla `tb_materiales`
