@@ -41,6 +41,16 @@ class UsuarioData extends UsuarioHandler
         return ($data) ? true : false;
     }
 
+    public function checkCredentialsMovil()
+    {
+        $sql = 'SELECT id_usuario, correo_electronico, contraseña
+                FROM tb_usuarios
+                WHERE correo_electronico = ?';
+        $params = array($this->correo);
+        $data = Database::getRow($sql, $params);
+        return $data;
+    }
+    
     public function checkCredentials()
     {
         $sql = 'SELECT id_usuario, correo_electronico, contraseña, fecha_registro, fecha_ultimo_cambio_clave

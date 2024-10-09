@@ -20,16 +20,19 @@ if (isset($_GET['action'])) {
 
         case 'addCurso':
             $_POST = Validator::validateForm($_POST);
-            if (isset($_POST['nombre']) &&
+            if (
+                isset($_POST['nombre']) &&
                 isset($_POST['fechaInicio']) &&
                 isset($_POST['fechaFin']) &&
                 isset($_POST['cantidadPersonas']) &&
                 isset($_POST['grupo']) &&
                 isset($_POST['programaFormacion']) &&
                 isset($_POST['codigoCurso']) &&
-                isset($_POST['empleado'])) {
+                isset($_POST['empleado'])
+            ) {
 
-                if ($curso->setNombre($_POST['nombre']) &&
+                if (
+                    $curso->setNombre($_POST['nombre']) &&
                     $curso->setFechaInicio($_POST['fechaInicio']) &&
                     $curso->setFechaFin($_POST['fechaFin']) &&
                     $curso->setCantidadPersonas($_POST['cantidadPersonas']) &&
@@ -37,7 +40,8 @@ if (isset($_GET['action'])) {
                     $curso->setProgramaFormacion($_POST['programaFormacion']) &&
                     $curso->setCodigo($_POST['codigoCurso']) &&
                     $curso->setEmpleado($_POST['empleado']) &&
-                    $curso->setEstado('pendiente')) {
+                    $curso->setEstado('pendiente')
+                ) {
 
                     if ($curso->create()) {
                         $result['status'] = 1;
@@ -64,10 +68,39 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Datos inválidos';
             }
             break;
+        /**
+         * Obtener los datos del curso completo para el uso de la aplicacion movil
+         */
+        case 'getCursoByIdCompleto':
+            if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                if ($result['dataset'] = $curso->getCursoByIdCompleto($_GET['id'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se pudieron obtener los datos del curso';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
+        /**
+         * Obtener los datos del curso de cada empleado segun el id
+         */
+        case 'getCursoByIdEmpleado':
+            if (isset($_GET['id']) && Validator::validateNaturalNumber($_GET['id'])) {
+                if ($result['dataset'] = $curso->getCursoByIdEmpleado($_GET['id'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'No se pudieron obtener los datos del curso';
+                }
+            } else {
+                $result['message'] = 'Datos inválidos';
+            }
+            break;
 
         case 'updateCurso':
             $_POST = Validator::validateForm($_POST);
-            if (isset($_POST['id']) &&
+            if (
+                isset($_POST['id']) &&
                 isset($_POST['nombre']) &&
                 isset($_POST['fechaInicio']) &&
                 isset($_POST['fechaFin']) &&
@@ -76,9 +109,11 @@ if (isset($_GET['action'])) {
                 isset($_POST['programaFormacion']) &&
                 isset($_POST['codigoCurso']) &&
                 isset($_POST['empleado']) &&
-                isset($_POST['estado'])) {
+                isset($_POST['estado'])
+            ) {
 
-                if ($curso->setId($_POST['id']) &&
+                if (
+                    $curso->setId($_POST['id']) &&
                     $curso->setNombre($_POST['nombre']) &&
                     $curso->setFechaInicio($_POST['fechaInicio']) &&
                     $curso->setFechaFin($_POST['fechaFin']) &&
@@ -87,7 +122,8 @@ if (isset($_GET['action'])) {
                     $curso->setProgramaFormacion($_POST['programaFormacion']) &&
                     $curso->setCodigo($_POST['codigoCurso']) &&
                     $curso->setEmpleado($_POST['empleado']) &&
-                    $curso->setEstado($_POST['estado'])) {
+                    $curso->setEstado($_POST['estado'])
+                ) {
 
                     if ($curso->update()) {
                         $result['status'] = 1;

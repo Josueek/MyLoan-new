@@ -6,3 +6,4 @@ exit();  // Detiene la ejecución adicional del script para asegurar que la redi
 
 
 ?>
+    

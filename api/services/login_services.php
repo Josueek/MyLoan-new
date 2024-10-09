@@ -59,6 +59,7 @@ if (isset($_GET['action'])) {
                                 
                                 $result['status'] = 1;
                                 $result['message'] = 'Inicio de sesión correcto';
+                                $result['id_usuario'] = $data['id_usuario'];;
                                 $result['nombre'] = $empleado->getNombreEmpleado($data['id_usuario']);
                                 $result['institucion'] = $empleado->getInstitucion($data['id_usuario']);
                                 $result['cargo'] = $empleado->getCargo($data['id_usuario']);
@@ -78,10 +79,10 @@ if (isset($_GET['action'])) {
                             $newAttempts = $blockData['intentos_fallidos'] + 1;
 
                             if ($newAttempts >= 3) {
-                                $bloqueoHasta = (new DateTime())->modify('+24 hours')->format('Y-m-d H:i:s');
+                                $bloqueoHasta = (new DateTime())->modify('+1 hours')->format('Y-m-d H:i:s');
                                 $updateSql = 'UPDATE tb_usuarios SET intentos_fallidos = ?, bloqueo_hasta = ? WHERE correo_electronico = ?';
                                 Database::executeRow($updateSql, array($newAttempts, $bloqueoHasta, $correo));
-                                $result['error'] = 'Cuenta bloqueada por 24 horas debido a múltiples intentos fallidos. Intenta de nuevo después de 24 horas.';
+                                $result['error'] = 'Cuenta bloqueada por una hora debido a múltiples intentos fallidos. Intenta de nuevo despues.';
                             } else {
                                 $updateSql = 'UPDATE tb_usuarios SET intentos_fallidos = ? WHERE correo_electronico = ?';
                                 Database::executeRow($updateSql, array($newAttempts, $correo));
