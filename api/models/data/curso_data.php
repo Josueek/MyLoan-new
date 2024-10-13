@@ -14,6 +14,8 @@ class CursoData extends CursoHandler
     private $codigo;
     private $empleado;
     private $estado;
+    
+    private $prestamo;
 
     
 

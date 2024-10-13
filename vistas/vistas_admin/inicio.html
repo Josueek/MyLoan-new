@@ -177,6 +177,28 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="randomModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg"> <!-- Aumenta el tamaño del modal -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center"> <!-- Centrar el contenido -->
+                    <p id="modal-message" style="font-size: 1.8rem; font-weight: 600; font-family: 'Quicksand', sans-serif; color: #333; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);"></p> <!-- Texto más bonito -->
+                    <img id="modal-image" src="" alt="Imagen curiosa" class="img-fluid mb-3" style="max-width: 80%; height: auto;"> <!-- Imagen más pequeña -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
 
     <script src="../../api/libs/jquery/dist/jquery.min.js"></script>
     <script src="../../api/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -189,9 +211,13 @@
     <script src="../../recursos/js/munu-burguer.js"></script>
     <script src="../../recursos/js/dashboard.js"></script>
     <script src="../../controlador/admin_itr/tabla_prestamos.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../controlador/utils/inactividad.js"></script>
+    <script src="../../controlador/admin_itr/modal_bonito.js"></script>
+    <script src="../../api/images/mes/Light bulb-bro.png"></script>
 
 </body>
 

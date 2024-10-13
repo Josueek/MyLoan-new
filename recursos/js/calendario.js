@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     cargarFechas();
 
-    
     function generarCalendario(fechaActual) {
         const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         const [año, mes, dia] = fechaActual.split('-').map(Number);
@@ -60,9 +59,7 @@ $(document).ready(function () {
             }
         });
 
-        if (!cursoEnMesActual) {
-            $('#mensaje-dias-restantes').text('No hay cursos programados para este mes.');
-        }
+        return cursoEnMesActual; // Retorna si hay curso en el mes actual
     }
 
     function calcularDiasRestantes(fechaCursoMasCercano) {
@@ -83,28 +80,31 @@ $(document).ready(function () {
                 return response.json(); // Leer como JSON directamente
             })
             .then(data => {
-                if (data.fechaActual && data.fechaCursoMasCercano) {
-                    const fechaActual = data.fechaActual;
-                    const fechaCursoMasCercano = data.fechaCursoMasCercano;
+                const fechaActual = data.fechaActual;
+                const fechaCursoMasCercano = data.fechaCursoMasCercano;
 
-                    // Generar el calendario con la fecha actual
-                    generarCalendario(fechaActual);
+                // Generar el calendario con la fecha actual
+                generarCalendario(fechaActual);
 
-                    // Marcar las fechas en el calendario
-                    marcarFechas(fechaActual, fechaCursoMasCercano);
+                // Marcar las fechas en el calendario y obtener si hay curso en el mes actual
+                const cursoEnMesActual = marcarFechas(fechaActual, fechaCursoMasCercano);
 
-                    // Calcular y mostrar los días restantes
-                    if (fechaCursoMasCercano) {
-                        const diasRestantes = calcularDiasRestantes(fechaCursoMasCercano);
+                // Calcular y mostrar los días restantes
+                if (fechaCursoMasCercano) {
+                    const diasRestantes = calcularDiasRestantes(fechaCursoMasCercano);
+                    if (diasRestantes === 0) {
+                        $('#mensaje-dias-restantes').text('¡Suerte con tu curso! ¡Hoy inicia!');
+                    } else if (diasRestantes < 0) {
+                        $('#mensaje-dias-restantes').text('No hay cursos programados por el momento.');
+                    } else {
                         $('#mensaje-dias-restantes').text(`Faltan ${diasRestantes} días para el inicio del curso más cercano.`);
                     }
                 } else {
-                    $('#mensaje-dias-restantes').text('No hay cursos disponibles.');
+                    $('#mensaje-dias-restantes').text('No hay cursos programados por el momento.');
                 }
             })
             .catch(error => console.error('Error al obtener las fechas:', error));
     }
 
     // Cargar las fechas al cargar la página
- 
 });

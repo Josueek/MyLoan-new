@@ -155,6 +155,51 @@ if (isset($_GET['action'])) {
 
         default:
             $result['message'] = 'Acción no disponible';
+            case 'getCantidadCursosUltimos12Meses':
+                if ($result['dataset'] = $curso->getCantidadCursosUltimos12Meses()) {
+                    $result['status'] = 1;
+                } else {
+                    // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                    $result['error'] = 'Hubo un problema al obtener los cursos';
+                }
+                break;
+                
+                case 'prestamosUltimosMesesConProyeccion':
+                    if ($result['dataset'] = $curso->prestamosUltimosMesesConProyeccion()) {
+                        $result['status'] = 1;
+                    } else {
+                        // Manejar el error y enviar un mensaje adecuado
+                        $result['error'] = 'Hubo un problema al obtener los préstamos'; // Código de estado HTTP 500 para errores del servidor
+                    }
+                    break;
+                    case 'cursosUltimosMesesConProyeccion':
+                        if ($result['dataset'] = $curso->cursosUltimosMesesConProyeccion()) {
+                            $result['status'] = 1;
+                        } else {
+                            // Manejar el error y enviar un mensaje adecuado
+                            $result['error'] = 'Hubo un problema al obtener los préstamos'; // Código de estado HTTP 500 para errores del servidor
+                        }
+                        break;
+
+                    case 'CursosPorEstado':
+                        if ($result['dataset'] = $curso->CursosPorEstado()) {
+                            $result['status'] = 1;
+                        } else {
+                            // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                            $result['error'] = 'Hubo un problema al obtener los cursos';
+                        }
+                        break;
+                        case 'obtenerFechasCurso':
+                            if ($result['dataset'] = $curso->obtenerFechasCurso()) {
+                                $result['status'] = 1;
+                            } else {
+                                // Manejar el error y enviar un mensaje adecuado // Código de estado HTTP 500 para errores del servidor
+                                $result['error'] = 'Hubo un problema al obtener los cursos';
+                            }
+                            break;
+                          
+                
+            
     }
 
     header('Content-Type: application/json; charset=utf-8');
