@@ -8,36 +8,65 @@
     <link rel="icon" href="../img/logos/myloan_logo.png" type="image/x-icon">
     <!--Libreria de iconos-->
     <link rel="stylesheet" href="../../recursos/css/styles.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../recursos/css/animacion.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
 
     <title>MyLoan - Ruta no encontrada</title>
-    <!--Esta pantalla se utiliza al momento de no encontrar la ubicacion o la ruta de la pagina-->
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            color: darkgrey;
-        }
-        .iconos{
-            font-size: 40px;
-        }
-    </style>
 </head>
 
 <body>
-    <h2>No se encontró la ruta especificada</h2>
-   
 
-    <div class="text-center py-5">
-        <h4><i class="bi bi-cloud-slash-fill"></i> Error 404: Objeto no localizado</h4>
-        <a href="/MyLoan-new/vistas/" class="fs-1 iconos"><i class="bi bi-arrow-clockwise"></i></a>
+
+    <div class="moon"></div>
+    <div class="moon__crater moon__crater1"></div>
+    <div class="moon__crater moon__crater2"></div>
+    <div class="moon__crater moon__crater3"></div>
+
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+
+    <div class="error">
+        <div class="error__title">404</div>
+        <div class="error__subtitle">Ruta no encontrada</div>
+        <div class="error__description">Vuelve al inicio,</div>
+        <div class="error__description">verifica la dirección</div>
+        <a href="../../vistas/index.html">
+            <button class="error__button error__button--active">Volver al
+                inicio</button></a>
+    </div>
+
+    <div class="astronaut">
+        <div class="astronaut__backpack"></div>
+        <div class="astronaut__body"></div>
+        <div class="astronaut__body__chest"></div>
+        <div class="astronaut__arm-left1"></div>
+        <div class="astronaut__arm-left2"></div>
+        <div class="astronaut__arm-right1"></div>
+        <div class="astronaut__arm-right2"></div>
+        <div class="astronaut__arm-thumb-left"></div>
+        <div class="astronaut__arm-thumb-right"></div>
+        <div class="astronaut__leg-left"></div>
+        <div class="astronaut__leg-right"></div>
+        <div class="astronaut__foot-left"></div>
+        <div class="astronaut__foot-right"></div>
+        <div class="astronaut__wrist-left"></div>
+        <div class="astronaut__wrist-right"></div>
+
+        <div class="astronaut__cord">
+            <canvas id="cord" height="500px" width="500px"></canvas>
+        </div>
+
+        <div class="astronaut__head">
+            <canvas id="visor" width="60px" height="60px"></canvas>
+            <div class="astronaut__head-visor-flare1"></div>
+            <div class="astronaut__head-visor-flare2"></div>
+        </div>
     </div>
 </body>
+<script src="../../recursos/js/animacion.js"></script>
 
 </html>
