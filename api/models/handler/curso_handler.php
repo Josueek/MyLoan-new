@@ -374,16 +374,16 @@ WHERE c.id_empleado = ?;';
         // Consulta para obtener la cantidad de préstamos de los últimos 5 meses
         $sql = "
         SELECT
-            DATE_FORMAT(p.fecha_prestamo, '%M %Y') AS mes,
+            DATE_FORMAT(p.fecha_solicitud, '%M %Y') AS mes,
             COUNT(*) AS cantidad_prestamos
         FROM
             tb_prestamos p
         WHERE
-            p.fecha_prestamo >= DATE_FORMAT(CURRENT_DATE - INTERVAL 5 MONTH, '%Y-%m-01')
+            p.fecha_solicitud >= DATE_FORMAT(CURRENT_DATE - INTERVAL 5 MONTH, '%Y-%m-01')
         GROUP BY
-            DATE_FORMAT(p.fecha_prestamo, '%Y-%m')
+            DATE_FORMAT(p.fecha_solicitud, '%Y-%m')
         ORDER BY
-            p.fecha_prestamo ASC;
+            p.fecha_solicitud ASC;
     ";
 
         $prestamos = Database::getRows($sql);
