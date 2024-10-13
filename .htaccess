@@ -5,6 +5,11 @@
 ErrorDocument 403 /MyLoan-new/recursos/error/403.html
 ErrorDocument 404 /MyLoan-new/recursos/error/404.html
 
+# Deshabilitar listado de directorios
+Options -Indexes
+
+
+
 # ----------------------------------------------------------------------
 # | Character encodings                                                |
 # ----------------------------------------------------------------------
