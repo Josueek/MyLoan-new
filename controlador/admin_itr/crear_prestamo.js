@@ -11,9 +11,40 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btnSiguiente').addEventListener('click', function(event) {
         event.preventDefault();
         agregarPrestamo();
-        abrirModal();
+        obtenerUltimoIdPrestamo();
+    });
+
+    // Evento para el botón de guardar detalles
+    document.getElementById('btnGuardarDetalles').addEventListener('click', function(event) {
+        event.preventDefault();
+        agregarDetallesPrestamo(); // Llama a la función para guardar los detalles del préstamo
     });
 });
+
+async function abrirModal() {
+    const modal = new bootstrap.Modal(document.getElementById('detallesModal'), {
+        keyboard: false
+    });
+    
+    // Llamar a la función para obtener el último ID de préstamo
+    const response = await obtenerUltimoIdPrestamo(); // Asegúrate que esta función retorne el valor correcto
+
+    // Verifica la respuesta y asigna el ID al campo
+    if (response && response.status) {
+        const lastId = response.lastId; // Almacena el ID en una variable
+        document.getElementById('idPrestamo').value = lastId; // Asigna el ID al campo
+        console.log('ID Préstamo asignado:', lastId); // Verifica que el ID se asigne correctamente
+    } else {
+        console.error('Error al obtener el último ID de préstamo:', response);
+    }
+
+    modal.show(); // Muestra el modal
+}
+
+
+
+
+
 
 // Función para cargar cursos en el combobox
 function cargarComboboxCursos() {
@@ -172,6 +203,7 @@ function agregarPrestamo() {
             if (data.status) {
                 Swal.fire('Éxito', 'Préstamo agregado correctamente.', 'success').then(() => {
                     document.getElementById('formAgregarMaterial').reset();
+                    abrirModal(); // Mueve la apertura del modal aquí
                 });
             } else {
                 Swal.fire('Error!', data.message || 'Hubo un problema al agregar el préstamo.', 'error');
@@ -185,7 +217,6 @@ function agregarPrestamo() {
         Swal.fire('Error!', 'Formato de fecha inválido.', 'error');
     }
 }
-
 
 // Función para cargar espacios en el combobox
 function cargarComboboxEspacios() {
@@ -201,10 +232,63 @@ function cargarComboboxEspacios() {
         .catch(error => console.error('Error al obtener espacios:', error));
 }
 
-// Función para abrir el modal
-function abrirModal() {
-    const modal = new bootstrap.Modal(document.getElementById('modalAgregarDetalles'), {
-        keyboard: false
+// Función para obtener el último ID de préstamo
+async function obtenerUltimoIdPrestamo() {
+    const response = await fetch('../../api/services/prestamos_services.php?action=getLastPrestamoId');
+    const data = await response.json();
+    if (data.status) {
+        console.log('Último ID de préstamo:', data.lastId); // Cambiar aquí
+        return data.lastId; // Devolver el ID correcto
+    } else {
+        console.error('Error al obtener el último ID de préstamo:', data.message);
+        return null;
+    }
+}
+
+
+async function agregarDetallesPrestamo() {
+    const cantidadElemento = document.getElementById('cantidad');
+    const unidadElemento = document.getElementById('unidad');
+    const descripcionElemento = document.getElementById('descripcionDetalle');
+    const espacioElemento = document.getElementById('espacio');
+    const equipoElemento = document.getElementById('equipo');
+    const materialElemento = document.getElementById('material');
+    const codigoHerramientaElemento = document.getElementById('codigoHerramienta');
+
+    // Validar que los campos necesarios no estén vacíos
+    if (!cantidadElemento.value || !unidadElemento.value || !espacioElemento.value || !codigoHerramientaElemento.value) {
+        Swal.fire('Error!', 'Todos los campos son obligatorios.', 'error');
+        return;
+    }
+
+    const id_prestamo = await obtenerUltimoIdPrestamo(); // Obtener el último ID de préstamo
+    const formData = new FormData();
+    formData.append('idPrestamo', id_prestamo);
+    formData.append('cantidad', cantidadElemento.value);
+    formData.append('unidad', unidadElemento.value);
+    formData.append('descripcion', descripcionElemento.value);
+    formData.append('idEspacio', espacioElemento.value);
+    formData.append('idEquipo', equipoElemento.value);
+    formData.append('idMaterial', materialElemento.value);
+    formData.append('codigoHerramienta', codigoHerramientaElemento.value);
+
+    fetch('../../api/services/prestamos_services.php?action=addDetallePrestamo', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status) {
+            Swal.fire('Éxito', 'Detalles del préstamo agregados correctamente.', 'success');
+            // Cierra el modal después de agregar
+            const modal = bootstrap.Modal.getInstance(document.getElementById('detallesModal'));
+            modal.hide();
+        } else {
+            Swal.fire('Error!', data.message || 'Hubo un problema al agregar los detalles del préstamo.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error al agregar detalles del préstamo:', error);
+        Swal.fire('Error!', 'Hubo un problema al agregar los detalles del préstamo.', 'error');
     });
-    modal.show();
 }
