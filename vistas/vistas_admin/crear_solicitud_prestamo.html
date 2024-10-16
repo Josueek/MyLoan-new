@@ -67,14 +67,82 @@
                             <textarea id="descripcion" class="form-control input-short" rows="5" placeholder="Ingresa una observación para el prestamo"></textarea>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-3 mb-3 d-flex justify-content-start">
-                            <button id="btnSiguiente" type="button" class="btn btn-primary mx-lg-3">Siguiente</button>
+                            <button id="btnSiguiente" type="button" class="btn btn-primary mx-lg-3" data-bs-toggle="modal" data-bs-target="#detallesModal">Siguiente</button>
                         </div>
                     </div>
                 </form>
             </section>
         </section>
+
+        <!-- Modal para agregar detalles del préstamo -->
+        <div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detallesModalLabel">Detalles del Préstamo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formDetallesPrestamo">
+                            <div class="mb-3">
+                                <label for="cantidad" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="cantidad" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="unidad" class="form-label">Unidad</label>
+                                <select id="unidad" class="form-control" required>
+                                    <option value="unidad">Unidad</option>
+                                    <option value="unidades">Unidades</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcionDetalle" class="form-label">Descripción</label>
+                                <input type="text" class="form-control" id="descripcionDetalle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="idPrestamo" class="form-label">ID Préstamo</label>
+                                <input type="text" class="form-control" id="idPrestamo" value="" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="espacio" class="form-label">ID Espacio</label>
+                                <select id="espacio" class="form-control">
+                                    <option value="0">Seleccione un espacio</option>
+                                    <!-- Los espacios se cargarán dinámicamente desde JS -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="equipo" class="form-label">ID Equipo</label>
+                                <select id="equipo" class="form-control">
+                                    <option value="0">Seleccione un equipo</option>
+                                    <!-- Los equipos se cargarán dinámicamente desde JS -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="material" class="form-label">ID Material</label>
+                                <select id="material" class="form-control">
+                                    <option value="0">Seleccione un material</option>
+                                    <!-- Los materiales se cargarán dinámicamente desde JS -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="codigoHerramienta" class="form-label">Código Herramienta</label>
+                                <select id="codigoHerramienta" class="form-control">
+                                    <option value="0">Seleccione un código</option>
+                                    <!-- Los códigos se cargarán dinámicamente desde JS -->
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="btnGuardarDetalles">Guardar Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Scripts -->
         <script src="../../controlador/admin_itr/crear_prestamo.js"></script>

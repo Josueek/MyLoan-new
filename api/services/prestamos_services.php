@@ -12,15 +12,7 @@ if (isset($_GET['action'])) { // Verifica si se ha enviado una acción.
     $database = new Database(); // Asegúrate de que este constructor esté definido correctamente en tu clase Database.
 
     switch ($_GET['action']) { // Comienza el switch para manejar diferentes acciones.
-        case 'getLastPrestamoId':
-            $query = "SELECT MAX(id_prestamo) as id_prestamo FROM tb_prestamos";
-            $lastIdResult = Database::getRow($query);
-            if ($lastIdResult) {
-                echo json_encode(['status' => 1, 'dataset' => $lastIdResult]);
-            } else {
-                echo json_encode(['status' => 0, 'message' => 'No se pudo obtener el último id']);
-            }
-            break;
+
 
         case 'getAllPrestamos':
             // Obtiene todos los préstamos, con opción de búsqueda y filtrado.
