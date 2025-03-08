@@ -176,22 +176,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 try {
                     const response = await fetch('../../api/services/espacios_services.php?action=tipoObservacionesPorEspacio&id_espacio=' + id);
                     const DATA = await response.json();
-            
+
                     if (DATA.status) {
                         // Inicializa el modal de Bootstrap y luego lo muestra
                         const chartModal = new bootstrap.Modal(document.getElementById('chartModal1'));
                         chartModal.show();
-            
+
                         // Variables para almacenar los datos para el gráfico
                         let tipoObservacion = [];
                         let numeroObservaciones = [];
-            
+
                         // Procesar los datos recibidos de la API
                         DATA.dataset.forEach(row => {
                             tipoObservacion.push(row.Tipo_Observacion); // Ajusta esto según la estructura de los datos devueltos
                             numeroObservaciones.push(row.Numero_de_Observaciones); // Ajusta esto según la estructura de los datos devueltos
                         });
-            
+
                         // Verificar si el contenedor del gráfico existe y crear el gráfico
                         const chartContainer = document.getElementById('chartContainer1');
                         if (chartContainer) {
@@ -340,6 +340,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isNaN(capacidadPersonas) || capacidadPersonas <= 0 || !Number.isInteger(parseFloat(capacidadPersonas))) {
             Swal.fire('Error!', 'Capacidad de Personas debe ser un número entero positivo.', 'error');
+            return;
+        }
+
+        // Validación de formato de imagen (solo jpg, jpeg, png)
+        const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (!allowedImageTypes.includes(imagenEspacio.type)) {
+            Swal.fire('Error!', 'Solo se permiten imágenes en formato JPG, JPEG o PNG.', 'error');
+            return;
+        }
+
+
+        // Validación de formato de inventario (solo pdf)
+        const allowedDocumentTypes = ['application/pdf'];
+        if (!allowedDocumentTypes.includes(inventarioEspacio.type)) {
+            Swal.fire('Error!', 'Solo se permiten documentos en formato PDF.', 'error');
             return;
         }
 
@@ -533,6 +548,20 @@ document.addEventListener('DOMContentLoaded', function () {
             Swal.fire('Error!', 'Capacidad de Personas debe ser un número entero positivo.', 'error');
             return;
         }
+
+        // Validación de formato de imagen (solo jpg, jpeg, png)
+        const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (imagenEspacio && !allowedImageTypes.includes(imagenEspacio.type)) {
+            Swal.fire('Error!', 'Solo se permiten imágenes en formato JPG, JPEG o PNG.', 'error');
+            return;
+        }
+
+        // Validación de formato de inventario (solo pdf)
+        if (inventarioEspacio && inventarioEspacio.type !== 'application/pdf') {
+            Swal.fire('Error!', 'Solo se permiten documentos en formato PDF.', 'error');
+            return;
+        }
+
 
         const formData = new FormData();
         formData.append('idEspacio', idEspacio);
